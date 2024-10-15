@@ -1,0 +1,43 @@
+.navbar {
+    display: flex; /* Utiliza Flexbox para organizar o conteúdo dentro da barra de navegação. */
+    box-shadow: rgba(0, 0, 0, .15) 0px -2px 10px 0px; /* Aplica uma sombra ao fundo da barra de navegação para criar profundidade. */
+    justify-content: space-between; /* Distribui os itens dentro da barra. */
+    align-items: center; /* Centraliza verticalmente os itens no eixo Y. */
+    padding: 0.5em 2em; /* Define um espaçamento interno de 0.5em no topo/inferior e 2em nas laterais. */
+}
+
+.brand {
+    font-size: 1.2em; /* Aumenta o tamanho da fonte do nome da marca. */
+}
+
+.brand span {
+    font-weight: 900; /* Define a palavra "Workshop" com uma fonte bem mais grossa (negrito). */
+    text-transform: uppercase; /* Transforma todo o texto do elemento <span> (Workshop) em letras maiúsculas. */
+}
+
+.links_list {
+    display: flex; /* Organiza os itens da lista de links em uma única linha. */
+    list-style: none; /* Remove os marcadores padrão de uma lista não ordenada (os pontos ou números). */
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove qualquer preenchimento interno da lista para garantir um alinhamento adequado. */
+    flex-grow: 1; /* Faz com que a lista ocupe todo o espaço disponível entre a marca e o perfil */
+    justify-content: center; /* Centraliza os links horizontalmente */
+}
+
+.links_list li {
+    margin: 0 1.5em; /* Adiciona margem horizontal entre os links */
+}
+
+.profile {
+    margin-left: auto; /* Move o link de perfil para a extrema esquerda */
+}
+
+.links_list li a {
+    padding: 0.4em 0.6em; /* Adiciona preenchimento interno aos links, tornando-os maiores e mais fáceis de clicar. */
+}
+
+.active {
+    text-decoration: underline; /* Adiciona um sublinhado ao link ativo */
+    color: #FE502D; /* Muda a cor do texto para laranja */
+    font-weight: bold; /* Opcional: pode adicionar negrito para destacar mais */
+}

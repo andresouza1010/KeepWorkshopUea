@@ -1,0 +1,8 @@
+.footer {
+    height: 250px; /* Define a altura do rodapé como 250px. */
+    display: flex; /* Aplica o modelo de layout Flexbox ao rodapé, permitindo organizar os elementos filhos (como o <h3> e o <p>) de forma flexível. */
+    flex-direction: column; /* Organiza os elementos filhos (título e parágrafo) em uma coluna, um embaixo do outro. */
+    align-items: center; /* Centraliza os itens filhos horizontalmente (alinha-os ao centro no eixo X). */
+    justify-content: center; /* Centraliza os itens filhos verticalmente dentro do rodapé (alinha-os ao centro no eixo Y). */
+    background-color: #F28C38; /* Define a cor de fundo do rodapé como o laranja (#F28C38). */
+}

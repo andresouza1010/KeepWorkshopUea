@@ -1,0 +1,11 @@
+.create_oficina{
+    text-align: center;
+}
+.create_oficina h2{
+    font-size: 2.2em; 
+}
+
+.create_oficina p{
+    color:#AAA;
+    margin-bottom: 2em;
+}
