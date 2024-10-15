@@ -74,7 +74,7 @@ const NavBar = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <button onClick={logout}>Sair</button>
+                            <button onClick={logout}>Sair legal</button>
                         </li>
                     </>
                 )}
