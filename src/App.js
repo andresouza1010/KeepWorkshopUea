@@ -20,6 +20,8 @@ import Register from "./pages/Register/Register";
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
+import Search from "./pages/Search/Search";
+
 function App() {
   const[user, setUser] = useState(undefined)
   const{auth} = useAuthentication()
@@ -49,7 +51,8 @@ function App() {
                 <Route path="/about" element={<About/>}/>
                 <Route path="/oficinas/create" element={user ?<CreateOficina/> : <Navigate to="/login"/>}/>
                 <Route path="/Favoritas" element={<Favoritas/>}/>
-                <Route path="/Perfil" element={<Perfil/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/search" element={<Search/>}/>
                 <Route 
                   path="/Login" 
                   element={!user ?<Login/> : <Navigate to="/"/>}/>

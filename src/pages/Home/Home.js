@@ -2,24 +2,29 @@
 import styles from "./Home.module.css";
 
 //hooks
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
+//import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 
 //components
 import PostDetail from "../../components/PostDetail";
-
-
-
 const Home = () => {
     
 
     const [query, setQuery] = useState("");
     const {documents: oficinas, loading } = useFetchDocuments("oficinas");
 
+    const navigate = useNavigate()
+
     const handleSubmit = (e) =>{
-        e.preventDefault()
-    }
+        e.preventDefault();
+
+        if(query){
+            return navigate(`/search?q=${query}`);
+
+        }
+    };
         return(
         <div className={styles.home}>
         <h1>Veja as nossas oficinas mais recentes</h1>

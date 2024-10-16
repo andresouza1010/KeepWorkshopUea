@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom';
 
 const PostDetail = ({ oficina }) => {
   return (
-    <div>
-      {/* Exibe a imagem da oficina, mas antes usa o operador opcional "?."
-          para garantir que a propriedade `oficina` e a imagem existam, 
-          evitando erros caso `oficina` ainda não esteja carregada. */}
+    <div className={styles.oficina_detail}>
       <img src={oficina?.image} alt={oficina?.title} />
       
       {/* Exibe o título da oficina, garantindo que a propriedade `title` existe. */}
       <h2>{oficina?.title}</h2>
       
       {/* Exibe o nome da pessoa que criou a oficina */}
-      <p>{oficina?.createBy}</p>
+      <p className={styles.createdby}>{oficina?.createBy}</p>
       
-      <div>
+      <div className={styles.tags}>
         {/* Verifica se `oficina.tagsArray` existe e contém tags, antes de tentar mapear.
             Caso existam tags, ele as exibe com um # na frente, 
             senão, exibe a mensagem "Sem tags disponíveis". */}
