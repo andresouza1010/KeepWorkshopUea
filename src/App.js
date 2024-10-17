@@ -11,6 +11,8 @@ import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import CreateOficina from "./pages/CreateOficina/CreateOficina";
+
+import EditOficina from "./pages/EditOficina/EditOficina";
 import Favoritas from "./pages/Favoritas/Favoritas";
 import Perfil from "./pages/Perfil/Perfil";
 
@@ -52,6 +54,7 @@ function App() {
                 <Route path="/" element={<Home />}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/oficinas/create" element={user ?<CreateOficina/> : <Navigate to="/login"/>}/>
+                <Route path="/oficinas/edit/:id" element={user ?<EditOficina/> : <Navigate to="/login"/>}/>
                 <Route path="/Favoritas" element={<Favoritas/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/search" element={<Search/>}/>
