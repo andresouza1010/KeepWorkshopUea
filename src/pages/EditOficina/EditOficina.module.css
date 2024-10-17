@@ -1,25 +1,105 @@
-.edit_oficina{
+.edit_oficina {
     text-align: center;
-}
-.edit_oficina h2{
-    font-size: 2.2em; 
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.edit_oficina p{
-    color:#AAA;
+.edit_oficina h2 {
+    font-size: 2.4em;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.edit_oficina p {
+    color: #777;
     margin-bottom: 2em;
-
-
+    font-size: 1.1em;
 }
 
-.edit_oficina .preview_title{
-    margin-bottom: .2em;
+.edit_oficina .preview_title {
+    margin-bottom: 0.5em;
     color: #000;
     font-weight: bold;
-
+    font-size: 1.2em;
 }
 
-.image_preview{
+.image_preview {
     max-width: 100%;
     margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 1.5em;
+    text-align: left;
+}
+
+form label span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #555;
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form .btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.8em 2em;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form .btn:hover {
+    background-color: #218838;
+}
+
+form .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error {
+    color: #d9534f;
+    font-weight: bold;
+    margin-top: 1em;
+    font-size: 1em;
 }

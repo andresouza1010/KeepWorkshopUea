@@ -1,11 +1,67 @@
-.create_oficina{
+.create_oficina {
     text-align: center;
-}
-.create_oficina h2{
-    font-size: 2.2em; 
-}
-
-.create_oficina p{
-    color:#AAA;
+  }
+  
+  .create_oficina h2 {
+    font-size: 2.2em;
+  }
+  
+  .create_oficina p {
+    color: #AAA;
     margin-bottom: 2em;
-}
+  }
+  
+  .create_oficina label {
+    display: block;
+    margin-bottom: 1.5em;
+    text-align: left;
+    font-size: 1.1em; /* Ajuste para manter o tamanho do texto */
+  }
+  
+  .create_oficina span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    font-size: 1.1em; /* Mantendo o tamanho do rótulo consistente */
+  }
+  
+  .create_oficina input[type="text"],
+  .create_oficina textarea,
+  .create_oficina select {
+    width: 100%;
+    padding: 0.7em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em; /* Ajuste para o tamanho da fonte */
+    color: #333;
+    background-color: #f9f9f9;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .create_oficina input[type="text"]::placeholder,
+  .create_oficina textarea::placeholder {
+    font-size: 1em; /* Ajustando o tamanho do placeholder */
+  }
+  
+  .create_oficina input[type="text"]:focus,
+  .create_oficina textarea:focus,
+  .create_oficina select:focus {
+    border-color: #888;
+  }
+  
+  .create_oficina .btn {
+    padding: 0.7em 1.2em;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create_oficina .btn:hover {
+    background-color: #218838;
+  }
+  

@@ -47,7 +47,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>
-            Dashboard
+            Minhas Oficinas
           </NavLink>
         </li>
         <li>

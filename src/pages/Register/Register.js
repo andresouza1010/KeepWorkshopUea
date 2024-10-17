@@ -1,51 +1,47 @@
-import React from 'react'
+import React from 'react';
 import styles from "./Register.module.css";
-
-import {useState, useEffect} from 'react';
-
+import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
 
-const Register= () => {
+const Register = () => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { createUser, error: authError, loading} = useAuthentication ();
+  const { createUser, error: authError, loading } = useAuthentication();
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    setError("")
+    if (password !== confirmPassword) {
+      setError("As senhas precisam ser iguais!");
+      return;
+    }
 
     const user = {
       displayName,
       email,
       password
-    }
-
-    
-
-    if(password !== confirmPassword){
-      setError("As senhas precisam ser iguais!")
-      return
-    }
+    };
 
     const res = await createUser(user);
-    console.log(res)
+    console.log(res);
   };
-  useEffect(()=>{
-    if(authError){
-      setError(authError)
+
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
     }
-  }, [authError])
+  }, [authError]);
 
   return (
-    <div className ={styles.register}>
-      <h1>Bem vindo!</h1>
+    <div className={styles.register}>
+      <h1>Bem-vindo!</h1>
       <p>Crie sua conta e compartilhe as suas ideias!</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label>
           <span>Nome:</span>
           <input 
@@ -55,7 +51,7 @@ const Register= () => {
             placeholder="Nome do usuário"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            />
+          />
         </label>
         <label>
           <span>E-mail:</span>
@@ -66,7 +62,7 @@ const Register= () => {
             placeholder="E-mail do usuário"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            />
+          />
         </label>
         <label>
           <span>Senha:</span>
@@ -77,7 +73,7 @@ const Register= () => {
             placeholder="Insira sua senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            />
+          />
         </label>
         <label>
           <span>Confirmação de senha:</span>
@@ -88,18 +84,20 @@ const Register= () => {
             placeholder="Confirme a sua senha"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+          />
         </label>
-       {!loading &&  <button className="btn">Cadastrar</button>}
-       {loading &&( 
-         <button className="btn" disabled>
-          Aguarde...
-          </button>
+        <div className={styles.buttonContainer}>
+          {!loading && <button className="btn">Cadastrar</button>}
+          {loading && (
+            <button className="btn" disabled>
+              Aguarde...
+            </button>
           )}
+        </div>
         {error && <p className="error">{error}</p>}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

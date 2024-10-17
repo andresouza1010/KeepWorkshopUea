@@ -6,12 +6,19 @@ const PostDetail = ({ oficina }) => {
     <div className={styles.oficina_detail}>
       <img src={oficina?.image} alt={oficina?.title} />
       
-    
       <h2>{oficina?.title}</h2>
       
-     
       <p className={styles.createdby}>{oficina?.createBy}</p>
-      
+
+      {/* Exibindo a categoria */}
+      <p className={styles.category}>Categoria: {oficina?.category}</p>
+
+      {/* Exibindo o público-alvo */}
+      <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
+
+      {/* Exibindo a duração da oficina */}
+      <p className={styles.duration}>Duração: {oficina?.duration} horas</p>
+
       <div className={styles.tags}>
         {oficina?.tagsArray && oficina.tagsArray.length > 0 ? (
           oficina.tagsArray.map((tag) => (
@@ -20,7 +27,6 @@ const PostDetail = ({ oficina }) => {
             </p>
           ))
         ) : (
-        
           <p>Sem tags disponíveis</p>
         )}
       </div>
@@ -31,5 +37,7 @@ const PostDetail = ({ oficina }) => {
     </div>
   );
 };
+
+
 
 export default PostDetail;

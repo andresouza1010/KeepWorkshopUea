@@ -1,30 +1,31 @@
-.home{
+/* Home.module.css */
+
+.home {
+    /* Outras propriedades que você pode ter */
     display: flex;
     flex-direction: column;
-    align-items:center;
-    justify-content: center;
+    align-items: center;
 }
 
-.search_form{
-    max-width: 100%;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2em;
+.search_form {
+    margin-bottom: 20px;
 }
 
-.search_form input{
-    margin-right: 10px;
-    width: 50%;
-}
-.noposts{
+.noposts {
     text-align: center;
 }
 
-.noposts p{
-    margin-bottom: 1.5em;
+/* Estilos para PostDetail (supondo que você tenha uma classe específica) */
+.postDetail {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha se não couberem */
+    justify-content: center; /* Centraliza os itens na tela */
 }
 
-.noposts a{
-    padding: 10px 25px;
+.postDetail img {
+    width: calc(50% - 10px); /* Ajusta a largura para 50% menos margem */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 5px; /* Adiciona espaço entre as imagens */
+    border-radius: 8px; /* Adiciona bordas arredondadas, se desejar */
+    object-fit: cover; /* Garante que a imagem cubra o espaço definido */
 }

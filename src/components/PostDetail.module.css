@@ -1,33 +1,36 @@
+/* PostDetail.module.css */
+
 .oficina_detail {
-    margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px; /* Adiciona espaço entre os detalhes das oficinas */
+  width: calc(50% - 20px); /* Ajusta a largura para caber duas oficinas na tela */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar cada oficina */
+  border-radius: 8px; /* Bordas arredondadas */
+  overflow: hidden; /* Garante que nada exceda as bordas */
 }
 
 .oficina_detail img {
-    max-width: 300px;
+  width: 100%; /* Faz com que a imagem ocupe 100% da largura do container */
+  height: auto; /* Mantém a proporção da imagem */
+  object-fit: cover; /* Cobre o espaço disponível mantendo a proporção */
+  border-bottom: 1px solid #ccc; /* Linha abaixo da imagem */
 }
 
-.oficina_detail h2{
-    margin-bottom: .4em ;
-
-
+.createdby, .category, .audience, .duration {
+  margin: 5px 0; /* Margem entre os elementos */
 }
 
-.oficina_detail .tags{
-    margin-bottom: 1.2em;
-    display: flex;
+.tags {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as tags se movam para a próxima linha */
+  justify-content: center; /* Centraliza as tags */
 }
 
 .tags p {
-    margin-right: .5em;
-}
-
-.tags span{
-    font-weight: bold;
-}
-
-.createdby{
-    font-style: italic;
-    color: #444;
-    font-size: 0.8em;
-    margin-bottom: 1em;
+  margin: 0 5px; /* Margem entre as tags */
+  padding: 5px; /* Espaço interno nas tags */
+  background-color: #f0f0f0; /* Cor de fundo para as tags */
+  border-radius: 4px; /* Bordas arredondadas nas tags */
 }
