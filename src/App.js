@@ -21,6 +21,8 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 import Search from "./pages/Search/Search";
+import Oficina from "./pages/Oficina/Oficina"
+
 
 function App() {
   const[user, setUser] = useState(undefined)
@@ -53,6 +55,7 @@ function App() {
                 <Route path="/Favoritas" element={<Favoritas/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/search" element={<Search/>}/>
+                <Route path="/oficinas/:id" element={<Oficina />} />
                 <Route 
                   path="/Login" 
                   element={!user ?<Login/> : <Navigate to="/"/>}/>
