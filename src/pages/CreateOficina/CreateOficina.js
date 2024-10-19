@@ -9,7 +9,6 @@ const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [tags, setTags] = useState([]);
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
@@ -31,11 +30,8 @@ const CreateOficina = () => {
       return; 
     }
 
-    // Criar array de tags
-    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
-
     // Checar todos os valores
-    if (!title || !image || !tags || !body || !category || !targetAudience || !duration) {
+    if (!title || !image || !body || !category || !targetAudience || !duration) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -46,8 +42,7 @@ const CreateOficina = () => {
       title,
       image,
       body,
-      tagsArray,
-      category, 
+      category, // Usando apenas a categoria
       targetAudience, 
       duration, // Incluindo a duração da oficina
       uid: user.uid,
@@ -145,18 +140,6 @@ const CreateOficina = () => {
             placeholder="Ex: 2" 
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
-          />
-        </label>
-
-        <label>
-          <span>Tags:</span>
-          <input 
-            type="text" 
-            name="tags" 
-            required 
-            placeholder="Insira as tags separadas por vírgula" 
-            onChange={(e) => setTags(e.target.value)}
-            value={tags}
           />
         </label>
 

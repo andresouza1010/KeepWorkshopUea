@@ -1,36 +1,94 @@
-/* PostDetail.module.css */
-
 .oficina_detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px; /* Adiciona espaço entre os detalhes das oficinas */
-  width: calc(50% - 20px); /* Ajusta a largura para caber duas oficinas na tela */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar cada oficina */
-  border-radius: 8px; /* Bordas arredondadas */
-  overflow: hidden; /* Garante que nada exceda as bordas */
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  margin: 20px; /* Margem em volta do card */
+  margin-top: 30px; /* Margem superior para separar os cards */
+  transition: transform 0.2s ease;
+}
+
+.oficina_detail:hover {
+  transform: scale(1.05);
 }
 
 .oficina_detail img {
-  width: 100%; /* Faz com que a imagem ocupe 100% da largura do container */
-  height: auto; /* Mantém a proporção da imagem */
-  object-fit: cover; /* Cobre o espaço disponível mantendo a proporção */
-  border-bottom: 1px solid #ccc; /* Linha abaixo da imagem */
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.createdby, .category, .audience, .duration {
-  margin: 5px 0; /* Margem entre os elementos */
+.favorite_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #ff385c; /* Cor do ícone quando favoritado */
+  cursor: pointer;
+  font-size: 24px;
+  transition: transform 0.2s ease;
 }
 
-.tags {
+.favorite_icon:hover {
+  transform: scale(1.2); /* Efeito de aumentar no hover */
+}
+
+.oficina_detail h2 {
+  font-size: 16px; /* Tamanho da fonte reduzido */
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+  text-align: left; /* Alinha o título à esquerda */
+}
+
+.oficina_detail p {
+  text-align: left; /* Alinha os parágrafos à esquerda */
+  margin: 5px 0; /* Margem vertical entre os parágrafos */
+  font-size: 14px; /* Tamanho da fonte reduzido para parágrafos */
+}
+
+/* Classe para o botão centralizado */
+.button_container {
   display: flex;
-  flex-wrap: wrap; /* Permite que as tags se movam para a próxima linha */
-  justify-content: center; /* Centraliza as tags */
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  margin-top: auto; /* Empurra o botão para o final do card */
+  margin-top: 10px; /* Espaçamento acima do botão, se necessário */
 }
 
-.tags p {
-  margin: 0 5px; /* Margem entre as tags */
-  padding: 5px; /* Espaço interno nas tags */
-  background-color: #f0f0f0; /* Cor de fundo para as tags */
-  border-radius: 4px; /* Bordas arredondadas nas tags */
+.tags_container {
+  position: absolute; /* Fixa a posição da caixa de tags */
+  top: 10px; /* Distância do topo do card */
+  left: 10px; /* Distância da esquerda do card */
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com leve transparência */
+  padding: 5px 10px; /* Espaçamento interno da caixa */
+  border-radius: 5px; /* Arredondar os cantos da caixa */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  display: flex; /* Flexbox para organizar as tags */
+  flex-wrap: wrap; /* Permite que as tags quebrem para a próxima linha se necessário */
+}
+
+.tag {
+  margin-right: 5px; /* Margem entre as tags */
+  color: #d37121; /* Cor das tags (azul padrão) */
+  font-size: 12px; /* Tamanho da fonte reduzido para tags */
+}
+
+.image_container {
+  position: relative; /* Permite o posicionamento absoluto dos filhos */
+}
+
+.tag {
+  position: absolute; /* Permite que a tag seja posicionada em relação ao contêiner pai */
+  top: 10px; /* Distância do topo */
+  left: 10px; /* Distância da esquerda */
+  background-color: #ff7f50; /* Cor laranja (coral) */
+  color: #fff; /* Cor do texto (branco) */
+  padding: 5px 10px; /* Espaçamento interno */
+  border-radius: 5px; /* Cantos arredondados */
+  z-index: 1; /* Certifica-se de que a tag está acima da imagem */
 }

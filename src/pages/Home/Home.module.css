@@ -1,31 +1,110 @@
 /* Home.module.css */
 
+/* Estilos globais para o body (aplicados a toda a aplicação) */
+body {
+    font-size: 16px; /* Tamanho padrão da fonte */
+    line-height: 1.5; /* Espaçamento entre linhas */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+}
+
 .home {
-    /* Outras propriedades que você pode ter */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
 }
 
 .search_form {
-    margin-bottom: 20px;
+    display: flex; /* Alinha o input e o botão na mesma linha */
+    gap: 20px; /* Espaço entre o input e o botão */
+}
+
+.search_form input {
+    font-size: 14px; /* Tamanho da fonte do input */
+    padding: 8px; /* Espaçamento interno do input */
+    border: 1px solid #ddd; /* Borda do input */
+    border-radius: 5px; /* Cantos arredondados */
+    flex: 1; /* Faz o input ocupar o espaço restante */
+}
+
+.search_form button {
+    background-color: #ff8c42; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+    font-size: 14px; /* Tamanho da fonte do botão */
+}
+
+/* Muda a cor da borda ao focar no input */
+.search_form input:focus {
+    border-color: #ff8c42; /* Cor laranja pastel ao focar */
+}
+
+/* Muda a cor do botão ao passar o mouse */
+.search_form button:hover {
+    background-color: #ff702b; /* Laranja mais forte ao passar o mouse */
 }
 
 .noposts {
     text-align: center;
 }
 
-/* Estilos para PostDetail (supondo que você tenha uma classe específica) */
 .postDetail {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha se não couberem */
-    justify-content: center; /* Centraliza os itens na tela */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Disposição responsiva em colunas */
+    gap: 20px; /* Espaçamento entre os cards */
+    width: 100%;
+    max-width: 1200px; /* Define um limite máximo de largura */
+    justify-items: center; /* Centraliza os cards */
 }
 
 .postDetail img {
-    width: calc(50% - 10px); /* Ajusta a largura para 50% menos margem */
-    height: auto; /* Mantém a proporção da imagem */
-    margin: 5px; /* Adiciona espaço entre as imagens */
-    border-radius: 8px; /* Adiciona bordas arredondadas, se desejar */
-    object-fit: cover; /* Garante que a imagem cubra o espaço definido */
+    width: 100%;
+    height: 200px; /* Altura fixa para garantir que todas as imagens fiquem consistentes */
+    object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
+    border-radius: 8px;
+}
+
+/* Estilo de cada card de oferta */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+.card-details {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px; /* Tamanho do título */
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    font-size: 14px; /* Tamanho da descrição */
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.card-price {
+    font-size: 16px; /* Tamanho do preço */
+    font-weight: bold;
+    color: #ff385c;
 }
