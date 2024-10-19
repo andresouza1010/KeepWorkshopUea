@@ -4,14 +4,14 @@
 body {
     font-size: 16px; /* Tamanho padrão da fonte */
     line-height: 1.5; /* Espaçamento entre linhas */
-    font-family: Arial, sans-serif; /* Fonte padrão */
+    font-family: Poppins, poppins; /* Fonte padrão */
 }
 
 .home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 19px;
 }
 
 .search_form {
@@ -28,7 +28,7 @@ body {
 }
 
 .search_form button {
-    background-color: #ff8c42; /* Cor de fundo do botão */
+    background-color: #3527da; /* Cor de fundo do botão */
     color: white; /* Cor do texto */
     border: none; /* Remove a borda padrão */
     padding: 10px 20px; /* Espaçamento interno */

@@ -17,32 +17,40 @@
 
 .oficina_detail img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .favorite_icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
+  bottom: 10px; /* Distância do fundo */
+  right: 10px; /* Distância da direita */
+  background-color: transparent; /* Fundo transparente por padrão */
   border: none;
   color: #ff385c; /* Cor do ícone quando favoritado */
   cursor: pointer;
   font-size: 24px;
   transition: transform 0.2s ease;
+  display: flex; /* Torna o botão um contêiner flexível */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  width: 40px; /* Largura fixa do botão */
+  height: 40px; /* Altura fixa do botão */
 }
 
-.favorite_icon:hover {
-  transform: scale(1.2); /* Efeito de aumentar no hover */
+.favorite_icon:not(.favorited) {
+  background-color: #d8d5d52f; /* Fundo cinza escuro quando não favoritado */
+  border-radius: 20%; /* Para fazer o fundo redondo */
+  padding: 0; /* Remover padding para garantir que o ícone fique centralizado */
 }
+
 
 .oficina_detail h2 {
   font-size: 16px; /* Tamanho da fonte reduzido */
   margin-top: 15px;
   font-weight: bold;
-  color: #333;
+  color: #534d4d;
   text-align: left; /* Alinha o título à esquerda */
 }
 
@@ -86,9 +94,19 @@
   position: absolute; /* Permite que a tag seja posicionada em relação ao contêiner pai */
   top: 10px; /* Distância do topo */
   left: 10px; /* Distância da esquerda */
-  background-color: #ff7f50; /* Cor laranja (coral) */
-  color: #fff; /* Cor do texto (branco) */
+  background-color: #ffffff58; /* Cor laranja (coral) */
+  color: #ffffff; /* Cor do texto (branco) */
   padding: 5px 10px; /* Espaçamento interno */
   border-radius: 5px; /* Cantos arredondados */
   z-index: 1; /* Certifica-se de que a tag está acima da imagem */
+}
+
+.brief_description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a 2 linhas */
+  -webkit-box-orient: vertical;
+  color: #666; /* Cor para a descrição, ajuste conforme necessário */
+  margin: 10px 0; /* Margens para espaçamento */
 }

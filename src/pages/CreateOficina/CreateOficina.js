@@ -9,6 +9,7 @@ const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
+  const [description, setDescription] = useState(""); // Novo estado para a breve descrição
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
@@ -31,7 +32,7 @@ const CreateOficina = () => {
     }
 
     // Checar todos os valores
-    if (!title || !image || !body || !category || !targetAudience || !duration) {
+    if (!title || !image || !body || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -42,6 +43,7 @@ const CreateOficina = () => {
       title,
       image,
       body,
+      description, // Incluindo a breve descrição
       category, // Usando apenas a categoria
       targetAudience, 
       duration, // Incluindo a duração da oficina
@@ -101,6 +103,17 @@ const CreateOficina = () => {
             onChange={(e) => setImage(e.target.value)}
             value={image}
           />
+        </label>
+
+        <label>
+          <span>Breve descrição</span> {/* Novo campo para breve descrição */}
+          <textarea 
+            name="description" 
+            required 
+            placeholder="Insira uma breve descrição da sua oficina!" 
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          ></textarea>
         </label>
 
         <label>

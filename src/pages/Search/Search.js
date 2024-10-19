@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 //hooks
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
@@ -12,10 +12,21 @@ const Search = () => {
   const search = query.get("q");
 
   const { documents: oficinas } = useFetchDocuments("oficinas", search);
+  const [message, setMessage] = useState("Pesquisar");
+
+  useEffect(() => {
+    if (oficinas && oficinas.length > 0) {
+      setMessage("Oficinas encontradas");
+    } else if (oficinas && oficinas.length === 0) {
+      setMessage("Nenhuma oficina encontrada.");
+    } else {
+      setMessage("Pesquisar");
+    }
+  }, [oficinas]);
 
   return (
     <div className={styles.search_container}>
-      <h2>Pesquisar</h2>
+      <h2>{message}</h2> {/* Exibe a mensagem */}
       <div className={styles.posts}>
         {oficinas && oficinas.length === 0 && (
           <div className={styles.noposts}>

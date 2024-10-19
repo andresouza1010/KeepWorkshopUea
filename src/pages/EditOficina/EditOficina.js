@@ -12,10 +12,10 @@ const EditOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [tags, setTags] = useState([]);
-  const [category, setCategory] = useState(""); // Estado para Categoria
-  const [targetAudience, setTargetAudience] = useState(""); // Estado para Público-alvo
-  const [duration, setDuration] = useState(""); // Estado para Duração
+  const [description, setDescription] = useState(""); // Novo estado para a descrição
+  const [category, setCategory] = useState("");
+  const [targetAudience, setTargetAudience] = useState("");
+  const [duration, setDuration] = useState("");
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
@@ -23,11 +23,10 @@ const EditOficina = () => {
       setTitle(oficina.title);
       setBody(oficina.body);
       setImage(oficina.image);
+      setDescription(oficina.description); // Atualizando a descrição
       setCategory(oficina.category);
       setTargetAudience(oficina.targetAudience);
       setDuration(oficina.duration);
-      const textTags = oficina.tagsArray.join(",");
-      setTags(textTags);
     }
   }, [oficina]);
 
@@ -47,11 +46,8 @@ const EditOficina = () => {
       return;
     }
 
-    // Criar array de tags
-    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
-
     // Checar todos os valores
-    if (!title || !image || !tags || !body || !category || !targetAudience || !duration) {
+    if (!title || !image || !body || !description || !category || !targetAudience || !duration) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -60,17 +56,15 @@ const EditOficina = () => {
       title,
       image,
       body,
-      tagsArray,
-      category, // Incluindo categoria
-      targetAudience, // Incluindo público-alvo
-      duration, // Incluindo duração
+      description, // Incluindo descrição
+      category,
+      targetAudience,
+      duration,
       uid: user.uid,
       createdBy: user.displayName,
     };
 
     updateDocument(id, data);
-
-    // Redirecionar para a página inicial
     navigate("/dashboard");
   };
 
@@ -120,6 +114,18 @@ const EditOficina = () => {
             </label>
 
             <label>
+              <span>Descrição (máx. 2 linhas)</span>
+              <textarea
+                name="description"
+                required
+                placeholder="Insira uma breve descrição da sua oficina!"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                maxLength={200} // Limitar a descrição a 200 caracteres
+              ></textarea>
+            </label>
+
+            <label>
               <span>Categoria</span>
               <select name="category" required onChange={(e) => setCategory(e.target.value)} value={category}>
                 <option value="">Selecione uma categoria</option>
@@ -155,18 +161,6 @@ const EditOficina = () => {
                 placeholder="Duração da oficina"
                 onChange={(e) => setDuration(e.target.value)}
                 value={duration}
-              />
-            </label>
-
-            <label>
-              <span>Tags:</span>
-              <input
-                type="text"
-                name="tags"
-                required
-                placeholder="Insira as tags separadas por vírgula"
-                onChange={(e) => setTags(e.target.value)}
-                value={tags}
               />
             </label>
 
