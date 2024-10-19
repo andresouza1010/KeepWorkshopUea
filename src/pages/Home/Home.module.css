@@ -26,17 +26,35 @@ body {
     border-radius: 5px; /* Cantos arredondados */
     flex: 1; /* Faz o input ocupar o espaço restante */
 }
-
-.search_form button {
-    background-color: #3527da; /* Cor de fundo do botão */
-    color: white; /* Cor do texto */
+.btn {
+    background-color: #000000; /* Cor de fundo do botão */
+    color: rgb(255, 230, 3); /* Cor do texto */
     border: none; /* Remove a borda padrão */
-    padding: 10px 20px; /* Espaçamento interno */
-    border-radius: 5px; /* Cantos arredondados */
+    padding: 5px; /* Diminui o espaçamento interno */
+    border-radius: 50%; /* Cantos arredondados */
     cursor: pointer; /* Muda o cursor ao passar sobre o botão */
     transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-    font-size: 14px; /* Tamanho da fonte do botão */
+    font-size: 12px; /* Tamanho da fonte do botão */
+    width: 40px; /* Largura fixa */
+    height: 40px; /* Altura fixa */
 }
+
+.btnFilter {
+    /* Estilos específicos para o botão de filtro, se necessário */
+}
+
+.search_form button {
+    background-color: #000000; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    padding: 5px 10px !important; /* Diminui o espaçamento interno */
+    border-radius: 100px; /* Cantos arredondados */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+    font-size: 12px !important; /* Diminui o tamanho da fonte do botão */
+}
+
+
 
 /* Muda a cor da borda ao focar no input */
 .search_form input:focus {
@@ -108,3 +126,4 @@ body {
     font-weight: bold;
     color: #ff385c;
 }
+

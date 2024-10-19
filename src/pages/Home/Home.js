@@ -1,8 +1,9 @@
-import styles from "./Home.module.css";
+import styles from "./Home.module.css"; 
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import PostDetail from "../../components/PostDetail";
+import 'font-awesome/css/font-awesome.min.css';
 
 const Home = () => {
     const [query, setQuery] = useState("");
@@ -18,14 +19,21 @@ const Home = () => {
 
     return (
         <div className={styles.home}>
-            <h1>Veja as nossas oficinas mais recentes!</h1>
+           
             <form onSubmit={handleSubmit} className={styles.search_form}>
+            <button type="button" className={`${styles.btn} ${styles.btnFilter}`}>
+                 <i className="fa fa-filter"></i> {/* Aqui está o ícone de filtro */}
+            </button>
+
                 <input
                     type="text"
                     placeholder="Ou busque por título..."
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                <button className="btn btn-dark">Pesquisar</button>
+                <button className={`${styles.btn} ${styles.btnSearch}`}>
+    <i className="fa fa-search"></i> {/* Aqui está o ícone de lupa */}
+</button>
+
             </form>
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
