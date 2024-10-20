@@ -33,6 +33,7 @@ input {
     border: 1px solid #ccc; /* Borda leve */
     border-radius: 4px; /* Bordas arredondadas para os campos */
     transition: border-color 0.3s; /* Transição suave para a borda */
+    width: 200px;
 }
 
 input:focus {
@@ -48,3 +49,4 @@ input:focus {
     color: red; /* Cor do texto de erro */
     margin-top: 10px; /* Espaçamento acima do texto de erro */
 }
+
