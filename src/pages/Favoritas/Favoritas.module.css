@@ -1,0 +1,41 @@
+.favoritas_container {
+    padding: 20px;
+  }
+  
+  .oficinas_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .oficina_detail {
+    position: relative; /* Para posicionar o ícone dentro do card */
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .oficina_detail img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  .favorite_icon {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Tamanho do ícone */
+  }
+  
+  .favorite_icon:hover {
+    transform: scale(1.1); /* Efeito ao passar o mouse */
+  }
+  
