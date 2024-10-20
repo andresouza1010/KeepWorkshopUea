@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './CreateOficina.module.css';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
+  const [uploadedImage, setUploadedImage] = useState(null); // Novo estado para a imagem carregada
   const [body, setBody] = useState("");
-  const [description, setDescription] = useState(""); // Novo estado para a breve descrição
+  const [description, setDescription] = useState(""); 
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
-  const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
+  const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
@@ -23,16 +22,14 @@ const CreateOficina = () => {
     e.preventDefault();
     setFormError("");
 
-    // Validate URL da imagem
-    try {
-      new URL(image);
-    } catch (error) {
-      setFormError("A imagem precisa ser uma URL.");
+    // Verifica se a imagem foi carregada
+    if (!uploadedImage) {
+      setFormError("Por favor, carregue uma imagem!");
       return; 
     }
 
     // Checar todos os valores
-    if (!title || !image || !body || !category || !targetAudience || !duration || !description) {
+    if (!title || !body || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -41,18 +38,28 @@ const CreateOficina = () => {
 
     insertDocument({
       title,
-      image,
+      image: uploadedImage, // Usando a imagem carregada
       body,
-      description, // Incluindo a breve descrição
-      category, // Usando apenas a categoria
+      description,
+      category,
       targetAudience, 
-      duration, // Incluindo a duração da oficina
+      duration,
       uid: user.uid,
       createdBy: user.displayName,
     });
 
-    // Redirecionar para a página inicial
     navigate("/");
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUploadedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -64,7 +71,6 @@ const CreateOficina = () => {
         <label>
           <span>Categoria</span>
           <select 
-            name="category" 
             required 
             onChange={(e) => setCategory(e.target.value)} 
             value={category}
@@ -85,7 +91,6 @@ const CreateOficina = () => {
           <span>Título</span>
           <input 
             type="text" 
-            name="title" 
             required 
             placeholder="Pense em um nome que destaque a sua oficina!" 
             onChange={(e) => setTitle(e.target.value)}
@@ -94,24 +99,11 @@ const CreateOficina = () => {
         </label>
 
         <label>
-          <span>URL da imagem</span>
-          <input 
-            type="text" 
-            name="image" 
-            required 
-            placeholder="Insira a imagem desta etapa em sua Oficina" 
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
-          />
-        </label>
-
-        <label>
-          <span>Breve descrição</span> {/* Novo campo para breve descrição */}
+          <span>Descrição da Introdução</span>
           <textarea 
-            name="description" 
             required 
-            placeholder="Insira uma breve descrição da sua oficina!" 
-            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Descreva o que a oficina irá abordar na introdução!" 
+            onChange={(e) => setDescription(e.target.value)} 
             value={description}
           ></textarea>
         </label>
@@ -119,7 +111,6 @@ const CreateOficina = () => {
         <label>
           <span>Recursos necessários</span>
           <textarea 
-            name="body" 
             required 
             placeholder="Insira o Conteúdo da oficina!"
             onChange={(e) => setBody(e.target.value)}
@@ -130,7 +121,6 @@ const CreateOficina = () => {
         <label>
           <span>Público-alvo</span>
           <select 
-            name="targetAudience" 
             required 
             onChange={(e) => setTargetAudience(e.target.value)} 
             value={targetAudience}
@@ -148,11 +138,20 @@ const CreateOficina = () => {
           <span>Duração da oficina (em horas)</span>
           <input 
             type="number" 
-            name="duration" 
             required 
             placeholder="Ex: 2" 
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
+          />
+        </label>
+
+        {/* Mover o campo de upload de imagem para aqui */}
+        <label>
+          <span>Imagem da introdução</span>
+          <input 
+            type="file" 
+            accept="image/*" 
+            onChange={(e) => handleImageUpload(e)}
           />
         </label>
 
