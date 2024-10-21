@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CreateOficina.module.css';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
-  const [uploadedImages, setUploadedImages] = useState([]); // Estado para múltiplas imagens
+  const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [description, setDescription] = useState(""); 
-  const [etapa1, setEtapa1] = useState(""); 
+  const [description, setDescription] = useState(""); // Novo estado para a breve descrição
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
-  const [duration, setDuration] = useState(""); 
+  const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
@@ -23,15 +23,16 @@ const CreateOficina = () => {
     e.preventDefault();
     setFormError("");
 
-    // Verifica se ao menos uma imagem foi carregada
-    if (uploadedImages.length === 0) {
-      setFormError("Por favor, carregue pelo menos uma imagem!");
+    // Validate URL da imagem
+    try {
+      new URL(image);
+    } catch (error) {
+      setFormError("A imagem precisa ser uma URL.");
       return; 
     }
 
-
     // Checar todos os valores
-    if (!title || !body || !category || !targetAudience || !duration || !description || !etapa1) {
+    if (!title || !image || !body || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -40,27 +41,19 @@ const CreateOficina = () => {
 
     insertDocument({
       title,
-      image: uploadedImages[0], // Usando a primeira imagem carregada
+      image,
       body,
-      description,
-      etapa1,
-      category,
+      description, // Incluindo a breve descrição
+      category, // Usando apenas a categoria
       targetAudience, 
-      duration,
+      duration, // Incluindo a duração da oficina
       uid: user.uid,
       createdBy: user.displayName,
     });
 
+    // Redirecionar para a página inicial
     navigate("/");
   };
-
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    const imageUrls = files.map(file => URL.createObjectURL(file)); // Cria URLs para todas as imagens
-    setUploadedImages(imageUrls); // Armazena as URLs das imagens
-  };
-
- 
 
   return (
     <div className={styles.create_oficina}>
@@ -71,6 +64,7 @@ const CreateOficina = () => {
         <label>
           <span>Categoria</span>
           <select 
+            name="category" 
             required 
             onChange={(e) => setCategory(e.target.value)} 
             value={category}
@@ -91,6 +85,7 @@ const CreateOficina = () => {
           <span>Título</span>
           <input 
             type="text" 
+            name="title" 
             required 
             placeholder="Pense em um nome que destaque a sua oficina!" 
             onChange={(e) => setTitle(e.target.value)}
@@ -99,11 +94,24 @@ const CreateOficina = () => {
         </label>
 
         <label>
-          <span>Resumo da Oficina</span>
-          <textarea 
+          <span>URL da imagem</span>
+          <input 
+            type="text" 
+            name="image" 
             required 
-            placeholder="Descreva o que a oficina irá abordar!" 
-            onChange={(e) => setDescription(e.target.value)} 
+            placeholder="Insira a imagem desta etapa em sua Oficina" 
+            onChange={(e) => setImage(e.target.value)}
+            value={image}
+          />
+        </label>
+
+        <label>
+          <span>Breve descrição</span> {/* Novo campo para breve descrição */}
+          <textarea 
+            name="description" 
+            required 
+            placeholder="Insira uma breve descrição da sua oficina!" 
+            onChange={(e) => setDescription(e.target.value)}
             value={description}
           ></textarea>
         </label>
@@ -111,6 +119,7 @@ const CreateOficina = () => {
         <label>
           <span>Recursos necessários</span>
           <textarea 
+            name="body" 
             required 
             placeholder="Insira o Conteúdo da oficina!"
             onChange={(e) => setBody(e.target.value)}
@@ -121,6 +130,7 @@ const CreateOficina = () => {
         <label>
           <span>Público-alvo</span>
           <select 
+            name="targetAudience" 
             required 
             onChange={(e) => setTargetAudience(e.target.value)} 
             value={targetAudience}
@@ -138,6 +148,7 @@ const CreateOficina = () => {
           <span>Duração da oficina (em horas)</span>
           <input 
             type="number" 
+            name="duration" 
             required 
             placeholder="Ex: 2" 
             onChange={(e) => setDuration(e.target.value)}
@@ -145,42 +156,12 @@ const CreateOficina = () => {
           />
         </label>
 
-        <label>
-          <span>Imagens da introdução</span>
-          <input 
-            type="file" 
-            accept="image/*" 
-            multiple // Permite múltiplos uploads
-            onChange={(e) => handleImageUpload(e)}
-          />
-        </label>
-        
-        <label>
-          <span>Descrição da Etapa 1</span>
-          <textarea 
-            required 
-            placeholder="Descreva a introdução da sua!" 
-            onChange={(e) => setEtapa1(e.target.value)} 
-            value={etapa1}
-          ></textarea>
-        </label>
-
-       
-        
         {!response.loading && <button className="btn">Cadastrar</button>}
         {response.loading && <button className="btn" disabled>Aguarde...</button>}
         
         {response.error && <p className="error">{response.error}</p>}
         {formError && <p className="error">{formError}</p>}
       </form>
-
-      {/* Exibindo a primeira imagem (etapa1) */}
-      {uploadedImages.length > 0 && (
-        <div>
-          <h3>Imagem Principal:</h3>
-          <img src={uploadedImages[0]} alt="Imagem Principal" style={{ width: '200px' }} />
-        </div>
-      )}
     </div>
   );
 };

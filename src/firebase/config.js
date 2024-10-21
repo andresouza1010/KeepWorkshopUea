@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";  // Adicionando o Firebase Storage
-
+;
 const firebaseConfig = {
   apiKey: "AIzaSyBdi5wX7XLsEfu8z08fnrfVWf7MqAXlu7U",
   authDomain: "keepworkshop-c050f.firebaseapp.com",
@@ -14,6 +13,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app); // Inicializar o Firebase Storage
+//const auth = getAuth( app ); se der erro olhar a aula 141 de react
 
-export { db, storage };
+export { db }

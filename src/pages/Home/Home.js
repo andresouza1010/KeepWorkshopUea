@@ -19,18 +19,21 @@ const Home = () => {
 
     return (
         <div className={styles.home}>
+           
             <form onSubmit={handleSubmit} className={styles.search_form}>
-                <button type="button" className={`${styles.btn} ${styles.btnFilter}`}>
-                    <i className="fa fa-filter"></i> {/* Ícone de filtro */}
-                </button>
+            <button type="button" className={`${styles.btn} ${styles.btnFilter}`}>
+                 <i className="fa fa-filter"></i> {/* Aqui está o ícone de filtro */}
+            </button>
+
                 <input
                     type="text"
                     placeholder="Ou busque por título..."
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 <button className={`${styles.btn} ${styles.btnSearch}`}>
-                    <i className="fa fa-search"></i> {/* Ícone de lupa */}
-                </button>
+    <i className="fa fa-search"></i> {/* Aqui está o ícone de lupa */}
+</button>
+
             </form>
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
