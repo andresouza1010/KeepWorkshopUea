@@ -41,6 +41,7 @@ const PostDetail = ({ oficina }) => {
           className={styles.favorite_icon}
           onClick={handleFavorite}
           style={{ color: isFavorited ? '#ff385c' : '#ccc' }}
+          aria-label={isFavorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
         >
           {isFavorited ? <FaHeart /> : <FaRegHeart />}
         </button>
