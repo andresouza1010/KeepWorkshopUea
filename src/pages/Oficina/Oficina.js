@@ -19,14 +19,42 @@ const Oficina = () => {
                     <h3>Descrição:</h3>
                     <p>{oficina.description}</p>
 
-                    <h3>Esta oficina trata sobre:</h3>
-                    <div className={styles.tags}>
-                        {/* Verificando se tagsArray é um array antes de mapear */}
-                        {Array.isArray(oficina.tagsArray) && oficina.tagsArray.map((tag) => (
-                            <p key={tag}><span>#</span>{tag}</p>
-                        ))}
-                    </div>
-                    
+                    <h3>Etapa 1:</h3>
+                    <p>{oficina.etapa1}</p>
+                    {oficina.image && (
+                        <img src={oficina.image} alt="Imagem da Etapa 1" style={{ width: '200px' }} />
+                    )}
+
+                    {oficina.etapa2 && (
+                        <>
+                            <h3>Etapa 2:</h3>
+                            <p>{oficina.etapa2}</p>
+                            {oficina.etapa2Image && (
+                                <img src={oficina.etapa2Image} alt="Imagem da Etapa 2" style={{ width: '200px' }} />
+                            )}
+                        </>
+                    )}
+
+                    {oficina.etapa3 && (
+                        <>
+                            <h3>Etapa 3:</h3>
+                            <p>{oficina.etapa3}</p>
+                            {oficina.etapa3Image && (
+                                <img src={oficina.etapa3Image} alt="Imagem da Etapa 3" style={{ width: '200px' }} />
+                            )}
+                        </>
+                    )}
+
+                    {oficina.etapa4 && (
+                        <>
+                            <h3>Etapa 4:</h3>
+                            <p>{oficina.etapa4}</p>
+                            {oficina.etapa4Image && (
+                                <img src={oficina.etapa4Image} alt="Imagem da Etapa 4" style={{ width: '200px' }} />
+                            )}
+                        </>
+                    )}
+
                     <h3>Categoria:</h3>
                     <p>{oficina.category}</p>
                     <h3>Público-alvo:</h3>

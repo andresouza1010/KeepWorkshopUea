@@ -27,13 +27,17 @@ const PostDetail = ({ oficina }) => {
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favoritas")) || [];
     const isFavorite = favorites.some(fav => fav.id === oficina.id);
+    console.log("Dados da oficina:", oficina.id);
     setIsFavorited(isFavorite);
   }, [oficina.id]);
 
   return (
     <div className={styles.oficina_detail}>
       <div className={styles.image_container}>
-        <img src={oficina?.image} alt={oficina?.title} />
+        {/* Exibir apenas a imagem principal uma vez */}
+        {oficina?.etapa1 && (
+          <img src={oficina.image} alt={oficina?.title} />
+        )}
         <span className={styles.tag}>{oficina?.category}</span>
 
         {/* Botão de favoritar/desfavoritar */}
@@ -58,7 +62,9 @@ const PostDetail = ({ oficina }) => {
       <p className={styles.createdby}>Autor: {oficina?.createdBy || "Autor desconhecido"}</p>
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
       <p className={styles.duration}>Duração: {oficina?.duration} horas</p>
+
       
+
       <div className={styles.button_container}>
         <Link to={`/oficinas/${oficina?.id}`} className="btn btn-outline">
           Acessar
