@@ -10,19 +10,10 @@ const CreateOficina = () => {
   const [body, setBody] = useState("");
   const [description, setDescription] = useState(""); 
   const [etapa1, setEtapa1] = useState(""); 
-  const [etapa2, setEtapa2] = useState(""); // Novo estado para etapa 2
-  const [etapa3, setEtapa3] = useState(""); // Novo estado para etapa 3
-  const [etapa4, setEtapa4] = useState(""); // Novo estado para etapa 4
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
-
-
-  // Novos estados para as imagens das etapas
-  const [etapa2Image, setEtapa2Image] = useState("");
-  const [etapa3Image, setEtapa3Image] = useState("");
-  const [etapa4Image, setEtapa4Image] = useState("");
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
@@ -53,17 +44,11 @@ const CreateOficina = () => {
       body,
       description,
       etapa1,
-      etapa2, // Adicionando etapa 2
-      etapa3, // Adicionando etapa 3
-      etapa4, // Adicionando etapa 4
       category,
       targetAudience, 
       duration,
       uid: user.uid,
       createdBy: user.displayName,
-      etapa2Image,
-      etapa3Image,
-      etapa4Image,
     });
 
     navigate("/");
@@ -75,27 +60,7 @@ const CreateOficina = () => {
     setUploadedImages(imageUrls); // Armazena as URLs das imagens
   };
 
-  // Funções para lidar com o upload das imagens das etapas
-  const handleEtapa2ImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setEtapa2Image(URL.createObjectURL(file));
-    }
-  };
-
-  const handleEtapa3ImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setEtapa3Image(URL.createObjectURL(file));
-    }
-  };
-
-  const handleEtapa4ImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setEtapa4Image(URL.createObjectURL(file));
-    }
-  };
+ 
 
   return (
     <div className={styles.create_oficina}>
@@ -200,77 +165,7 @@ const CreateOficina = () => {
           ></textarea>
         </label>
 
-        <label>
-          <span>Imagem da Etapa 2</span>
-          <input 
-            type="file" 
-            accept="image/*" 
-            onChange={handleEtapa2ImageUpload}
-          />
-        </label>
-        {etapa2Image && (
-          <div>
-            <h3>Imagem da Etapa 2:</h3>
-            <img src={etapa2Image} alt="Imagem da Etapa 2" style={{ width: '200px' }} />
-          </div>
-        )}
-
-        <label>
-          <span>Descrição da Etapa 2</span>
-          <textarea 
-            placeholder="Descreva a etapa 2 da sua oficina!" 
-            onChange={(e) => setEtapa2(e.target.value)} 
-            value={etapa2}
-          ></textarea>
-        </label>
-
-        <label>
-          <span>Imagem da Etapa 3</span>
-          <input 
-            type="file" 
-            accept="image/*" 
-            onChange={handleEtapa3ImageUpload}
-          />
-        </label>
-        {etapa3Image && (
-          <div>
-            <h3>Imagem da Etapa 3:</h3>
-            <img src={etapa3Image} alt="Imagem da Etapa 3" style={{ width: '200px' }} />
-          </div>
-        )}
-
-        <label>
-          <span>Descrição da Etapa 3</span>
-          <textarea 
-            placeholder="Descreva a etapa 3 da sua oficina!" 
-            onChange={(e) => setEtapa3(e.target.value)} 
-            value={etapa3}
-          ></textarea>
-        </label>
-
-        <label>
-          <span>Imagem da Etapa 4</span>
-          <input 
-            type="file" 
-            accept="image/*" 
-            onChange={handleEtapa4ImageUpload}
-          />
-        </label>
-        {etapa4Image && (
-          <div>
-            <h3>Imagem da Etapa 4:</h3>
-            <img src={etapa4Image} alt="Imagem da Etapa 4" style={{ width: '200px' }} />
-          </div>
-        )}
-
-        <label>
-          <span>Descrição da Etapa 4</span>
-          <textarea 
-            placeholder="Descreva a etapa 4 da sua oficina!" 
-            onChange={(e) => setEtapa4(e.target.value)} 
-            value={etapa4}
-          ></textarea>
-        </label>
+       
         
         {!response.loading && <button className="btn">Cadastrar</button>}
         {response.loading && <button className="btn" disabled>Aguarde...</button>}

@@ -57,6 +57,7 @@ function App() {
                 <Route path="/oficinas/edit/:id" element={user ?<EditOficina/> : <Navigate to="/login"/>}/>
                 <Route path="/Favoritas" element={<Favoritas/>}/>
                 <Route path="/about" element={<About/>}/>
+                <Route path="/perfil" element={<Perfil/>}/>
                 <Route path="/search" element={<Search/>}/>
                 <Route path="/oficinas/:id" element={<Oficina />} />
                 <Route 

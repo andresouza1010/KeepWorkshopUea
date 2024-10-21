@@ -39,9 +39,6 @@ body {
     height: 40px; /* Altura fixa */
 }
 
-.btnFilter {
-    /* Estilos específicos para o botão de filtro, se necessário */
-}
 
 .search_form button {
     background-color: #000000; /* Cor de fundo do botão */
