@@ -8,7 +8,7 @@ const Oficina = () => {
 
     return (
         <div className={styles.oficina_container}>
-            {loading && <p>Carregando Oficina...</p>}
+            {loading && <p>Carregando Oficina</p>}
             {oficina && (
                 <>
                     <h1>{oficina.title}</h1>
