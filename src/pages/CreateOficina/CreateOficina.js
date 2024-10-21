@@ -10,6 +10,10 @@ const CreateOficina = () => {
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
   const [description, setDescription] = useState(""); // Novo estado para a breve descrição
+  const [descricaoIntro, setIntroduction] = useState(""); // Novo estado para a breve descrição
+  const [descricaoOrganizacao, setOrganizacao] = useState(""); // Novo estado para a breve descrição
+  const [descricaoPratica, setPratica] = useState(""); // Novo estado para a breve descrição
+  const [descricaoApresentacao, setApresentacao] = useState(""); // Novo estado para a breve descrição
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
@@ -18,6 +22,20 @@ const CreateOficina = () => {
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    
+    reader.onloadend = () => {
+      setImage(reader.result); // Define o estado da imagem como base64
+    };
+    
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +61,10 @@ const CreateOficina = () => {
       title,
       image,
       body,
+      descricaoIntro,
+      descricaoOrganizacao,
+      descricaoPratica,
+      descricaoApresentacao,
       description, // Incluindo a breve descrição
       category, // Usando apenas a categoria
       targetAudience, 
@@ -93,17 +115,7 @@ const CreateOficina = () => {
           />
         </label>
 
-        <label>
-          <span>URL da imagem</span>
-          <input 
-            type="text" 
-            name="image" 
-            required 
-            placeholder="Insira a imagem desta etapa em sua Oficina" 
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
-          />
-        </label>
+     
 
         <label>
           <span>Breve descrição</span> {/* Novo campo para breve descrição */}
@@ -155,6 +167,98 @@ const CreateOficina = () => {
             value={duration}
           />
         </label>
+
+        <div>
+          <h3>Introdução</h3>
+          <p>Faça upload da sua introdução.</p>
+          <label>
+            <span>Upload da Imagem</span>
+            <input 
+              type="file" 
+              name="image" 
+              required 
+              accept="image/*" 
+              onChange={(e) => handleImageUpload(e)}
+            />
+          </label>
+          <span>Descrição da introdução</span>
+          <textarea 
+            name="descricaoIntro" 
+            required 
+            placeholder="Introduza a sua Oficina"
+            onChange={(e) => setIntroduction(e.target.value)}
+            value={descricaoIntro}
+          ></textarea>
+
+          <h3>Organização de Materiais</h3>
+          <p>Faça upload da organização dos recursos!</p>
+          <label>
+            <span>Upload da Imagem</span>
+            <input 
+              type="file" 
+              name="image" 
+              required 
+              accept="image/*" 
+              onChange={(e) => handleImageUpload(e)}
+            />
+          </label>
+
+          <textarea 
+            name="descricaoOrganizacao" 
+            required 
+            placeholder="Introduza a sua Oficina"
+            onChange={(e) => setOrganizacao(e.target.value)}
+            value={descricaoOrganizacao}
+          ></textarea>
+
+
+          
+          <h3>Momento Prático</h3>
+          <p>Faça upload do momento prático</p>
+          <label>
+            <span>Upload da Imagem</span>
+            <input 
+              type="file" 
+              name="image" 
+              required 
+              accept="image/*" 
+              onChange={(e) => handleImageUpload(e)}
+            />
+          </label>
+
+          <textarea 
+            name="descricaoPratica" 
+            required 
+            placeholder="Introduza a sua Oficina"
+            onChange={(e) => setPratica(e.target.value)}
+            value={descricaoPratica}
+          ></textarea>
+
+          <h3>Apresentação Final</h3>
+          <p>Faça upload dos resultados finais da oficina!</p>
+          <label>
+            <span>Upload da Imagem</span>
+            <input 
+              type="file" 
+              name="image" 
+              required 
+              accept="image/*" 
+              onChange={(e) => handleImageUpload(e)}
+            />
+          </label>
+
+          <textarea 
+            name="descricaoApresentacao" 
+            required 
+            placeholder="Introduza a sua Oficina"
+            onChange={(e) => setApresentacao(e.target.value)}
+            value={descricaoApresentacao}
+          ></textarea>
+
+
+        </div>
+
+
 
         {!response.loading && <button className="btn">Cadastrar</button>}
         {response.loading && <button className="btn" disabled>Aguarde...</button>}
