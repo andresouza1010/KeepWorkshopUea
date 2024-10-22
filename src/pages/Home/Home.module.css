@@ -1,126 +1,108 @@
-/* Home.module.css */
-
-/* Estilos globais para o body (aplicados a toda a aplicação) */
-body {
-    font-size: 16px; /* Tamanho padrão da fonte */
-    line-height: 1.5; /* Espaçamento entre linhas */
-    font-family: Poppins, poppins; /* Fonte padrão */
-}
-
-.home {
+/* Estilos para a barra de filtro */
+.filter_bar {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    z-index: 10;
+    gap: 20px;
     align-items: center;
-    padding: 19px;
+    width: 100%;
+    padding: 10px 0;
 }
 
-.search_form {
-    display: flex; /* Alinha o input e o botão na mesma linha */
-    gap: 20px; /* Espaço entre o input e o botão */
+.filter_button {
+    background-color: #f0f1f6;
+    border: 1px solid #d0d2d7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.search_form input {
-    font-size: 14px; /* Tamanho da fonte do input */
-    padding: 8px; /* Espaçamento interno do input */
-    border: 1px solid #ddd; /* Borda do input */
-    border-radius: 5px; /* Cantos arredondados */
-    flex: 1; /* Faz o input ocupar o espaço restante */
-}
-.btn {
-    background-color: #000000; /* Cor de fundo do botão */
-    color: rgb(255, 230, 3); /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    padding: 5px; /* Diminui o espaçamento interno */
-    border-radius: 50%; /* Cantos arredondados */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-    font-size: 12px; /* Tamanho da fonte do botão */
-    width: 40px; /* Largura fixa */
-    height: 40px; /* Altura fixa */
+.filter_button:hover {
+    background-color: #e0e3e7;
 }
 
-
-.search_form button {
-    background-color: #000000; /* Cor de fundo do botão */
-    color: white; /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    padding: 5px 10px !important; /* Diminui o espaçamento interno */
-    border-radius: 100px; /* Cantos arredondados */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-    font-size: 12px !important; /* Diminui o tamanho da fonte do botão */
+.icon_down {
+    font-size: 12px;
+    color: #888;
 }
 
-
-
-/* Muda a cor da borda ao focar no input */
-.search_form input:focus {
-    border-color: #ff8c42; /* Cor laranja pastel ao focar */
+.filter_menu {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #d0d2d7;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none; /* Inicialmente oculto */
 }
 
-/* Muda a cor do botão ao passar o mouse */
-.search_form button:hover {
-    background-color: #ff702b; /* Laranja mais forte ao passar o mouse */
+.filter_dropdown:hover .filter_menu {
+    display: block; /* Mostra o menu ao passar o mouse */
 }
 
-.noposts {
-    text-align: center;
+.checkbox_label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.checkbox_label input {
+    margin-right: 10px;
+    accent-color: #ff702b; /* Personaliza a cor do checkbox */
+}
+
+/* Estilos para o input de busca */
+.search_input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #d0d2d7;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.search_input:focus {
+    border-color: #ff8c42;
+    outline: none;
+}
+
+.search_button {
+    background-color: #ff702b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search_button:hover {
+    background-color: #e65b20;
 }
 
 .postDetail {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Disposição responsiva em colunas */
-    gap: 20px; /* Espaçamento entre os cards */
-    width: 100%;
-    max-width: 1200px; /* Define um limite máximo de largura */
-    justify-items: center; /* Centraliza os cards */
-}
-
-.postDetail img {
-    width: 100%;
-    height: 200px; /* Altura fixa para garantir que todas as imagens fiquem consistentes */
-    object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
-    border-radius: 8px;
-}
-
-/* Estilo de cada card de oferta */
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    overflow: hidden;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
+    z-index: 1;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas */
+    gap: 20px; /* Espaçamento entre os itens */
 }
 
-.card:hover {
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+.postDetail > div {
+    flex: 0 0 calc(25% - 20px); /* Cada item ocupa 25% da largura, menos o gap */
+    box-sizing: border-box; /* Garante que padding e margin não afetem o tamanho */
 }
 
-.card-details {
-    padding: 15px;
+/* Para garantir que o PostDetail tenha a mesma altura */
+.postDetail > div > .postDetail {
+    height: 100%; /* Isso pode ser ajustado conforme necessário */
 }
-
-.card-title {
-    font-size: 18px; /* Tamanho do título */
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.card-description {
-    font-size: 14px; /* Tamanho da descrição */
-    color: #555;
-    margin-bottom: 12px;
-}
-
-.card-price {
-    font-size: 16px; /* Tamanho do preço */
-    font-weight: bold;
-    color: #ff385c;
-}
-

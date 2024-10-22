@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Register.module.css";
-import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
 
 const Register = () => {
@@ -8,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [acceptTerms, setAcceptTerms] = useState(false); // Estado para os Termos de Uso
   const [error, setError] = useState("");
 
   const { createUser, error: authError, loading } = useAuthentication();
@@ -16,8 +16,15 @@ const Register = () => {
     e.preventDefault();
     setError("");
 
+    // Verifique se as senhas correspondem
     if (password !== confirmPassword) {
       setError("As senhas precisam ser iguais!");
+      return;
+    }
+
+    // Verifique se os termos foram aceitos
+    if (!acceptTerms) {
+      setError("Você precisa aceitar os Termos de Uso para se cadastrar.");
       return;
     }
 
@@ -86,6 +93,19 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
+        
+        {/* Adicionar Termos de Uso */}
+        <div className={styles.terms}>
+          <label>
+            <input
+              type="checkbox"
+              checked={acceptTerms}
+              onChange={(e) => setAcceptTerms(e.target.checked)}
+            />
+            Eu li e aceito os <a href="/termos" target="_blank">Termos de Uso</a>
+          </label>
+        </div>
+
         <div className={styles.buttonContainer}>
           {!loading && <button className="btn">Cadastrar</button>}
           {loading && (

@@ -8,7 +8,6 @@ import 'font-awesome/css/font-awesome.min.css';
 const Home = () => {
     const [query, setQuery] = useState("");
     const [selectedCategories, setSelectedCategories] = useState([]); // Array para armazenar as categorias selecionadas
-    const [dropdownVisible, setDropdownVisible] = useState(false); // Estado para controlar a visibilidade do dropdown
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
     const navigate = useNavigate();
 
@@ -29,25 +28,24 @@ const Home = () => {
 
     // Filtrando oficinas com base nas categorias selecionadas
     const filteredOficinas = oficinas?.filter(oficina => 
-        selectedCategories.length === 0 || selectedCategories.includes(oficina.category) // Filtra apenas pelas categorias selecionadas
-    ) || []; // Adiciona fallback para um array vazio
+        selectedCategories.length === 0 || selectedCategories.includes(oficina.category)
+    ) || [];
 
     return (
         <div className={styles.home}>
             <form onSubmit={handleSubmit} className={styles.search_form}>
-                <button 
-                    type="button" 
-                    className={`${styles.btn} ${styles.btnFilter}`}
-                    onClick={() => setDropdownVisible(prev => !prev)} // Alterna a visibilidade do dropdown
-                >
-                    <i className="fa fa-filter"></i> {/* Ícone de filtro */}
-                </button>
+                <div className={styles.filter_bar}>
+                    <div className={styles.filter_dropdown}>
+                        <button 
+                            type="button" 
+                            className={styles.filter_button}
+                        >
+                            Filtrar Categorias
+                            <i className={`fa fa-angle-down ${styles.icon_down}`}></i> {/* Ícone de seta */}
+                        </button>
 
-                {/* Dropdown de categorias */}
-                {dropdownVisible && (
-                    <div className={styles.category_filter}>
-                        <h4>Categorias:</h4>
-                        <div className={styles.checkbox_group}>
+                        {/* Dropdown com categorias */}
+                        <div className={styles.filter_menu}>
                             {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
                                 <label key={category} className={styles.checkbox_label}>
                                     <input 
@@ -61,22 +59,25 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                )}
 
-                <input
-                    type="text"
-                    placeholder="Ou busque por título..."
-                    onChange={(e) => setQuery(e.target.value)}
-                />
-                <button className={`${styles.btn} ${styles.btnSearch}`}>
-                    <i className="fa fa-search"></i> {/* Ícone de lupa */}
-                </button>
+                    <input
+                        type="text"
+                        placeholder="Ou busque por título..."
+                        onChange={(e) => setQuery(e.target.value)}
+                        className={styles.search_input}
+                    />
+                    <button className={styles.search_button}>
+                        <i className="fa fa-search"></i> {/* Ícone de lupa */}
+                    </button>
+                </div>
             </form>
-            
+
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
                 {filteredOficinas && filteredOficinas.map((oficina) => (
-                    <PostDetail key={oficina.id} oficina={oficina} />
+                    <div key={oficina.id}>
+                        <PostDetail oficina={oficina} />
+                    </div>
                 ))}
                 {filteredOficinas.length === 0 && (
                     <div className={styles.noposts}>
