@@ -1,6 +1,7 @@
-import styles from './Oficina.module.css';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchDocument } from '../../hooks/useFetchDocument';
+import styles from './Oficina.module.css';
 
 const Oficina = () => {
     const { id } = useParams();
@@ -8,30 +9,77 @@ const Oficina = () => {
 
     return (
         <div className={styles.oficina_container}>
-            {loading && <p>Carregando Oficina</p>}
+            {loading && <p>Carregando Oficina...</p>}
             {oficina && (
-                <>
-                    <h1>{oficina.title}</h1>
-                    <img src={oficina.image} alt={oficina.title} />
-                    <p>{oficina.body}</p>
-                    
-                    {/* Exibir a descrição da oficina */}
-                    <h3>Descrição:</h3>
-                    <p>{oficina.description}</p>
+                <div className={styles.oficina_content}>
+                    <h1 className={styles.title}>{oficina.title}</h1>
+                    <img className={styles.oficina_image} src={oficina.image} alt={oficina.title} />
 
-                    <h3>Etapa 1:</h3>
-                    <p>{oficina.etapa1}</p>
-                    {oficina.image && (
-                        <img src={oficina.image} alt="Imagem da Etapa 1" style={{ width: '200px' }} />
+                    <div className={styles.description_card}>
+                        <h3>Descrição</h3>
+                        <p>{oficina.description}</p>
+                    </div>
+
+                    <div className={styles.details_section}>
+                        <h3>Detalhes da Oficina</h3>
+                        <div className={styles.detail_item}>
+                            <h4>Categoria:</h4>
+                            <p>{oficina.category}</p>
+                        </div>
+                        <div className={styles.detail_item}>
+                            <h4>Público-alvo:</h4>
+                            <p>{oficina.targetAudience}</p>
+                        </div>
+                        <div className={styles.detail_item}>
+                            <h4>Duração:</h4>
+                            <p>{oficina.duration} horas</p>
+                        </div>
+                        <div className={styles.detail_item}>
+                            <h4>Recursos Necessários:</h4>
+                            <p>{oficina.recursos}</p>
+                        </div>
+
+                        <h3>Etapas da Oficina</h3>
+                        <div className={styles.step_section}>
+                            <h4>Introdução:</h4>
+                            <p>{oficina.descricaoIntro}</p>
+                            {oficina.imageIntroducao && (
+                                <img className={styles.step_image} src={oficina.imageIntroducao} alt="Introdução" />
+                            )}
+                        </div>
+
+                        <div className={styles.step_section}>
+                            <h4>Organização de Materiais:</h4>
+                            <p>{oficina.descricaoOrganizacao}</p>
+                            {oficina.imageOrganizacao && (
+                                <img className={styles.step_image} src={oficina.imageOrganizacao} alt="Organização" />
+                            )}
+                        </div>
+
+                        <div className={styles.step_section}>
+                            <h4>Momento Prático:</h4>
+                            <p>{oficina.descricaoPratica}</p>
+                            {oficina.imagePratica && (
+                                <img className={styles.step_image} src={oficina.imagePratica} alt="Momento Prático" />
+                            )}
+                        </div>
+
+                        <div className={styles.step_section}>
+                            <h4>Apresentação Final:</h4>
+                            <p>{oficina.descricaoApresentacao}</p>
+                            {oficina.imageApresentacao && (
+                                <img className={styles.step_image} src={oficina.imageApresentacao} alt="Apresentação Final" />
+                            )}
+                        </div>
+                    </div>
+
+                    {oficina.hasAccessibility && (
+                        <div className={styles.accessibility_section}>
+                            <h3>Elementos de Acessibilidade</h3>
+                            <p>{oficina.accessibilityDescription}</p>
+                        </div>
                     )}
-
-                    <h3>Categoria:</h3>
-                    <p>{oficina.category}</p>
-                    <h3>Público-alvo:</h3>
-                    <p>{oficina.targetAudience}</p>
-                    <h3>Duração:</h3>
-                    <p>{oficina.duration} horas</p>
-                </>
+                </div>
             )}
         </div>
     );

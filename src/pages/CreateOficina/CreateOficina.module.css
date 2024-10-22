@@ -147,3 +147,15 @@
   font-weight: bold; 
   margin-top: 10px; 
 }
+
+.iconContainer {
+  position: fixed; /* Fixa a posição */
+  bottom: 20px; /* Distância do fundo da tela */
+  left: 20px; /* Distância da esquerda da tela */
+  z-index: 1000; /* Garante que o ícone fique acima de outros elementos */
+}
+
+.iconContainer img {
+  width: 50px; /* Ajuste o tamanho do ícone conforme necessário */
+  height: auto; /* Mantém a proporção do ícone */
+}

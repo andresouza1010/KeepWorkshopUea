@@ -7,7 +7,7 @@ import { useInsertDocument } from '../../hooks/useInsertDocument';
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
-  const [body, setBody] = useState("");
+  const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
   const [descricaoIntro, setIntroduction] = useState(""); 
   const [descricaoOrganizacao, setOrganizacao] = useState(""); 
@@ -17,6 +17,8 @@ const CreateOficina = () => {
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
+
+  
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
@@ -52,7 +54,7 @@ const CreateOficina = () => {
     }
 
     // Checar todos os valores
-    if (!title || !image || !body || !category || !targetAudience || !duration || !description) {
+    if (!title || !image || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -62,7 +64,7 @@ const CreateOficina = () => {
     insertDocument({
       title,
       image,
-      body,
+      recursos,
       descricaoIntro,
       descricaoOrganizacao,
       descricaoPratica,
@@ -80,6 +82,7 @@ const CreateOficina = () => {
     // Redirecionar para a página inicial
     navigate("/");
   };
+  
 
   return (
     <div className={styles.create_oficina}>
@@ -133,11 +136,11 @@ const CreateOficina = () => {
         <label>
           <span>Recursos necessários</span>
           <textarea 
-            name="body" 
+            name="recursos" 
             required 
-            placeholder="Insira o Conteúdo da oficina!"
-            onChange={(e) => setBody(e.target.value)}
-            value={body}
+            placeholder="Insira os recursos de sua oficina!"
+            onChange={(e) => setRecursos(e.target.value)}
+            value={recursos}
           ></textarea>
         </label>
 
