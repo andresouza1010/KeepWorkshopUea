@@ -12,7 +12,7 @@ const Oficina = () => {
             {loading && <p>Carregando Oficina...</p>}
             {oficina && (
                 <div className={styles.oficinaContent}>
-                    <h1 className={styles.title}>{oficina.title}</h1>
+                    <h2 className={styles.title}>{oficina.title}</h2>
                     <img className={styles.oficinaImage} src={oficina.image} alt={oficina.title} />
 
                     <div className={styles.descriptionCard}>

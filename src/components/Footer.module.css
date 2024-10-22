@@ -51,15 +51,25 @@ ul {
     margin-top: 20px; /* Espaço superior */
 }
 
-.linkButton {
-    background: none; /* Remove a cor de fundo */
-    border: none; /* Remove a borda */
-    color: inherit; /* Herda a cor do texto do elemento pai */
-    text-decoration: underline; /* Adiciona o sublinhado para parecer um link */
-    cursor: pointer; /* Muda o cursor para um ponteiro */
-    padding: 0; /* Remove o preenchimento */
-}
+
 
 .linkButton:hover {
     color: #F28C38; /* Cor ao passar o mouse, se desejar */
 }
+
+.linkButton {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #ffffff; /* Cor de link azul */
+    border: none;
+    cursor: pointer;
+    padding: 10px 1px;
+    transition: color 0.3s ease;
+  }
+  
+  .linkButton:hover {
+    color: #fdc303; /* Cor mais escura ao passar o mouse */
+  }
+  
