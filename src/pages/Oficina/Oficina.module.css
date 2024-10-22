@@ -1,4 +1,4 @@
-.oficina_container {
+.oficinaContainer {
     padding: 20px;
     max-width: 800px;
     margin: auto;
@@ -7,7 +7,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.oficina_content {
+.oficinaContent {
     text-align: center;
 }
 
@@ -17,14 +17,23 @@
     color: #333;
 }
 
-.oficina_image {
+.oficinaContent h3 {
+    color: rgba(240, 135, 7, 0.847);
+}
+
+.oficinaContent h4 {
+    color:rgb(32, 84, 127)
+}
+
+
+.oficinaImage {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 
-.description_card {
+.descriptionCard {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -32,33 +41,24 @@
     margin-bottom: 20px;
 }
 
-.details_section {
+.detailsSection {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
 
-.detail_item {
+.detailItem {
     margin-bottom: 15px;
 }
 
-h3 {
-    color: #007bff; /* Cor para os títulos das seções */
-}
-
-h4 {
-    margin: 10px 0 5px 0;
-    color: #555;
-}
-
-.step_section {
+.stepSection {
     margin-top: 10px;
     border-top: 1px solid #eaeaea;
     padding-top: 10px;
 }
 
-.accessibility_section {
+.accessibilitySection {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -66,11 +66,6 @@ h4 {
     margin-top: 20px;
 }
 
-.accessibility_section h3 {
+.accessibilityTitle, .descriptionTitle, .detailsTitle, .stepsTitle {
     margin-top: 0;
-}
-.step_image {
-    max-width: 100%;
-    height: auto;
-    margin: 10px 0;
 }

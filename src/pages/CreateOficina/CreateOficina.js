@@ -18,7 +18,6 @@ const CreateOficina = () => {
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
 
-  
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
