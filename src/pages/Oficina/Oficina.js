@@ -13,7 +13,6 @@ const Oficina = () => {
             {oficina && (
                 <div className={styles.oficinaContent}>
                     <h2 className={styles.title}>{oficina.title}</h2>
-                    <img className={styles.oficinaImage} src={oficina.image} alt={oficina.title} />
 
                     <div className={styles.descriptionCard}>
                         <h3 className={styles.descriptionTitle}>Descrição</h3>
@@ -43,33 +42,25 @@ const Oficina = () => {
                         <div className={styles.stepSection}>
                             <h4>Introdução:</h4>
                             <p>{oficina.descricaoIntro}</p>
-                            {oficina.imageIntroducao && (
-                                <img className={styles.stepImage} src={oficina.imageIntroducao} alt="Introdução" />
-                            )}
+                            <img className={styles.oficinaImage} src={oficina.image1} alt={oficina.title} />
                         </div>
 
                         <div className={styles.stepSection}>
                             <h4>Organização de Materiais:</h4>
                             <p>{oficina.descricaoOrganizacao}</p>
-                            {oficina.imageOrganizacao && (
-                                <img className={styles.stepImage} src={oficina.imageOrganizacao} alt="Organização" />
-                            )}
+                            <img className={styles.oficinaImage} src={oficina.image2} alt={oficina.title} />
                         </div>
 
                         <div className={styles.stepSection}>
                             <h4>Momento Prático:</h4>
                             <p>{oficina.descricaoPratica}</p>
-                            {oficina.imagePratica && (
-                                <img className={styles.stepImage} src={oficina.imagePratica} alt="Momento Prático" />
-                            )}
+                            <img className={styles.oficinaImage} src={oficina.image3} alt={oficina.title} />
                         </div>
 
                         <div className={styles.stepSection}>
                             <h4>Apresentação Final:</h4>
                             <p>{oficina.descricaoApresentacao}</p>
-                            {oficina.imageApresentacao && (
-                                <img className={styles.stepImage} src={oficina.imageApresentacao} alt="Apresentação Final" />
-                            )}
+                            <img className={styles.oficinaImage} src={oficina.image} alt={oficina.title} />
                         </div>
                     </div>
 

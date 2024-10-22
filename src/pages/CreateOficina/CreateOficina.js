@@ -7,6 +7,9 @@ import { useInsertDocument } from '../../hooks/useInsertDocument';
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
   const [descricaoIntro, setIntroduction] = useState(""); 
@@ -18,7 +21,6 @@ const CreateOficina = () => {
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
 
-
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
@@ -27,12 +29,12 @@ const CreateOficina = () => {
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = (e, setImageFunction) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     
     reader.onloadend = () => {
-      setImage(reader.result); // Define o estado da imagem como base64
+      setImageFunction(reader.result); // Define o estado da imagem como base64
     };
     
     if (file) {
@@ -44,16 +46,8 @@ const CreateOficina = () => {
     e.preventDefault();
     setFormError("");
 
-    // Validate URL da imagem
-    try {
-      new URL(image);
-    } catch (error) {
-      setFormError("A imagem precisa ser uma URL.");
-      return; 
-    }
-
     // Checar todos os valores
-    if (!title || !image || !recursos || !category || !targetAudience || !duration || !description) {
+    if (!title || !image || !image1 || !image2 || !image3 || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -63,6 +57,9 @@ const CreateOficina = () => {
     insertDocument({
       title,
       image,
+      image1,
+      image2,
+      image3,
       recursos,
       descricaoIntro,
       descricaoOrganizacao,
@@ -82,7 +79,6 @@ const CreateOficina = () => {
     navigate("/");
   };
   
-
   return (
     <div className={styles.create_oficina}>
       <h2>Criar Oficina</h2>
@@ -182,7 +178,7 @@ const CreateOficina = () => {
               name="image" 
               required 
               accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              onChange={(e) => handleImageUpload(e, setImage)}
             />
           </label>
           <span>Descrição da introdução</span>
@@ -200,10 +196,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image1" 
               required 
               accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              onChange={(e) => handleImageUpload(e, setImage1)}
             />
           </label>
 
@@ -221,10 +217,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image2" 
               required 
               accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              onChange={(e) => handleImageUpload(e, setImage2)}
             />
           </label>
 
@@ -242,10 +238,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image3" 
               required 
               accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              onChange={(e) => handleImageUpload(e, setImage3)}
             />
           </label>
 
@@ -258,77 +254,32 @@ const CreateOficina = () => {
           ></textarea>
         </div>
 
-      <div className={styles.accessibilitySection}>
-  <h3>Essa oficina possui elementos de acessibilidade?</h3>
-  <label className={styles.checkboxLabel}>
-    <input 
-      type="checkbox" 
-      checked={hasAccessibility} 
-      onChange={(e) => setHasAccessibility(e.target.checked)} 
-    />
-    Sim
-  </label>
+        <div className={styles.accessibilitySection}>
+          <h3>Essa oficina possui elementos de acessibilidade?</h3>
+          <label>
+            <input 
+              type="checkbox" 
+              checked={hasAccessibility} 
+              onChange={(e) => setHasAccessibility(e.target.checked)} 
+            />
+            Sim
+          </label>
+          {hasAccessibility && (
+            <label>
+              <span>Descreva as funcionalidades de acessibilidade:</span>
+              <textarea 
+                name="accessibilityDescription" 
+                placeholder="Descreva aqui"
+                onChange={(e) => setAccessibilityDescription(e.target.value)}
+                value={accessibilityDescription}
+              ></textarea>
+            </label>
+          )}
+        </div>
 
-  {hasAccessibility && (
-    <div className={styles.accessibilityOptions}>
-      <p>Selecione os elementos de acessibilidade relevantes:</p>
-      <label className={styles.checkboxLabel}>
-        <input 
-          type="checkbox" 
-          value="TDAH" 
-          onChange={(e) => setAccessibilityDescription((prev) => prev + " TDAH")}
-        />
-        Pessoas com TDAH
-      </label>
-      <label className={styles.checkboxLabel}>
-        <input 
-          type="checkbox" 
-          value="Autismo" 
-          onChange={(e) => setAccessibilityDescription((prev) => prev + " Autismo")}
-        />
-        Indivíduos no espectro autista
-      </label>
-      <label className={styles.checkboxLabel}>
-        <input 
-          type="checkbox" 
-          value="Dislexia" 
-          onChange={(e) => setAccessibilityDescription((prev) => prev + " Dislexia")}
-        />
-        Pessoas com dislexia
-      </label>
-      <label className={styles.checkboxLabel}>
-        <input 
-          type="checkbox" 
-          value="Surdez" 
-          onChange={(e) => setAccessibilityDescription((prev) => prev + " Surdez")}
-        />
-        Pessoas com deficiência auditiva
-      </label>
-      <label className={styles.checkboxLabel}>
-        <input 
-          type="checkbox" 
-          value="Cegueira" 
-          onChange={(e) => setAccessibilityDescription((prev) => prev + " Cegueira")}
-        />
-        Pessoas com deficiência visual
-      </label>
-      <textarea 
-        className={styles.accessibilityTextarea}
-        placeholder="Outras considerações sobre acessibilidade... (ex: métodos de ensino, recursos visuais, etc.)"
-        value={accessibilityDescription}
-        onChange={(e) => setAccessibilityDescription(e.target.value)}
-      />
-    </div>
-  )}
-</div>
-
-<button className="btn" type="submit">Criar Oficina</button>
-
-{formError && <p className="error">{formError}</p>}
-{response.loading && <p>Aguarde, estamos criando sua oficina...</p>}
-{response.error && <p className="error">{response.error}</p>}
-{response.success && <p>Oficina criada com sucesso!</p>}
-
+        <button className="btn">Criar Oficina</button>
+        {response.error && <p className="error">{response.error}</p>}
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
