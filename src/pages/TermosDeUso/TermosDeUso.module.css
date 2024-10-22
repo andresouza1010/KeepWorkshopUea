@@ -1,0 +1,43 @@
+.termosDeUsoContainer {
+    max-width: 800px; /* Largura máxima para o conteúdo */
+    margin: 0 auto; /* Centraliza a página */
+    padding: 20px; /* Espaçamento interno */
+    font-family: 'Arial', sans-serif; /* Fonte moderna */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas */
+    color: #333; /* Cor do texto */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+h1 {
+    font-size: 2rem; /* Tamanho do título principal */
+    color: #F28C38; /* Cor do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+h2 {
+    font-size: 1.5rem; /* Tamanho dos subtítulos */
+    margin-top: 20px; /* Espaço acima do subtítulo */
+    margin-bottom: 10px; /* Espaço abaixo do subtítulo */
+}
+
+ul {
+    margin-left: 20px; /* Espaço à esquerda para listas */
+    list-style-type: disc; /* Marcadores na lista */
+}
+
+.backButton {
+    margin-top: 20px; /* Espaço acima do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: #F28C38; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Cantos arredondados no botão */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave de cor */
+}
+
+.backButton:hover {
+    background-color: #e08a1b; /* Cor mais escura ao passar o mouse */
+}

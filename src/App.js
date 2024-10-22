@@ -58,6 +58,7 @@ function App() {
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
               <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+              <Route path="/termos-de-uso" element={<TermosDeUso />} />
               <Route path="/termos" element={<TermosDeUso />} /> {/* Rota para Termos de Uso */}
             </Routes>
           </div>

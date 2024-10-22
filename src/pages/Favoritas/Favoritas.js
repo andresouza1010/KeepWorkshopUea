@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { FaHeart } from "react-icons/fa"; // Ícone de coração preenchido
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícone de coração preenchido e contorno
 import styles from './Favoritas.module.css';
 import { Link } from 'react-router-dom';
 
 const Favoritas = () => {
   const [favoritas, setFavoritas] = useState([]);
+  const [favoritedIds, setFavoritedIds] = useState(new Set());
 
   // Carregar as oficinas favoritas do localStorage
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favoritas')) || [];
     setFavoritas(storedFavorites);
+    const ids = new Set(storedFavorites.map(oficina => oficina.id));
+    setFavoritedIds(ids);
   }, []);
 
-  // Função para remover oficina dos favoritos
-  const removeFavorite = (oficinaId) => {
+  // Função para adicionar/remover oficina dos favoritos
+  const handleFavorite = (oficinaId) => {
     const updatedFavorites = favoritas.filter(fav => fav.id !== oficinaId);
-    setFavoritas(updatedFavorites);
+    if (favoritedIds.has(oficinaId)) {
+      // Se já está favoritado, remove dos favoritos
+      setFavoritas(updatedFavorites);
+      favoritedIds.delete(oficinaId);
+    } else {
+      // Se não está favoritado, adiciona aos favoritos
+      const newFavorite = favoritas.find(oficina => oficina.id === oficinaId);
+      if (newFavorite) {
+        updatedFavorites.push(newFavorite);
+        favoritedIds.add(oficinaId);
+      }
+    }
     localStorage.setItem('favoritas', JSON.stringify(updatedFavorites));
+    setFavoritedIds(new Set(favoritedIds)); // Atualiza o estado
   };
 
   return (
@@ -36,13 +51,14 @@ const Favoritas = () => {
                 <Link to={`/oficinas/${oficina.id}`} className="btn btn-outline">Acessar</Link>
               </div>
 
-              {/* Ícone de favorito no canto inferior esquerdo */}
+              {/* Botão de favoritar/desfavoritar */}
               <button
-                className={styles.favorite_icon}
-                onClick={() => removeFavorite(oficina.id)}
-                style={{ color: '#ff385c' }}  // Ícone sempre vermelho porque já é favoritado
+                className={`${styles.favorite_icon} ${favoritedIds.has(oficina.id) ? styles.favorited : ''}`}
+                onClick={() => handleFavorite(oficina.id)}
+                aria-label={favoritedIds.has(oficina.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                style={{ position: 'absolute', top: '10px', right: '10px' }} // Posição no canto superior direito
               >
-                <FaHeart />  {/* Coração preenchido */}
+                {favoritedIds.has(oficina.id) ? <FaHeart /> : <FaRegHeart />}
               </button>
             </div>
           ))}

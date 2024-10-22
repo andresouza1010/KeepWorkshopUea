@@ -1,57 +1,102 @@
-.dashboard{
+.dashboard {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-}
-.dashboard h2{
-    font-size: 2.2em;
-    margin-bottom: .5em;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #f9f9f9; /* Fundo claro para um visual mais clean */
 }
 
-.dashboard p{
-    color: #AAA;
-    margin-bottom: 1em;
-}
-
-.noposts{
-    text-align: center;
-}
-
-.noposts p{
-    margin-bottom: 1.5em;
-}
-
-.noposts a{
-    padding: 10px 25px;
-}
-.oficina_header, .oficina_row{
+.oficina_header, .oficina_row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaçamento entre os itens */
     width: 80%;
     padding: 10px;
-
 }
-.oficina_header{
+
+.oficina_header {
     font-weight: bold;
     border-bottom: 2px solid #CCC;
+    background-color: #e9ecef; /* Fundo levemente cinza para o cabeçalho */
+    padding: 15px 0; /* Espaçamento maior para destacar o cabeçalho */
 }
 
-.oficina_row{
+.oficina_row {
     align-items: center;
     border-bottom: 1px solid #EEE;
+    width: 100%;
+    padding: 10px 0; /* Espaçamento entre linhas */
+    transition: background-color 0.3s; /* Efeito suave ao passar o mouse */
 }
 
-.oficina_row p{
-    color: #000;
+.oficina_row:hover {
+    background-color: #f1f1f1; /* Destaque ao passar o mouse */
+}
+
+.oficina_row p {
+    color: #333; /* Cor do texto mais escura para melhor legibilidade */
+    margin: 0; /* Remover margens desnecessárias */
+    flex-grow: 1; /* Faz o título ocupar o espaço disponível */
 }
 
 .oficina_row button,
-.oficina_row a{
-    margin: 0 5px;
+.oficina_row a {
+    margin-left: 5px; /* Espaçamento lateral para os botões */
     height: 30px;
-    width: 100px;
-    font-size: 0.7em
-};
+    width: 90px; /* Largura reduzida para botões mais clean */
+    font-size: 0.8em; /* Tamanho de fonte ligeiramente aumentado */
+    background-color: #007bff; /* Cor de fundo dos botões */
+    color: #fff; /* Cor do texto dos botões */
+    border: none; /* Remover bordas para um visual mais limpo */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Indica que é clicável */
+    transition: background-color 0.3s; /* Efeito suave ao passar o mouse */
+}
+
+.oficina_row button:hover,
+.oficina_row a:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+.Dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    text-align: center; /* Centraliza o texto */
+    padding: 20px; /* Adiciona espaçamento interno */
+  }
+  
+  .oficina_header {
+    display: flex;
+    justify-content:space-around; /* Distribui os itens igualmente */
+    width: 100%; /* Define a largura do cabeçalho */
+    max-width: 800px; /* Define uma largura máxima para o cabeçalho */
+    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+    padding: 30 20px; /* Adiciona espaçamento lateral para posicionar os elementos */
+}
+
+.oficina_header span:first-child {
+    margin-right: auto; /* Empurra o título para a direita */
+}
+
+.oficina_header span:last-child {
+    margin-left: 0; /* Remove margem à esquerda da seção de ações */
+    margin-right: 20px; /* Adiciona um pouco de margem à direita para espaçamento */
+}
+
+  
+  .oficina_row {
+    display: flex;
+    justify-content: space-between; /* Distribui os itens igualmente */
+    align-items: center; /* Alinha verticalmente */
+    width: 100%; /* Define a largura da linha */
+    max-width: 800px; /* Define uma largura máxima para a linha */
+    margin-bottom: 10px; /* Espaçamento abaixo da linha */
+  }
+  
+  .noposts {
+    margin-top: 20px; /* Espaçamento acima da seção de não posts */
+  }
+  

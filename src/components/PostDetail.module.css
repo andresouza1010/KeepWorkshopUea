@@ -1,12 +1,12 @@
 .oficina_detail {
   position: relative;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #eee; /* Borda fina e clara para um toque clean */
-  border-radius: 8px; /* Bordas levemente arredondadas */
+  border-radius: 0px; /* Bordas levemente arredondadas */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra leve para dar profundidade */
-  padding: 20px;
+  padding: 15px;
   max-width: 350px; /* Largura maior para destacar o conteúdo */
-  margin: 20px auto; /* Centraliza os cards horizontalmente */
+  margin: 50px auto; /* Centraliza os cards horizontalmente */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
   margin-left: 30px; /* Adiciona espaço à esquerda */
 }
@@ -16,8 +16,8 @@
   width: 100%;
   height: 250px; /* Altura maior para imagens */
   object-fit: cover;
-  border-radius: 40px 40px 0 0; /* Canto superior arredondado */
-  border: 2px solid #1a0875; /* Borda clara ao redor da imagem */
+  border-radius: 0px; /* Canto superior arredondado */
+  border: 2px solid #ffc4004d; /* Borda clara ao redor da imagem */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
 }
 
@@ -78,7 +78,14 @@
   font-size: 14px;
   color: #666;
   margin-top: 10px;
+  display: -webkit-box;          /* Usado para o layout em múltiplas linhas */
+  -webkit-box-orient: vertical;  /* Define a orientação do box */
+  -webkit-line-clamp: 2;         /* Limita a duas linhas */
+  overflow: hidden;              /* Oculta o conteúdo que ultrapassa */
+  text-overflow: ellipsis;      /* Adiciona "..." ao final do texto que não cabe */
 }
+
+
 
 .button_container {
   display: flex;
@@ -126,7 +133,7 @@
   top: 25px; /* Aumente o valor para mover para baixo */
   right: 25px; /* Diminua o valor para mover para a esquerda */
   background-color: transparent;
-  border: 2px solid rgba(255, 114, 43, 0.275); /* Borda clara */
+  border: 2px solid rgba(255, 255, 255, 0.393); /* Borda clara */
   border-radius: 50%; /* Borda arredondada */
   padding: 5px; /* Espaço interno para dar destaque */
   color: #b0b0b097; /* Cor do ícone padrão */
@@ -143,7 +150,7 @@
 
 .favorite_icon:hover {
   transform: scale(1.1); /* Leve aumento do coração ao passar o mouse */
-  border-color: rgba(255, 112, 43, 0.8); /* Aumenta a cor da borda ao passar o mouse */
+  border-color: rgba(255, 255, 255, 0.8); /* Aumenta a cor da borda ao passar o mouse */
 }
 
 .favorite_icon.favorited {

@@ -20,46 +20,47 @@ const Dashboard = () => {
 
 
   return (
-    <div className={styles.Dashboard}>
-      <h2>Dashboard</h2>
-      <p>Gerencie as suas oficinas!</p>
-      {oficinas && oficinas.length === 0 ? (
-        <div className={styles.noposts}>
-          <p> Não foram encontradas!</p>
-          <Link to="/oficinas/create" className="btn">
-              Criar Primeira Oficina
-          </Link>
-        </div>
-      ) : ( 
-        <>
-        <div className={styles.oficina_header}>
-          <span>Título</span>
-          <span>Ações</span>
-        </div>
-
-        {oficinas &&
-        oficinas.map((oficina)=>(
-           <div key={oficina.id} className={styles.oficina_row} >
-            <p>{oficina.title}</p>
-            <div>
-              <Link to={`/oficinas/${oficina.id}`} className="btn btn-outline">
-              Ver
-              </Link>
-              <Link to={`/oficinas/edit/${oficina.id}`} className="btn btn-outline">
-                Editar
-              </Link>
-              <button 
-              onClick={() => deleteDocument(oficina.id)} 
-              className="btn btn-outline btn-danger">
-                Excluir
-              </button>
+      <div className={styles.Dashboard}>
+        <h2>Dashboard</h2>
+        <p>Gerencie as suas oficinas!</p>
+        {oficinas && oficinas.length === 0 ? (
+          <div className={styles.noposts}>
+            <p>Não foram encontradas!</p>
+            <Link to="/oficinas/create" className="btn">
+                Criar Primeira Oficina
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div className={styles.oficina_header}>
+              <span>Título</span>
+              <span>Ações</span>
             </div>
-        </div> 
-      ))}
-    </>
-      )}
-    </div>
+  
+            {oficinas &&
+            oficinas.map((oficina) => (
+              <div key={oficina.id} className={styles.oficina_row}>
+                <p>{oficina.title}</p>
+                <div>
+                  <Link to={`/oficinas/${oficina.id}`} className="btn btn-outline">
+                    Ver
+                  </Link>
+                  <Link to={`/oficinas/edit/${oficina.id}`} className="btn btn-outline">
+                    Editar
+                  </Link>
+                  <button 
+                    onClick={() => deleteDocument(oficina.id)} 
+                    className="btn btn-outline btn-danger">
+                    Excluir
+                  </button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
   );
+  
 };
 
 export default Dashboard

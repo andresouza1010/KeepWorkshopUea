@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './CreateOficina.module.css';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
@@ -9,19 +8,23 @@ const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [description, setDescription] = useState(""); // Novo estado para a breve descrição
-  const [descricaoIntro, setIntroduction] = useState(""); // Novo estado para a breve descrição
-  const [descricaoOrganizacao, setOrganizacao] = useState(""); // Novo estado para a breve descrição
-  const [descricaoPratica, setPratica] = useState(""); // Novo estado para a breve descrição
-  const [descricaoApresentacao, setApresentacao] = useState(""); // Novo estado para a breve descrição
+  const [description, setDescription] = useState(""); 
+  const [descricaoIntro, setIntroduction] = useState(""); 
+  const [descricaoOrganizacao, setOrganizacao] = useState(""); 
+  const [descricaoPratica, setPratica] = useState(""); 
+  const [descricaoApresentacao, setApresentacao] = useState(""); 
   const [category, setCategory] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
-  const [duration, setDuration] = useState(""); // Novo estado para Duração da Oficina
+  const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
+
+  // Novo estado para acessibilidade
+  const [hasAccessibility, setHasAccessibility] = useState(false);
+  const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -36,7 +39,6 @@ const CreateOficina = () => {
     }
   };
   
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("");
@@ -65,12 +67,14 @@ const CreateOficina = () => {
       descricaoOrganizacao,
       descricaoPratica,
       descricaoApresentacao,
-      description, // Incluindo a breve descrição
-      category, // Usando apenas a categoria
+      description, 
+      category, 
       targetAudience, 
-      duration, // Incluindo a duração da oficina
+      duration, 
       uid: user.uid,
       createdBy: user.displayName,
+      hasAccessibility, 
+      accessibilityDescription, 
     });
 
     // Redirecionar para a página inicial
@@ -115,10 +119,8 @@ const CreateOficina = () => {
           />
         </label>
 
-     
-
         <label>
-          <span>Breve descrição</span> {/* Novo campo para breve descrição */}
+          <span>Breve descrição</span>
           <textarea 
             name="description" 
             required 
@@ -148,11 +150,11 @@ const CreateOficina = () => {
             value={targetAudience}
           >
             <option value="">Selecione o público-alvo</option>
-            <option value="4 a 6 anos">4 a 6 anos</option>
-            <option value="7 a 9 anos">7 a 9 anos</option>
-            <option value="10 a 12 anos">10 a 12 anos</option>
-            <option value="13 a 15 anos">13 a 15 anos</option>
-            <option value="16 anos ou mais">16 anos ou mais</option>
+            <option value="4 a 6 anos">4 a 6 anos - (Use linguagem simples e atividades visuais)</option>
+            <option value="7 a 9 anos">7 a 9 anos - (Promova interação e aprendizado lúdico)</option>
+            <option value="10 a 12 anos">10 a 12 anos - (Incentive a autonomia e o trabalho em grupo)</option>
+            <option value="13 a 15 anos">13 a 15 anos - (Desafie com projetos mais complexos)</option>
+            <option value="16 anos ou mais">16 anos ou mais - (Ofereça desafios e aprofundamento)</option>
           </select>
         </label>
 
@@ -162,7 +164,7 @@ const CreateOficina = () => {
             type="number" 
             name="duration" 
             required 
-            placeholder="Ex: 2" 
+            placeholder="Ex: 2 (Tempo ideal para que todos participem ativamente)" 
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
           />
@@ -211,8 +213,6 @@ const CreateOficina = () => {
             value={descricaoOrganizacao}
           ></textarea>
 
-
-          
           <h3>Momento Prático</h3>
           <p>Faça upload do momento prático</p>
           <label>
@@ -254,17 +254,79 @@ const CreateOficina = () => {
             onChange={(e) => setApresentacao(e.target.value)}
             value={descricaoApresentacao}
           ></textarea>
-
-
         </div>
 
+      <div className={styles.accessibilitySection}>
+  <h3>Essa oficina possui elementos de acessibilidade?</h3>
+  <label className={styles.checkboxLabel}>
+    <input 
+      type="checkbox" 
+      checked={hasAccessibility} 
+      onChange={(e) => setHasAccessibility(e.target.checked)} 
+    />
+    Sim
+  </label>
 
+  {hasAccessibility && (
+    <div className={styles.accessibilityOptions}>
+      <p>Selecione os elementos de acessibilidade relevantes:</p>
+      <label className={styles.checkboxLabel}>
+        <input 
+          type="checkbox" 
+          value="TDAH" 
+          onChange={(e) => setAccessibilityDescription((prev) => prev + " TDAH")}
+        />
+        Pessoas com TDAH
+      </label>
+      <label className={styles.checkboxLabel}>
+        <input 
+          type="checkbox" 
+          value="Autismo" 
+          onChange={(e) => setAccessibilityDescription((prev) => prev + " Autismo")}
+        />
+        Indivíduos no espectro autista
+      </label>
+      <label className={styles.checkboxLabel}>
+        <input 
+          type="checkbox" 
+          value="Dislexia" 
+          onChange={(e) => setAccessibilityDescription((prev) => prev + " Dislexia")}
+        />
+        Pessoas com dislexia
+      </label>
+      <label className={styles.checkboxLabel}>
+        <input 
+          type="checkbox" 
+          value="Surdez" 
+          onChange={(e) => setAccessibilityDescription((prev) => prev + " Surdez")}
+        />
+        Pessoas com deficiência auditiva
+      </label>
+      <label className={styles.checkboxLabel}>
+        <input 
+          type="checkbox" 
+          value="Cegueira" 
+          onChange={(e) => setAccessibilityDescription((prev) => prev + " Cegueira")}
+        />
+        Pessoas com deficiência visual
+      </label>
+      <textarea 
+        className={styles.accessibilityTextarea}
+        placeholder="Outras considerações sobre acessibilidade... (ex: métodos de ensino, recursos visuais, etc.)"
+        value={accessibilityDescription}
+        onChange={(e) => setAccessibilityDescription(e.target.value)}
+      />
+    </div>
+  )}
+</div>
 
-        {!response.loading && <button className="btn">Cadastrar</button>}
-        {response.loading && <button className="btn" disabled>Aguarde...</button>}
-        
-        {response.error && <p className="error">{response.error}</p>}
-        {formError && <p className="error">{formError}</p>}
+<button className="btn" type="submit">Criar Oficina</button>
+
+{formError && <p className="error">{formError}</p>}
+{response.loading && <p>Aguarde, estamos criando sua oficina...</p>}
+{response.error && <p className="error">{response.error}</p>}
+{response.success && <p>Oficina criada com sucesso!</p>}
+
       </form>
     </div>
   );
