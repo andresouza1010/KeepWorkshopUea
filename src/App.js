@@ -26,6 +26,9 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 function App() {
+
+
+
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
   const loadingUser = user === undefined;

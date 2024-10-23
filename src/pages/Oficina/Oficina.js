@@ -49,6 +49,35 @@ const Oficina = () => {
                         </div>
 
                         
+                        <div className={styles.stepSection}>
+                            <h4>Organização dos Materiais</h4>
+                            <p>{oficina.descricaoOrganizacao}</p>
+                            {
+                                 <img className={styles.oficinaImage2} src={oficina.image2} alt={oficina.title} />
+
+                            }
+                        </div>
+
+                        <div className={styles.stepSection}>
+                            <h4>Momento Prático</h4>
+                            <p>{oficina.descricaoPratica}</p>
+                            {
+                                 <img className={styles.oficinaImage3} src={oficina.image3} alt={oficina.title} />
+
+                            }
+                        </div>
+
+                        <div className={styles.stepSection}>
+                            <h4>Apresentação Final</h4>
+                            <p>{oficina.descricaoApresentacao}</p>
+                            {
+                                 <img className={styles.oficinaImage4} src={oficina.image4} alt={oficina.title} />
+
+                            }
+                        </div>
+
+
+                        
                     </div>
 
                     {oficina.hasAccessibility && (

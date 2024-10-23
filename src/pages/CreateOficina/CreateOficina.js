@@ -7,6 +7,9 @@ import { useInsertDocument } from '../../hooks/useInsertDocument';
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
   const [descricaoIntro, setIntroduction] = useState(""); 
@@ -17,6 +20,7 @@ const CreateOficina = () => {
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
+  
 
 
   const { user } = useAuthValue();
@@ -27,13 +31,29 @@ const CreateOficina = () => {
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = (e, section) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     
-    reader.onloadend = () => {
-      setImage(reader.result); // Define o estado da imagem como base64
-    };
+    // Definindo a função onloadend com a closure correta
+  reader.onloadend = () => {
+    switch (section) {
+      case 'intro':
+        setImage(reader.result); // Para a introdução
+        break;
+      case 'organizacao':
+        setImage2(reader.result); // Para a organização
+        break;
+      case 'pratica':
+        setImage3(reader.result); // Para o momento prático
+        break;
+      case 'apresentacao':
+        setImage4(reader.result); // Para a apresentação final
+        break;
+      default:
+        break; // Caso não corresponda a nenhuma seção, não faz nada
+    }
+  };
     
     if (file) {
       reader.readAsDataURL(file);
@@ -53,7 +73,7 @@ const CreateOficina = () => {
     }
 
     // Checar todos os valores
-    if (!title || !image || !recursos || !category || !targetAudience || !duration || !description) {
+    if (!title || !image || !image2 || !image3 || !image4 || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       return;
     }
@@ -63,6 +83,9 @@ const CreateOficina = () => {
     insertDocument({
       title,
       image,
+      image2,
+      image3,
+      image4,
       recursos,
       descricaoIntro,
       descricaoOrganizacao,
@@ -182,7 +205,7 @@ const CreateOficina = () => {
               name="image" 
               required 
               accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              onChange={(e) => handleImageUpload(e, 'intro')}
             />
           </label>
           <span>Descrição da introdução</span>
@@ -200,10 +223,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image2" 
               required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              accept="image2/*" 
+              onChange={(e) => handleImageUpload(e, 'organizacao')}
             />
           </label>
 
@@ -221,10 +244,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image3" 
               required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              accept="image3/*" 
+              onChange={(e) => handleImageUpload(e, 'pratica')}
             />
           </label>
 
@@ -242,10 +265,10 @@ const CreateOficina = () => {
             <span>Upload da Imagem</span>
             <input 
               type="file" 
-              name="image" 
+              name="image4" 
               required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e)}
+              accept="image4/*" 
+              onChange={(e) => handleImageUpload(e, 'apresentacao')}
             />
           </label>
 
