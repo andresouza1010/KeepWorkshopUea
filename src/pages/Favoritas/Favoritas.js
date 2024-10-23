@@ -1,69 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícone de coração preenchido e contorno
-import styles from './Favoritas.module.css';
 import { Link } from 'react-router-dom';
+import styles from './Favoritas.module.css'; // Ajuste o caminho conforme necessário
+import { FaTrash } from 'react-icons/fa'; // Importa ícone de lixo para o botão de excluir
 
 const Favoritas = () => {
   const [favoritas, setFavoritas] = useState([]);
-  const [favoritedIds, setFavoritedIds] = useState(new Set());
 
-  // Carregar as oficinas favoritas do localStorage
+  // Carrega as oficinas favoritas do localStorage ao montar o componente
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favoritas')) || [];
-    setFavoritas(storedFavorites);
-    const ids = new Set(storedFavorites.map(oficina => oficina.id));
-    setFavoritedIds(ids);
+    const favorites = JSON.parse(localStorage.getItem("favoritas")) || [];
+    setFavoritas(favorites);
   }, []);
 
-  // Função para adicionar/remover oficina dos favoritos
-  const handleFavorite = (oficinaId) => {
-    const updatedFavorites = favoritas.filter(fav => fav.id !== oficinaId);
-    if (favoritedIds.has(oficinaId)) {
-      // Se já está favoritado, remove dos favoritos
-      setFavoritas(updatedFavorites);
-      favoritedIds.delete(oficinaId);
-    } else {
-      // Se não está favoritado, adiciona aos favoritos
-      const newFavorite = favoritas.find(oficina => oficina.id === oficinaId);
-      if (newFavorite) {
-        updatedFavorites.push(newFavorite);
-        favoritedIds.add(oficinaId);
-      }
-    }
-    localStorage.setItem('favoritas', JSON.stringify(updatedFavorites));
-    setFavoritedIds(new Set(favoritedIds)); // Atualiza o estado
+  // Função para excluir uma oficina dos favoritos
+  const handleDelete = (id) => {
+    const updatedFavorites = favoritas.filter(oficina => oficina.id !== id);
+    localStorage.setItem("favoritas", JSON.stringify(updatedFavorites));
+    setFavoritas(updatedFavorites); // Atualiza o estado
   };
 
   return (
     <div className={styles.favoritas_container}>
       <h1>Oficinas Favoritas</h1>
-      {favoritas.length === 0 ? (
-        <p>Você ainda não favoritou nenhuma oficina.</p>
-      ) : (
-        <div className={styles.oficinas_list}>
-          {favoritas.map(oficina => (
-            <div key={oficina.id} className={styles.oficina_detail}>
+      <div className={styles.oficinas_list}>
+        {favoritas.length === 0 ? (
+          <p>Você ainda não tem oficinas favoritas.</p>
+        ) : (
+          favoritas.map(oficina => (
+            <div key={oficina.id} className={styles.oficina_item}>
               <img src={oficina.image} alt={oficina.title} />
               <h2>{oficina.title}</h2>
-              <p>{oficina.description.length > 100 ? `${oficina.description.substring(0, 100)}...` : oficina.description}</p>
+              <p>{oficina.description}</p>
+              <p>Autor: {oficina.createdBy || "Autor desconhecido"}</p>
+              <p>Público-alvo: {oficina.targetAudience}</p>
+              <p>Duração: {oficina.duration} horas</p>
               
               <div className={styles.button_container}>
-                <Link to={`/oficinas/${oficina.id}`} className="btn btn-outline">Acessar</Link>
+                <Link to={`/oficinas/${oficina.id}`} className="btn btn-outline">
+                  Acessar
+                </Link>
+                <button 
+                  className={styles.delete_button}
+                  onClick={() => handleDelete(oficina.id)}
+                  aria-label={`Remover ${oficina.title} dos favoritos`}
+                >
+                  <FaTrash />
+                </button>
               </div>
-
-              {/* Botão de favoritar/desfavoritar */}
-              <button
-                className={`${styles.favorite_icon} ${favoritedIds.has(oficina.id) ? styles.favorited : ''}`}
-                onClick={() => handleFavorite(oficina.id)}
-                aria-label={favoritedIds.has(oficina.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-                style={{ position: 'absolute', top: '10px', right: '10px' }} // Posição no canto superior direito
-              >
-                {favoritedIds.has(oficina.id) ? <FaHeart /> : <FaRegHeart />}
-              </button>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 };
