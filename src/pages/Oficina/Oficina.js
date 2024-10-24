@@ -43,7 +43,7 @@ const Oficina = () => {
                             <h4>Introdução:</h4>
                             <p>{oficina.descricaoIntro}</p>
                             {
-                                 <img className={styles.oficinaImage} src={oficina.image} alt={oficina.title} />
+                                 <img className={styles.oficinaImage} src={oficina.image} alt= "Introdução" />
 
                             }
                         </div>

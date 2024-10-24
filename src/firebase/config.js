@@ -15,4 +15,4 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 //const auth = getAuth( app ); se der erro olhar a aula 141 de react
 
-export { db }
+export { db };
