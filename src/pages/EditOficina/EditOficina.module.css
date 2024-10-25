@@ -103,3 +103,22 @@ form .btn:disabled {
     margin-top: 1em;
     font-size: 1em;
 }
+.imageContainer {
+    display: flex;
+    align-items: center; /* Alinha verticalmente a imagem e o botão */
+    margin-bottom: 1rem; /* Espaço entre as seções */
+}
+
+.editImageButton {
+    margin-left: 1rem; /* Espaço entre a imagem e o botão */
+    background-color: #007BFF; /* Cor do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remover bordas */
+    padding: 0.5rem 1rem; /* Espaçamento interno */
+    cursor: pointer; /* Cursor em forma de mão */
+    border-radius: 0.3rem; /* Bordas arredondadas */
+}
+
+.editImageButton:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
