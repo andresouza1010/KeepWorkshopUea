@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useFetchDocument } from '../../hooks/useFetchDocument';
 import { doc, updateDoc } from "firebase/firestore"; 
 import { db } from '../../firebase/config'; 
@@ -7,6 +7,7 @@ import styles from './EditOficina.module.css';
 
 const EditOficina = () => {
     const { id } = useParams();
+    const navigate = useNavigate(); // Usa o useNavigate
     const { document: oficina, loading } = useFetchDocument("oficinas", id);
     const [newTitle, setNewTitle] = useState('');
     const [newDescricao, setNewDescricao] = useState('');
@@ -48,10 +49,11 @@ const EditOficina = () => {
                 image4: images.image4 || oficina.image4
             });
             console.log("Oficina atualizada com sucesso!");
+            navigate('/');
         } catch (error) {
             console.error("Erro ao atualizar oficina:", error);
         }
-    }, [id, oficina, newTitle, newDescricao, newCategory, newTargetAudience, newDuration, newRecursos, newdescricao1, newdescricao2, newdescricao3, newdescricao4, images]);
+    }, [id, oficina, newTitle, newDescricao, newCategory, newTargetAudience, newDuration, newRecursos, newdescricao1, newdescricao2, newdescricao3, newdescricao4, images, navigate]);
 
     useEffect(() => {
         if (oficina) {
