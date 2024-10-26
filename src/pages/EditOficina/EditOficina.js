@@ -92,21 +92,22 @@ const EditOficina = () => {
     };
 
     return (
-        <div className={styles.oficinaContainer}>
+        <div className={styles.ooficinaContainer}>
             {loading && <p>Carregando Oficina...</p>}
             {oficina && (
-                <div className={styles.oficinaContent}>
-                    <h2 className={styles.title}>
+                <div className={styles.ooficinaContent}>
+                    <h2 className={styles.otitle}>Título
                         <input
                             type="text"
                             value={newTitle}
                             onChange={e => setNewTitle(e.target.value)}
                             placeholder={oficina.title}
+                            
                         />
                     </h2>
                     {/* Conteúdo da oficina */}
-                    <div className={styles.descriptionCard}>
-                        <h3 className={styles.descriptionTitle}>Descrição</h3>
+                    <div className={styles.odescriptionCard}>
+                        <h3 className={styles.odescriptionTitle}>Descrição</h3>
                         <textarea
                             value={newDescricao}
                             onChange={e => setNewDescricao(e.target.value)}
@@ -115,7 +116,7 @@ const EditOficina = () => {
                     </div>
 
                     {/* Categoria */}
-                    <div className={styles.detailsSection}>
+                    <div className={styles.odetailsSection}>
                         <h3>Categoria:</h3>
                         <input
                             type="text"
@@ -125,19 +126,24 @@ const EditOficina = () => {
                         />
                     </div>
 
-                    {/* Público-alvo */}
-                    <div className={styles.detailItem}>
+                                    {/* Público-alvo */}
+                    <div className={styles.odetailItem}>
                         <h4>Público-alvo:</h4>
-                        <input
-                            type="text"
+                        <select
                             value={newTargetAudience}
                             onChange={e => setNewTargetAudience(e.target.value)}
-                            placeholder={oficina.targetAudience}
-                        />
+                        >
+                            <option value="">Selecione o público-alvo</option>
+                            <option value="4 a 6 anos">4 a 6 anos</option>
+                            <option value="7 a 9 anos">7 a 9 anos</option>
+                            <option value="10 a 12 anos">10 a 12 anos</option>
+                            <option value="13 a 15 anos">13 a 15 anos</option>
+                            <option value="16 anos ou mais">16 anos ou mais</option>
+                        </select>
                     </div>
 
                     {/* Duração */}
-                    <div className={styles.detailItem}>
+                    <div className={styles.odetailItem}>
                         <h4>Duração:</h4>
                         <input
                             type="text"
@@ -148,7 +154,7 @@ const EditOficina = () => {
                     </div>
 
                     {/* Recursos Necessários */}
-                    <div className={styles.detailItem}>
+                    <div className={styles.odetailItem}>
                         <h4>Recursos Necessários:</h4>
                         <input
                             type="text"
@@ -159,14 +165,14 @@ const EditOficina = () => {
                     </div>
 
                     {/* Etapas da oficina com inputs para editar as descrições */}
-                    <h3 className={styles.stepsTitle}>Etapas da Oficina</h3>
+                    <h3 className={styles.ostepsTitle}>Etapas da Oficina</h3>
 
-                    <div className={styles.stepSection}>
+                    <div className={styles.ostepSection}>
                         <h4>Introdução:</h4>
-                        <img className={styles.oficinaImage} src={images.image} alt="Introdução" />
+                        <img className={styles.ooficinaImage} src={images.image} alt="Introdução" />
 
                         <input type="file" accept="image/*" style={{ display: 'none' }} id="imageInput" onChange={e => handleImageChange(e, 'image')} />
-                        <button onClick={() => document.getElementById('imageInput').click()} className={styles.editImageButton}> Editar Imagem </button>
+                        <button onClick={() => document.getElementById('imageInput').click()} className={styles.oeditImageButton}> Editar Imagem </button>
 
                         <textarea
                             value={newdescricao1}
@@ -175,11 +181,11 @@ const EditOficina = () => {
                         />
                     </div>
 
-                    <div className={styles.stepSection}>
+                    <div className={styles.ostepSection}>
                         <h4>Organização dos Materiais</h4>
-                        <img className={styles.oficinaImage2} src={images.image2} alt={oficina.title} />
+                        <img className={styles.ooficinaImage2} src={images.image2} alt={oficina.title} />
                         <input type="file" accept="image/*" style={{ display: 'none' }} id="image2Input" onChange={e => handleImageChange(e, 'image2')} />
-                        <button onClick={() => document.getElementById('image2Input').click()} className={styles.editImageButton}>
+                        <button onClick={() => document.getElementById('image2Input').click()} className={styles.oeditImageButton}>
                             Editar Imagem
                         </button>
                         <textarea
@@ -189,11 +195,11 @@ const EditOficina = () => {
                         />
                     </div>
 
-                    <div className={styles.stepSection}>
+                    <div className={styles.ostepSection}>
                         <h4>Momento Prático</h4>
-                        <img className={styles.oficinaImage3} src={images.image3} alt={oficina.title} />
+                        <img className={styles.ooficinaImage3} src={images.image3} alt={oficina.title} />
                         <input type="file" accept="image/*" style={{ display: 'none' }} id="image3Input" onChange={e => handleImageChange(e, 'image3')} />
-                        <button onClick={() => document.getElementById('image3Input').click()} className={styles.editImageButton}>
+                        <button onClick={() => document.getElementById('image3Input').click()} className={styles.oeditImageButton}>
                             Editar Imagem
                         </button>
                         <textarea
@@ -203,11 +209,11 @@ const EditOficina = () => {
                         />
                     </div>
 
-                    <div className={styles.stepSection}>
+                    <div className={styles.ostepSection}>
                         <h4>Apresentação Final</h4>
-                        <img className={styles.oficinaImage4} src={images.image4} alt={oficina.title} />
+                        <img className={styles.ooficinaImage4} src={images.image4} alt={oficina.title} />
                         <input type="file" accept="image/*" style={{ display: 'none' }} id="image4Input" onChange={e => handleImageChange(e, 'image4')} />
-                        <button onClick={() => document.getElementById('image4Input').click()} className={styles.editImageButton}>
+                        <button onClick={() => document.getElementById('image4Input').click()} className={styles.oeditImageButton}>
                             Editar Imagem
                         </button>
                         <textarea
@@ -218,13 +224,13 @@ const EditOficina = () => {
                     </div>
 
                     {oficina.hasAccessibility && (
-                        <div className={styles.accessibilitySection}>
-                            <h3 className={styles.accessibilityTitle}>Acessibilidade:</h3>
-                            <p className={styles.accessibilityInfo}>Esta oficina possui acessibilidade para pessoas com deficiência.</p>
+                        <div className={styles.oaccessibilitySection}>
+                            <h3 className={styles.oaccessibilityTitle}>Acessibilidade:</h3>
+                            <p className={styles.oaccessibilityInfo}>Esta oficina possui acessibilidade para pessoas com deficiência.</p>
                         </div>
                     )}
 
-                    <button onClick={updateOficina} className={styles.saveButton}>Salvar Alterações</button>
+                    <button onClick={updateOficina} className={styles.osaveButton}>Salvar Alterações</button>
                 </div>
             )}
         </div>

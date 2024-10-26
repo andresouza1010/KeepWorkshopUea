@@ -1,123 +1,102 @@
-.oficinaContainer {
+/* Container principal */
+.ooficinaContainer {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem;
-    background-color: #f9f9f9; /* Fundo claro */
-    min-height: 100vh; /* Ocupa toda a altura da tela */
-}
-
-.oficinaContent {
-    background-color: white; /* Fundo branco para o conteúdo */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7; /* Cor de fundo suave */
     border-radius: 8px; /* Cantos arredondados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    padding: 2rem;
-    width: 100%;
-    max-width: 800px; /* Largura máxima do conteúdo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 800px; /* Largura máxima do contêiner */
+    margin: auto; /* Centraliza o contêiner na página */
 }
 
-.title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333; /* Cor do texto */
+/* Títulos e textos */
+.otitle {
+    font-size: 24px;
+    color: #333; /* Cor escura para o texto */
+    margin-bottom: 10px;
+    text-align: center; /* Centraliza o texto */
 }
 
-.descriptionCard {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    border: 1px solid #ddd; /* Borda leve */
+.odescriptionTitle,
+.ostepsTitle,
+.oaccessibilityTitle {
+    font-size: 20px;
+    color: #555; /* Cor cinza para subtítulos */
+    margin-bottom: 10px;
+}
+
+/* Estilização de entradas de texto */
+input[type="text"],
+textarea,
+select {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem vertical */
+    border: 1px solid #ccc; /* Borda suave */
     border-radius: 4px; /* Cantos arredondados */
-    background-color: #f0f0f0; /* Fundo leve */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: border-color 0.3s; /* Transição suave na borda */
 }
 
-.descriptionTitle {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007BFF; /* Cor de borda ao focar */
+    outline: none; /* Remove contorno padrão */
 }
 
-textarea {
-    width: 100%;
-    height: 100px; /* Altura do textarea */
-    padding: 0.5rem;
-    border: 1px solid #ccc; /* Borda */
-    border-radius: 4px; /* Cantos arredondados */
-    resize: vertical; /* Permite redimensionar verticalmente */
-    font-size: 1rem;
-}
-
-.detailsSection, .detailItem {
-    margin-bottom: 1rem;
-}
-
-.EditOficina.module h3 {
-    color: #555; /* Cor do texto das seções */
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc; /* Borda */
-    border-radius: 4px; /* Cantos arredondados */
-    font-size: 1rem;
-}
-
-.stepSection {
-    margin-bottom: 2rem;
-}
-
-.oficinaImage,
-.oficinaImage2,
-.oficinaImage3,
-.oficinaImage4 {
-    width: 100%;
-    height: auto;
-    border-radius: 4px; /* Cantos arredondados */
-    margin-top: 0.5rem; /* Espaçamento acima da imagem */
-}
-
-.editImageButton {
-    background-color: #007bff; /* Cor do botão */
-    color: white; /* Cor do texto do botão */
-    padding: 0.5rem 1rem;
-    border: none; /* Remove a borda */
+/* Botões */
+button {
+    background-color: #007BFF; /* Cor do botão */
+    color: white; /* Texto branco */
+    border: none; /* Remove borda padrão */
+    padding: 10px 15px; /* Espaçamento interno */
     border-radius: 4px; /* Cantos arredondados */
     cursor: pointer; /* Cursor de ponteiro */
-    transition: background-color 0.3s ease; /* Transição suave */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave */
 }
 
-.editImageButton:hover {
-    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
 }
 
-.accessibilitySection {
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: #e7f7e7; /* Fundo verde claro */
+/* Estilização das imagens */
+.ooficinaImage,
+.ooficinaImage2,
+.ooficinaImage3,
+.ooficinaImage4 {
+    width: 100%; /* Largura total */
+    height: auto; /* Altura automática */
     border-radius: 4px; /* Cantos arredondados */
+    margin: 10px 0; /* Margem vertical */
 }
 
-.accessibilityTitle {
-    font-size: 1rem;
-    color: #2e7d32; /* Cor do título */
+/* Seções de descrição */
+.odescriptionCard,
+.odetailItem,
+.ostepSection {
+    background-color: #ffffff; /* Fundo branco para as seções */
+    border-radius: 6px; /* Cantos arredondados */
+    padding: 15px; /* Espaçamento interno */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 10px 0; /* Margem vertical */
 }
 
-.accessibilityInfo {
-    font-size: 1rem;
-    color: #555; /* Cor do texto informativo */
+/* Seção de acessibilidade */
+.oaccessibilitySection {
+    background-color: #e9ffe9; /* Fundo verde claro */
+    border: 1px solid #4caf50; /* Borda verde */
+    padding: 15px; /* Espaçamento interno */
+    border-radius: 6px; /* Cantos arredondados */
+    margin-top: 20px; /* Margem superior */
 }
 
-.saveButton {
-    background-color: #28a745; /* Cor do botão de salvar */
-    color: white; /* Cor do texto */
-    padding: 0.5rem 1rem;
-    border: none; /* Remove a borda */
-    border-radius: 4px; /* Cantos arredondados */
-    cursor: pointer; /* Cursor de ponteiro */
-    transition: background-color 0.3s ease; /* Transição suave */
-    margin-top: 2rem; /* Espaço acima do botão */
-    width: 25%; /* Botão ocupa toda a largura */
-}
-
-.saveButton:hover {
-    background-color: #218838; /* Cor do botão ao passar o mouse */
+/* Estilos para a tela de carregamento */
+.loading {
+    color: #007BFF; /* Cor de carregamento */
+    font-size: 18px; /* Tamanho da fonte */
+    margin: 20px 0; /* Margem vertical */
 }
