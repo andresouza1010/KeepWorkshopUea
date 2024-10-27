@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../hooks/useAuthentication";
 import { useAuthValue } from "../context/AuthContext";
 import styles from "./NavBar.module.css";
@@ -7,74 +7,93 @@ import { useState } from "react";
 const NavBar = () => {
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
-  const [dropdownOpen, setDropdownOpen] = useState(false); // Estado para controlar a visibilidade do dropdown
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
-  // Função para alternar a visibilidade do dropdown
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query) {
+      navigate(`/search?q=${query}`);
+    }
+  };
+
   return (
     <nav className={styles.navbar}>
-  <NavLink to="/" className={styles.brand}>
-    Keep <strong>Workshop</strong>
-  </NavLink>
+      <NavLink to="/" className={styles.brand}>
+        Keep <strong>Workshop</strong>
+      </NavLink>
 
-  <ul className={styles.links_list}>
-    {!user && (
-      <>
-        <li>
-          <NavLink to="/Login" className={({ isActive }) => (isActive ? styles.active : "")}>
-            Entrar
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/Register" className={({ isActive }) => (isActive ? styles.active : "")}>
-            Cadastrar
-          </NavLink>
-        </li>
-      </>
-    )}
-
-    {user && (
-      <>
-        <li>
-          <NavLink 
-          to="/oficinas/create" 
-          className={({ isActive }) => (isActive ? styles.active : "")}>
-            Nova Oficina
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>
-            Minhas Oficinas
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/favoritas" className={({ isActive }) => (isActive ? styles.active : "")}>
-            Favoritas
-          </NavLink>
-        </li>
-      </>
-    )}
-  </ul>
-
-  {user && (
-    <div className={styles.profile}>
-      <button onClick={toggleDropdown} className={styles.profileButton}>
-        Perfil
-      </button>
-
-      {dropdownOpen && (
-        <div className={styles.dropdown}>
-          <button onClick={logout} className={styles.logoutButton}>
-            Sair
+      <form onSubmit={handleSearch} className={styles.search_form}>
+        <div className={styles.filter_bar}>
+          <input
+            type="text"
+            placeholder="Ou busque por título..."
+            onChange={(e) => setQuery(e.target.value)}
+            className={styles.search_input}
+          />
+          <button className={styles.search_button}>
+            <i className="fa fa-search"></i>
           </button>
         </div>
+      </form>
+
+      <ul className={styles.links_list}>
+        {!user && (
+          <>
+            <li>
+              <NavLink to="/Login" className={({ isActive }) => (isActive ? styles.active : "")}>
+                Entrar
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/Register" className={({ isActive }) => (isActive ? styles.active : "")}>
+                Cadastrar
+              </NavLink>
+            </li>
+          </>
+        )}
+        {user && (
+          <>
+            <li>
+              <NavLink to="/oficinas/create" className={({ isActive }) => (isActive ? styles.active : "")}>
+                Nova Oficina
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>
+                Minhas Oficinas
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/favoritas" className={({ isActive }) => (isActive ? styles.active : "")}>
+                Favoritas
+              </NavLink>
+            </li>
+          </>
+        )}
+      </ul>
+
+      {user && (
+        <div className={styles.profile}>
+          <button onClick={toggleDropdown} className={styles.profileButton}>
+            Perfil
+          </button>
+          {dropdownOpen && (
+            <div className={styles.dropdown}>
+              <button onClick={logout} className={styles.logoutButton}>
+                Sair
+              </button>
+            </div>
+          )}
+        </div>
       )}
-    </div>
-  )}
-</nav>
+    </nav>
   );
-}
+};
+
 export default NavBar;

@@ -1,75 +1,62 @@
 .footer {
-    background-color: #F28C38; /* Cor de fundo do rodapé */
-    color: #FFFFFF; /* Cor do texto */
-    font-family: 'Arial', sans-serif; /* Fonte moderna */
-    padding: 40px 20px; /* Espaçamento interno */
-}
-
-.container {
-    display: flex; /* Usando Flexbox para layout responsivo */
-    justify-content: space-between; /* Espaço entre os itens */
-    max-width: 1200px; /* Limita a largura do rodapé */
-    margin: 0 auto; /* Centraliza o container */
-}
-
-.info {
-    flex: 1; /* Permite que a seção de informações ocupe mais espaço */
-    margin-right: 20px; /* Espaço à direita */
-}
-
-.title {
-    font-size: 1.8rem; /* Tamanho do título */
-    margin-bottom: 10px; /* Espaçamento inferior */
-}
-
-.links {
-    flex: 1; /* Seção de links ocupa espaço igual */
-}
-
-.linkTitle {
-    font-size: 1.5rem; /* Tamanho do título dos links */
-    margin-bottom: 10px; /* Espaçamento inferior */
-}
-
-ul {
-    list-style: none; /* Remove marcadores da lista */
-    padding: 0; /* Remove padding padrão */
-}
-
-.link {
-    color: #FFFFFF; /* Cor dos links */
-    text-decoration: none; /* Remove sublinhado */
-    transition: color 0.3s; /* Animação suave na cor */
-}
-
-.link:hover {
-    color: #FFD700; /* Muda a cor ao passar o mouse */
-}
-
-.copyRight {
-    font-size: 0.9rem; /* Tamanho da fonte do copyright */
-    margin-top: 20px; /* Espaço superior */
-}
-
-
-
-.linkButton:hover {
-    color: #F28C38; /* Cor ao passar o mouse, se desejar */
-}
-
-.linkButton {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: transparent;
-    color: #ffffff; /* Cor de link azul */
-    border: none;
-    cursor: pointer;
-    padding: 10px 1px;
-    transition: color 0.3s ease;
+    background-color: #003366; /* Azul Profundo */
+    color: #FFFFFF; /* Texto Branco */
+    padding: 20px 0;
   }
   
-  .linkButton:hover {
-    color: #fdc303; /* Cor mais escura ao passar o mouse */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .info {
+    flex: 1;
+  }
+  
+  .title {
+    font-size: 24px;
+    color: #e39903; /* Amarelo Dourado */
+    margin-bottom: 10px;
+  }
+  
+  .copyRight {
+    font-size: 14px;
+  }
+  
+  .links {
+    flex: 1;
+    text-align: right;
+  }
+  
+  .linkTitle {
+    font-size: 18px;
+    color: #e39903; /* Amarelo Dourado */
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .link, .linkButton {
+    color: #FFFFFF; /* Texto Branco */
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .link:hover, .linkButton:hover {
+    color: #e39903; /* Amarelo Dourado em hover */
+  }
+  
+  .linkButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
   }
   

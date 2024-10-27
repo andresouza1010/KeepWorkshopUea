@@ -1,87 +1,149 @@
-.navbar {
-    display: flex; /* Garante que os itens dentro da navbar fiquem em linha */
-    justify-content: space-between; /* Espaça os itens da navbar (marca à esquerda e links à direita) */
-    align-items: center; /* Alinha verticalmente os itens */
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-  }
+/* NavBar.module.css */
 
-  .active {
-    text-decoration: underline; /* Adiciona sublinhado ao link ativo */
-    color: orange; /* Mantenha a cor laranja ou ajuste conforme necessário */
-  }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.search_form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.filter_bar {
+  display: flex;
+  align-items: center;
+}
+
+.filter_button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.filter_menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: none; /* Mude isso para block quando o dropdown estiver aberto */
+  z-index: 1000;
+}
+
+.filter_dropdown:hover .filter_menu {
+  display: block; /* Exibe o menu quando o botão é hoverado */
+}
+
+.checkbox_label {
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.checkbox_label input {
+  margin-right: 8px;
+}
+
+.search_input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  color: #ffffff;
   
-  .links_list {
-    list-style: none; /* Remove os marcadores padrão da lista */
-    display: flex; /* Coloca os itens da lista em linha */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .links_list li {
-    margin-right: 30px; /* Aumenta a distância entre os itens */
-  }
-  
-  .links_list li a {
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: rgb(227, 103, 2); /* Muda a cor do texto para laranja */
-  }
-  
-  .links_list li a:hover {
-    color: darkorange; /* Muda a cor ao passar o mouse para um tom mais escuro de laranja */
-  }
-  
-  
-  .profile {
-    position: relative; /* Necessário para o dropdown funcionar corretamente */
-    display: inline-block; /* Para que o botão de perfil fique na mesma linha que os links */
-  }
-  
-  .profileButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-  }
-  
-  .dropdown {
-    position: absolute;
-    top: 100%; /* Faz o dropdown aparecer abaixo do botão "Perfil" */
-    right: 0;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .dropdownItem {
-    display: block;
-    padding: 10px 20px;
-    text-align: left;
-    text-decoration: none;
-    color: black;
-  }
-  
-  .dropdownItem:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .logoutButton {
-    display: block;
-    padding: 10px 20px;
-    width: 100%;
-    border: none;
-    background-color: white;
-    cursor: pointer;
-    text-align: left;
-  }
-  
-  .logoutButton:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .active {
-    text-decoration: underline; /* Adiciona sublinhado ao link ativo */
-    color: orange; /* Mantenha a cor laranja ou ajuste conforme necessário */
-  }
+}
+
+.search_button {
+  background-color: #61dafb;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #282c34;
+  transition: background-color 0.3s;
+}
+
+.search_button:hover {
+  background-color: #21a1f1;
+}
+
+.links_list {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.links_list li {
+  font-size: 1rem;
+}
+
+.links_list a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.links_list a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.profile {
+  position: relative;
+}
+
+.profileButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.logoutButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.logoutButton:hover {
+  background-color: #ff1a1a;
+}
