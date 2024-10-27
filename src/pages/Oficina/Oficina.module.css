@@ -65,19 +65,82 @@
 }
 
 .oficinaImage, .oficinaImage2, .oficinaImage3, .oficinaImage4 {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
+    width: 400px; /* Largura fixa */
+    height: 300px; /* Altura fixa */
+    border-radius: 10px;
     margin-top: 10px;
+    margin-left: 200px;
+    object-fit: cover; /* Corta a imagem para preencher as dimensões especificadas */
 }
+
 
 .accessibilitySection {
     padding: 15px;
     background-color: #e7f3fe;
-    border-left: 5px solid #2196F3;
+    border-left: 5px solid #1a527f;
     border-radius: 4px;
 }
 
 .accessibilitySection p {
     color: #333;
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.zoomIcon {
+    position: absolute;
+    bottom: 10px; /* Ajuste a posição conforme necessário */
+    right: 10px; /* Ajuste a posição conforme necessário */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4f4bd5; /* Cor do ícone */
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que o modal fique acima de outros elementos */
+}
+
+.modalImage {
+    max-width: 90%; /* Limita a largura da imagem no modal */
+    max-height: 90%; /* Limita a altura da imagem no modal */
+    border-radius: 10px; /* Para bordas arredondadas, se desejado */
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalImage {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.closeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgb(238, 0, 0);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }

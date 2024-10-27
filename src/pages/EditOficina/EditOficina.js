@@ -27,10 +27,13 @@ const EditOficina = () => {
         image4: '',
     });
 
+    const [isSaving, setIsSaving] = useState(false);
+
     
 
     const updateOficina = useCallback(async () => {
         const oficinaRef = doc(db, "oficinas", id);
+        setIsSaving(true);
         try {
             await updateDoc(oficinaRef, {
                 title: newTitle || oficina.title,
@@ -52,7 +55,10 @@ const EditOficina = () => {
             navigate('/');
         } catch (error) {
             console.error("Erro ao atualizar oficina:", error);
+        }finally {
+            setIsSaving(false); // Oculta a mensagem após finalizar
         }
+
     }, [id, oficina, newTitle, newDescricao, newCategory, newTargetAudience, newDuration, newRecursos, newdescricao1, newdescricao2, newdescricao3, newdescricao4, images, navigate]);
 
     useEffect(() => {
@@ -118,12 +124,22 @@ const EditOficina = () => {
                     {/* Categoria */}
                     <div className={styles.odetailsSection}>
                         <h3>Categoria:</h3>
-                        <input
-                            type="text"
+                        <select
                             value={newCategory}
                             onChange={e => setNewCategory(e.target.value)}
-                            placeholder={oficina.category}
-                        />
+                            >
+                            <option value="">Selecione a categoria</option>
+                            <option value="Eletrônica">Eletrônica</option>
+                            <option value="Programação">Programação</option>
+                            <option value="Mecânica">Mecânica</option>
+                            <option value="Robótica">Robótica</option>
+                            <option value="Engenharia">Engenharia</option>
+                            <option value="Arte e design">Arte e design</option>
+                            <option value="Reciclagem e sustentabilidade">Reciclagem e sustentabilidade</option>
+                            <option value="Edição de vídeo e voz">Edição de vídeo e voz</option>
+                        </select>
+                            
+                        
                     </div>
 
                                     {/* Público-alvo */}
@@ -144,7 +160,7 @@ const EditOficina = () => {
 
                     {/* Duração */}
                     <div className={styles.odetailItem}>
-                        <h4>Duração:</h4>
+                        <h4>Duração em horas:</h4>
                         <input
                             type="text"
                             value={newDuration}
@@ -231,6 +247,8 @@ const EditOficina = () => {
                     )}
 
                     <button onClick={updateOficina} className={styles.osaveButton}>Salvar Alterações</button>
+                       {/* Exibe "Aguarde..." enquanto a atualização está em andamento */}
+                    {isSaving && <p className={styles.savingMessage}>Aguarde... estamos salvando as alterações.</p>}
                 </div>
             )}
         </div>
