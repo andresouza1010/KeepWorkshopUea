@@ -11,11 +11,11 @@
 
 .favoritas_container h1 {
   font-size: 2.5rem;
-  font-weight: 600;
   color: #333;
   margin-bottom: 30px;
   letter-spacing: 1px;
-  text-transform: uppercase; /* Dá mais ênfase ao título */
+  margin-top: -170px;
+  
 }
 
 .oficinas_list {
@@ -71,7 +71,7 @@
 }
 
 .btn {
-  background-color: #007bff;
+  background-color: #d0d0d0;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
@@ -81,7 +81,7 @@
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #b2b2b2;
   transform: translateY(-2px); /* Elevação leve no hover */
 }
 

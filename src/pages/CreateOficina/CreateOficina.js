@@ -300,27 +300,43 @@ const CreateOficina = () => {
         </div>
 
         <label>
-          <span>Acessibilidade</span>
-          <input 
-            type="checkbox" 
-            checked={hasAccessibility} 
-            onChange={(e) => setHasAccessibility(e.target.checked)} 
-          />
-          <span>Esta oficina possui recursos de acessibilidade?</span>
-        </label>
+  <span>Esta oficina possui recursos de acessibilidade?</span>
+  <div>
+    <label>
+      <input 
+        type="radio" 
+        name="accessibility" 
+        value="yes" 
+        checked={hasAccessibility === true} 
+        onChange={() => setHasAccessibility(true)} 
+      />
+      Sim
+    </label>
+    <label>
+      <input 
+        type="radio" 
+        name="accessibility" 
+        value="no" 
+        checked={hasAccessibility === false} 
+        onChange={() => setHasAccessibility(false)} 
+      />
+      Não
+    </label>
+  </div>
+</label>
 
-        {hasAccessibility && (
-          <label>
-            <span>Descrição dos recursos de acessibilidade</span>
-            <textarea 
-              placeholder="Descreva os recursos de acessibilidade disponíveis" 
-              value={accessibilityDescription} 
-              onChange={(e) => setAccessibilityDescription(e.target.value)} 
-            ></textarea>
-          </label>
-        )}
+{hasAccessibility && (
+  <label>
+    <span>Descrição dos recursos de acessibilidade</span>
+    <textarea 
+      placeholder="Descreva os recursos de acessibilidade disponíveis, especifique também o seu público-alvo." 
+      value={accessibilityDescription} 
+      onChange={(e) => setAccessibilityDescription(e.target.value)} 
+    ></textarea>
+  </label>
+)}
 
-        <button type="submit" className="btn">Criar Oficina</button>
+        <button type="submit" className="btn">Salvar Oficina</button>
         {response.loading && <p>Aguarde...</p>}
         {formError && <p className="error">{formError}</p>}
         {response.error && <p className="error">{response.error}</p>}

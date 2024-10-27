@@ -49,7 +49,7 @@ select:focus {
 
 /* Botões */
 button {
-    background-color: #007BFF; /* Cor do botão */
+    background-color: #f68700; /* Cor do botão */
     color: white; /* Texto branco */
     border: none; /* Remove borda padrão */
     padding: 10px 15px; /* Espaçamento interno */
@@ -60,7 +60,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
+    background-color: #ee7700; /* Cor ao passar o mouse */
 }
 
 /* Estilização das imagens */
@@ -96,7 +96,7 @@ button:hover {
 
 /* Estilos para a tela de carregamento */
 .loading {
-    color: #007BFF; /* Cor de carregamento */
+    color: #ff6f00; /* Cor de carregamento */
     font-size: 18px; /* Tamanho da fonte */
     margin: 20px 0; /* Margem vertical */
 }

@@ -7,8 +7,9 @@
   padding: 15px;
   max-width: 350px; /* Largura maior para destacar o conteúdo */
   margin: 50px auto; /* Centraliza os cards horizontalmente */
+  margin-left: 30px; /* Espaço à esquerda */
+  margin-right: -40px; /* Espaço à direita de 1px */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
-  margin-left: 30px; /* Adiciona espaço à esquerda */
 }
 
 
@@ -31,7 +32,7 @@
   width: 100%;
   height: 240px; /* Altura maior para imagens */
   object-fit: cover;
-  border-radius: 8px 8px 8px 8px; /* Canto superior arredondado */
+  border-radius: 5px 5px 5px 5px; /* Canto superior arredondado */
 }
 
 .favorite_icon {
@@ -106,7 +107,7 @@
   background-color: #333; /* Cor mais clara ao hover */
 }
 
-/* Novo grid container com estilo Adidas */
+/* Novo grid container */
 .grid_container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colunas ajustáveis */

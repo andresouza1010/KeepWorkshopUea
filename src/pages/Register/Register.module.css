@@ -8,7 +8,8 @@
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     max-width: 500px; /* Largura máxima */
-    margin: auto; /* Centraliza o contêiner */
+    margin: 0 auto; /* Centraliza o contêiner */
+    margin-top: 50px;
 }
 
 /* Títulos e subtítulos */
@@ -22,6 +23,7 @@ h1 {
 /* Estilização do formulário */
 .form {
     width: 100%; /* Largura total */
+    
 }
 
 /* Estilos dos rótulos */
@@ -58,7 +60,9 @@ input[type="password"]:focus {
 
 /* Estilo do botão */
 .buttonContainer {
-    margin-top: 20px; /* Espaçamento superior */
+    margin-left: 50px; 
+    margin-top: 30px; /* Espaçamento superior */
+    
 }
 
 .btn {
@@ -71,6 +75,7 @@ input[type="password"]:focus {
     font-size: 16px; /* Tamanho da fonte */
     transition: background-color 0.3s; /* Transição suave */
     width: 100%; /* Largura total */
+    margin: 0 auto; /* Centraliza o contêiner */
 }
 
 /* Efeito ao passar o mouse sobre o botão */
@@ -90,3 +95,4 @@ input[type="password"]:focus {
     font-size: 14px; /* Tamanho da fonte */
     margin-top: 10px; /* Margem superior */
 }
+

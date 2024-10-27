@@ -20,7 +20,7 @@ const Search = () => {
     } else if (oficinas && oficinas.length === 0) {
       setMessage("Nenhuma oficina encontrada.");
     } else {
-      setMessage("Pesquisar");
+      setMessage("Nenhuma Oficina foi encontrada.");
     }
   }, [oficinas]);
 
