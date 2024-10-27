@@ -10,91 +10,95 @@
 }
 
 .filter_button {
-    background-color: #f0f1f6;
-    border: 1px solid #d0d2d7;
+    background-color: #ffaa00; /* Cor de fundo azul */
+    border: none; /* Remove a borda padrão */
+    color: #fff; /* Cor do texto */
     padding: 10px 15px;
     border-radius: 8px;
     font-size: 14px;
-    color: #0c0803;
     display: flex;
     align-items: center;
-    gap: 10px; /* Ajuste aqui para espaço entre texto e ícone */
+    gap: 10px; /* Espaço entre texto e ícone */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
+    margin-left: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .filter_button:hover {
-    background-color: #e0e3e7;
+    background-color: #b37d00; /* Cor mais escura ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
 }
 
 .icon_down {
     font-size: 12px;
-    color: #888;
+    color: #fff; /* Cor do ícone */
 }
 
 .filter_menu {
     position: absolute;
     top: 100%; /* Mantém o dropdown logo abaixo do botão */
     left: 0; /* Ajusta o alinhamento à esquerda do botão */
-    background-color: #fff;
-    border: 1px solid #d0d2d7;
+    background-color: #fff; /* Cor de fundo do dropdown */
+    border: 1px solid #d0d2d7; /* Borda do dropdown */
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px; /* Ajuste o padding conforme necessário */
     margin-top: 5px; /* Espaço entre o botão e o dropdown */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra do dropdown */
     display: none; /* Inicialmente oculto */
     z-index: 20; /* Para garantir que fique acima de outros elementos */
+    white-space: nowrap; /* Impede quebra de linha no dropdown */
+    flex-direction: row; /* Organiza os itens horizontalmente */
 }
 
 .filter_dropdown:hover .filter_menu {
-    display: block; /* Mostra o menu ao passar o mouse */
+    display: flex; /* Mostra o menu ao passar o mouse */
 }
 
 /* Para mostrar o dropdown quando o estado isDropdownOpen for verdadeiro */
 .filter_menu.show {
-    display: block; /* Mostra o dropdown */
+    display: flex; /* Mostra o dropdown */
 }
 
 .checkbox_label {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 0.5px; /* Distância entre os elementos internos */
+    margin: 5px 20px; /* Aumenta a margem lateral (20px nas laterais) */
     font-size: 14px;
 }
 
 .checkbox_label input {
-    margin-right: 10px;
-    accent-color: #ffffff; /* Personaliza a cor do checkbox */
+    margin-right: 10px; /* Ajuste conforme necessário */
 }
 
 /* Estilos para o input de busca */
 .search_input {
-    flex-grow: 1;
+    flex-grow: 1; /* Faz o input ocupar o espaço disponível */
     padding: 10px 15px;
-    border: 1px solid #d0d2d7;
+    border: 1px solid #d0d2d7; /* Borda do input */
     border-radius: 8px;
     font-size: 14px;
-    color: #333;
+    color: #333; /* Cor do texto do input */
 }
 
 .search_input:focus {
-    border-color: #ff8c42;
-    outline: none;
+    border-color: #ff8c42; /* Cor da borda ao focar */
+    outline: none; /* Remove a borda padrão ao focar */
 }
 
 .search_button {
-    background-color: #ff702b;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    background-color: #ff702b; /* Cor de fundo do botão de busca */
+    color: #fff; /* Cor do texto do botão de busca */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 20px; /* Espaçamento interno do botão de busca */
+    border-radius: 8px; /* Bordas arredondadas do botão de busca */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /* Transição suave na mudança de cor */
 }
 
 .search_button:hover {
-    background-color: #e65b20;
+    background-color: #e65b20; /* Cor ao passar o mouse no botão de busca */
 }
 
 .postDetail {

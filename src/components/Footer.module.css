@@ -1,5 +1,5 @@
 .footer {
-    background-color: #003366; /* Azul Profundo */
+    background-color: #00012c; /* Azul Profundo */
     color: #FFFFFF; /* Texto Branco */
     padding: 20px 0;
   }
@@ -43,14 +43,14 @@
     padding: 0;
   }
   
-  .link, .linkButton {
+  .link{
     color: #FFFFFF; /* Texto Branco */
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .link:hover, .linkButton:hover {
-    color: #e39903; /* Amarelo Dourado em hover */
+    color: #ffffff; /* Amarelo Dourado em hover */
   }
   
   .linkButton {

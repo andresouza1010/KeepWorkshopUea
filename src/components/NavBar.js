@@ -32,7 +32,7 @@ const NavBar = () => {
         <div className={styles.filter_bar}>
           <input
             type="text"
-            placeholder="Ou busque por título..."
+            placeholder="Busque a sua Oficina..."
             onChange={(e) => setQuery(e.target.value)}
             className={styles.search_input}
           />

@@ -4,16 +4,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #282c34;
-  color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 9px 20px;
+  background-color: #00012c; /* Laranja mais escuro */
+  color: #e39903;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .brand {
   font-size: 1.5rem;
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
@@ -21,11 +21,13 @@
   display: flex;
   align-items: center;
   position: relative;
+  padding: 10px 20px; /* Aumente o padding lateral */
 }
 
 .filter_bar {
   display: flex;
   align-items: center;
+  
 }
 
 .filter_button {
@@ -42,7 +44,7 @@
   top: 100%;
   left: 0;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff; /* Cor neutra um pouco mais escura */
   border-radius: 4px;
   display: none; /* Mude isso para block quando o dropdown estiver aberto */
   z-index: 1000;
@@ -64,25 +66,24 @@
 
 .search_input {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #f6f6f6; /* Cor neutra um pouco mais escura */
   border-radius: 4px;
   margin-right: 10px;
-  color: #ffffff;
-  
+  color: #ffffff; /* Texto escuro para legibilidade */
 }
 
 .search_button {
-  background-color: #61dafb;
+  background-color: #ffb300; /* Amarelo mais escuro */
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
-  color: #282c34;
+  color: white; /* Texto branco */
   transition: background-color 0.3s;
 }
 
 .search_button:hover {
-  background-color: #21a1f1;
+  background-color: #ffa000; /* Um amarelo ainda mais escuro para o hover */
 }
 
 .links_list {
@@ -128,13 +129,13 @@
   right: 0;
   top: 100%;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #b0b0b0; /* Cor neutra um pouco mais escura */
   border-radius: 4px;
   z-index: 1000;
 }
 
 .logoutButton {
-  background-color: #ff4d4d;
+  background-color: #ff6f61; /* Vermelho mais escuro */
   color: white;
   border: none;
   padding: 10px;
@@ -145,5 +146,5 @@
 }
 
 .logoutButton:hover {
-  background-color: #ff1a1a;
+  background-color: #ff5c5c; /* Um vermelho ainda mais escuro para o hover */
 }
