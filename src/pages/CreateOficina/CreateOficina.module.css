@@ -1,4 +1,5 @@
 .create_oficina {
+  
   text-align: center;
   padding: 2em;
   background-color: #f9f9f9; /* Fundo claro para destacar o conteúdo */
@@ -46,7 +47,7 @@
 .create_oficina input[type="number"]:focus,
 .create_oficina select:focus,
 .create_oficina textarea:focus {
-  border-color: #5cb85c; /* Cor do foco */
+  border-color: #c78400; /* Cor do foco */
   outline: none; /* Remove a borda padrão */
 }
 
@@ -57,7 +58,7 @@
 
 .create_oficina button.btn {
   padding: 0.8em 2em;
-  background-color: #5cb85c;
+  background-color: #e4a801;
   border: none;
   color: #ffffff;
   font-size: 1em;
@@ -158,4 +159,60 @@
 .iconContainer img {
   width: 50px; /* Ajuste o tamanho do ícone conforme necessário */
   height: auto; /* Mantém a proporção do ícone */
+}
+
+.create_oficina {
+  text-align: center;
+  padding: 2.5em; /* Aumentando o padding para dar mais espaço */
+  background-color: #f9f9f9; /* Fundo claro */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais forte */
+  max-width: 800px; /* Largura máxima para melhor legibilidade */
+  margin: 0 auto; /* Centralizando */
+}
+
+.create_oficina h2 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #333;
+  text-transform: uppercase; /* Transformando o título em maiúsculas */
+}
+
+.create_oficina p {
+  color: #555; /* Tom de cinza um pouco mais escuro para melhor legibilidade */
+  margin-bottom: 1.5em; /* Espaço inferior maior */
+  line-height: 1.6; /* Aumentando o espaçamento entre linhas para melhorar a leitura */
+  font-size: 1.1em; /* Aumentando levemente o tamanho da fonte */
+}
+
+.create_oficina h3 {
+  font-size: 2em; /* Tamanho do subtítulo */
+  margin: 1.5em 0 1.2em; /* Margens superior e inferior */
+  color: #444444; /* Cor verde para destaque */
+}
+
+.create_oficina ol {
+  list-style-type: decimal; /* Usando números para a lista */
+  padding-left: 20px; /* Espaçamento à esquerda */
+  text-align: left; /* Alinhando a lista à esquerda */
+}
+
+.create_oficina li {
+  margin-bottom: 0.8em; /* Espaçamento entre os itens da lista */
+  font-size: 1em; /* Tamanho da fonte para os itens */
+  color: #333; /* Cor mais escura para os itens da lista */
+  line-height: 1.4; /* Aumentando o espaçamento entre linhas para melhorar a leitura */
+}
+
+
+.create_oficina p {
+  color: #555;
+  margin-bottom: 1.5em;
+  line-height: 1.6;
+  font-size: 1.1em;
+}
+.create_oficina h3 {
+  font-size: 2em;
+  margin: 1.5em 0 0.5em;
+  color: rgb(23, 1, 61); /* Verde para títulos */
 }

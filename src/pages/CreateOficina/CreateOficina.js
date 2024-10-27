@@ -117,9 +117,18 @@ const CreateOficina = () => {
 
   return (
     <div className={styles.create_oficina}>
-      <h2>Criar Oficina</h2>
-      <p>Crie o passo a passo de como a oficina funciona!</p>
+      
+      
+      <p>
+        Se você tem uma ideia para uma oficina maker e deseja compartilhar seu conhecimento e habilidades, este é o lugar certo! Aqui você possui pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
+      </p>
+      <button className={styles.sugestao_button}>Sugestão</button>
 
+      <h3>Como Cadastrar sua Oficina:</h3>
+      <p>
+        Para facilitar o processo de cadastro, siga os passos abaixo e preencha as informações necessárias:
+      </p>
+    
       <form onSubmit={handleSubmit}>
         <label>
           <span>Categoria</span>

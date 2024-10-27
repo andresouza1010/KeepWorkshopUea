@@ -6,14 +6,14 @@
     gap: 10px;
     align-items: center;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 0px 0px 1px;
 }
 
 .filter_button {
-    background-color: #ffaa00; /* Cor de fundo azul */
+    background-color: rgb(215, 47, 0); /* Cor de fundo azul */
     border: none; /* Remove a borda padrão */
     color: #fff; /* Cor do texto */
-    padding: 10px 15px;
+    padding: 10px 15px 8px;
     border-radius: 8px;
     font-size: 14px;
     display: flex;
@@ -26,7 +26,7 @@
 }
 
 .filter_button:hover {
-    background-color: #b37d00; /* Cor mais escura ao passar o mouse */
+    background-color: #ffc131; /* Cor mais escura ao passar o mouse */
     transform: translateY(-2px); /* Efeito de elevação */
 }
 
@@ -38,12 +38,13 @@
 .filter_menu {
     position: absolute;
     top: 100%; /* Mantém o dropdown logo abaixo do botão */
-    left: 0; /* Ajusta o alinhamento à esquerda do botão */
+    left: 30; /* Ajusta o alinhamento à esquerda do botão */
     background-color: #fff; /* Cor de fundo do dropdown */
     border: 1px solid #d0d2d7; /* Borda do dropdown */
     border-radius: 8px;
-    padding: 10px; /* Ajuste o padding conforme necessário */
-    margin-top: 5px; /* Espaço entre o botão e o dropdown */
+    padding: 5px; /* Ajuste o padding conforme necessário */
+    margin-top: 1px;
+     /* Espaço entre o botão e o dropdown */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra do dropdown */
     display: none; /* Inicialmente oculto */
     z-index: 20; /* Para garantir que fique acima de outros elementos */

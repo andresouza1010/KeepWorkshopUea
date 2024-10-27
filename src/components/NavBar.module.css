@@ -4,12 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 20px;
-  background-color: #00012c; /* Laranja mais escuro */
+  padding: 0px 20px;
+  background-color: #ffffff; 
   color: #e39903;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+#00012c
 .brand {
   font-size: 1.5rem;
   text-decoration: none;
@@ -33,7 +33,7 @@
 .filter_button {
   background-color: transparent;
   border: none;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   font-size: 1rem;
   margin-right: 10px;
@@ -66,19 +66,19 @@
 
 .search_input {
   padding: 8px;
-  border: 1px solid #f6f6f6; /* Cor neutra um pouco mais escura */
+  border: 1px solid #7c7c7c; /* Cor neutra um pouco mais escura */
   border-radius: 4px;
   margin-right: 10px;
-  color: #ffffff; /* Texto escuro para legibilidade */
+  color: #000000; /* Texto escuro para legibilidade */
 }
 
 .search_button {
-  background-color: #ffb300; /* Amarelo mais escuro */
+  background-color: rgb(215, 47, 0); /* Amarelo mais escuro */
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
-  color: white; /* Texto branco */
+  color: rgb(255, 255, 255); /* Texto branco */
   transition: background-color 0.3s;
 }
 
@@ -98,7 +98,7 @@
 
 .links_list a {
   text-decoration: none;
-  color: white;
+  color: rgb(215, 47, 0);
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s;
@@ -119,7 +119,7 @@
 .profileButton {
   background-color: transparent;
   border: none;
-  color: white;
+  color: rgb(215, 47, 0);
   cursor: pointer;
   padding: 5px 10px;
 }
