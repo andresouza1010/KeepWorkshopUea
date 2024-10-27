@@ -120,7 +120,7 @@ const CreateOficina = () => {
       
       
       <p>
-        Se você tem uma ideia para uma oficina maker e deseja compartilhar seu conhecimento e habilidades, este é o lugar certo! Aqui você possui pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
+        Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
       <button className={styles.sugestao_button}>Sugestão</button>
 
