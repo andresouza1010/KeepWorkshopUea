@@ -20,6 +20,7 @@ const CreateOficina = () => {
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Novo estado para controlar o carregamento
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
@@ -28,6 +29,8 @@ const CreateOficina = () => {
   // Novo estado para acessibilidade
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
+
+  
 
   const handleImageUpload = (e, section) => {
     const file = e.target.files[0];
@@ -79,10 +82,12 @@ const CreateOficina = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("");
+    setIsSubmitting(true); // Inicia o carregamento
 
     // Validar campos obrigatórios
     if (!title || !image || !image2 || !image3 || !image4 || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
+      setIsSubmitting(false); // Para o carregamento em caso de erro
       return;
     }
 
@@ -226,6 +231,8 @@ const CreateOficina = () => {
               onChange={(e) => handleImageUpload(e, 'intro')}
             />
           </label>
+
+
           <span>Descrição da introdução</span>
           <textarea 
             name="descricaoIntro" 
@@ -239,11 +246,7 @@ const CreateOficina = () => {
           <p>Faça upload da organização dos recursos!</p>
           <label>
             <span>Upload da Imagem</span>
-            <input 
-              type="file" 
-              name="image2" 
-              required 
-              accept="image2/*" 
+            <input type="file" name="image2" required accept="image/*" 
               onChange={(e) => handleImageUpload(e, 'organizacao')}
             />
           </label>
@@ -264,7 +267,7 @@ const CreateOficina = () => {
               type="file" 
               name="image3" 
               required 
-              accept="image3/*" 
+              accept="image/*" 
               onChange={(e) => handleImageUpload(e, 'pratica')}
             />
           </label>
@@ -285,7 +288,7 @@ const CreateOficina = () => {
               type="file" 
               name="image4" 
               required 
-              accept="image4/*" 
+              accept="image/*" 
               onChange={(e) => handleImageUpload(e, 'apresentacao')}
             />
           </label>
@@ -336,8 +339,8 @@ const CreateOficina = () => {
   </label>
 )}
 
-        <button type="submit" className="btn">Salvar Oficina</button>
-        {response.loading && <p>Aguarde...</p>}
+        <button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>
+        {isSubmitting && <p>Aguarde, salvando oficina...</p>}
         {formError && <p className="error">{formError}</p>}
         {response.error && <p className="error">{response.error}</p>}
         {response.success && <p className="success">Oficina criada com sucesso!</p>}
