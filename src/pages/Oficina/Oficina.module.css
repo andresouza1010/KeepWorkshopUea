@@ -145,3 +145,11 @@
     padding: 10px;
     cursor: pointer;
 }
+
+.smallButton{
+    margin-top: 270px;
+    margin-left: 5px;
+    position: absolute;
+       /* padding: 100px; */
+
+}

@@ -19,6 +19,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Register/Register";
 import Search from "./pages/Search/Search";
 import Oficina from "./pages/Oficina/Oficina";
+import Sugestao from "./pages/Sugestao/Sugestao";
 import TermosDeUso from "./pages/TermosDeUso/TermosDeUso"; // Novo componente de Termos de Uso
 
 // components
@@ -55,6 +56,7 @@ function App() {
               <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
               <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
               <Route path="/favoritas" element={<Favoritas />} />
+              <Route path="/sugestao" element={<Sugestao/>} />
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/search" element={<Search />} />
               <Route path="/oficinas/:id" element={<Oficina />} />

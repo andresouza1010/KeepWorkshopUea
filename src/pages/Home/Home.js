@@ -60,7 +60,7 @@ const Home = () => {
                     </div>
                 ))}
                 {filteredOficinas.length === 0 && (
-                    <div className={styles.noposts}>
+                    <div className={styles.oficinasNao}>
                          <p className={styles.message}>Oficinas não encontradas</p>
                          <Link to="/oficinas/create" className={`${styles.btn} btn`}>Criar Primeira Oficina</Link>
                     </div>

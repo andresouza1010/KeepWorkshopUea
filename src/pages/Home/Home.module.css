@@ -148,8 +148,17 @@
     border-radius: 5px; /* Bordas arredondadas do botão */
     text-decoration: none; /* Remove o sublinhado do link */
     transition: background-color 0.3s; /* Transição suave na mudança de cor */
+    margin-left: 90px;
 }
 
 .btn:hover {
     background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+
+.oficinasNao{
+    position: relative;
+    /* display: flex; */
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto;
 }

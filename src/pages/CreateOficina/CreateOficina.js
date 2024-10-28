@@ -120,15 +120,18 @@ const CreateOficina = () => {
     navigate("/");
   };
 
+  const handleRedirect = () => {
+    navigate('/sugestao');
+  };
+
   return (
     <div className={styles.create_oficina}>
-      
-      
       <p>
         Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
-      <button className={styles.sugestao_button}>Sugestão</button>
-
+      <button className={styles.sugestao_button} onClick={handleRedirect}>
+        Sugestão
+      </button>
       <h3>Como Cadastrar sua Oficina:</h3>
       <p>
         Para facilitar o processo de cadastro, siga os passos abaixo e preencha as informações necessárias:
@@ -212,6 +215,7 @@ const CreateOficina = () => {
             type="number" 
             name="duration" 
             required 
+            min="1" 
             placeholder="Ex: 2 (Tempo ideal para que todos participem ativamente)" 
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
