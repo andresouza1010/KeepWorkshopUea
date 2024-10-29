@@ -42,7 +42,7 @@ const Sugestao = () => {
         </p>
         <p><strong>Exemplo:</strong></p>
         <blockquote>
-          João mora em uma comunidade perto de um rio no Amazonas, e muitas vezes eles não têm luz, especialmente quando chove muito. 
+          André mora em uma comunidade perto de um rio no Amazonas, e muitas vezes eles não têm luz, especialmente quando chove muito. 
           Isso torna difícil para todos verem à noite e se manterem seguros. Além disso, como é difícil conseguir tecnologia e não há 
           muitos recursos para energia, eles também enfrentam problemas com muita água das chuvas e lixo acumulado, o que complica ainda mais as coisas.
         </blockquote>
@@ -52,11 +52,11 @@ const Sugestao = () => {
         <p className={styles.prompt}>
           <em>
             "Crie um problema para uma narrativa educacional baseada na metodologia Design Thinking. Siga o padrão: [Invente 
-            um nome de personagem], de uma comunidade [descreva o ambiente ou local] precisa resolver um problema - sugira 
+            um nome de personagem], de um lugar [descreva o ambiente ou local] precisa resolver um problema - sugira 
             um problema relevante com o qual o conceito STEAM [inclua o(s) conceito(s)] possa ajudar. Ao final desta aula, 
             os alunos terão produzido um [descreva brevemente o produto da oficina]. Para o problema, leve em consideração 
             limitações como [mencione as limitações tecnológicas ou materiais] e as potencialidades incluindo [mencione 
-            recursos naturais ou habilidades da comunidade]. O texto deve ser apenas um parágrafo, simples, claro e 
+            recursos naturais ou habilidades dos envolvidos]. O texto deve ser apenas um parágrafo, simples, claro e 
             entendido por pessoas de [faixa etária] anos."
           </em>
         </p>

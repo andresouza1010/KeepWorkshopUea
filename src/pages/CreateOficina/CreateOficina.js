@@ -258,7 +258,7 @@ const CreateOficina = () => {
           <textarea 
             name="descricaoOrganizacao" 
             required 
-            placeholder="Introduza a sua Oficina"
+            placeholder="Descreva como será a organização dos recursos."
             onChange={(e) => setOrganizacao(e.target.value)}
             value={descricaoOrganizacao}
           ></textarea>
@@ -279,7 +279,7 @@ const CreateOficina = () => {
           <textarea 
             name="descricaoPratica" 
             required 
-            placeholder="Introduza a sua Oficina"
+            placeholder="Descreva o momento prático da sua oficina."
             onChange={(e) => setPratica(e.target.value)}
             value={descricaoPratica}
           ></textarea>
@@ -300,7 +300,7 @@ const CreateOficina = () => {
           <textarea 
             name="descricaoApresentacao" 
             required 
-            placeholder="Introduza a sua Oficina"
+            placeholder="Descreva sobre a apresentação final da sua oficina."
             onChange={(e) => setApresentacao(e.target.value)}
             value={descricaoApresentacao}
           ></textarea>
