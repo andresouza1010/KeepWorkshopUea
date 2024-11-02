@@ -47,19 +47,6 @@ const Sugestao = () => {
           muitos recursos para energia, eles também enfrentam problemas com muita água das chuvas e lixo acumulado, o que complica ainda mais as coisas.
         </blockquote>
 
-        {/* Prompt para IA */}
-        <h3>Prompt para uso com IA</h3>
-        <p className={styles.prompt}>
-          <em>
-            "Crie um problema para uma narrativa educacional baseada na metodologia Design Thinking. Siga o padrão: [Invente 
-            um nome de personagem], de um lugar [descreva o ambiente ou local] precisa resolver um problema - sugira 
-            um problema relevante com o qual o conceito STEAM [inclua o(s) conceito(s)] possa ajudar. Ao final desta aula, 
-            os alunos terão produzido um [descreva brevemente o produto da oficina]. Para o problema, leve em consideração 
-            limitações como [mencione as limitações tecnológicas ou materiais] e as potencialidades incluindo [mencione 
-            recursos naturais ou habilidades dos envolvidos]. O texto deve ser apenas um parágrafo, simples, claro e 
-            entendido por pessoas de [faixa etária] anos."
-          </em>
-        </p>
       </section>
     </div>
   );

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './login.module.css';
-import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -52,6 +53,21 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        
+        {/* Redefinir a senha e redefinir senha */}
+        <div className={styles.passwordOptions}>
+          <Link to="/reset-password" className={styles.link}>
+            Redefinir minha senha
+          </Link>
+
+        </div>
+
+        <div className={styles.passwordOptions}>
+        <Link to="/forgot-password" className={styles.link}>
+            Esqueci minha senha
+          </Link>
+          </div>
+
         <div className={styles.buttonContainer}>
           {!loading && <button className="btn">Entrar</button>}
           {loading && (
@@ -60,6 +76,7 @@ const Login = () => {
             </button>
           )}
         </div>
+        
         {error && <p className="error">{error}</p>}
       </form>
     </div>

@@ -7,7 +7,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [acceptTerms, setAcceptTerms] = useState(false); // Estado para os Termos de Uso
+  const [phone, setPhone] = useState(""); // Novo estado para telefone
+  const [profileImage, setProfileImage] = useState(null); // Novo estado para a imagem de perfil
+  const [acceptTerms, setAcceptTerms] = useState(false);
   const [error, setError] = useState("");
 
   const { createUser, error: authError, loading } = useAuthentication();
@@ -16,24 +18,27 @@ const Register = () => {
     e.preventDefault();
     setError("");
 
-    // Verifique se as senhas correspondem
+    // Verificação de senha e termos de uso
     if (password !== confirmPassword) {
       setError("As senhas precisam ser iguais!");
       return;
     }
 
-    // Verifique se os termos foram aceitos
     if (!acceptTerms) {
       setError("Você precisa aceitar os Termos de Uso para se cadastrar.");
       return;
     }
 
+    // Preparação dos dados do usuário
     const user = {
       displayName,
       email,
-      password
+      password,
+      phone,
+      profileImage
     };
 
+    localStorage.setItem("user", JSON.stringify(user)); // Salva o usuário no localStorage
     const res = await createUser(user);
     console.log(res);
   };
@@ -43,6 +48,18 @@ const Register = () => {
       setError(authError);
     }
   }, [authError]);
+
+  // Manipulador para o upload da imagem de perfil
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result); // Armazena a imagem como base64
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className={styles.register}>
@@ -72,6 +89,26 @@ const Register = () => {
           />
         </label>
         <label>
+          <span>Telefone:</span>
+          <input 
+            type="tel"
+            name="phone"
+            required
+            placeholder="Digite seu número de telefone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </label>
+        <label>
+          <span>Foto de Perfil:</span>
+          <input 
+            type="file"
+            name="profileImage"
+            accept="image/*"
+            onChange={handleProfileImageChange}
+          />
+        </label>
+        <label>
           <span>Senha:</span>
           <input 
             type="password"
@@ -94,7 +131,6 @@ const Register = () => {
           />
         </label>
         
-        {/* Adicionar Termos de Uso */}
         <div className={styles.terms}>
           <label>
             <input

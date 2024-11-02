@@ -85,6 +85,9 @@ const NavBar = () => {
           </button>
           {dropdownOpen && (
             <div className={styles.dropdown}>
+              <NavLink to="/Opcoes" className={styles.dropdownOption}>
+                Opções
+              </NavLink>
               <button onClick={logout} className={styles.logoutButton}>
                 Sair
               </button>

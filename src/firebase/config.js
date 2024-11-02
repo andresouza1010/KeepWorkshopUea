@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-;
+import { getAuth } from "firebase/auth"; // Importar o módulo de autenticação
+
 const firebaseConfig = {
   apiKey: "AIzaSyBdi5wX7XLsEfu8z08fnrfVWf7MqAXlu7U",
   authDomain: "keepworkshop-c050f.firebaseapp.com",
@@ -13,6 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-//const auth = getAuth( app ); se der erro olhar a aula 141 de react
+const auth = getAuth(app); // Inicializar a autenticação
 
-export { db };
+export { db, auth }; // Exportar também o auth

@@ -159,16 +159,18 @@ const CreateOficina = () => {
         </label>
 
         <label>
-          <span>Título</span>
-          <input 
-            type="text" 
-            name="title" 
-            required 
-            placeholder="Pense em um nome que destaque a sua oficina!" 
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </label>
+        <span>Título</span>
+        <input 
+          type="text" 
+          name="title" 
+          required 
+          placeholder="Pense em um nome que destaque a sua oficina!" 
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          maxLength={30} // Limita a entrada a 30 caracteres
+        />
+      </label>
+
 
         <label>
           <span>Breve descrição</span>
@@ -279,7 +281,7 @@ const CreateOficina = () => {
           <textarea 
             name="descricaoPratica" 
             required 
-            placeholder="Descreva o momento prático da sua oficina."
+            placeholder="Descreva o momento prático da oficina."
             onChange={(e) => setPratica(e.target.value)}
             value={descricaoPratica}
           ></textarea>
@@ -300,7 +302,7 @@ const CreateOficina = () => {
           <textarea 
             name="descricaoApresentacao" 
             required 
-            placeholder="Descreva sobre a apresentação final da sua oficina."
+            placeholder="Descreva as apresentações finais da oficina!"
             onChange={(e) => setApresentacao(e.target.value)}
             value={descricaoApresentacao}
           ></textarea>

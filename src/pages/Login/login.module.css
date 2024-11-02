@@ -1,51 +1,124 @@
+/* Estilização do formulário de login */
 .login {
     text-align: center;
-    max-width: 400px; /* Limita a largura do formulário */
+    max-width: 90%; /* Ajuste de largura para telas menores */
+    width: 100%; /* Expande para largura total em telas pequenas */
+    max-width: 600px; /* Limite de largura em telas maiores */
     margin: 0 auto; /* Centraliza horizontalmente */
     margin-top: 40px;
     padding: 20px;
-    border-radius: 8px; /* Adiciona bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao redor do formulário */
-    background-color: #fff; /* Cor de fundo */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 }
 
+/* Título do login */
 .login h1 {
-    color: #333; /* Cor do título */
-    margin-bottom: 10px;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5em; /* Tamanho de fonte responsivo */
 }
 
+/* Parágrafo de introdução */
 .login p {
     color: #AAA;
     margin-bottom: 20px;
 }
 
+/* Formulário flexível */
 .form {
     display: flex;
-    flex-direction: column; /* Alinha os itens na coluna */
+    flex-direction: column;
 }
 
+/* Label dos campos */
 label {
-    margin-bottom: 15px; /* Espaçamento entre os campos */
-    text-align: left; /* Alinhamento à esquerda dos textos */
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 0.9em; /* Fonte ligeiramente menor para campos */
 }
 
+/* Campos de input */
 input {
-    padding: 10px; /* Adiciona preenchimento */
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 4px; /* Bordas arredondadas para os campos */
-    transition: border-color 0.3s; /* Transição suave para a borda */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s;
 }
 
 input:focus {
-    border-color: #007BFF; /* Cor da borda ao focar */
-    outline: none; /* Remove o contorno padrão do navegador */
+    border-color: #007BFF;
+    outline: none;
 }
 
+/* Botão de login */
 .buttonContainer {
-    margin-top: 20px; /* Espaçamento acima do botão */
+    margin-top: 20px;
 }
 
+/* Mensagem de erro */
 .error {
-    color: red; /* Cor do texto de erro */
-    margin-top: 10px; /* Espaçamento acima do texto de erro */
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9em;
 }
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .login {
+        padding: 15px; /* Reduz o padding para telas pequenas */
+    }
+
+    .login h1 {
+        font-size: 1.3em; /* Reduz o tamanho do título */
+    }
+
+    input {
+        padding: 10px; /* Ajuste de preenchimento */
+    }
+
+    .buttonContainer {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login {
+        padding: 10px;
+        margin-top: 20px; /* Ajuste do espaço superior */
+    }
+
+    .login h1 {
+        font-size: 1.1em;
+    }
+
+    .login p {
+        font-size: 0.85em; /* Reduz o tamanho do texto introdutório */
+    }
+
+    input {
+        padding: 8px;
+        font-size: 0.9em; /* Fonte um pouco menor */
+    }
+
+    label {
+        font-size: 0.8em;
+    }
+}
+
+.passwordOptions {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .link {
+    color: #ff4d00;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
