@@ -30,10 +30,8 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 function App() {
-
-
-
   const [user, setUser] = useState(undefined);
+  const [selectedCategories, setSelectedCategories] = useState([]); // Novo estado para categorias
   const { auth } = useAuthentication();
   const loadingUser = user === undefined;
 
@@ -51,10 +49,13 @@ function App() {
     <div className="App">
       <AuthProvider value={{ user }}>
         <BrowserRouter>
-          <NavBar />
+          <NavBar 
+            selectedCategories={selectedCategories} 
+            setSelectedCategories={setSelectedCategories} 
+          />
           <div className="container">
-          <Routes>
-              <Route path="/" element={<Home />} />
+            <Routes>
+              <Route path="/" element={<Home selectedCategories={selectedCategories} />} />
               <Route path="/about" element={<About />} />
               <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
               <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
@@ -62,7 +63,7 @@ function App() {
               <Route path="/sugestao" element={<Sugestao />} />
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/oficinas/:id" element={<Oficina user={user} />} /> {/* Passando o user aqui */}
+              <Route path="/oficinas/:id" element={<Oficina user={user} />} />
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -72,7 +73,6 @@ function App() {
               <Route path="/termos" element={<TermosDeUso />} />
               <Route path="/Opcoes" element={<Opcoes />} />
             </Routes>
-
           </div>
           <Footer />
         </BrowserRouter>

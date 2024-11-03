@@ -1,164 +1,143 @@
-/* Estilos para a barra de filtro */
+.home {
+    position: relative;
+    min-height: 100vh; /* Garante que a área da home ocupe pelo menos 100% da altura da viewport */
+}
+
+.hero {
+    height: 100vh; /* A altura da hero ocupa toda a altura da tela */
+    display: flex; 
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    position: relative; /* Para o conteúdo ser posicionado sobre a imagem */
+}
+
+.heroContent {
+    background-image: url('./imagemdeteste.jpg');
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    height: 100%; /* Para que o conteúdo ocupe a altura total da hero */
+    width: 100%; /* Para que o conteúdo ocupe a largura total da hero */
+    display: flex; /* Permite que o conteúdo se alinhe */
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    color: white; /* Cor do texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para melhor visibilidade */
+}
+
+.filter_bar {
+    position: relative; /* Para que a barra de filtro fique acima da imagem */
+    z-index: 1; /* Garante que a barra de filtro fique acima da hero */
+    padding: 20px; /* Adiciona um espaço ao redor do conteúdo da barra de filtro */
+}
+.hero::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 3em; /* Aumenta o tamanho da fonte */
+    margin: 0;
+    z-index: 2; 
+    animation: fadeIn 1s; /* Animação de aparição */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero button {
+    position: relative;
+    z-index: 2; 
+    padding: 15px 30px; 
+    font-size: 1.2em; 
+    background-color: #007BFF; /* Azul padrão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Adiciona uma animação */
+    margin-top: 20px; 
+}
+
+.hero button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+    transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
+}
+
 .filter_bar {
     display: flex;
-    position: relative;
-    z-index: 10;
-    gap: 10px;
     align-items: center;
-    width: 100%;
-    padding: 10px 0px 0px 1px;
+    margin-bottom: 20px; 
 }
 
-.filter_button {
-    background-color: rgb(215, 47, 0); /* Cor de fundo azul */
-    border: none; /* Remove a borda padrão */
-    color: #fff; /* Cor do texto */
-    padding: 10px 15px 8px;
-    border-radius: 8px;
-    font-size: 14px;
+.filter_text {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre texto e ícone */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
-    margin-left: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-.filter_button:hover {
-    background-color: #ffc131; /* Cor mais escura ao passar o mouse */
-    transform: translateY(-2px); /* Efeito de elevação */
-}
-
-.icon_down {
-    font-size: 12px;
-    color: #fff; /* Cor do ícone */
-}
-
-.filter_menu {
-    position: absolute;
-    top: 100%; /* Mantém o dropdown logo abaixo do botão */
-    left: 30; /* Ajusta o alinhamento à esquerda do botão */
-    background-color: #fff; /* Cor de fundo do dropdown */
-    border: 1px solid #d0d2d7; /* Borda do dropdown */
-    border-radius: 8px;
-    padding: 5px; /* Ajuste o padding conforme necessário */
-    margin-top: 1px;
-     /* Espaço entre o botão e o dropdown */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra do dropdown */
-    display: none; /* Inicialmente oculto */
-    z-index: 20; /* Para garantir que fique acima de outros elementos */
-    white-space: nowrap; /* Impede quebra de linha no dropdown */
-    flex-direction: row; /* Organiza os itens horizontalmente */
-}
-
-.filter_dropdown:hover .filter_menu {
-    display: flex; /* Mostra o menu ao passar o mouse */
-}
-
-/* Para mostrar o dropdown quando o estado isDropdownOpen for verdadeiro */
-.filter_menu.show {
-    display: flex; /* Mostra o dropdown */
+.filter_text span {
+    font-weight: bold;
+    margin-right: 10px; 
 }
 
 .checkbox_label {
     display: flex;
     align-items: center;
-    gap: 0.5px; /* Distância entre os elementos internos */
-    margin: 5px 20px; /* Aumenta a margem lateral (20px nas laterais) */
-    font-size: 14px;
+    gap: 0.5em;
+    margin: 5px 0; 
+    font-weight: bold; 
 }
 
 .checkbox_label input {
-    margin-right: 10px; /* Ajuste conforme necessário */
-}
-
-/* Estilos para o input de busca */
-.search_input {
-    flex-grow: 1; /* Faz o input ocupar o espaço disponível */
-    padding: 10px 15px;
-    border: 1px solid #d0d2d7; /* Borda do input */
-    border-radius: 8px;
-    font-size: 14px;
-    color: #333; /* Cor do texto do input */
-}
-
-.search_input:focus {
-    border-color: #ff8c42; /* Cor da borda ao focar */
-    outline: none; /* Remove a borda padrão ao focar */
-}
-
-.search_button {
-    background-color: #ff702b; /* Cor de fundo do botão de busca */
-    color: #fff; /* Cor do texto do botão de busca */
-    border: none; /* Remove a borda padrão */
-    padding: 10px 20px; /* Espaçamento interno do botão de busca */
-    border-radius: 8px; /* Bordas arredondadas do botão de busca */
-    cursor: pointer;
-    transition: background-color 0.3s; /* Transição suave na mudança de cor */
-}
-
-.search_button:hover {
-    background-color: #e65b20; /* Cor ao passar o mouse no botão de busca */
+    margin-right: 10px;
 }
 
 .postDetail {
-    position: relative;
     display: flex;
-    z-index: 1;
-    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas */
-    gap: 20px; /* Espaçamento entre os itens */
+    flex-wrap: wrap; 
+    gap: 20px; 
 }
 
 .postDetail > div {
-    flex: 0 0 calc(25% - 20px); /* Cada item ocupa 25% da largura, menos o gap */
-    box-sizing: border-box; /* Garante que padding e margin não afetem o tamanho */
+    flex: 0 0 calc(25% - 20px); 
+    box-sizing: border-box; 
 }
 
-/* Para garantir que o PostDetail tenha a mesma altura */
-.postDetail > div > .postDetail {
-    height: 100%; /* Isso pode ser ajustado conforme necessário */
-}
-
-.noposts {
+.oficinasNao {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    height: 100vh; /* Ocupa toda a altura da viewport */
-    text-align: center; /* Centraliza o texto */
-    background-color: #f9f9f9; /* Cor de fundo suave */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    padding: 20px; /* Espaçamento interno */
+    align-items: center; 
+    justify-content: center;
+    margin: 20px auto; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
 }
 
 .message {
-    font-size: 24px; /* Tamanho da fonte maior */
-    color: #333; /* Cor do texto */
-    margin-bottom: 20px; /* Espaçamento abaixo do texto */
+    font-size: 24px; 
+    color: #333; 
+    margin-bottom: 20px; 
 }
 
 .btn {
-    display: inline-block; /* Garante que o botão tenha espaço ao redor */
-    padding: 10px 20px; /* Espaçamento interno do botão */
-    background-color: #4CAF50; /* Cor de fundo do botão */
-    color: white; /* Cor do texto do botão */
-    border: none; /* Remove a borda padrão */
-    border-radius: 5px; /* Bordas arredondadas do botão */
-    text-decoration: none; /* Remove o sublinhado do link */
-    transition: background-color 0.3s; /* Transição suave na mudança de cor */
-    margin-left: 90px;
+    padding: 10px 20px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    transition: background-color 0.3s; 
 }
 
 .btn:hover {
-    background-color: #45a049; /* Cor do botão ao passar o mouse */
-}
-
-.oficinasNao{
-    position: relative;
-    /* display: flex; */
-    align-items: center; 
-    justify-content: center;
-    margin: 0 auto;
+    background-color: #45a049; 
 }

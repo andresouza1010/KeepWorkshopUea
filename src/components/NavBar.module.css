@@ -5,15 +5,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
-  background-color: #ffffff; 
+  background-color: #000000; 
   color: #e39903;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-#00012c
+
 .brand {
   font-size: 1.5rem;
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: rgb(247, 144, 0); /* Cor laranja uniforme */
   font-weight: bold;
 }
 
@@ -27,7 +27,6 @@
 .filter_bar {
   display: flex;
   align-items: center;
-  
 }
 
 .filter_button {
@@ -73,7 +72,7 @@
 }
 
 .search_button {
-  background-color: rgb(215, 47, 0); /* Amarelo mais escuro */
+  background-color: rgb(247, 144, 0); /* Cor laranja uniforme */
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
@@ -83,7 +82,7 @@
 }
 
 .search_button:hover {
-  background-color: #ffa000; /* Um amarelo ainda mais escuro para o hover */
+  background-color: rgb(230, 120, 0); /* Laranja um pouco mais escuro para o hover */
 }
 
 .links_list {
@@ -98,7 +97,7 @@
 
 .links_list a {
   text-decoration: none;
-  color: rgb(215, 47, 0);
+  color: rgb(247, 144, 0); /* Cor laranja uniforme */
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s;
@@ -119,7 +118,7 @@
 .profileButton {
   background-color: transparent;
   border: none;
-  color: rgb(215, 47, 0);
+  color: rgb(247, 144, 0); /* Cor laranja uniforme */
   cursor: pointer;
   padding: 5px 10px;
 }
