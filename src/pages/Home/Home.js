@@ -5,7 +5,7 @@ import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import PostDetail from "../../components/PostDetail"; 
 import { useAuthentication } from "../../hooks/useAuthentication"; 
 import 'font-awesome/css/font-awesome.min.css';
-import imagemDeteste from './imagemdeteste.jpg';
+import imagemDeteste from './imagemdeteste3.jpg';
 
 const Home = () => {
     const { auth } = useAuthentication(); 
@@ -27,16 +27,21 @@ const Home = () => {
 
     return (
         <div className={styles.home}>
-            {!isLoggedIn && ( 
-                <div className={styles.hero}>
-                    <div className={styles.heroContent} style={{ backgroundImage: `url(${imagemDeteste})` }}>
-                        <h1>Bem-vindo ao nosso site de Oficinas!</h1>
-                        <button>
-                            <Link to="/register">Acesse aqui</Link>
-                        </button>
-                    </div>
+        {!isLoggedIn && ( 
+            <div className={styles.hero}>
+                <div className={styles.heroContent} style={{ backgroundImage: `url(${imagemDeteste})` }}>
+                    <h1>Bem-vindo ao Keep Workshop!</h1>
+                    <p className={styles.description}>
+                        Descubra e compartilhe oficinas makers em uma plataforma colaborativa.
+                    </p>
+                    <button className={styles.acessarButton}>
+                        <Link to="/register" className={styles.acessarLink}>Acessar</Link>
+                    </button>
                 </div>
-            )}
+            </div>
+        )}
+
+
 
             <div className={styles.filter_bar}>
                 <div className={styles.filter_text}>

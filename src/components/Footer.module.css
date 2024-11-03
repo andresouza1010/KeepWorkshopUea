@@ -6,7 +6,8 @@
     align-items: center; /* Centraliza verticalmente os itens */
     border-top: 2px solid #fff; /* Linha separadora branca */
     font-size: 0.85em; /* Tamanho da fonte reduzido */
-    color: rgb(215, 47, 0); /* Cor do texto branca */
+    color: rgb(215, 140, 0); /* Cor do texto branca */
+    background-color: rgb(0, 0, 0);
   }
   
   .container {
@@ -31,7 +32,7 @@
   
   .copyRight {
     font-size: 0.8em; /* Tamanho menor para o texto de copyright */
-    color: rgb(215, 47, 0); /* Cor branca */
+    color: rgb(215, 129, 0); /* Cor branca */
   }
   
   .linkTitle {
@@ -41,13 +42,13 @@
   
   .link {
     text-decoration: none; /* Remove sublinhado do link */
-    color: rgb(215, 47, 0); /* Cor do link branca */
+    color: rgb(215, 133, 0); /* Cor do link branca */
   }
   
   .linkButton {
     background: none; /* Remove fundo do botão */
     border: none; /* Remove borda do botão */
-    color: rgb(215, 47, 0); /* Cor do texto do botão */
+    color: rgb(234, 133, 0); /* Cor do texto do botão */
     cursor: pointer; /* Cursor de ponteiro ao passar sobre o botão */
     font: inherit; /* Herda o estilo da fonte */
     padding: 0; /* Remove padding do botão */

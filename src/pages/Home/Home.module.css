@@ -12,7 +12,7 @@
 }
 
 .heroContent {
-    background-image: url('./imagemdeteste.jpg');
+    background-image: url('./imagemdeteste3.jpg');
     background-size: cover; /* Faz a imagem cobrir toda a área */
     background-position: center; /* Centraliza a imagem */
     height: 100%; /* Para que o conteúdo ocupe a altura total da hero */
@@ -22,14 +22,9 @@
     align-items: center; /* Centraliza horizontalmente */
     justify-content: center; /* Centraliza verticalmente */
     color: white; /* Cor do texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para melhor visibilidade */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para melhor visibilidade */
 }
 
-.filter_bar {
-    position: relative; /* Para que a barra de filtro fique acima da imagem */
-    z-index: 1; /* Garante que a barra de filtro fique acima da hero */
-    padding: 20px; /* Adiciona um espaço ao redor do conteúdo da barra de filtro */
-}
 .hero::before {
     content: ""; 
     position: absolute;
@@ -37,7 +32,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.26);
 }
 
 .hero h1 {
@@ -57,7 +52,7 @@
     z-index: 2; 
     padding: 15px 30px; 
     font-size: 1.2em; 
-    background-color: #007BFF; /* Azul padrão */
+    background-color: #000000; /* Azul padrão */
     color: white;
     border: none;
     border-radius: 5px;
@@ -67,25 +62,67 @@
 }
 
 .hero button:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
+    background-color: #cb6900; /* Cor ao passar o mouse */
     transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
 }
 
 .filter_bar {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px; 
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .filter_text {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .filter_text span {
-    font-weight: bold;
-    margin-right: 10px; 
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-right: 15px;
 }
+
+.checkbox_label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox_label:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.checkbox_label input {
+    margin-right: 8px;
+    accent-color: #007BFF; /* Muda a cor da marcação do checkbox */
+    transform: scale(1.2);
+}
+
+.checkbox_label input:checked + span {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+
+
+
 
 .checkbox_label {
     display: flex;
@@ -140,4 +177,22 @@
 
 .btn:hover {
     background-color: #45a049; 
+}
+
+.acessarLink {
+    color: #FFB347; /* Cor laranja mais leve */
+    text-decoration: none; /* Remove o sublinhado, se necessário */
+    
+}
+
+.acessarLink:hover {
+    color: #000000; /* Laranja um pouco mais escuro ao passar o mouse */
+}
+
+.description {
+    font-size: 1rem;
+    color: #ffffff; /* Branco puro */
+    margin-top: 8px;
+    max-width: 500px;
+    text-align: center; /* Centraliza o texto para uma apresentação mais equilibrada */
 }
