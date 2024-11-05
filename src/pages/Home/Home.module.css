@@ -1,39 +1,133 @@
 .home {
     position: relative;
-    min-height: 100vh; /* Garante que a área da home ocupe pelo menos 100% da altura da viewport */
+    min-height: 100vh;
+    overflow: hidden; /* Evita que as partículas ultrapassem a área da home */
 }
 
+/* Animação para simular partículas */
+@keyframes moveParticles {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+/* Configuração da área Hero */
 .hero {
-    height: 100vh; /* A altura da hero ocupa toda a altura da tela */
-    display: flex; 
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    position: relative; /* Para o conteúdo ser posicionado sobre a imagem */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Conteúdo da Hero com animação de entrada */
 .heroContent {
-    background-image: url('./imagemdeteste3.jpg');
-    background-size: cover; /* Faz a imagem cobrir toda a área */
-    background-position: center; /* Centraliza a imagem */
-    height: 100%; /* Para que o conteúdo ocupe a altura total da hero */
-    width: 100%; /* Para que o conteúdo ocupe a largura total da hero */
-    display: flex; /* Permite que o conteúdo se alinhe */
-    flex-direction: column; /* Alinha os elementos verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    color: white; /* Cor do texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para melhor visibilidade */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7)), url('../../pages/Imagens/imagemdeteste3.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    animation: fadeInZoom 2s ease-in-out;
 }
 
-.hero::before {
-    content: ""; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.26);
+
+/* Efeito de zoom e fade-in na entrada */
+@keyframes fadeInZoom {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
+
+
+/* Título com linha na parte de baixo */
+.heroContent h1 {
+    font-size: 3rem;
+    padding: 0.5em 1em 0.5em 1em; /* Ajusta o padding para não incluir a linha */
+    position: relative; /* Para posicionar a linha */
+    color: rgba(255, 174, 0, 0.9); /* Cor do texto */
+}
+.heroContent::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, rgba(255, 174, 0, 0), rgba(255, 174, 0, 0.8), rgba(255, 174, 0, 0));
+    box-shadow: 0 0 20px rgba(255, 174, 0, 0.6), 0 0 30px rgba(255, 174, 0, 0.4);
+    animation: neonGlow 2s alternate infinite;
+}
+
+/* Efeito ao passar o mouse */
+.heroContent h1:hover::after {
+    background-color: rgba(255, 174, 0, 1); /* Muda a cor da linha ao passar o mouse */
+}
+
+
+/* Animação de brilho neon */
+@keyframes neonGlow {
+    from {
+        box-shadow: 0 0 10px rgb(0, 17, 255), 0 0 20px rgba(255, 174, 0, 0.3), 0 0 30px rgba(255, 174, 0, 0.2);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(115, 0, 255, 0.7), 0 0 30px rgba(255, 174, 0, 0.5), 0 0 40px rgba(255, 174, 0, 0.4);
+    }
+}
+
+/* Animação de brilho tecnológico */
+@keyframes techGlow {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(162, 0, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(111, 0, 255, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(76, 0, 255, 0.5);
+    }
+}
+
+
+/* Animação de brilho neon */
+@keyframes neonGlow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.4);
+    }
+}
+
+/* Botão com efeito hover futurista */
+.acessarButton {
+    padding: 1em 2em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.acessarButton:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
 
 .hero h1 {
     font-size: 3em; /* Aumenta o tamanho da fonte */
@@ -68,9 +162,9 @@
 
 .filter_bar {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 15px;
     background-color: #f5f5f5;
     border-radius: 8px;
@@ -195,4 +289,111 @@
     margin-top: 8px;
     max-width: 500px;
     text-align: center; /* Centraliza o texto para uma apresentação mais equilibrada */
+}
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Ajuste a distância entre os botões aqui */
+    width: 100%;
+}
+
+.buttonLeft, .buttonRight {
+    margin: 0;
+}
+
+.benefitPanelsContainer {
+    display: flex; /* Usar flexbox para alinhamento */
+    justify-content: space-between; /* Espaço igual entre os painéis */
+    margin: 20px 0; /* Margem superior e inferior */
+}
+
+/* Container principal dos benefícios */
+.benefitsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1.5rem;
+    margin-top: 200px; /* Aumenta a distância para cima */
+    margin-bottom: 100px; /* Aumenta a distância para baixo */
+}
+
+/* Painel de cada benefício */
+.benefitPanel {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    padding: 1.5rem;
+    max-width: 250px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.benefitPanel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do benefício */
+.benefitImage {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    border-radius: 8%;
+}
+
+/* Título do benefício */
+.benefitPanel h3 {
+    font-size: 1.1rem;
+    color: #333333;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+/* Descrição do benefício */
+.benefitPanel p {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.heroSection {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.titlep {
+    font-size: 1.5rem;
+    color: rgb(31, 0, 47);
+    margin-bottom: 0.5rem;
+    margin-top: 10px;
+    margin-left: 50px;
+    font-weight: 600;
+    text-align: left;
+    position: relative;
+}
+
+.titlep::after {
+    content: "";
+    display: block;
+    width: 15.5%; /* Ajuste a largura conforme necessário */
+    height: 3px;
+    background-color: #FFA500; /* Laranja */
+    margin-top: 5px; /* Espaço entre o título e a linha */
+    margin-bottom: 10px; /* Espaço entre a linha e a descrição */
+    border-radius: 2px;
+}
+
+.descriptionp {
+    font-size: 1rem;
+    color: #333333;
+    max-width: 500px;
+    margin-left: 50px; /* Alinha ao lado esquerdo */
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: left;
 }

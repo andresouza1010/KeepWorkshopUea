@@ -307,43 +307,32 @@ const CreateOficina = () => {
             value={descricaoApresentacao}
           ></textarea>
         </div>
-
         <label>
   <span>Esta oficina possui recursos de acessibilidade?</span>
-  <div>
-    <label>
-      <input 
-        type="radio" 
-        name="accessibility" 
-        value="yes" 
-        checked={hasAccessibility === true} 
-        onChange={() => setHasAccessibility(true)} 
-      />
-      Sim
-    </label>
-    <label>
-      <input 
-        type="radio" 
-        name="accessibility" 
-        value="no" 
-        checked={hasAccessibility === false} 
-        onChange={() => setHasAccessibility(false)} 
-      />
-      Não
-    </label>
-  </div>
 </label>
-
-{hasAccessibility && (
+<div>
   <label>
-    <span>Descrição dos recursos de acessibilidade</span>
-    <textarea 
-      placeholder="Descreva os recursos de acessibilidade disponíveis, especifique também o seu público-alvo." 
-      value={accessibilityDescription} 
-      onChange={(e) => setAccessibilityDescription(e.target.value)} 
-    ></textarea>
+    <input 
+      type="radio" 
+      name="accessibility" 
+      value="yes" 
+      checked={hasAccessibility === true} 
+      onChange={() => setHasAccessibility(true)} 
+    />
+    Sim
   </label>
-)}
+  <label>
+    <input 
+      type="radio" 
+      name="accessibility" 
+      value="no" 
+      checked={hasAccessibility === false} 
+      onChange={() => setHasAccessibility(false)} 
+    />
+    Não
+  </label>
+</div>
+
 
         <button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>
         {isSubmitting && <p>Aguarde, salvando oficina...</p>}
