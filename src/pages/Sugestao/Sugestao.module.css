@@ -119,3 +119,80 @@
   font-size: 1em;
   background-color: #fff;
 }
+
+/* Estilos gerais */
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.uploadInput {
+  display: none; /* Oculta o botão de input padrão */
+}
+
+/* Estilo do botão de upload (ficará visível e estilizado) */
+.uploadLabel span {
+  background-color: #c76a00;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.uploadLabel:hover span {
+  background-color: #dd9700;
+  transform: scale(1.05);
+}
+
+.uploadLabel span::after {
+  content: ' 📷'; /* Ícone opcional de câmera */
+}
+
+/* Estilo para campos de texto */
+.textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  resize: vertical;
+}
+
+/* Estilo do botão de envio */
+.btn {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #218838;
+}
+
+/* Estilo das mensagens de status */
+.error {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+.success {
+  color: #28a745;
+  font-size: 14px;
+}

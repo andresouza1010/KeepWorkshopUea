@@ -1,25 +1,141 @@
 import React, { useState } from 'react';
 import styles from './Sugestao.module.css';
 import { FaLightbulb, FaQuestionCircle, FaPenNib } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
+import { useAuthValue } from "../../context/AuthContext";
+import { useInsertDocument } from '../../hooks/useInsertDocument';
+
 
 const Sugestao = () => {
-  const [concepts, setConcepts] = useState('');
-  const [problem, setProblem] = useState('');
-  const [category, setCategory] = useState('');
+
+  
   const [narrative, setNarrative] = useState('');
-  const [resources, setResources] = useState('');
-  const [targetAudience, setTargetAudience] = useState('');
-  const [duration, setDuration] = useState('');
-  const [introduction, setIntroduction] = useState(''); // Adiciona o campo de introdução
+  
+  
+
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
+  const [recursos, setRecursos] = useState("");
+  const [description, setDescription] = useState(""); 
+  const [descricaoIntro, setIntroduction] = useState(""); 
+  const [descricaoOrganizacao, setOrganizacao] = useState(""); 
+  const [descricaoPratica, setPratica] = useState(""); 
+  const [descricaoApresentacao, setApresentacao] = useState(""); 
+  const [category, setCategory] = useState(""); 
+  const [targetAudience, setTargetAudience] = useState(""); 
+  const [duration, setDuration] = useState(""); 
+  const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const { user } = useAuthValue();
+  const { insertDocument, response } = useInsertDocument("oficinas");
+  const navigate = useNavigate();
+
+  const handleImageUpload = (e, section) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      switch (section) {
+        case 'intro':
+          setImage(reader.result); // Para a introdução
+          break;
+        case 'organizacao':
+          setImage2(reader.result); // Para a organização
+          break;
+        case 'pratica':
+          setImage3(reader.result); // Para o momento prático
+          break;
+        case 'apresentacao':
+          setImage4(reader.result); // Para a apresentação final
+          break;
+        default:
+          break;
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const resetFields = () => {
+    setTitle("");
+    setImage("");
+    setImage2("");
+    setImage3("");
+    setImage4("");
+    setRecursos("");
+    setDescription("");
+    setIntroduction("");
+    setOrganizacao("");
+    setPratica("");
+    setApresentacao("");
+    setCategory("");
+    setTargetAudience("");
+    setDuration("");
+  
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormError("");
+    setIsSubmitting(true); // Inicia o carregamento
+
+    // Validar campos obrigatórios
+    if (!title || !recursos || !category || !targetAudience || !duration || !description) {
+      setFormError("Por favor, preencha todos os campos!");
+      setIsSubmitting(false); // Para o carregamento em caso de erro
+      return;
+    }
+
+    // Criar uma oficina
+    insertDocument({
+      title,
+      image,
+      image2,
+      image3,
+      image4,
+      recursos,
+      descricaoIntro,
+      descricaoOrganizacao,
+      descricaoPratica,
+      descricaoApresentacao,
+      description, 
+      category, 
+      targetAudience, 
+      duration, 
+      uid: user.uid,
+      createdBy: user.displayName,
+    
+    });
+
+    // Resetar os campos para permitir criar outra oficina
+    resetFields();
+
+    // Redirecionar para a página inicial ou exibir mensagem de sucesso
+    navigate("/");
+  };
+
+ 
+
 
   return (
     <div className={styles.sugestaoContainer}>
+      <form onSubmit={handleSubmit}>
+      
       <header className={styles.header}>
         <h1>Guia para Criar sua Oficina Maker</h1>
         <p>Inspire-se e aprenda a montar uma oficina interativa e educativa!</p>
       </header>
 
       {/* Passo 1 */}
+      
+      
       <section className={styles.passo}>
         <div className={styles.icon}><FaLightbulb /></div>
         <h2>Passo 1: Conceitos de STEAM </h2>
@@ -31,8 +147,8 @@ const Sugestao = () => {
         <input
           type="text"
           placeholder="Digite os conceitos de STEAM para o seu título!"
-          value={concepts}
-          onChange={(e) => setConcepts(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className={styles.input}
         />
       </section>
@@ -49,10 +165,11 @@ const Sugestao = () => {
         <input
           type="text"
           placeholder="Digite o problema identificado"
-          value={problem}
-          onChange={(e) => setProblem(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className={styles.input}
         />
+
         <p><strong>Categoria:</strong> Selecione a categoria que representa a abordagem que você usará em sua oficina!</p>
         <label className={styles.label}>
           <select 
@@ -78,8 +195,8 @@ const Sugestao = () => {
         <p>Liste os recursos e materiais necessários para a execução da oficina. Isso ajudará os participantes a se prepararem adequadamente.</p>
         <textarea
           placeholder="Digite os recursos necessários"
-          value={resources}
-          onChange={(e) => setResources(e.target.value)}
+          value={recursos}
+          onChange={(e) => setRecursos(e.target.value)}
           className={styles.textarea}
         />
       </section>
@@ -138,52 +255,112 @@ const Sugestao = () => {
       </section>
 
       {/* Passo 4 */}
-      <section className={styles.passo}>
-        <div className={styles.icon}><FaLightbulb /></div>
-        <h2>Passo 4: Introdução</h2>
-        <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
-        <textarea
-          placeholder="Digite a introdução"
-          value={introduction}
-          onChange={(e) => setIntroduction(e.target.value)}
-          className={styles.textarea}
-        />
-      </section>
-      <section className={styles.passo}>
-        <div className={styles.icon}><FaLightbulb /></div>
-        <h2>Passo 5: Organização de Materiais</h2>
-        <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
-        <textarea
-          placeholder="Distribuição de Materiais"
-          value={introduction}
-          onChange={(e) => setIntroduction(e.target.value)}
-          className={styles.textarea}
-        />
-      </section>
-      <section className={styles.passo}>
-        <div className={styles.icon}><FaLightbulb /></div>
-        <h2>Passo 4: Introdução</h2>
-        <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
-        <textarea
-          placeholder="Digite a introdução"
-          value={introduction}
-          onChange={(e) => setIntroduction(e.target.value)}
-          className={styles.textarea}
-        />
-      </section>
-      <section className={styles.passo}>
-        <div className={styles.icon}><FaLightbulb /></div>
-        <h2>Passo 4: Introdução</h2>
-        <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
-        <textarea
-          placeholder="Digite a introdução"
-          value={introduction}
-          onChange={(e) => setIntroduction(e.target.value)}
-          className={styles.textarea}
-        />
-      </section>
-    </div>
+<section className={styles.passo}>
+  <div className={styles.icon}><FaLightbulb /></div>
+  <h2>Passo 4: Introdução</h2>
+  <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
+  <textarea
+    placeholder="Digite a introdução"
+    value={descricaoIntro}
+    onChange={(e) => setIntroduction(e.target.value)}
+    className={styles.textarea}
+  />
+  <label htmlFor="uploadIntro" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadIntro"
+      name="image"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'intro')}
+      className={styles.uploadInput}
+    />
+  </label>
+</section>
+
+{/* Passo 5 */}
+<section className={styles.passo}>
+  <div className={styles.icon}><FaLightbulb /></div>
+  <h2>Passo 5: Organização de Materiais</h2>
+  <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
+  <textarea
+    placeholder="Distribuição de Materiais"
+    value={descricaoOrganizacao}
+    onChange={(e) => setOrganizacao(e.target.value)}
+    className={styles.textarea}
+  />
+  <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadOrganizacao"
+      name="image2"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'organizacao')}
+      className={styles.uploadInput}
+    />
+  </label>
+</section>
+
+{/* Passo 6 */}
+<section className={styles.passo}>
+  <div className={styles.icon}><FaLightbulb /></div>
+  <h2>Passo 6: Momento Prático</h2>
+  <p>Descreva como será o momento prático da oficina, detalhando as atividades e experimentos que os participantes irão realizar.</p>
+  <textarea
+    placeholder="Digite como será o momento prático!"
+    value={descricaoPratica}
+    onChange={(e) => setPratica(e.target.value)}
+    className={styles.textarea}
+  />
+  <label htmlFor="uploadPratica" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadPratica"
+      name="image3"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'pratica')}
+      className={styles.uploadInput}
+    />
+  </label>
+</section>
+
+{/* Passo 7 */}
+<section className={styles.passo}>
+  <div className={styles.icon}><FaLightbulb /></div>
+  <h2>Passo 7: Apresentação Final</h2>
+  <p>Elabore a descrição da apresentação final, detalhando como será a demonstração do que os participantes realizaram e como será o encerramento da oficina.</p>
+  <textarea
+    placeholder="Descreva o momento de apresentações!"
+    value={descricaoApresentacao}
+    onChange={(e) => setApresentacao(e.target.value)}
+    className={styles.textarea}
+  />
+  <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadApresentacao"
+      name="image4"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'apresentacao')}
+      className={styles.uploadInput}
+    />
+  </label>
+</section>
+
+<button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>
+{isSubmitting && <p>Aguarde, salvando oficina...</p>}
+{formError && <p className="error">{formError}</p>}
+{response.error && <p className="error">{response.error}</p>}
+{response.success && <p className="success">Oficina criada com sucesso!</p>}
+
+</form>
+</div>
+  
   );
+
 };
 
 export default Sugestao;
