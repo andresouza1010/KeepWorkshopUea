@@ -196,3 +196,16 @@
   color: #28a745;
   font-size: 14px;
 }
+
+.previewimagecon {
+  display: flex;
+  flex-wrap: wrap; /* Para permitir que as imagens se ajustem à largura do contêiner */
+  gap: 10px; /* Espaço entre as imagens */
+}
+
+.imagePreview {
+  width: 150px;      /* Tamanho fixo para as imagens */
+  height: 150px;     /* Tamanho fixo para as imagens */
+  object-fit: cover; /* Para manter a proporção das imagens sem distorção */
+  border-radius: 8px; /* Opcional: Adicionar bordas arredondadas às imagens */
+}

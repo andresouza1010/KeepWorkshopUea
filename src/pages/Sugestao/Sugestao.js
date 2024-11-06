@@ -14,13 +14,15 @@ const Sugestao = () => {
   
 
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
+
+  const [image, setImage] = useState([]);
+
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
   const [image4, setImage4] = useState("");
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
-  const [descricaoIntro, setIntroduction] = useState(""); 
+  const [descricaoIntro, setIntroduction] = useState("");
   const [descricaoOrganizacao, setOrganizacao] = useState(""); 
   const [descricaoPratica, setPratica] = useState(""); 
   const [descricaoApresentacao, setApresentacao] = useState(""); 
@@ -31,37 +33,42 @@ const Sugestao = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
 
+  
+
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
 
   const handleImageUpload = (e, section) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      switch (section) {
-        case 'intro':
-          setImage(reader.result); // Para a introdução
-          break;
-        case 'organizacao':
-          setImage2(reader.result); // Para a organização
-          break;
-        case 'pratica':
-          setImage3(reader.result); // Para o momento prático
-          break;
-        case 'apresentacao':
-          setImage4(reader.result); // Para a apresentação final
-          break;
-        default:
-          break;
-      }
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    const files = e.target.files;
+    const fileArray = Array.from(files);
+    const newImages = [];
+    
+    fileArray.forEach((file) => {
+      const reader = new FileReader(); // Cria uma nova instância para cada arquivo
+  
+      reader.onloadend = () => {
+        newImages.push(reader.result); // Adiciona a imagem carregada ao array
+        if (newImages.length === fileArray.length) { // Só atualiza o estado quando todas as imagens foram carregadas
+          if (section === 'organizacao') {
+            setImage2(prevImages => [...prevImages, ...newImages]); // Adiciona as imagens à seção de organização
+          } else if (section === 'pratica') {
+            setImage3(prevImages => [...prevImages, ...newImages]); // Adiciona as imagens à seção prática
+          } else if (section === 'apresentacao') {
+            setImage4(prevImages => [...prevImages, ...newImages]); // Adiciona as imagens à seção de apresentação
+          } else if (section === 'intro') {
+            setImage(prevImages => [...prevImages, ...newImages]); // Adiciona as imagens à seção de introdução
+          }
+        }
+      };
+  
+      reader.readAsDataURL(file); // Inicia a leitura do arquivo
+    });
   };
+  
+
+ 
+
 
   const resetFields = () => {
     setTitle("");
@@ -274,10 +281,17 @@ const Sugestao = () => {
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'intro')}
       className={styles.uploadInput}
+      multiple
     />
   </label>
+  {image.length > 0 && (
+    <div className={styles.previewimagecon}>
+      {image.map((image, index) => (
+        <img key={index} src={image} alt={`Prévia da introdução ${index + 1}`} className={styles.imagePreview} />
+      ))}
+    </div>
+  )}
 </section>
-
 {/* Passo 5 */}
 <section className={styles.passo}>
   <div className={styles.icon}><FaLightbulb /></div>
@@ -298,8 +312,15 @@ const Sugestao = () => {
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'organizacao')}
       className={styles.uploadInput}
+      multiple
     />
   </label>
+  {/* Exibição das imagens carregadas */}
+  <div className={styles.previewimagecon}>
+    {image2.length > 0 && image2.map((img, index) => (
+      <img key={index} src={img} alt={`Imagem Organização ${index + 1}`} className={styles.imagePreview} />
+    ))}
+  </div>
 </section>
 
 {/* Passo 6 */}
@@ -322,8 +343,15 @@ const Sugestao = () => {
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'pratica')}
       className={styles.uploadInput}
+      multiple
     />
   </label>
+  {/* Exibição das imagens carregadas */}
+  <div className={styles.previewimagecon}>
+    {image3.length > 0 && image3.map((img, index) => (
+      <img key={index} src={img} alt={`Imagem Prática ${index + 1}`} className={styles.imagePreview} />
+    ))}
+  </div>
 </section>
 
 {/* Passo 7 */}
@@ -346,9 +374,17 @@ const Sugestao = () => {
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'apresentacao')}
       className={styles.uploadInput}
+      multiple
     />
   </label>
+  {/* Exibição das imagens carregadas */}
+  <div className={styles.previewimagecon}>
+    {image4.length > 0 && image4.map((img, index) => (
+      <img key={index} src={img} alt={`Imagem Apresentação ${index + 1}`} className={styles.imagePreview} />
+    ))}
+  </div>
 </section>
+
 
 <button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>
 {isSubmitting && <p>Aguarde, salvando oficina...</p>}

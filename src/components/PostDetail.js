@@ -33,7 +33,7 @@ const PostDetail = ({ oficina }) => {
   return (
     <div className={styles.oficina_detail}>
       <div className={styles.image_container}>
-        <img src={oficina?.image} alt={oficina?.title} />
+        <img src={oficina?.image?.[0]} alt={oficina?.title} />
         <span className={styles.tag}>{oficina?.category}</span>
 
         {/* Botão de favoritar/desfavoritar */}
