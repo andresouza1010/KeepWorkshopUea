@@ -4,14 +4,11 @@
   border: 1px solid #eee; /* Borda fina e clara para um toque clean */
   border-radius: 0px; /* Bordas levemente arredondadas */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra leve para dar profundidade */
-  padding: 15px;
-  max-width: 350px; /* Largura maior para destacar o conteúdo */
-  margin: 50px auto; /* Centraliza os cards horizontalmente */
-  margin-left: 30px; /* Espaço à esquerda */
-  margin-right: -40px; /* Espaço à direita de 1px */
+  padding: 20px;
+  max-width: 300px; /* Largura ajustada para garantir que apenas 3 caibam na tela */
+  margin: 30px auto; /* Espaço entre os posts e no topo/baixo da tela */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
 }
-
 
 .image_container img {
   width: 100%;
@@ -20,6 +17,28 @@
   border-radius: 0px; /* Canto superior arredondado */
   border: 2px solid #ffc4004d; /* Borda clara ao redor da imagem */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+
+/* Ajuste de layout para garantir que 3 posts caibam na tela */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Exibe 3 colunas */
+  gap: 30px; /* Espaçamento entre os posts */
+  padding: 20px; /* Espaçamento interno */
+  max-width: 100%; /* Garante que o container use toda a largura disponível */
+  width: 100%; /* Garante que o container ocupe toda a largura da tela */
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* Para telas menores, exibe 2 colunas */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Para telas muito pequenas, exibe 1 coluna */
+  }
 }
 
 

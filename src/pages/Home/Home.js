@@ -10,8 +10,7 @@ import filterInfo from "../Imagens/filter.png";
 import categoriaInfo from "../Imagens/classification.png";
 import acessibilidadeInfo from "../Imagens/public-service.png";
 
-
-
+import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado'; // Para usuários não logados
 
 const Home = () => {
     const { auth } = useAuthentication();
@@ -162,27 +161,30 @@ const Home = () => {
                     </div>
                 </div>
             )}
-<div className={styles.heroSection}>
-    <h2 className={styles.titlep}>Explore as oficinas</h2>
-    <p className={styles.descriptionp}>Descubra oficinas criativas e participe de projetos que aprimoram suas habilidades!</p>
-</div>
 
-<div className={styles.postDetail}>
-    {loading && <p>Carregando...</p>}
-    {filteredOficinas && filteredOficinas.map((oficina) => (
-        <div key={oficina.id}>
-            <PostDetail oficina={oficina} />
-        </div>
-    ))}
-    {filteredOficinas.length === 0 && (
-        <div className={styles.oficinasNao}>
-            <p className={styles.message}>Oficinas não encontradas</p>
-            <Link to="/oficinas/create" className={`${styles.btn} btn`}>Criar Primeira Oficina</Link>
-        </div>
-    )}
-</div>
+            <div className={styles.heroSection}>
+                <h2 className={styles.titlep}>Explore as oficinas</h2>
+            </div>
 
-
+            <div className={styles.postDetail}>
+                {loading && <p>Carregando...</p>}
+                {filteredOficinas && filteredOficinas.map((oficina) => (
+                    <div key={oficina.id}>
+                        {/* Renderiza o PostDetail para usuários logados e o PostDetailUsuarioNaoLogado para não logados */}
+                        {isLoggedIn ? (
+                            <PostDetail oficina={oficina} />
+                        ) : (
+                            <PostDetailUsuarioNaoLogado oficina={oficina} />
+                        )}
+                    </div>
+                ))}
+                {filteredOficinas.length === 0 && (
+                    <div className={styles.oficinasNao}>
+                        <p className={styles.message}>Oficinas não encontradas</p>
+                        <Link to="/oficinas/create" className={`${styles.btn} btn`}>Criar Primeira Oficina</Link>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -68,7 +68,7 @@
   border: 1px solid #7c7c7c; /* Cor neutra um pouco mais escura */
   border-radius: 4px;
   margin-right: 10px;
-  color: #000000; /* Texto escuro para legibilidade */
+  color: #ffffff; /* Texto escuro para legibilidade */
 }
 
 .search_button {
@@ -147,3 +147,4 @@
 .logoutButton:hover {
   background-color: #ff5c5c; /* Um vermelho ainda mais escuro para o hover */
 }
+

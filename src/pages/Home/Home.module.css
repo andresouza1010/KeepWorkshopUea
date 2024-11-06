@@ -67,7 +67,7 @@
     bottom: 0;
     width: 100%;
     height: 10px;
-    background: linear-gradient(to right, rgba(255, 174, 0, 0), rgba(255, 174, 0, 0.8), rgba(255, 174, 0, 0));
+    background: linear-gradient(to right, rgba(255, 174, 0, 0), rgba(255, 255, 255, 0.8), rgba(255, 174, 0, 0));
     box-shadow: 0 0 20px rgba(255, 174, 0, 0.6), 0 0 30px rgba(255, 174, 0, 0.4);
     animation: neonGlow 2s alternate infinite;
 }
@@ -201,22 +201,21 @@
 .checkbox_label:hover {
     background-color: #e0e0e0;
     color: #333;
+   
 }
 
 .checkbox_label input {
     margin-right: 8px;
-    accent-color: #007BFF; /* Muda a cor da marcação do checkbox */
+    accent-color: #ffb700; /* Muda a cor da marcação do checkbox */
     transform: scale(1.2);
+    
 }
 
 .checkbox_label input:checked + span {
     font-weight: bold;
-    color: #007BFF;
+    color: #ff9500;
+    
 }
-
-
-
-
 
 .checkbox_label {
     display: flex;
@@ -316,8 +315,8 @@
     align-items: flex-start;
     padding: 2rem;
     gap: 1.5rem;
-    margin-top: 200px; /* Aumenta a distância para cima */
-    margin-bottom: 100px; /* Aumenta a distância para baixo */
+    margin-top: 70px; /* Aumenta a distância para cima */
+    margin-bottom: 90px; /* Aumenta a distância para baixo */
 }
 
 /* Painel de cada benefício */
@@ -370,12 +369,13 @@
     font-size: 1.5rem;
     color: rgb(31, 0, 47);
     margin-bottom: 0.5rem;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-left: 50px;
     font-weight: 600;
     text-align: left;
     position: relative;
 }
+
 
 .titlep::after {
     content: "";
@@ -386,14 +386,4 @@
     margin-top: 5px; /* Espaço entre o título e a linha */
     margin-bottom: 10px; /* Espaço entre a linha e a descrição */
     border-radius: 2px;
-}
-
-.descriptionp {
-    font-size: 1rem;
-    color: #333333;
-    max-width: 500px;
-    margin-left: 50px; /* Alinha ao lado esquerdo */
-    line-height: 1.6;
-    font-weight: 400;
-    text-align: left;
 }
