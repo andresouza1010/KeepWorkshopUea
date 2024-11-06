@@ -22,6 +22,7 @@ const Sugestao = () => {
   const [image4, setImage4] = useState("");
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
+  const [descriptionAcessivel, setDescriptionAcessivel] = useState(""); 
   const [descricaoIntro, setIntroduction] = useState("");
   const [descricaoOrganizacao, setOrganizacao] = useState(""); 
   const [descricaoPratica, setPratica] = useState(""); 
@@ -32,7 +33,14 @@ const Sugestao = () => {
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
+  const [accessibility, setAccessibility] = useState('nao');  // Novo estado para acessibilidade
+  const [selectedOptions, setSelectedOptions] = useState({
+    autismo: false,
+    tdah: false,
+    dislexia: false,
+    surdez: false,
+    cegueira: false,
+  });
   
 
   const { user } = useAuthValue();
@@ -67,6 +75,15 @@ const Sugestao = () => {
   };
   
 
+    // Função para atualizar as opções selecionadas
+    const handleCheckboxChange = (e) => {
+      const { name, checked } = e.target;
+      setSelectedOptions((prevOptions) => ({
+        ...prevOptions,
+        [name]: checked,
+      }));
+    };
+
  
 
 
@@ -94,7 +111,7 @@ const Sugestao = () => {
     setIsSubmitting(true); // Inicia o carregamento
 
     // Validar campos obrigatórios
-    if (!title || !recursos || !category || !targetAudience || !duration || !description) {
+    if (!title || !recursos || !category || !targetAudience || !duration || !description ) {
       setFormError("Por favor, preencha todos os campos!");
       setIsSubmitting(false); // Para o carregamento em caso de erro
       return;
@@ -116,6 +133,9 @@ const Sugestao = () => {
       category, 
       targetAudience, 
       duration, 
+      accessibility, // Inclui o campo de acessibilidade
+      selectedOptions, // Inclui as opções de acessibilidade selecionadas
+      descriptionAcessivel,
       uid: user.uid,
       createdBy: user.displayName,
     
@@ -127,6 +147,7 @@ const Sugestao = () => {
     // Redirecionar para a página inicial ou exibir mensagem de sucesso
     navigate("/");
   };
+
 
  
 
@@ -259,6 +280,96 @@ const Sugestao = () => {
             className={styles.input}
           />
         </label>
+        {/* Opções de Acessibilidade */}
+        <p className={styles.descricaoAcessibilidade}>
+          A sua Oficina possui recursos voltados à acessibilidade?
+        </p>
+        
+        <label className={styles.checkboxLabel}>
+          <input 
+            type="radio" 
+            name="accessibility" 
+            value="sim" 
+            onChange={() => setAccessibility('sim')}
+            checked={accessibility === 'sim'}
+            className={styles.radio}
+          />
+          Sim
+        </label>
+        <label className={styles.checkboxLabel}>
+          <input 
+            type="radio" 
+            name="accessibility" 
+            value="nao" 
+            onChange={() => setAccessibility('nao')}
+            checked={accessibility === 'nao'}
+            className={styles.radio}
+          />
+          Não
+        </label>
+
+        {/* Exibir checkboxes somente quando "Sim" for selecionado */}
+        {accessibility === 'sim' && (
+          <div className={styles.checkboxContainer}>
+            <label>
+              <input 
+                type="checkbox" 
+                name="autismo" 
+                checked={selectedOptions.autismo} 
+                onChange={handleCheckboxChange} 
+              />
+              Autismo
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="tdah" 
+                checked={selectedOptions.tdah} 
+                onChange={handleCheckboxChange} 
+              />
+              TDAH
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="dislexia" 
+                checked={selectedOptions.dislexia} 
+                onChange={handleCheckboxChange} 
+              />
+              Dislexia
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="surdez" 
+                checked={selectedOptions.surdez} 
+                onChange={handleCheckboxChange} 
+              />
+              Surdez
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="cegueira" 
+                checked={selectedOptions.cegueira} 
+                onChange={handleCheckboxChange} 
+              />
+              Cegueira
+            </label>
+          </div>
+        )}
+
+        <p><strong>Descreva como será a atividade! </strong></p>
+                <input
+                  type="text"
+                  placeholder="Cite a abordagem acessível de sua oficina!"
+                  value={descriptionAcessivel}
+                  onChange={(e) => setDescriptionAcessivel(e.target.value)}
+                  className={styles.input}
+                />
+    
+
+
       </section>
 
       {/* Passo 4 */}
