@@ -5,18 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 
-
 const Sugestao = () => {
 
-  
   const [narrative, setNarrative] = useState('');
   
   
 
   const [title, setTitle] = useState("");
-
   const [image, setImage] = useState([]);
-
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
   const [image4, setImage4] = useState("");
@@ -37,7 +33,6 @@ const Sugestao = () => {
   const [selectedOptions, setSelectedOptions] = useState({
     autismo: false,
     tdah: false,
-    dislexia: false,
     surdez: false,
     cegueira: false,
   });
@@ -241,6 +236,7 @@ const Sugestao = () => {
           André mora em uma comunidade perto de um rio no Amazonas, e muitas vezes eles não têm luz, especialmente quando chove muito. 
           Isso torna difícil para todos verem à noite e se manterem seguros. Além disso, como é difícil conseguir tecnologia e não há 
           muitos recursos para energia, eles também enfrentam problemas com muita água das chuvas e lixo acumulado, o que complica ainda mais as coisas.
+          Com isso faremos em uma oficina maker lâmpadas solares com Materiais Recicláveis para criar iluminação noturna utilizando a energia solar, uma vez que a comunidade sofre com frequentes quedas de energia.
         </blockquote>
         <textarea
           placeholder="Digite a narrativa"
@@ -329,15 +325,7 @@ const Sugestao = () => {
               />
               TDAH
             </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="dislexia" 
-                checked={selectedOptions.dislexia} 
-                onChange={handleCheckboxChange} 
-              />
-              Dislexia
-            </label>
+        
             <label>
               <input 
                 type="checkbox" 
@@ -356,10 +344,8 @@ const Sugestao = () => {
               />
               Cegueira
             </label>
-          </div>
-        )}
 
-        <p><strong>Descreva como será a atividade! </strong></p>
+            <p><strong>Descreva como será a atividade! </strong></p>
                 <input
                   type="text"
                   placeholder="Cite a abordagem acessível de sua oficina!"
@@ -369,6 +355,12 @@ const Sugestao = () => {
                 />
     
 
+            
+          </div>
+          
+        )}
+
+     
 
       </section>
 

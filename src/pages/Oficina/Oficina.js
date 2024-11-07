@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Importando useState
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchDocument } from '../../hooks/useFetchDocument';
 import styles from './Oficina.module.css';
@@ -7,8 +7,8 @@ import 'font-awesome/css/font-awesome.min.css';
 const Oficina = () => {
     const { id } = useParams();
     const { document: oficina, loading } = useFetchDocument("oficinas", id);
-    const [isOpen, setIsOpen] = useState(false); // Estado para controle do modal
-    const [selectedImage, setSelectedImage] = useState(''); // Estado para a imagem selecionada
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState('');
 
     const openModal = (image) => {
         setSelectedImage(image);
@@ -26,6 +26,7 @@ const Oficina = () => {
             {oficina && (
                 <div className={styles.oficinaContent}>
                     <h2 className={styles.title}>{oficina.title}</h2>
+
                     <div className={styles.descriptionCard}>
                         <h3 className={styles.descriptionTitle}>Descrição</h3>
                         <p>{oficina.description}</p>
@@ -49,65 +50,103 @@ const Oficina = () => {
                             <h4>Recursos Necessários:</h4>
                             <p>{oficina.recursos}</p>
                         </div>
-
-                        <h3 className={styles.stepsTitle}>Etapas da Oficina</h3>
-                        
-                        <div className={styles.stepSection}>
-                        <h4>Introdução:</h4>
-                        <p>{oficina.descricaoIntro}</p>
-                        <div className={styles.imageContainer}>
-                            <img className={styles.oficinaImage} src={oficina.image} alt="Introdução" />
-                            <button className={styles.smallButton} onClick={() => openModal(oficina.image)}>
-                                <i className="fa fa-search-plus" aria-hidden="true"></i> {/* Ícone de ampliar */}
-                            </button>
-                        </div>
                     </div>
 
+                    <h3 className={styles.stepsTitle}>Etapas da Oficina</h3>
+
+                    {/* Introdução */}
+                    <div className={styles.stepSection}>
+                        <h4>Introdução</h4>
+                        
+                        {oficina.image && oficina.image.length > 0 && (
+                            <div className={styles.imageContainer}>
+                                {oficina.image.map((img, index) => (
+                                    <img 
+                                        key={index} 
+                                        className={styles.oficinaImage} 
+                                        src={img} 
+                                        alt={`Introdução ${index + 1}`} 
+                                        onClick={() => openModal(img)} 
+                                    />
+                                ))}
+                               
+                            </div>
+                            
+                        )}
+                        <p>{oficina.descricaoIntro}</p>
+                    </div>
+
+                    {/* Organização dos Materiais */}
                     <div className={styles.stepSection}>
                         <h4>Organização dos Materiais</h4>
+                        
+                        {oficina.image2 && oficina.image2.length > 0 && (
+                            <div className={styles.imageContainer}>
+                                {oficina.image2.map((img, index) => (
+                                    <img 
+                                        key={index} 
+                                        className={styles.oficinaImage} 
+                                        src={img} 
+                                        alt={`Organização ${index + 1}`} 
+                                        onClick={() => openModal(img)} 
+                                    />
+                                ))}
+                            </div>
+                            
+                        )}
                         <p>{oficina.descricaoOrganizacao}</p>
-                        <div className={styles.imageContainer}>
-                            <img className={styles.oficinaImage2} src={oficina.image2} alt={oficina.title} />
-                            <button className={styles.smallButton} onClick={() => openModal(oficina.image2)}>
-                                <i className="fa fa-search-plus" aria-hidden="true"></i> {/* Ícone de ampliar */}
-                            </button>
-                        </div>
                     </div>
 
+                    {/* Momento Prático */}
                     <div className={styles.stepSection}>
                         <h4>Momento Prático</h4>
+                        
+                        {oficina.image3 && oficina.image3.length > 0 && (
+                            <div className={styles.imageContainer}>
+                                {oficina.image3.map((img, index) => (
+                                    <img 
+                                        key={index} 
+                                        className={styles.oficinaImage} 
+                                        src={img} 
+                                        alt={`Prático ${index + 1}`} 
+                                        onClick={() => openModal(img)} 
+                                    />
+                                ))}
+                            </div>
+                        )}
                         <p>{oficina.descricaoPratica}</p>
-                        <div className={styles.imageContainer}>
-                            <img className={styles.oficinaImage3} src={oficina.image3} alt={oficina.title} />
-                            <button className={styles.smallButton} onClick={() => openModal(oficina.image3)}>
-                                <i className="fa fa-search-plus" aria-hidden="true"></i> {/* Ícone de ampliar */}
-                            </button>
-                        </div>
                     </div>
 
+                    {/* Apresentação Final */}
                     <div className={styles.stepSection}>
                         <h4>Apresentação Final</h4>
-                        <p>{oficina.descricaoApresentacao}</p>
-                        <div className={styles.imageContainer}>
-                            <img className={styles.oficinaImage4} src={oficina.image4} alt={oficina.title} />
-                            <button className={styles.smallButton} onClick={() => openModal(oficina.image4)}>
-                                <i className="fa fa-search-plus" aria-hidden="true"></i> {/* Ícone de ampliar */}
-                            </button>
-                        </div>
+                       
+                        {oficina.image4 && oficina.image4.length > 0 && (
+                            <div className={styles.imageContainer}>
+                                {oficina.image4.map((img, index) => (
+                                    <img 
+                                        key={index} 
+                                        className={styles.oficinaImage} 
+                                        src={img} 
+                                        alt={`Apresentação ${index + 1}`} 
+                                        onClick={() => openModal(img)} 
+                                    />
+                                ))}
+                            </div>
+                        )}
+                         <p>{oficina.descricaoApresentacao}</p>
                     </div>
 
-                    </div>
-
-                    {oficina.hasAccessibility && (
+                    {oficina.accessibility === 'sim' && (
                         <div className={styles.accessibilitySection}>
                             <h3 className={styles.accessibilityTitle}>Elementos de Acessibilidade</h3>
-                            <p>{oficina.accessibilityDescription}</p>
+                            <p>{oficina.descriptionAcessivel}</p>
+                            {/* List of selected accessibility options */}
                         </div>
                     )}
                 </div>
             )}
 
-            {/* Modal para imagem ampliada */}
             {isOpen && (
                 <div className={styles.modal} onClick={closeModal}>
                     <img className={styles.modalImage} src={selectedImage} alt="Imagem Ampliada" />

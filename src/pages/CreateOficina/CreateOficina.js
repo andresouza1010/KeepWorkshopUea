@@ -6,12 +6,13 @@ import { useInsertDocument } from '../../hooks/useInsertDocument';
 
 const CreateOficina = () => {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
-  const [image4, setImage4] = useState("");
+  const [image, setImage] = useState([]);
+  const [image2, setImage2] = useState([]);
+  const [image3, setImage3] = useState([]);
+  const [image4, setImage4] = useState([]);
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
+  const [narrative, setNarrative] = useState(""); // Novo campo de narrativa
   const [descricaoIntro, setIntroduction] = useState(""); 
   const [descricaoOrganizacao, setOrganizacao] = useState(""); 
   const [descricaoPratica, setPratica] = useState(""); 
@@ -20,54 +21,55 @@ const CreateOficina = () => {
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Novo estado para controlar o carregamento
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
 
-  // Novo estado para acessibilidade
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
-  
-
   const handleImageUpload = (e, section) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const files = Array.from(e.target.files);
+    const newImages = [];
 
-    reader.onloadend = () => {
-      switch (section) {
-        case 'intro':
-          setImage(reader.result); // Para a introdução
-          break;
-        case 'organizacao':
-          setImage2(reader.result); // Para a organização
-          break;
-        case 'pratica':
-          setImage3(reader.result); // Para o momento prático
-          break;
-        case 'apresentacao':
-          setImage4(reader.result); // Para a apresentação final
-          break;
-        default:
-          break;
-      }
-    };
-
-    if (file) {
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        newImages.push(reader.result);
+        if (newImages.length === files.length) {
+          switch (section) {
+            case 'intro':
+              setImage(prev => [...prev, ...newImages]);
+              break;
+            case 'organizacao':
+              setImage2(prev => [...prev, ...newImages]);
+              break;
+            case 'pratica':
+              setImage3(prev => [...prev, ...newImages]);
+              break;
+            case 'apresentacao':
+              setImage4(prev => [...prev, ...newImages]);
+              break;
+            default:
+              break;
+          }
+        }
+      };
       reader.readAsDataURL(file);
-    }
+    });
   };
 
   const resetFields = () => {
     setTitle("");
-    setImage("");
-    setImage2("");
-    setImage3("");
-    setImage4("");
+    setImage([]);
+    setImage2([]);
+    setImage3([]);
+    setImage4([]);
     setRecursos("");
     setDescription("");
+    setNarrative("");
     setIntroduction("");
     setOrganizacao("");
     setPratica("");
@@ -82,16 +84,14 @@ const CreateOficina = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("");
-    setIsSubmitting(true); // Inicia o carregamento
+    setIsSubmitting(true);
 
-    // Validar campos obrigatórios
-    if (!title || !image || !image2 || !image3 || !image4 || !recursos || !category || !targetAudience || !duration || !description) {
+    if (!title || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
-      setIsSubmitting(false); // Para o carregamento em caso de erro
+      setIsSubmitting(false);
       return;
     }
 
-    // Criar uma oficina
     insertDocument({
       title,
       image,
@@ -99,6 +99,7 @@ const CreateOficina = () => {
       image3,
       image4,
       recursos,
+      narrative,  // Inclui a narrativa
       descricaoIntro,
       descricaoOrganizacao,
       descricaoPratica,
@@ -113,10 +114,7 @@ const CreateOficina = () => {
       accessibilityDescription, 
     });
 
-    // Resetar os campos para permitir criar outra oficina
     resetFields();
-
-    // Redirecionar para a página inicial ou exibir mensagem de sucesso
     navigate("/");
   };
 
@@ -126,18 +124,16 @@ const CreateOficina = () => {
 
   return (
     <div className={styles.create_oficina}>
+      <h1>Cadastro de Oficina</h1>
       <p>
         Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
       <button className={styles.sugestao_button} onClick={handleRedirect}>
         Sugestão
       </button>
-      <h3>Como Cadastrar sua Oficina:</h3>
-      <p>
-        Para facilitar o processo de cadastro, siga os passos abaixo e preencha as informações necessárias:
-      </p>
-    
+      
       <form onSubmit={handleSubmit}>
+        {/* Categoria */}
         <label>
           <span>Categoria</span>
           <select 
@@ -158,42 +154,55 @@ const CreateOficina = () => {
           </select>
         </label>
 
+        {/* Título */}
         <label>
-        <span>Título</span>
-        <input 
-          type="text" 
-          name="title" 
-          required 
-          placeholder="Pense em um nome que destaque a sua oficina!" 
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          maxLength={30} // Limita a entrada a 30 caracteres
-        />
-      </label>
+          <span>Título</span>
+          <input 
+            type="text" 
+            name="title" 
+            required 
+            placeholder="Título da oficina" 
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+        </label>
 
-
+        {/* Breve Descrição */}
         <label>
           <span>Breve descrição</span>
           <textarea 
             name="description" 
             required 
-            placeholder="Insira uma breve descrição da sua oficina!" 
+            placeholder="Descrição breve da oficina" 
             onChange={(e) => setDescription(e.target.value)}
             value={description}
           ></textarea>
         </label>
 
+        {/* Narrativa */}
+        <label>
+          <span>Narrativa</span>
+          <textarea 
+            name="narrative" 
+            placeholder="Descreva o contexto dos alunos e o problema que a oficina ajudará a resolver"
+            onChange={(e) => setNarrative(e.target.value)}
+            value={narrative}
+          ></textarea>
+        </label>
+
+        {/* Recursos Necessários */}
         <label>
           <span>Recursos necessários</span>
           <textarea 
             name="recursos" 
             required 
-            placeholder="Insira os recursos de sua oficina!"
+            placeholder="Liste os recursos necessários" 
             onChange={(e) => setRecursos(e.target.value)}
             value={recursos}
           ></textarea>
         </label>
 
+        {/* Público-Alvo */}
         <label>
           <span>Público-alvo</span>
           <select 
@@ -211,6 +220,7 @@ const CreateOficina = () => {
           </select>
         </label>
 
+        {/* Duração */}
         <label>
           <span>Duração da oficina (em horas)</span>
           <input 
@@ -218,126 +228,104 @@ const CreateOficina = () => {
             name="duration" 
             required 
             min="1" 
-            placeholder="Ex: 2 (Tempo ideal para que todos participem ativamente)" 
+            placeholder="Duração em horas" 
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
           />
         </label>
 
-        <div>
-          <h3>Introdução</h3>
-          <p>Faça upload da sua introdução.</p>
-          <label>
-            <span>Upload da Imagem</span>
-            <input 
-              type="file" 
-              name="image" 
-              required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e, 'intro')}
-            />
-          </label>
-
-
-          <span>Descrição da introdução</span>
+        {/* Introdução */}
+        <section>
+          <h2>Introdução</h2>
           <textarea 
-            name="descricaoIntro" 
-            required 
-            placeholder="Introduza a sua Oficina"
-            onChange={(e) => setIntroduction(e.target.value)}
+            placeholder="Descreva a introdução da oficina"
             value={descricaoIntro}
+            onChange={(e) => setIntroduction(e.target.value)}
           ></textarea>
+          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'intro')} />
+          {image.length > 0 && (
+            <div>{image.map((img, idx) => <img key={idx} src={img} alt={`Intro ${idx}`} />)}</div>
+          )}
+        </section>
 
-          <h3>Organização de Materiais</h3>
-          <p>Faça upload da organização dos recursos!</p>
-          <label>
-            <span>Upload da Imagem</span>
-            <input type="file" name="image2" required accept="image/*" 
-              onChange={(e) => handleImageUpload(e, 'organizacao')}
-            />
-          </label>
-
+        {/* Organização de Materiais */}
+        <section>
+          <h2>Organização de Materiais</h2>
           <textarea 
-            name="descricaoOrganizacao" 
-            required 
-            placeholder="Descreva como será a organização dos recursos."
-            onChange={(e) => setOrganizacao(e.target.value)}
+            placeholder="Descreva a organização dos materiais"
             value={descricaoOrganizacao}
+            onChange={(e) => setOrganizacao(e.target.value)}
           ></textarea>
+          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'organizacao')} />
+          {image2.length > 0 && (
+            <div>{image2.map((img, idx) => <img key={idx} src={img} alt={`Organização ${idx}`} />)}</div>
+          )}
+        </section>
 
-          <h3>Momento Prático</h3>
-          <p>Faça upload do momento prático</p>
-          <label>
-            <span>Upload da Imagem</span>
-            <input 
-              type="file" 
-              name="image3" 
-              required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e, 'pratica')}
-            />
-          </label>
-
+        {/* Momento Prático */}
+        <section>
+          <h2>Momento Prático</h2>
           <textarea 
-            name="descricaoPratica" 
-            required 
-            placeholder="Descreva o momento prático da oficina."
-            onChange={(e) => setPratica(e.target.value)}
+            placeholder="Descreva o momento prático da oficina"
             value={descricaoPratica}
+            onChange={(e) => setPratica(e.target.value)}
           ></textarea>
+          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'pratica')} />
+          {image3.length > 0 && (
+            <div>{image3.map((img, idx) => <img key={idx} src={img} alt={`Prática ${idx}`} />)}</div>
+          )}
+        </section>
 
-          <h3>Apresentação Final</h3>
-          <p>Faça upload dos resultados finais da oficina!</p>
+        {/* Apresentação Final */}
+        <section>
+          <h2>Apresentação Final</h2>
+          <textarea 
+            placeholder="Descreva a apresentação final da oficina"
+            value={descricaoApresentacao}
+            onChange={(e) => setApresentacao(e.target.value)}
+          ></textarea>
+          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
+          {image4.length > 0 && (
+            <div>{image4.map((img, idx) => <img key={idx} src={img} alt={`Apresentação ${idx}`} />)}</div>
+          )}
+        </section>
+
+        {/* Acessibilidade */}
+        <label>
+          <span>Possui recursos de acessibilidade?</span>
+          <div>
+            <label>
+              <input 
+                type="radio" 
+                value="yes" 
+                checked={hasAccessibility === true} 
+                onChange={() => setHasAccessibility(true)}
+              /> Sim
+            </label>
+            <label>
+              <input 
+                type="radio" 
+                value="no" 
+                checked={hasAccessibility === false} 
+                onChange={() => setHasAccessibility(false)}
+              /> Não
+            </label>
+          </div>
+        </label>
+
+        {hasAccessibility && (
           <label>
-            <span>Upload da Imagem</span>
-            <input 
-              type="file" 
-              name="image4" 
-              required 
-              accept="image/*" 
-              onChange={(e) => handleImageUpload(e, 'apresentacao')}
+            <span>Descrição de acessibilidade</span>
+            <textarea 
+              placeholder="Descreva os recursos de acessibilidade da oficina" 
+              onChange={(e) => setAccessibilityDescription(e.target.value)}
+              value={accessibilityDescription}
             />
           </label>
+        )}
 
-          <textarea 
-            name="descricaoApresentacao" 
-            required 
-            placeholder="Descreva as apresentações finais da oficina!"
-            onChange={(e) => setApresentacao(e.target.value)}
-            value={descricaoApresentacao}
-          ></textarea>
-        </div>
-        <label>
-  <span>Esta oficina possui recursos de acessibilidade?</span>
-</label>
-<div>
-  <label>
-    <input 
-      type="radio" 
-      name="accessibility" 
-      value="yes" 
-      checked={hasAccessibility === true} 
-      onChange={() => setHasAccessibility(true)} 
-    />
-    Sim
-  </label>
-  <label>
-    <input 
-      type="radio" 
-      name="accessibility" 
-      value="no" 
-      checked={hasAccessibility === false} 
-      onChange={() => setHasAccessibility(false)} 
-    />
-    Não
-  </label>
-</div>
-
-
-        <button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>
-        {isSubmitting && <p>Aguarde, salvando oficina...</p>}
+        <button type="submit" disabled={isSubmitting}>Salvar Oficina</button>
         {formError && <p className="error">{formError}</p>}
-        {response.error && <p className="error">{response.error}</p>}
         {response.success && <p className="success">Oficina criada com sucesso!</p>}
       </form>
     </div>

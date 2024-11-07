@@ -3,6 +3,8 @@ import { useAuthentication } from "../hooks/useAuthentication";
 import { useAuthValue } from "../context/AuthContext";
 import styles from "./NavBar.module.css";
 import { useState } from "react";
+import { FaUser } from "react-icons/fa";
+
 
 const NavBar = () => {
   const { user } = useAuthValue();
@@ -10,6 +12,7 @@ const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -79,21 +82,22 @@ const NavBar = () => {
       </ul>
 
       {user && (
-        <div className={styles.profile}>
-          <button onClick={toggleDropdown} className={styles.profileButton}>
-            Perfil
-          </button>
-          {dropdownOpen && (
-            <div className={styles.dropdown}>
-              <NavLink to="/Opcoes" className={styles.dropdownOption}>
-                Opções
-              </NavLink>
-              <button onClick={logout} className={styles.logoutButton}>
-                Sair
-              </button>
-            </div>
-          )}
-        </div>
+       <div className={styles.profile}>
+       <button onClick={toggleDropdown} className={styles.profileButton}>
+         <FaUser />
+       </button>
+       {dropdownOpen && (
+         <div className={styles.dropdown}>
+           <NavLink to="/Opcoes" className={styles.dropdownOption}>
+             Opções
+           </NavLink>
+           <button onClick={logout} className={styles.logoutButton}>
+             Sair
+           </button>
+         </div>
+       )}
+     </div>
+     
       )}
     </nav>
   );
