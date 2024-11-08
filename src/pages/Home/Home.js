@@ -9,7 +9,6 @@ import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
 import filterInfo from "../Imagens/filter.png";
 import categoriaInfo from "../Imagens/classification.png";
 import acessibilidadeInfo from "../Imagens/public-service.png";
-
 import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado'; // Para usuários não logados
 
 const Home = () => {
@@ -49,9 +48,10 @@ const Home = () => {
 
     const filteredOficinas = oficinas?.filter(oficina =>
         (selectedCategories.length === 0 || selectedCategories.includes(oficina.category)) &&
-        (selectedAges.length === 0 || selectedAges.includes(oficina.ageGroup)) &&
-        (selectedAccessibility.length === 0 || selectedAccessibility.includes(oficina.accessibility))
+        (selectedAges.length === 0 || selectedAges.includes(oficina.targetAudience)) &&
+        (selectedAccessibility.length === 0 || selectedAccessibility.some(a => oficina.selectedOptions?.[a.toLowerCase()]))
     ) || [];
+    
 
     const toggleCategoryFilter = () => {
         setShowCategoryFilter(prev => !prev);
@@ -147,7 +147,7 @@ const Home = () => {
                 <div className={styles.filter_bar}>
                     <div className={styles.filter_text}>
                         <span>Filtrar por Acessibilidade:</span>
-                        {["Autismo", "TDAH", "Dislexia", "Deficiência Visual", "Deficiência Auditiva"].map((accessibility) => (
+                        {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
                             <label key={accessibility} className={styles.checkbox_label}>
                                 <input
                                     type="checkbox"

@@ -387,3 +387,22 @@
     margin-bottom: 10px; /* Espaço entre a linha e a descrição */
     border-radius: 2px;
 }
+.filterButton {
+    position: absolute;
+    top: 75px;
+    right: 40px;
+    padding: 10px;
+    background-color: #ffaa00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filterButton:hover {
+    background-color: #b33f00;
+}
