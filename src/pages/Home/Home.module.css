@@ -190,7 +190,7 @@
     align-items: center;
     font-size: 0.9rem;
     color: #555;
-    background-color: #ffffff;
+    background-color: #ffdfb2;
     padding: 5px 10px;
     border-radius: 6px;
     cursor: pointer;
@@ -219,15 +219,24 @@
 
 .checkbox_label {
     display: flex;
-    align-items: center;
-    gap: 0.5em;
-    margin: 5px 0; 
-    font-weight: bold; 
+    align-items: center; /* Alinha o texto e o checkbox no centro verticalmente */
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 8px; /* Ajusta o espaço entre o checkbox e o texto */
+    flex-direction: row; /* Garante que o checkbox fique à esquerda do texto */
 }
 
 .checkbox_label input {
-    margin-right: 10px;
+    margin: 0; /* Remove margens adicionais */
+    accent-color: #ffb700; /* Define a cor do checkbox */
 }
+
 
 .postDetail {
     display: flex;
@@ -390,7 +399,7 @@
 .filterButton {
     position: absolute;
     top: 75px;
-    right: 40px;
+    right: 50px;
     padding: 10px;
     background-color: #ffaa00;
     color: #fff;
@@ -404,5 +413,146 @@
 }
 
 .filterButton:hover {
-    background-color: #b33f00;
+    background-color: #b36200;
+}
+
+
+.filterIcon {
+    position: absolute;
+    top: 30px; /* Distância do topo da tela */
+    left:40px; /* Distância da esquerda da tela */
+    
+    font-size: 24px; /* Tamanho do ícone */
+    cursor: pointer;
+    color: #e48900; /* Cor do ícone */
+    z-index: 10; /* Garante que ele fique sobre outros elementos */
+}
+
+.dropdown {
+    position: absolute;
+    top: 60px; /* Ajuste a posição de acordo com o ícone de filtro */
+    left: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 600px; /* Largura para acomodar colunas */
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
+    z-index: 10;
+    color: #333333;
+}
+
+.dropdownColumn {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.dropdownTitle {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ff9500; /* Linha sutil abaixo do título */
+    padding-bottom: 5px;
+}
+
+.dropdownItem {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 8px 0; /* Espaçamento entre os itens */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.dropdownItem:hover {
+    color: #0078d7; /* Cor de destaque ao passar o mouse */
+}
+
+/* Estilo para etiquetas de destaque */
+.labelHighlight {
+    display: inline-block;
+    background-color: #e60023;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.infoPanel {
+    background: linear-gradient(90deg, #ff7f00, #ffae42); /* Gradiente laranja */
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 30px 0;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.infoPanel h2 {
+    font-size: 3em; /* Aumenta o tamanho do título */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.infoPanel p {
+    font-size: 1.5em; /* Descrição maior */
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.exploreButton {
+    background-color: #fff;
+    color: #ff7f00;
+    padding: 15px 30px; /* Aumenta o tamanho do botão */
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.exploreButton:hover {
+    background-color: #ffae42;
+    color: #fff;
+}
+
+.infoPanel {
+    background: linear-gradient(90deg, #ff7f00, #ffae42); /* Gradiente laranja */
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 90px 40px 50px 40px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer; /* Adiciona um cursor pointer para indicar interatividade */
+    transition: box-shadow 0.3s ease;
+}
+
+/* Brilho do cursor quando passa por cima */
+.infoPanel:hover {
+    box-shadow: 0 4px 15px rgba(255, 183, 77, 0.7), 0 0 20px rgba(255, 183, 77, 0.6), 0 0 40px rgba(255, 183, 77, 0.5);
+}
+
+/* Efeito de animação de brilho no cursor */
+.infoPanel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 183, 77, 0.5), transparent 70%);
+    pointer-events: none; /* Garante que o brilho não interfira com outros elementos */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.infoPanel:hover::before {
+    opacity: 1;
+    transform: scale(1); /* Expande o brilho ao passar o mouse */
 }
