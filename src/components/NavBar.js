@@ -3,7 +3,7 @@ import { useAuthentication } from "../hooks/useAuthentication";
 import { useAuthValue } from "../context/AuthContext";
 import styles from "./NavBar.module.css";
 import { useState } from "react";
-import { FaUser, FaFilter } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 const NavBar = () => {
   const { user } = useAuthValue();
@@ -30,10 +30,8 @@ const NavBar = () => {
       </NavLink>
 
       <form onSubmit={handleSearch} className={styles.search_form}>
-        <div className={styles.filter_bar}>
-          <button className={styles.filter_button}>
-            <FaFilter />
-          </button>
+      
+      
           <input
             type="text"
             placeholder="Busque a sua Oficina..."
@@ -43,7 +41,7 @@ const NavBar = () => {
           <button className={styles.search_button}>
             <i className="fa fa-search"></i>
           </button>
-        </div>
+        
       </form>
 
       <ul className={styles.links_list}>

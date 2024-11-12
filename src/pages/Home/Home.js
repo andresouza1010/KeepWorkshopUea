@@ -149,13 +149,7 @@ const Home = () => {
                 </>
             )}
 
-            <div className={styles.heroSection}>
-                {/* Exibe ícone de fisltro para dropdown de filtros */}
-                {!isLoggedIn && (
-                    <FaFilter className={styles.filterIcon} onClick={() => setShowDropdown(!showDropdown)} />
-                )}
-            </div>
-
+           
             {/* Conteúdo para usuários logados */}
             {isLoggedIn && (
                 <>
@@ -282,9 +276,9 @@ const Home = () => {
             {/*USUARIO NAO LOGADO*/}
                     {/* Ícone de Filtro (Dropdown) */}
                     <div className={styles.heroSection}>
-                        <FaFilter className={styles.filterIcon} onClick={() => setShowDropdown(!showDropdown)} />
+                        <FaFilter className={styles.filterIcon2} onClick={() => setShowDropdown(!showDropdown)} />
                         {showDropdown && (
-                            <div className={styles.dropdown}>
+                            <div className={styles.dropdown2}>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Categorias</p>
                                     {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
