@@ -55,12 +55,12 @@ const Login = () => {
         </label>
         
         {/* Redefinir a senha e redefinir senha */}
-        <div className={styles.passwordOptions}>
+        {/*<div className={styles.passwordOptions}>
           <Link to="/reset-password" className={styles.link}>
             Redefinir minha senha
           </Link>
 
-        </div>
+        </div>*/}
 
         <div className={styles.passwordOptions}>
         <Link to="/forgot-password" className={styles.link}>

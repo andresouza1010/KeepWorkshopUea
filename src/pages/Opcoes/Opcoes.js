@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaEdit } from 'react-icons/fa'; // Importa o ícone de lápis
+import { FaEdit } from 'react-icons/fa';
+import styles from './Opcoes.module.css';
 
 const Opcoes = () => {
   const [user, setUser] = useState(null);
@@ -7,12 +8,11 @@ const Opcoes = () => {
   const [updatedUser, setUpdatedUser] = useState({ displayName: '', email: '', phone: '', profileImage: '' });
 
   useEffect(() => {
-    // Recupera os dados do usuário do localStorage
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
       setUser(parsedUser);
-      setUpdatedUser(parsedUser); // Inicializa com os dados do usuário existente
+      setUpdatedUser(parsedUser);
     }
   }, []);
 
@@ -24,7 +24,7 @@ const Opcoes = () => {
     const newUser = { ...user, [field]: updatedUser[field] };
     setUser(newUser);
     setIsEditing((prev) => ({ ...prev, [field]: false }));
-    localStorage.setItem("user", JSON.stringify(newUser)); // Atualiza o localStorage
+    localStorage.setItem("user", JSON.stringify(newUser));
   };
 
   const handleChange = (e) => {
@@ -40,7 +40,7 @@ const Opcoes = () => {
       setUpdatedUser((prev) => ({ ...prev, profileImage: base64Image }));
     };
     if (file) {
-      reader.readAsDataURL(file); // Converte a imagem para base64
+      reader.readAsDataURL(file);
     }
   };
 
@@ -52,15 +52,45 @@ const Opcoes = () => {
   };
 
   if (!user) {
-    return <p>Usuário não encontrado. Por favor, faça o cadastro.</p>;
+    return <p className={styles.alert}>Usuário não encontrado. Por favor, faça o cadastro.</p>;
   }
 
   return (
-    <div>
-      <h1>Dados do Usuário</h1>
-      <div>
-        <p>
-          <strong>Nome:</strong>{' '}
+    <div className={styles.container}>
+      {/* Banner de Capa */}
+      <div className={styles.coverPhoto}>
+        <p>Perfil do Usuário</p>
+      </div>
+
+      {/* Seção de Perfil */}
+      <div className={styles.profileSection}>
+        <div className={styles.profileImageContainer}>
+          {user.profileImage ? (
+            <img
+              src={user.profileImage}
+              alt="Foto de Perfil"
+              className={styles.profileImage}
+            />
+          ) : (
+            <p>Sem imagem</p>
+          )}
+          {isEditing.profileImage ? (
+            <>
+              <input type="file" onChange={handleImageUpload} />
+              <button className={styles.saveButton} onClick={handleImageSave}>Salvar</button>
+            </>
+          ) : (
+            <FaEdit className={styles.editIcon} onClick={() => handleEdit('profileImage')} />
+          )}
+        </div>
+        <div className={styles.profileName}>{user.displayName}</div>
+        <button className={styles.editProfileButton} onClick={() => handleEdit('displayName')}>Editar Perfil</button>
+      </div>
+
+      {/* Detalhes do Usuário */}
+      <div className={styles.userDetails}>
+        <div className={styles.userDetail}>
+          <strong>Nome:</strong>
           {isEditing.displayName ? (
             <>
               <input
@@ -69,17 +99,16 @@ const Opcoes = () => {
                 value={updatedUser.displayName}
                 onChange={handleChange}
               />
-              <button onClick={() => handleSave('displayName')}>Salvar</button>
+              <button className={styles.saveButton} onClick={() => handleSave('displayName')}>Salvar</button>
             </>
           ) : (
             <>
-              {user.displayName}{' '}
-              <FaEdit onClick={() => handleEdit('displayName')} style={{ cursor: 'pointer' }} />
+              {user.displayName} <FaEdit className={styles.editIcon} onClick={() => handleEdit('displayName')} />
             </>
           )}
-        </p>
-        <p>
-          <strong>Email:</strong>{' '}
+        </div>
+        <div className={styles.userDetail}>
+          <strong>Email:</strong>
           {isEditing.email ? (
             <>
               <input
@@ -88,17 +117,16 @@ const Opcoes = () => {
                 value={updatedUser.email}
                 onChange={handleChange}
               />
-              <button onClick={() => handleSave('email')}>Salvar</button>
+              <button className={styles.saveButton} onClick={() => handleSave('email')}>Salvar</button>
             </>
           ) : (
             <>
-              {user.email}{' '}
-              <FaEdit onClick={() => handleEdit('email')} style={{ cursor: 'pointer' }} />
+              {user.email} <FaEdit className={styles.editIcon} onClick={() => handleEdit('email')} />
             </>
           )}
-        </p>
-        <p>
-          <strong>Telefone:</strong>{' '}
+        </div>
+        <div className={styles.userDetail}>
+          <strong>Telefone:</strong>
           {isEditing.phone ? (
             <>
               <input
@@ -107,32 +135,11 @@ const Opcoes = () => {
                 value={updatedUser.phone}
                 onChange={handleChange}
               />
-              <button onClick={() => handleSave('phone')}>Salvar</button>
+              <button className={styles.saveButton} onClick={() => handleSave('phone')}>Salvar</button>
             </>
           ) : (
             <>
-              {user.phone}{' '}
-              <FaEdit onClick={() => handleEdit('phone')} style={{ cursor: 'pointer' }} />
-            </>
-          )}
-        </p>
-        <div>
-          <strong>Foto de Perfil:</strong>
-          {isEditing.profileImage ? (
-            <>
-              <input type="file" onChange={handleImageUpload} />
-              <button onClick={handleImageSave}>Salvar</button>
-            </>
-          ) : (
-            <>
-              {user.profileImage && (
-                <img
-                  src={user.profileImage}
-                  alt="Foto de Perfil"
-                  style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-                />
-              )}
-              <FaEdit onClick={() => handleEdit('profileImage')} style={{ cursor: 'pointer' }} />
+              {user.phone} <FaEdit className={styles.editIcon} onClick={() => handleEdit('phone')} />
             </>
           )}
         </div>

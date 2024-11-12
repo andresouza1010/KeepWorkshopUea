@@ -5,10 +5,9 @@
   justify-content: center;
   padding: 40px 20px;
   text-align: center;
-  background-color: #f4f5f7; /* Fundo suave e claro */
+  background-color: #ffffff; /* Fundo suave em tom laranja claro */
   min-height: 100vh;
 }
-
 
 .oficinas_list {
   display: flex;
@@ -46,7 +45,7 @@
 .oficina_item h2 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #333333;
+  color: #ff6f00; /* Título em laranja escuro */
   margin: 8px 0;
   text-transform: capitalize;
 }
@@ -58,12 +57,9 @@
   margin-bottom: 15px;
 }
 
-.button_container {
-  margin-top: 10px;
-}
-
+/* Botão de Acessar */
 .btn {
-  background-color: #0073e6;
+  background-color: #ff6f00; /* Cor laranja */
   color: white;
   padding: 8px 16px;
   border-radius: 6px;
@@ -73,10 +69,11 @@
 }
 
 .btn:hover {
-  background-color: #005bb5;
+  background-color: #e65c00; /* Laranja mais escuro ao passar o mouse */
   transform: translateY(-2px);
 }
 
+/* Ícone de favorito */
 .favorite_icon {
   position: absolute;
   top: 15px;
@@ -85,35 +82,37 @@
   border: none;
   cursor: pointer;
   font-size: 24px;
-  color: #ff385c;
+  color: #ff6f00;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .favorite_icon:hover {
   transform: scale(1.15);
-  color: #e60050;
+  color: #e65c00;
 }
 
-@media (max-width: 768px) {
-  .oficina_item {
-    width: 90%;
-  }
-
-  .favoritas_container h1 {
-    font-size: 1.8rem;
-  }
-}
-
+/* Ícone de deletar */
 .delete_button {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  color: #ff385c;
+  color: #ff6f00;
   transition: color 0.3s ease;
   margin-left: 8px;
 }
 
 .delete_button:hover {
-  color: #e60050;
+  color: #e65c00;
+}
+
+/* Estilização de mídia para responsividade */
+@media (max-width: 768px) {
+  .oficina_item {
+      width: 90%;
+  }
+
+  .favoritas_container h1 {
+      font-size: 1.8rem;
+  }
 }

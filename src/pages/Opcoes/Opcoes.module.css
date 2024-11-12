@@ -1,0 +1,148 @@
+/* Container geral */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Banner de Capa */
+  .coverPhoto {
+    width: 100%;
+    height: 200px;
+    background-color: #f6b34e; /* Tom azul semelhante ao Facebook */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Seção de Perfil */
+  .profileSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+    margin-top: -50px;
+  }
+  
+  .profileImageContainer {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profileName {
+    font-size: 1.6rem;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  .editProfileButton {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    background-color: #ffb031;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editProfileButton:hover {
+    background-color: #d76417;
+  }
+  
+  /* Detalhes do Usuário */
+  .userDetails {
+    padding: 1rem;
+  }
+  
+  .userDetail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .userDetail strong {
+    font-weight: 600;
+    color: #4b4f56;
+  }
+  
+  .editIcon {
+    cursor: pointer;
+    color: #1877f2;
+    transition: color 0.3s;
+  }
+  
+  .editIcon:hover {
+    color: #355089;
+  }
+  
+  /* Estilo do input e botão de salvar */
+  input[type="text"],
+  input[type="email"],
+  input[type="file"] {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    width: calc(100% - 10px);
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #1877f2;
+  }
+  
+  .saveButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    background-color: #4267b2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .saveButton:hover {
+    background-color: #365899;
+  }
+  
+  /* Seção de Foto de Perfil Editável */
+  .profileImageContainer input[type="file"] {
+    display: none;
+  }
+  
+  /* Mensagem de Alerta */
+  .alert {
+    color: #e74c3c;
+    text-align: center;
+    font-size: 1rem;
+  }
+  

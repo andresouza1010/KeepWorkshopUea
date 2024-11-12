@@ -36,6 +36,26 @@ const Sugestao = () => {
     surdez: false,
     cegueira: false,
   });
+
+  const handleRemoveImage = (section, index) => {
+    switch (section) {
+      case 'intro':
+        setImage(prevImages => prevImages.filter((_, i) => i !== index));
+        break;
+      case 'organizacao':
+        setImage2(prevImages => prevImages.filter((_, i) => i !== index));
+        break;
+      case 'pratica':
+        setImage3(prevImages => prevImages.filter((_, i) => i !== index));
+        break;
+      case 'apresentacao':
+        setImage4(prevImages => prevImages.filter((_, i) => i !== index));
+        break;
+      default:
+        break;
+    }
+  };
+  
   
 
   const { user } = useAuthValue();
@@ -133,6 +153,7 @@ const Sugestao = () => {
       descriptionAcessivel,
       uid: user.uid,
       createdBy: user.displayName,
+      
     
     });
 
@@ -365,10 +386,11 @@ const Sugestao = () => {
       </section>
 
       {/* Passo 4 */}
+      {/* Introdução */}
 <section className={styles.passo}>
   <div className={styles.icon}><FaLightbulb /></div>
   <h2>Passo 4: Introdução</h2>
-  <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
+  <p>Elabore uma introdução sobre a oficina...</p>
   <textarea
     placeholder="Digite a introdução"
     value={descricaoIntro}
@@ -380,26 +402,27 @@ const Sugestao = () => {
     <input
       type="file"
       id="uploadIntro"
-      name="image"
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'intro')}
       className={styles.uploadInput}
       multiple
     />
   </label>
-  {image.length > 0 && (
-    <div className={styles.previewimagecon}>
-      {image.map((image, index) => (
-        <img key={index} src={image} alt={`Prévia da introdução ${index + 1}`} className={styles.imagePreview} />
-      ))}
-    </div>
-  )}
+  <div className={styles.previewimagecon}>
+    {image.length > 0 && image.map((img, index) => (
+      <div key={index} className={styles.imagePreviewContainer}>
+        <img src={img} alt={`Introdução ${index + 1}`} className={styles.imagePreview} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('intro', index)}>×</button>
+      </div>
+    ))}
+  </div>
 </section>
-{/* Passo 5 */}
+
+{/* Organização de Materiais */}
 <section className={styles.passo}>
   <div className={styles.icon}><FaLightbulb /></div>
   <h2>Passo 5: Organização de Materiais</h2>
-  <p>Elabore uma introdução sobre a oficina, destacando o propósito e o impacto que pretende gerar nos participantes.</p>
+  <p>Elabore uma introdução...</p>
   <textarea
     placeholder="Distribuição de Materiais"
     value={descricaoOrganizacao}
@@ -411,17 +434,18 @@ const Sugestao = () => {
     <input
       type="file"
       id="uploadOrganizacao"
-      name="image2"
       accept="image/*"
       onChange={(e) => handleImageUpload(e, 'organizacao')}
       className={styles.uploadInput}
       multiple
     />
   </label>
-  {/* Exibição das imagens carregadas */}
   <div className={styles.previewimagecon}>
     {image2.length > 0 && image2.map((img, index) => (
-      <img key={index} src={img} alt={`Imagem Organização ${index + 1}`} className={styles.imagePreview} />
+      <div key={index} className={styles.imagePreviewContainer}>
+        <img src={img} alt={`Organização ${index + 1}`} className={styles.imagePreview} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('organizacao', index)}>×</button>
+      </div>
     ))}
   </div>
 </section>
@@ -452,7 +476,10 @@ const Sugestao = () => {
   {/* Exibição das imagens carregadas */}
   <div className={styles.previewimagecon}>
     {image3.length > 0 && image3.map((img, index) => (
-      <img key={index} src={img} alt={`Imagem Prática ${index + 1}`} className={styles.imagePreview} />
+      <div key={index} className={styles.imagePreviewContainer}>
+        <img src={img} alt={`Imagem Prática ${index + 1}`} className={styles.imagePreview} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('pratica', index)}>×</button>
+      </div>
     ))}
   </div>
 </section>
@@ -483,10 +510,14 @@ const Sugestao = () => {
   {/* Exibição das imagens carregadas */}
   <div className={styles.previewimagecon}>
     {image4.length > 0 && image4.map((img, index) => (
-      <img key={index} src={img} alt={`Imagem Apresentação ${index + 1}`} className={styles.imagePreview} />
+      <div key={index} className={styles.imagePreviewContainer}>
+        <img src={img} alt={`Imagem Apresentação ${index + 1}`} className={styles.imagePreview} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('apresentacao', index)}>×</button>
+      </div>
     ))}
   </div>
 </section>
+
 
 
 <button type="submit" className="btn" disabled={isSubmitting}>Salvar Oficina</button>

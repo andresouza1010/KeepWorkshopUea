@@ -1,29 +1,58 @@
+// Importa o módulo CSS para estilização do componente Home
 import styles from "./Home.module.css";
+
+// Importa o componente Link para navegação entre rotas
 import { Link } from "react-router-dom";
+
+// Importa o hook useState para gerenciar estados locais
 import { useState } from "react";
+
+// Importa o hook customizado para buscar documentos da coleção "oficinas"
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+
+// Importa o componente PostDetail para exibir detalhes de cada oficina
 import PostDetail from "../../components/PostDetail";
+
+// Importa o hook customizado para autenticação do usuário
 import { useAuthentication } from "../../hooks/useAuthentication";
+
+// Importa estilos de Font Awesome
 import 'font-awesome/css/font-awesome.min.css';
+
+// Importa imagens utilizadas no componente
 import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
 import filterInfo from "../Imagens/filter.png";
 import categoriaInfo from "../Imagens/classification.png";
 import acessibilidadeInfo from "../Imagens/public-service.png";
-import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado'; // Para usuários não logados
-import { FaFilter } from 'react-icons/fa'; // Exemplo com Font Awesome
 
+// Importa um componente alternativo para exibir detalhes quando o usuário não está logado
+import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';
+
+// Importa o ícone de filtro da biblioteca react-icons
+import { FaFilter } from 'react-icons/fa';
+
+// Define o componente funcional Home
 const Home = () => {
+    // Extrai o objeto auth do hook de autenticação
     const { auth } = useAuthentication();
+    // Verifica se o usuário está logado
     const isLoggedIn = !!auth.currentUser;
+
+    // Define estados para filtros de categoria, idade, acessibilidade e visibilidade de filtros
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedAges, setSelectedAges] = useState([]);
-    const [selectedAccessibility, setSelectedAccessibility] = useState([]); // Estado para opções de acessibilidade
+    const [selectedAccessibility, setSelectedAccessibility] = useState([]);
     const [showCategoryFilter, setShowCategoryFilter] = useState(false);
     const [showAgeFilter, setShowAgeFilter] = useState(false);
-    const [showAccessibilityFilter, setShowAccessibilityFilter] = useState(false); // Estado para mostrar/ocultar filtro de acessibilidade
+    const [showAccessibilityFilter, setShowAccessibilityFilter] = useState(false);
+
+    // Busca documentos da coleção "oficinas" e define estado para loading
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
+
+    // Estado para controlar a visibilidade do dropdown de filtros
     const [showDropdown, setShowDropdown] = useState(false);
 
+    // Função para alternar seleção de categoria
     const handleCategoryChange = (category) => {
         setSelectedCategories(prev =>
             prev.includes(category)
@@ -32,6 +61,7 @@ const Home = () => {
         );
     };
 
+    // Função para alternar seleção de idade
     const handleAgeChange = (age) => {
         setSelectedAges(prev =>
             prev.includes(age)
@@ -40,6 +70,7 @@ const Home = () => {
         );
     };
 
+    // Função para alternar seleção de acessibilidade
     const handleAccessibilityChange = (accessibility) => {
         setSelectedAccessibility(prev =>
             prev.includes(accessibility)
@@ -48,26 +79,32 @@ const Home = () => {
         );
     };
 
+    // Filtra oficinas com base nos critérios de categoria, idade e acessibilidade selecionados
     const filteredOficinas = oficinas?.filter(oficina =>
         (selectedCategories.length === 0 || selectedCategories.includes(oficina.category)) &&
         (selectedAges.length === 0 || selectedAges.includes(oficina.targetAudience)) &&
         (selectedAccessibility.length === 0 || selectedAccessibility.some(a => oficina.selectedOptions?.[a.toLowerCase()]))
     ) || [];
 
+    // Alterna a visibilidade do filtro de categorias
     const toggleCategoryFilter = () => {
         setShowCategoryFilter(prev => !prev);
     };
 
+    // Alterna a visibilidade do filtro de idades
     const toggleAgeFilter = () => {
         setShowAgeFilter(prev => !prev);
     };
 
+    // Alterna a visibilidade do filtro de acessibilidade
     const toggleAccessibilityFilter = () => {
         setShowAccessibilityFilter(prev => !prev);
     };
 
+    // Renderiza o componente
     return (
         <div className={styles.home}>
+            {/* Exibe conteúdo para usuários não logados */}
             {!isLoggedIn && (
                 <>
                     <div className={styles.hero}>
@@ -81,39 +118,45 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
-
+                    
                     <div className={styles.heroSection}>
                         <h2 className={styles.titlep}>Filtre as oficinas</h2>
                     </div>
+
                     {/* Painéis de Benefícios */}
                     <div className={styles.benefitsContainer}>
+                        {/* Painel de filtro por idade */}
                         <div className={styles.benefitPanel} onClick={toggleAgeFilter}>
                             <img src={filterInfo} alt="Filtros por Idade" className={styles.benefitImage} />
-                            <h3>Encontre Oficinas por Idade</h3>
+                            <h3>Por Idade</h3>
                             <p>Filtre rapidamente oficinas recomendadas para diferentes faixas etárias.</p>
                         </div>
+
+                        {/* Painel de filtro por categoria */}
                         <div className={styles.benefitPanel} onClick={toggleCategoryFilter}>
                             <img src={categoriaInfo} alt="Filtros por Categoria" className={styles.benefitImage} />
-                            <h3>Explore por Categorias</h3>
+                            <h3>Por Categorias</h3>
                             <p>Encontre oficinas específicas, desde robótica até artesanato e muito mais.</p>
                         </div>
+
+                        {/* Painel de filtro por acessibilidade */}
                         <div className={styles.benefitPanel} onClick={toggleAccessibilityFilter}>
                             <img src={acessibilidadeInfo} alt="Oficinas Acessíveis" className={styles.benefitImage} />
-                            <h3>Acesse Oficinas Acessíveis</h3>
+                            <h3>Oficinas Acessíveis</h3>
                             <p>Encontre oficinas inclusivas com recursos adaptados e instruções detalhadas.</p>
                         </div>
                     </div>
                 </>
-
             )}
 
-<div className={styles.heroSection}>
-                
+            <div className={styles.heroSection}>
+                {/* Exibe ícone de filtro para dropdown de filtros */}
                 {!isLoggedIn && (
                     <FaFilter className={styles.filterIcon} onClick={() => setShowDropdown(!showDropdown)} />
                 )}
             </div>
 
+            {/* Conteúdo para usuários logados */}
             {isLoggedIn && (
                 <>
                     {/* Filtro de Categorias */}
@@ -237,8 +280,6 @@ const Home = () => {
             )}
             
             {/*USUARIO NAO LOGADO*/}
-
-            
                     {/* Ícone de Filtro (Dropdown) */}
                     <div className={styles.heroSection}>
                         <FaFilter className={styles.filterIcon} onClick={() => setShowDropdown(!showDropdown)} />
@@ -290,6 +331,7 @@ const Home = () => {
                         )}
                     </div>
 
+            {/* Exibição das oficinas filtradas */}
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
                 {filteredOficinas && filteredOficinas.map((oficina) => (
@@ -312,4 +354,5 @@ const Home = () => {
     );
 };
 
+// Exporta o componente Home
 export default Home;

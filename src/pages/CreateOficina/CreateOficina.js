@@ -12,7 +12,7 @@ const CreateOficina = () => {
   const [image4, setImage4] = useState([]);
   const [recursos, setRecursos] = useState("");
   const [description, setDescription] = useState(""); 
-  const [narrative, setNarrative] = useState(""); // Novo campo de narrativa
+  const [narrative, setNarrative] = useState(""); 
   const [descricaoIntro, setIntroduction] = useState(""); 
   const [descricaoOrganizacao, setOrganizacao] = useState(""); 
   const [descricaoPratica, setPratica] = useState(""); 
@@ -61,6 +61,27 @@ const CreateOficina = () => {
     });
   };
 
+  
+
+  const handleRemoveImage = (section, index) => {
+    switch (section) {
+      case 'intro':
+        setImage(prev => prev.filter((_, i) => i !== index));
+        break;
+      case 'organizacao':
+        setImage2(prev => prev.filter((_, i) => i !== index));
+        break;
+      case 'pratica':
+        setImage3(prev => prev.filter((_, i) => i !== index));
+        break;
+      case 'apresentacao':
+        setImage4(prev => prev.filter((_, i) => i !== index));
+        break;
+      default:
+        break;
+    }
+  };
+
   const resetFields = () => {
     setTitle("");
     setImage([]);
@@ -99,7 +120,7 @@ const CreateOficina = () => {
       image3,
       image4,
       recursos,
-      narrative,  // Inclui a narrativa
+      narrative,
       descricaoIntro,
       descricaoOrganizacao,
       descricaoPratica,
@@ -154,6 +175,9 @@ const CreateOficina = () => {
           </select>
         </label>
 
+        {/* Outros campos e seções para imagens */}
+
+        
         {/* Título */}
         <label>
           <span>Título</span>
@@ -243,9 +267,17 @@ const CreateOficina = () => {
             onChange={(e) => setIntroduction(e.target.value)}
           ></textarea>
           <input type="file" multiple onChange={(e) => handleImageUpload(e, 'intro')} />
-          {image.length > 0 && (
-            <div>{image.map((img, idx) => <img key={idx} src={img} alt={`Intro ${idx}`} />)}</div>
-          )}
+        
+          <div className={styles.imagePreviewContainer}>
+            {image.map((img, idx) => (
+              <div key={idx} className={styles.imagePreview}>
+                <img src={img} alt={`Intro ${idx}`} />
+                <button className={styles.deleteButton} onClick={() => handleRemoveImage('intro', idx)}>
+                  &#10005;
+                </button>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Organização de Materiais */}
@@ -257,38 +289,59 @@ const CreateOficina = () => {
             onChange={(e) => setOrganizacao(e.target.value)}
           ></textarea>
           <input type="file" multiple onChange={(e) => handleImageUpload(e, 'organizacao')} />
-          {image2.length > 0 && (
-            <div>{image2.map((img, idx) => <img key={idx} src={img} alt={`Organização ${idx}`} />)}</div>
-          )}
+          <div className={styles.imagePreviewContainer}>
+            {image2.map((img, idx) => (
+              <div key={idx} className={styles.imagePreview}>
+                <img src={img} alt={`Organização ${idx}`} />
+                <button className={styles.deleteButton} onClick={() => handleRemoveImage('organizacao', idx)}>
+                  &#10005;
+                </button>
+              </div>
+            ))}
+          </div>
         </section>
-
         {/* Momento Prático */}
-        <section>
-          <h2>Momento Prático</h2>
-          <textarea 
-            placeholder="Descreva o momento prático da oficina"
-            value={descricaoPratica}
-            onChange={(e) => setPratica(e.target.value)}
-          ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'pratica')} />
-          {image3.length > 0 && (
-            <div>{image3.map((img, idx) => <img key={idx} src={img} alt={`Prática ${idx}`} />)}</div>
-          )}
-        </section>
+<section>
+  <h2>Momento Prático</h2>
+  <textarea 
+    placeholder="Descreva o momento prático da oficina"
+    value={descricaoPratica}
+    onChange={(e) => setPratica(e.target.value)}
+  ></textarea>
+  <input type="file" multiple onChange={(e) => handleImageUpload(e, 'pratica')} />
+  <div className={styles.imagePreviewContainer}>
+    {image3.map((img, idx) => (
+      <div key={idx} className={styles.imagePreview}>
+        <img src={img} alt={`Prática ${idx}`} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('pratica', idx)}>
+          &#10005;
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
 
-        {/* Apresentação Final */}
-        <section>
-          <h2>Apresentação Final</h2>
-          <textarea 
-            placeholder="Descreva a apresentação final da oficina"
-            value={descricaoApresentacao}
-            onChange={(e) => setApresentacao(e.target.value)}
-          ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
-          {image4.length > 0 && (
-            <div>{image4.map((img, idx) => <img key={idx} src={img} alt={`Apresentação ${idx}`} />)}</div>
-          )}
-        </section>
+{/* Apresentação Final */}
+<section>
+  <h2>Apresentação Final</h2>
+  <textarea 
+    placeholder="Descreva a apresentação final da oficina"
+    value={descricaoApresentacao}
+    onChange={(e) => setApresentacao(e.target.value)}
+  ></textarea>
+  <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
+  <div className={styles.imagePreviewContainer}>
+    {image4.map((img, idx) => (
+      <div key={idx} className={styles.imagePreview}>
+        <img src={img} alt={`Apresentação ${idx}`} />
+        <button className={styles.deleteButton} onClick={() => handleRemoveImage('apresentacao', idx)}>
+          &#10005;
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
+
 
         {/* Acessibilidade */}
         <label>
