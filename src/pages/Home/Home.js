@@ -150,7 +150,7 @@ const Home = () => {
             )}
 
             <div className={styles.heroSection}>
-                {/* Exibe ícone de filtro para dropdown de filtros */}
+                {/* Exibe ícone de fisltro para dropdown de filtros */}
                 {!isLoggedIn && (
                     <FaFilter className={styles.filterIcon} onClick={() => setShowDropdown(!showDropdown)} />
                 )}
