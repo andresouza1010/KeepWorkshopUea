@@ -99,15 +99,21 @@ const Register = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </label>
+
         <label>
-          <span>Foto de Perfil:</span>
-          <input 
-            type="file"
-            name="profileImage"
-            accept="image/*"
-            onChange={handleProfileImageChange}
-          />
-        </label>
+  <span>Foto de Perfil - Opcional:</span>
+  <label className={styles["label-photo-upload"]}>
+    Escolher Foto
+    <input 
+      type="file"
+      name="profileImage"
+      accept="image/*"
+      onChange={handleProfileImageChange}
+    />
+  </label>
+  {profileImage && <img src={profileImage} alt="Pré-visualização" className={styles["profile-image-preview"]} />}
+</label>
+       
         <label>
           <span>Senha:</span>
           <input 

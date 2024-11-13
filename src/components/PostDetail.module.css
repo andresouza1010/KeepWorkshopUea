@@ -10,7 +10,23 @@
   margin-left: 40px; /* Adiciona margem de 20px à esquerda */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
 }
+.authorContainer {
+  display: flex;
+  align-items: center;
+}
 
+.authorLabel {
+  margin-right: 5px; /* Espaço entre "Autor(a):" e o nome */
+  font-weight: bold;
+  color: #333; /* Ajuste a cor conforme necessário */
+}
+
+.authorName {
+  flex-shrink: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .image_container img {
   width: 100%;

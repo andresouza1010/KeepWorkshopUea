@@ -54,8 +54,11 @@ const PostDetail = ({ oficina }) => {
             : oficina.description}
         </p>
       )}
-      
-      <p className={styles.createdby}>Rede Social do Autor: {oficina?.socialLink}</p>
+     <div className={styles.authorContainer}>
+  <span className={styles.authorLabel}>Autor(a):</span>
+  <span className={styles.authorName}>{oficina?.socialLink}</span>
+</div>
+
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
       <p className={styles.duration}>Duração: {oficina?.duration} horas</p>
       

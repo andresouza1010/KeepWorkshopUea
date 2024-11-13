@@ -5,8 +5,16 @@
   justify-content: center;
   padding: 40px 20px;
   text-align: center;
-  background-color: #ffffff; /* Fundo suave em tom laranja claro */
+  background-color: #ffffff;
   min-height: 100vh;
+}
+
+.favoritas_container h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ff6f00; /* Título em laranja */
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .oficinas_list {
@@ -43,9 +51,9 @@
 }
 
 .oficina_item h2 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #ff6f00; /* Título em laranja escuro */
+  color: #ff6f00;
   margin: 8px 0;
   text-transform: capitalize;
 }
@@ -57,9 +65,17 @@
   margin-bottom: 15px;
 }
 
+/* Contêiner para os botões de acessar e deletar */
+.button_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
 /* Botão de Acessar */
 .btn {
-  background-color: #ff6f00; /* Cor laranja */
+  background-color: #ff6f00;
   color: white;
   padding: 8px 16px;
   border-radius: 6px;
@@ -69,26 +85,8 @@
 }
 
 .btn:hover {
-  background-color: #e65c00; /* Laranja mais escuro ao passar o mouse */
+  background-color: #e65c00;
   transform: translateY(-2px);
-}
-
-/* Ícone de favorito */
-.favorite_icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: #ff6f00;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.favorite_icon:hover {
-  transform: scale(1.15);
-  color: #e65c00;
 }
 
 /* Ícone de deletar */
@@ -106,13 +104,13 @@
   color: #e65c00;
 }
 
-/* Estilização de mídia para responsividade */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
   .oficina_item {
-      width: 90%;
+    width: 90%;
   }
 
   .favoritas_container h1 {
-      font-size: 1.8rem;
+    font-size: 1.8rem;
   }
 }

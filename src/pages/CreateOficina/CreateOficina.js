@@ -383,9 +383,8 @@ const CreateOficina = () => {
 <label>
           <span>Link para Redes Sociais (Divulgação)</span>
           <input 
-            type="url" 
             name="socialLink" 
-            placeholder="URL para divulgação da oficina (ex: https://instagram.com/suaoficina)" 
+            placeholder="Seu nome ou a sua rede social para divulgação(ex: https://instagram.com/suaoficina)" 
             onChange={(e) => setSocialLink(e.target.value)}
             value={socialLink}
           />
