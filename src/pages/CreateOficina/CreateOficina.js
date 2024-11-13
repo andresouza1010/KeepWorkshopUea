@@ -22,6 +22,7 @@ const CreateOficina = () => {
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [socialLink, setSocialLink] = useState(""); // Novo campo para link de rede social
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
@@ -100,6 +101,7 @@ const CreateOficina = () => {
     setDuration("");
     setHasAccessibility(false);
     setAccessibilityDescription("");
+    setSocialLink(""); // Limpa o campo de link de rede social
   };
 
   const handleSubmit = (e) => {
@@ -133,6 +135,7 @@ const CreateOficina = () => {
       createdBy: user.displayName,
       hasAccessibility, 
       accessibilityDescription, 
+      socialLink // Adiciona o link de rede social ao documento
     });
 
     resetFields();
@@ -376,6 +379,17 @@ const CreateOficina = () => {
             />
           </label>
         )}
+
+<label>
+          <span>Link para Redes Sociais (Divulgação)</span>
+          <input 
+            type="url" 
+            name="socialLink" 
+            placeholder="URL para divulgação da oficina (ex: https://instagram.com/suaoficina)" 
+            onChange={(e) => setSocialLink(e.target.value)}
+            value={socialLink}
+          />
+        </label>
 
         <button type="submit" disabled={isSubmitting}>Salvar Oficina</button>
         {formError && <p className="error">{formError}</p>}

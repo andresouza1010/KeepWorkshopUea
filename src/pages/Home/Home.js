@@ -107,6 +107,55 @@ const Home = () => {
             {/* Exibe conteúdo para usuários não logados */}
             {!isLoggedIn && (
                 <>
+                 <div className={styles.heroSection}>
+                        <FaFilter className={styles.filterIcon2} onClick={() => setShowDropdown(!showDropdown)} />
+                        {showDropdown && (
+                            <div className={styles.dropdown2}>
+                                <div className={styles.dropdownColumn}>
+                                    <p className={styles.dropdownTitle}>Categorias</p>
+                                    {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
+                                        <label key={category} className={styles.checkbox_label}>
+                                            <input
+                                                type="checkbox"
+                                                value={category}
+                                                checked={selectedCategories.includes(category)}
+                                                onChange={() => handleCategoryChange(category)}
+                                            />
+                                            {category}
+                                        </label>
+                                    ))}
+                                </div>
+                                <div className={styles.dropdownColumn}>
+                                    <p className={styles.dropdownTitle}>Idades</p>
+                                    {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
+                                        <label key={age} className={styles.checkbox_label}>
+                                            <input
+                                                type="checkbox"
+                                                value={age}
+                                                checked={selectedAges.includes(age)}
+                                                onChange={() => handleAgeChange(age)}
+                                            />
+                                            {age}
+                                        </label>
+                                    ))}
+                                </div>
+                                <div className={styles.dropdownColumn}>
+                                    <p className={styles.dropdownTitle}>Acessibilidade</p>
+                                    {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
+                                        <label key={accessibility} className={styles.checkbox_label}>
+                                            <input
+                                                type="checkbox"
+                                                value={accessibility}
+                                                checked={selectedAccessibility.includes(accessibility)}
+                                                onChange={() => handleAccessibilityChange(accessibility)}
+                                            />
+                                            {accessibility}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <div className={styles.hero}>
                         <div className={styles.heroContent} style={{ backgroundImage: `url(${imagemDeteste})` }}>
                             <h1>Bem-vindo ao Keep Workshop!</h1>
@@ -275,55 +324,7 @@ const Home = () => {
             
             {/*USUARIO NAO LOGADO*/}
                     {/* Ícone de Filtro (Dropdown) */}
-                    <div className={styles.heroSection}>
-                        <FaFilter className={styles.filterIcon2} onClick={() => setShowDropdown(!showDropdown)} />
-                        {showDropdown && (
-                            <div className={styles.dropdown2}>
-                                <div className={styles.dropdownColumn}>
-                                    <p className={styles.dropdownTitle}>Categorias</p>
-                                    {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
-                                        <label key={category} className={styles.checkbox_label}>
-                                            <input
-                                                type="checkbox"
-                                                value={category}
-                                                checked={selectedCategories.includes(category)}
-                                                onChange={() => handleCategoryChange(category)}
-                                            />
-                                            {category}
-                                        </label>
-                                    ))}
-                                </div>
-                                <div className={styles.dropdownColumn}>
-                                    <p className={styles.dropdownTitle}>Idades</p>
-                                    {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
-                                        <label key={age} className={styles.checkbox_label}>
-                                            <input
-                                                type="checkbox"
-                                                value={age}
-                                                checked={selectedAges.includes(age)}
-                                                onChange={() => handleAgeChange(age)}
-                                            />
-                                            {age}
-                                        </label>
-                                    ))}
-                                </div>
-                                <div className={styles.dropdownColumn}>
-                                    <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
-                                        <label key={accessibility} className={styles.checkbox_label}>
-                                            <input
-                                                type="checkbox"
-                                                value={accessibility}
-                                                checked={selectedAccessibility.includes(accessibility)}
-                                                onChange={() => handleAccessibilityChange(accessibility)}
-                                            />
-                                            {accessibility}
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                   
 
             {/* Exibição das oficinas filtradas */}
             <div className={styles.postDetail}>

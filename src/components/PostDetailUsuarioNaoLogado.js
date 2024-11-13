@@ -65,7 +65,8 @@ const PostDetailUsuarioNaoLogado = ({ oficina }) => {
         </p>
       )}
       
-      <p className={styles.createdby}>Autor: {oficina?.createdBy || "Autor desconhecido"}</p>
+      
+      <p className={styles.createdby}>Rede Social do Autor: {oficina?.socialLink}</p>
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
       <p className={styles.duration}>Duração: {oficina?.duration} horas</p>
       

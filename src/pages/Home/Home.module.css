@@ -26,6 +26,7 @@
 
 /* Conteúdo da Hero com animação de entrada */
 .heroContent {
+    
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7)), url('../../pages/Imagens/imagemdeteste3.jpg');
     background-size: cover;
     background-position: center;
@@ -37,8 +38,21 @@
     justify-content: center;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    animation: fadeInZoom 2s ease-in-out;
+    animation: slideDownFadeIn 2s ease-in-out; /* Aplicando a nova animação */
 }
+
+/* Definição da animação de deslizamento de cima para baixo */
+@keyframes slideDownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px); /* Inicia deslocado para cima */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Move para a posição original */
+    }
+}
+
 
 
 /* Efeito de zoom e fade-in na entrada */
@@ -421,7 +435,6 @@
     position: absolute;
     top: 30px; /* Distância do topo da tela */
     left:40px; /* Distância da esquerda da tela */
-    
     font-size: 24px; /* Tamanho do ícone */
     cursor: pointer;
     color: #e48900; /* Cor do ícone */
@@ -431,12 +444,11 @@
 
 .filterIcon2 {
     position: absolute;
-    top: 750px; /* Distância do topo da tela */
+    top: 785px; /* Distância do topo da tela */
     left: 255px; /* Distância da esquerda da tela */
-    
     font-size: 24px; /* Tamanho do ícone */
     cursor: pointer;
-    color: #e48900; /* Cor do ícone */
+    color: #ea9c00; /* Cor do ícone */
     z-index: 10; /* Garante que ele fique sobre outros elementos */
 }
 

@@ -100,7 +100,6 @@
   margin-top: 10px;
   display: -webkit-box;          /* Usado para o layout em múltiplas linhas */
   -webkit-box-orient: vertical;  /* Define a orientação do box */
-  -webkit-line-clamp: 2;         /* Limita a duas linhas */
   overflow: hidden;              /* Oculta o conteúdo que ultrapassa */
   text-overflow: ellipsis;      /* Adiciona "..." ao final do texto que não cabe */
 }

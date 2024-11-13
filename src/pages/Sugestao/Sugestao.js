@@ -28,6 +28,8 @@ const Sugestao = () => {
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [socialLink, setSocialLink] = useState(""); // Novo campo para link de rede social
 
   const [accessibility, setAccessibility] = useState('nao');  // Novo estado para acessibilidade
   const [selectedOptions, setSelectedOptions] = useState({
@@ -117,6 +119,7 @@ const Sugestao = () => {
     setCategory("");
     setTargetAudience("");
     setDuration("");
+    setSocialLink(""); // Limpa o campo de link de rede social
   
   };
 
@@ -153,6 +156,7 @@ const Sugestao = () => {
       descriptionAcessivel,
       uid: user.uid,
       createdBy: user.displayName,
+      socialLink // Adiciona o link de rede social ao documento
       
     
     });
@@ -517,6 +521,17 @@ const Sugestao = () => {
     ))}
   </div>
 </section>
+
+<label>
+          <span>Link para Redes Sociais (Divulgação)</span>
+          <input 
+            type="url" 
+            name="socialLink" 
+            placeholder="URL para divulgação da oficina (ex: https://instagram.com/suaoficina)" 
+            onChange={(e) => setSocialLink(e.target.value)}
+            value={socialLink}
+          />
+        </label>
 
 
 
