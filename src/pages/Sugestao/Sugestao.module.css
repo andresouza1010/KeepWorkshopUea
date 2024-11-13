@@ -1,274 +1,170 @@
-/* Container Principal */
-.sugestaoContainer {
-    padding: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #f5f8fb;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  /* Cabeçalho */
-  .header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .header h1 {
-    font-size: 2.5em;
-    color: #cc7400;
-    margin-bottom: 10px;
-  }
-  
-  .header p {
-    font-size: 1.2em;
-    color: #555;
-  }
-  
-  /* Seções dos Passos */
-  .passo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 20px 0;
-    border-left: 6px solid #cc6600;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .passo:hover {
-    background-color: #f0f7ff;
-  }
-  
-  .icon {
-    font-size: 1.8em;
-    color: #cc4b00;
-    margin-bottom: 10px;
-  }
-  
-  /* Título dos Passos */
-  .passo h2 {
-    color: #994500;
-    margin-bottom: 10px;
-    font-size: 1.6em;
-  }
-  
-  /* Textos dos Passos */
-  .passo p {
-    font-size: 1.1em;
-    line-height: 1.6;
-  }
-  
-  /* Estilo de Blockquote */
-  blockquote {
-    margin: 10px 0;
-    padding: 15px;
-    background-color: #eef6ff;
-    border-left: 5px solid #cc7700;
-    color: #555;
-    font-style: italic;
-    border-radius: 5px;
-  }
-  
-  .prompt {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    color: #777;
-    font-size: 0.9em;
-    line-height: 1.5;
-  }
-  
-  /* Estilos para inputs de texto */
-.input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
+/* CreateOficina.module.css */
+
+.create_oficina {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 2rem;
+  background-color: #f7f9fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
-.textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
+.title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #34495e;
+  font-weight: 600;
+}
+
+.description {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Botão Sugestão */
+.sugestao_button {
+  display: block;
+  margin: 0 auto 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #df952d;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  font-size: 1em;
-  resize: vertical;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sugestao_button:hover {
+  background-color: #b97d29;
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.labelText {
   display: block;
-  margin-top: 15px;
-  font-size: 1.1em;
-  color: #555;
+  margin-bottom: 0.5rem;
+  color: #34495e;
 }
 
-.select {
+.inputField,
+.selectField,
+.textAreaField {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-  background-color: #fff;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  transition: border 0.3s;
 }
 
-/* Estilos gerais */
-.uploadLabel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #333;
-  font-size: 14px;
+.inputField:focus,
+.textAreaField:focus,
+.selectField:focus {
+  border-color: #3498db;
+  outline: none;
 }
 
-.uploadInput {
-  display: none; /* Oculta o botão de input padrão */
+.textAreaField {
+  min-height: 100px;
 }
 
-/* Estilo do botão de upload (ficará visível e estilizado) */
-.uploadLabel span {
-  background-color: #c76a00;
-  color: white;
-  padding: 12px 30px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 14px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.uploadLabel:hover span {
-  background-color: #dd9700;
-  transform: scale(1.05);
-}
-
-.uploadLabel span::after {
-  content: ' 📷'; /* Ícone opcional de câmera */
-}
-
-/* Estilo para campos de texto */
-.textarea {
-  width: 100%;
-  height: 150px;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  resize: vertical;
-}
-
-/* Estilo do botão de envio */
-.btn {
-  background-color: #28a745;
-  color: white;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 5px;
+/* Botão de Submissão */
+.submitButton {
+  padding: 0.8rem 1.5rem;
+  background-color: #2ecc71;
+  color: #fff;
   border: none;
-  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
-.btn:hover {
-  background-color: #218838;
+.submitButton:disabled {
+  background-color: #95a5a6;
 }
 
-/* Estilo das mensagens de status */
+.submitButton:hover:not(:disabled) {
+  background-color: #27ae60;
+}
+
+/* Mensagens de Erro e Sucesso */
 .error {
-  color: #dc3545;
-  font-size: 14px;
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
 }
 
 .success {
-  color: #28a745;
-  font-size: 14px;
-}
-
-.previewimagecon {
-  display: flex;
-  flex-wrap: wrap; /* Para permitir que as imagens se ajustem à largura do contêiner */
-  gap: 10px; /* Espaço entre as imagens */
-}
-
-.imagePreview {
-  width: 150px;      /* Tamanho fixo para as imagens */
-  height: 150px;     /* Tamanho fixo para as imagens */
-  object-fit: cover; /* Para manter a proporção das imagens sem distorção */
-  border-radius: 8px; /* Opcional: Adicionar bordas arredondadas às imagens */
-}
-
-.descricaoAcessibilidade {
-  font-size: 1rem;
-  margin-top: 1rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.checkboxLabel {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 1rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.radio {
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
-.checkboxContainer {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
-  border-top: 1px solid #ddd;
-}
-
-.checkboxContainer label {
-  display: flex;
-  align-items: center;
-  margin: 0.25rem 0;
+  color: #2ecc71;
   font-size: 0.9rem;
-  color: #444;
+  margin-top: -0.5rem;
 }
 
-.checkboxContainer input[type="checkbox"] {
-  margin-right: 0.5rem;
-  cursor: pointer;
-  accent-color: #4caf50; /* Cor do checkbox */
+/* Upload de Imagem */
+.fileInput {
+  margin-top: 0.5rem;
+}
+
+.imagePreview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  margin: 0.3rem;
+  object-fit: cover;
+}
+
+.section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+}
+
+.section h2 {
+  margin-bottom: 1rem;
 }
 
 
-.previewimagecon {
+.imagePreviewContainer {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
 }
 
-.imagePreviewContainer {
+.imagePreview {
   position: relative;
   width: 100px;
   height: 100px;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.imagePreview {
+.imagePreview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -285,8 +181,30 @@
   width: 24px;
   height: 24px;
   font-size: 1rem;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+/* Estilos gerais */
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.uploadLabel span {
+  background-color: #c76a00;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }

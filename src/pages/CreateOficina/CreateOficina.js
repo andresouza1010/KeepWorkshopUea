@@ -281,6 +281,17 @@ const CreateOficina = () => {
               </div>
             ))}
           </div>
+          <label htmlFor="uploadIntro" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadIntro"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'intro')}
+      className={styles.uploadInput}
+      multiple
+    />
+  </label>
         </section>
 
         {/* Organização de Materiais */}
@@ -302,6 +313,22 @@ const CreateOficina = () => {
               </div>
             ))}
           </div>
+          <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadOrganizacao"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'organizacao')}
+      className={styles.uploadInput}
+      multiple
+    />
+  </label>
+  
+
+
+
+
         </section>
         {/* Momento Prático */}
 <section>
@@ -322,6 +349,20 @@ const CreateOficina = () => {
       </div>
     ))}
   </div>
+
+
+  <label htmlFor="uploadPratica" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadPratica"
+      name="image3"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'pratica')}
+      className={styles.uploadInput}
+      multiple
+    />
+  </label>
 </section>
 
 {/* Apresentação Final */}
@@ -343,6 +384,20 @@ const CreateOficina = () => {
       </div>
     ))}
   </div>
+
+
+  <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
+    <span>Upload da Imagem (opcional)</span>
+    <input
+      type="file"
+      id="uploadApresentacao"
+      name="image4"
+      accept="image/*"
+      onChange={(e) => handleImageUpload(e, 'apresentacao')}
+      className={styles.uploadInput}
+      multiple
+    />
+  </label>
 </section>
 
 

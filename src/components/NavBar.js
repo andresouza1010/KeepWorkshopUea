@@ -23,6 +23,11 @@ const NavBar = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/login"); // Redireciona para a página de login
+  };
+
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
@@ -30,18 +35,15 @@ const NavBar = () => {
       </NavLink>
 
       <form onSubmit={handleSearch} className={styles.search_form}>
-      
-      
-          <input
-            type="text"
-            placeholder="Busque a sua Oficina..."
-            onChange={(e) => setQuery(e.target.value)}
-            className={styles.search_input}
-          />
-          <button className={styles.search_button}>
-            <i className="fa fa-search"></i>
-          </button>
-        
+        <input
+          type="text"
+          placeholder="Busque a sua Oficina..."
+          onChange={(e) => setQuery(e.target.value)}
+          className={styles.search_input}
+        />
+        <button className={styles.search_button}>
+          <i className="fa fa-search"></i>
+        </button>
       </form>
 
       <ul className={styles.links_list}>
@@ -90,7 +92,7 @@ const NavBar = () => {
               <NavLink to="/Opcoes" className={styles.dropdownOption}>
                 Opções
               </NavLink>
-              <button onClick={logout} className={styles.logoutButton}>
+              <button onClick={handleLogout} className={styles.logoutButton}>
                 Sair
               </button>
             </div>

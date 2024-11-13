@@ -1,6 +1,6 @@
 // Importa o módulo CSS para estilização do componente Home
 import styles from "./Home.module.css";
-
+import { useNavigate } from 'react-router-dom';
 // Importa o componente Link para navegação entre rotas
 import { Link } from "react-router-dom";
 
@@ -45,7 +45,7 @@ const Home = () => {
     const [showCategoryFilter, setShowCategoryFilter] = useState(false);
     const [showAgeFilter, setShowAgeFilter] = useState(false);
     const [showAccessibilityFilter, setShowAccessibilityFilter] = useState(false);
-
+    const navigate = useNavigate();
     // Busca documentos da coleção "oficinas" e define estado para loading
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
 
@@ -100,6 +100,10 @@ const Home = () => {
     const toggleAccessibilityFilter = () => {
         setShowAccessibilityFilter(prev => !prev);
     };
+
+    const handleExploreClick = () => {
+        navigate('/sugestao'); // Altere para a rota correta para Sugestao.js
+      };
 
     // Renderiza o componente
     return (
@@ -317,7 +321,7 @@ const Home = () => {
                     <div className={styles.infoPanel}>
                         <h2>Explore o Mundo Maker</h2>
                         <p>Descubra as últimas novidades e inspire-se para criar, inovar e compartilhar suas ideias!</p>
-                        <button className={styles.exploreButton}>Criar Agora</button>
+                        <button className={styles.exploreButton} onClick={handleExploreClick}>Criar agora</button>
                     </div>
                 </>
             )}

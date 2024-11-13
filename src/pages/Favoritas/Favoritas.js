@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Favoritas.module.css'; // Ajuste o caminho conforme necessário
-import { FaTrash } from 'react-icons/fa'; // Importa ícone de lixo para o botão de excluir
+import styles from './Favoritas.module.css';
+import { FaTrash } from 'react-icons/fa';
 
 const Favoritas = () => {
   const [favoritas, setFavoritas] = useState([]);
@@ -28,7 +28,10 @@ const Favoritas = () => {
         ) : (
           favoritas.map(oficina => (
             <div key={oficina.id} className={styles.oficina_item}>
-              <img src={oficina.image} alt={oficina.title} />
+              <img 
+                src={oficina.image && oficina.image[0] ? oficina.image[0] : 'default-image.jpg'} 
+                alt={oficina.title} 
+              />
               <h2>{oficina.title}</h2>
               <p>{oficina.description}</p>
               <p>Autor: {oficina.createdBy || "Autor desconhecido"}</p>
