@@ -419,16 +419,7 @@
 }
 
 
-.titlep::after {
-    content: "";
-    display: block;
-    width: 15.5%; /* Ajuste a largura conforme necessário */
-    height: 3px;
-    background-color: #FFA500; /* Laranja */
-    margin-top: 5px; /* Espaço entre o título e a linha */
-    margin-bottom: 10px; /* Espaço entre a linha e a descrição */
-    border-radius: 2px;
-}
+
 .filterButton {
     position: absolute;
     top: 75px;

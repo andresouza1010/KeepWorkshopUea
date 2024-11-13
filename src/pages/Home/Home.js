@@ -319,7 +319,7 @@ const Home = () => {
 
                     {/* Painel de Informações */}
                     <div className={styles.infoPanel}>
-                        <h2>Explore o Mundo Maker</h2>
+                        <h3>Explore o Mundo Maker</h3>
                         <p>Descubra as últimas novidades e inspire-se para criar, inovar e compartilhar suas ideias!</p>
                         <button className={styles.exploreButton} onClick={handleExploreClick}>Criar agora</button>
                     </div>

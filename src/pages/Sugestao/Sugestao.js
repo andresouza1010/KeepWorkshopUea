@@ -150,7 +150,7 @@ const Sugestao = () => {
         Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
       
-      <form onSubmit={handleSubmit}>
+      <form1 onSubmit={handleSubmit}>
         
         {/* Etapa 1: Empatia */}
         <h2>Etapa 1: Empatia</h2>
@@ -433,7 +433,7 @@ const Sugestao = () => {
         <button type="submit" disabled={isSubmitting}>Salvar Oficina</button>
         {formError && <p className="error">{formError}</p>}
         {response.success && <p className="success">Oficina criada com sucesso!</p>}
-      </form>
+      </form1>
     </div>
   );
 };
