@@ -1,3 +1,9 @@
+/* Remove margens e paddings da seção hero */
+.Home_heroSection__MUDQf {
+  position: absolute;
+  
+}
+
 .container{
   min-height: 60vh;
   margin-bottom: 5em ;

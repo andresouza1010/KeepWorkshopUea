@@ -4,6 +4,7 @@
     overflow: hidden; /* Evita que as partículas ultrapassem a área da home */
 }
 
+
 /* Animação para simular partículas */
 @keyframes moveParticles {
     0% {
@@ -14,19 +15,20 @@
     }
 }
 
+
 /* Configuração da área Hero */
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita que qualquer conteúdo extra vaze */
 }
-
 /* Conteúdo da Hero com animação de entrada */
+
 .heroContent {
-    
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7)), url('../../pages/Imagens/imagemdeteste3.jpg');
     background-size: cover;
     background-position: center;
@@ -39,6 +41,23 @@
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     animation: slideDownFadeIn 2s ease-in-out; /* Aplicando a nova animação */
+
+    /* Borda superior interativa com efeito neon */
+    position: relative; /* Para posicionar a borda animada */
+    overflow: hidden; /* Para que a borda animada não ultrapasse os limites */
+}
+
+
+/* Animação de deslizamento de cima para baixo */
+@keyframes slideDownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px); /* Inicia deslocado para cima */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Move para a posição original */
+    }
 }
 
 /* Definição da animação de deslizamento de cima para baixo */
@@ -338,7 +357,7 @@
     align-items: flex-start;
     padding: 2rem;
     gap: 1.5rem;
-    margin-top: 70px; /* Aumenta a distância para cima */
+    margin-top: 200px; /* Aumenta a distância para cima */
     margin-bottom: 90px; /* Aumenta a distância para baixo */
 }
 
@@ -444,7 +463,7 @@
 
 .filterIcon2 {
     position: absolute;
-    top: 785px; /* Distância do topo da tela */
+    top: 750px; /* Distância do topo da tela */
     left: 255px; /* Distância da esquerda da tela */
     font-size: 24px; /* Tamanho do ícone */
     cursor: pointer;

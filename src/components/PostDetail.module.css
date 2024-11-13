@@ -7,8 +7,10 @@
   padding: 20px;
   max-width: 300px; /* Largura ajustada para garantir que apenas 3 caibam na tela */
   margin: 30px auto; /* Espaço entre os posts e no topo/baixo da tela */
+  margin-left: 40px; /* Adiciona margem de 20px à esquerda */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
 }
+
 
 .image_container img {
   width: 100%;
