@@ -145,7 +145,7 @@ const Home = () => {
                                 </div>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
+                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
                                         <label key={accessibility} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
@@ -251,7 +251,7 @@ const Home = () => {
                         <div className={styles.filter_bar}>
                             <div className={styles.filter_text}>
                                 <span>Filtrar por Acessibilidade:</span>
-                                {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
+                                {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
                                     <label key={accessibility} className={styles.checkbox_label}>
                                         <input
                                             type="checkbox"
@@ -301,7 +301,7 @@ const Home = () => {
                                 </div>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Autismo", "TDAH", "Surdez", "Cegueira"].map((accessibility) => (
+                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
                                         <label key={accessibility} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
@@ -327,9 +327,6 @@ const Home = () => {
             )}
             
             {/*USUARIO NAO LOGADO*/}
-                    {/* Ícone de Filtro (Dropdown) */}
-                   
-
             {/* Exibição das oficinas filtradas */}
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
