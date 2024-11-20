@@ -560,7 +560,7 @@
 }
 
 .infoPanel {
-    background: linear-gradient(90deg, #0066ff, #00cc99); /* Gradiente azul para verde vibrante */
+    background: linear-gradient(90deg, #022c6a, #770095); /* Gradiente azul para verde vibrante */
     padding: 50px;
     border-radius: 4px;
     text-align: center;
@@ -596,7 +596,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
+    background: radial-gradient(circle, rgba(238, 238, 238, 0.092), transparent 70%);
     pointer-events: none; /* Garante que o brilho não interfira com outros elementos */
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;

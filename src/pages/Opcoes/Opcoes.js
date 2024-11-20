@@ -1,56 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { FaPen } from 'react-icons/fa'; // Ícone de edição
+import { FaPen } from 'react-icons/fa';
 import styles from './Opcoes.module.css';
-import { useAuthValue } from '../../context/AuthContext'; // Para obter o usuário logado
+import { useAuthValue } from '../../context/AuthContext';
 
 const Opcoes = () => {
-  const { user: authUser } = useAuthValue(); // Obtém o usuário logado
+  const { user: authUser } = useAuthValue();
   const [user, setUser] = useState(null);
-  const [isEditingName, setIsEditingName] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
 
-  // Chave única para armazenar o perfil do usuário
   const userProfileKey = `user_${authUser?.uid}`;
 
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  if (authUser) {
-    const savedUser = localStorage.getItem(userProfileKey);
+  useEffect(() => {
+    if (authUser) {
+      const savedUser = localStorage.getItem(userProfileKey);
 
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      } else {
+        const initialProfile = {
+          displayName: authUser.displayName || 'Usuário',
+          email: authUser.email || 'Email não informado',
+          phone: '',
+          about: '',
+          profileImage: null,
+        };
+        setUser(initialProfile);
+        localStorage.setItem(userProfileKey, JSON.stringify(initialProfile));
+      }
+      setLoading(false);
     } else {
-      const initialProfile = {
-        displayName: authUser.displayName || 'Usuário',
-        email: authUser.email || 'Email não informado',
-        phone: '',
-        profileImage: null,
-      };
-      setUser(initialProfile);
-      localStorage.setItem(userProfileKey, JSON.stringify(initialProfile));
+      setLoading(true);
     }
-    setLoading(false);
-  } else {
-    setLoading(true);
+  }, [authUser, userProfileKey]);
+
+  if (loading) {
+    return <p>Carregando perfil...</p>;
   }
-}, [authUser, userProfileKey]);
-
-if (loading) {
-  return <p>Carregando perfil...</p>;
-}
-
 
   const handleSaveProfile = () => {
-    setIsEditingName(false);
+    setIsEditingProfile(false);
     localStorage.setItem(userProfileKey, JSON.stringify(user));
   };
 
-  const handleNameChange = (e) => {
-    setUser((prev) => ({ ...prev, displayName: e.target.value }));
-  };
-
-  const handlePhoneChange = (e) => {
-    setUser((prev) => ({ ...prev, phone: e.target.value }));
+  const handleInputChange = (field, value) => {
+    setUser((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleImageUpload = (e) => {
@@ -75,77 +70,86 @@ if (loading) {
   }
 
   return (
-    <div className={styles.container}>
-      {/* Banner de Capa */}
-      <div className={styles.coverPhoto}>
-        <p>Perfil do Usuário</p>
-      </div>
 
-      {/* Seção de Perfil */}
-      <div className={styles.profileSection}>
-        <div className={styles.profileImageContainer}>
-          <img
-            src={user.profileImage || 'https://via.placeholder.com/150'}
-            alt="Foto de Perfil"
-            className={styles.profileImage}
-          />
-          <label htmlFor="upload-photo" className={styles.editIcon}>
-            <FaPen />
-            <input
-              type="file"
-              id="upload-photo"
-              accept="image/*"
-              onChange={handleImageUpload}
-              style={{ display: 'none' }}
-            />
-          </label>
-        </div>
+<div className={styles.container}>
+  <div className={styles.coverPhoto}></div>
 
-        <div className={styles.profileName}>
-          {isEditingName ? (
-            <div>
-              <input
-                type="text"
-                value={user.displayName}
-                onChange={handleNameChange}
-                className={styles.textInput}
-                placeholder="Digite seu nome"
-              />
-              <input
-                type="tel"
-                value={user.phone}
-                onChange={handlePhoneChange}
-                className={styles.textInput}
-                placeholder="Digite seu telefone"
-              />
-              <button onClick={handleSaveProfile} className={styles.saveButton}>
-                Salvar
-              </button>
-            </div>
-          ) : (
-            <div className={styles.editableField}>
-              <span>{user.displayName || 'Nome do Usuário'}</span>
-              <FaPen
-                className={styles.editIcon}
-                onClick={() => setIsEditingName(true)}
-              />
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Detalhes do Usuário */}
-      <div className={styles.userDetails}>
-        <div className={styles.userDetail}>
-          <strong>Email:</strong>
-          <span>{user.email || 'Email não informado'}</span>
-        </div>
-        <div className={styles.userDetail}>
-          <strong>Telefone:</strong>
-          <span>{user.phone || 'Telefone não informado'}</span>
-        </div>
-      </div>
+  <div className={styles.profileSection}>
+    <div className={styles.profileImageContainer}>
+      <img
+        src={user.profileImage || 'https://via.placeholder.com/150'}
+        alt="Foto de Perfil"
+        className={styles.profileImage}
+      />
+      <label htmlFor="upload-photo" className={styles.editIcon}>
+        <FaPen />
+        <input
+          type="file"
+          id="upload-photo"
+          accept="image/*"
+          onChange={handleImageUpload}
+          style={{ display: 'none' }}
+        />
+      </label>
     </div>
+
+    <h2 className={styles.profileName}>
+      {isEditingProfile ? (
+        <input
+          type="text"
+          value={user.displayName}
+          onChange={(e) => handleInputChange('displayName', e.target.value)}
+          className={styles.textInput}
+          placeholder="Digite seu nome"
+        />
+      ) : (
+        user.displayName || 'Nome do Usuário'
+      )}
+    </h2>
+
+    {isEditingProfile ? (
+      <div>
+        <input
+          type="tel"
+          value={user.phone}
+          onChange={(e) => handleInputChange('phone', e.target.value)}
+          className={styles.textInput}
+          placeholder="Digite seu telefone"
+        />
+        <textarea
+          value={user.about}
+          onChange={(e) => handleInputChange('about', e.target.value)}
+          className={styles.textarea}
+          placeholder="Conte sobre você"
+        />
+        <button onClick={handleSaveProfile} className={styles.saveButton}>
+          Salvar
+        </button>
+      </div>
+    ) : (
+      <>
+        <p className={styles.aboutText}>{user.about || 'Adicione algo sobre você.'}</p>
+        <p className={styles.phoneText}><strong>Telefone:</strong> {user.phone || 'Nenhum telefone adicionado.'}</p>
+      </>
+    )}
+
+    <button
+      className={styles.editButton}
+      onClick={() => setIsEditingProfile(!isEditingProfile)}
+    >
+      {isEditingProfile ? 'Cancelar' : 'Editar'}
+    </button>
+  </div>
+
+  <div className={styles.userDetails}>
+    <div className={styles.userDetail}>
+      <strong>Email:</strong>
+      <span>{user.email || 'Email não informado'}</span>
+    </div>
+  </div>
+</div>
+
+
   );
 };
 
