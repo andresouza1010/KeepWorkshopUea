@@ -52,14 +52,14 @@ label span{
   text-align: left;
 }
 
-input,
+/* input,
 textarea{
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #ffffff;
   padding: .8em;
   background-color: transparent;
-}
+} */
 
 .btn{
   background-color: #1a8918;

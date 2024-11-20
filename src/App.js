@@ -45,40 +45,44 @@ function App() {
     return <p>Carregando...</p>;
   }
 
+
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
         <BrowserRouter>
-          <NavBar 
-            selectedCategories={selectedCategories} 
-            setSelectedCategories={setSelectedCategories} 
-          />
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Home selectedCategories={selectedCategories} />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
-              <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
-              <Route path="/favoritas" element={<Favoritas />} />
-              <Route path="/sugestao" element={<Sugestao />} />
-              <Route path="/perfil" element={<Perfil />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/oficinas/:id" element={<Oficina user={user} />} />
-              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-              <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
-              <Route path="/termos-de-uso" element={<TermosDeUso />} />
-              <Route path="/termos" element={<TermosDeUso />} />
-              <Route path="/Opcoes" element={<Opcoes />} />
-            </Routes>
+          <div className="page-container">
+            <NavBar 
+              selectedCategories={selectedCategories} 
+              setSelectedCategories={setSelectedCategories} 
+            />
+            <div className="content-container">
+              <Routes>
+                <Route path="/" element={<Home selectedCategories={selectedCategories} />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
+                <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
+                <Route path="/favoritas" element={<Favoritas />} />
+                <Route path="/perfil/:authorId" element={<Perfil />} /> {/* Rota dinâmica */}
+                <Route path="/sugestao" element={<Sugestao />} />
+                <Route path="/perfil" element={<Perfil />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/oficinas/:id" element={<Oficina user={user} />} />
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+                <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+                <Route path="/termos-de-uso" element={<TermosDeUso />} />
+                <Route path="/termos" element={<TermosDeUso />} />
+                <Route path="/Opcoes" element={<Opcoes />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </BrowserRouter>
       </AuthProvider>
     </div>
   );
-}
+}  
 
 export default App;

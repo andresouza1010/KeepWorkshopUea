@@ -43,7 +43,7 @@ label {
 }
 
 /* Campos de input */
-input {
+.inputdologin {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -114,10 +114,10 @@ input:focus {
     .login h1 {
         font-size: 1.5em;
     }
-
+/* 
     input {
         padding: 10px;
-    }
+    } */
 
     .buttonContainer {
         margin-top: 20px;
@@ -138,7 +138,7 @@ input:focus {
         font-size: 0.9em;
     }
 
-    input {
+    .logininput {
         padding: 8px;
         font-size: 0.9em;
     }

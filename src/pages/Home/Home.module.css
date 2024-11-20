@@ -530,15 +530,6 @@
     margin-left: 8px;
 }
 
-.infoPanel {
-    background: linear-gradient(90deg, #ff7f00, #ffae42); /* Gradiente laranja */
-    padding: 50px;
-    border-radius: 12px;
-    text-align: center;
-    margin: 30px 0;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 
 .infoPanel h2 {
     font-size: 3em; /* Aumenta o tamanho do título */
@@ -569,23 +560,33 @@
 }
 
 .infoPanel {
-    background: linear-gradient(90deg, #ff7f00, #ffae42); /* Gradiente laranja */
+    background: linear-gradient(90deg, #0066ff, #00cc99); /* Gradiente azul para verde vibrante */
     padding: 50px;
-    border-radius: 12px;
+    border-radius: 4px;
     text-align: center;
     margin: 90px 40px 50px 40px;
-    color: #fff;
+    color: #ffffff; /* Texto branco para contraste */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
     cursor: pointer; /* Adiciona um cursor pointer para indicar interatividade */
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /* Brilho do cursor quando passa por cima */
 .infoPanel:hover {
-    box-shadow: 0 4px 15px rgba(255, 183, 77, 0.7), 0 0 20px rgba(255, 183, 77, 0.6), 0 0 40px rgba(255, 183, 77, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 204, 153, 0.7), 0 0 20px rgba(0, 102, 255, 0.6), 0 0 40px rgba(0, 204, 153, 0.5);
+    transform: scale(1.05); /* Leve aumento para destacar o painel ao passar o mouse */
 }
+
+/* Responsividade (opcional para ajustar margens em telas menores) */
+@media (max-width: 768px) {
+    .infoPanel {
+        margin: 50px 20px 30px 20px; /* Reduz margens para telas menores */
+    }
+}
+
+
 
 /* Efeito de animação de brilho no cursor */
 .infoPanel::before {
@@ -595,7 +596,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 183, 77, 0.5), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
     pointer-events: none; /* Garante que o brilho não interfira com outros elementos */
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;

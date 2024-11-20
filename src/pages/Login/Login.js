@@ -34,6 +34,8 @@ const Login = () => {
         <label>
           <span>E-mail:</span>
           <input 
+          className='inputdologin'
+
             type="email"
             name="email"
             required
@@ -45,6 +47,7 @@ const Login = () => {
         <label>
           <span>Senha:</span>
           <input 
+           className="inputdologin"
             type="password"
             name="password"
             required

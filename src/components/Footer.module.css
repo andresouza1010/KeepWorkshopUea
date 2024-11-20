@@ -1,47 +1,39 @@
-/* Footer.module.css */
-
+/* Estilo do Footer */
 .footer {
-  background-color: #000000;
-  color: #fdfdfd;
-  padding: 1px 0;
-  font-family: Poppins;
+  background-color: #ebebeb78; /* Fundo preto */
+  color: #ff6a00; /* Texto laranja */
+  padding: 20px 0;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
+  
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
-.info {
+.info,
+.links {
   flex: 1;
-  padding: 10px;
+  margin: 10px;
+  text-align: center;
 }
 
 .title {
-  font-size: 1.5em;
-  color: #ff6a00;
-  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .copyRight {
-  font-size: 0.9em;
-  color: #ccc;
-}
-
-.links {
-  flex: 1;
-  padding: 10px;
-}
-
-.linkTitle {
-  font-size: 1.2em;
-  color: #ff6a00;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: #888; /* Texto secundário mais discreto */
+  margin-top: 10px;
 }
 
 .links ul {
@@ -50,26 +42,32 @@
   margin: 0;
 }
 
-.link {
-  color: #ff6a00;
+.link,
+.linkButton {
+  color: #ff6a00; /* Cor laranja */
+  font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.3s;
-}
-
-.link:hover {
-  color: #e65c00;
-}
-
-.linkButton {
-  background: none;
-  border: none;
-  color: #ff6a00;
-  font-size: 1em;
   cursor: pointer;
+  border: none;
+  background: none;
   padding: 0;
-  transition: color 0.3s;
 }
 
+.link:hover,
 .linkButton:hover {
-  color: #e65c00;
+  color: #e65c00; /* Laranja mais escuro ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info,
+  .links {
+    margin: 10px 0;
+  }
 }

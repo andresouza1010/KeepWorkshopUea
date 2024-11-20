@@ -130,13 +130,23 @@ const Oficina = () => {
                         <p>{oficina.descricaoApresentacao}</p>
                     </div>
 
+                    
                     {/* Acessibilidade */}
-                    {oficina.accessibility === 'sim' && (
+                    {oficina.hasAccessibility && oficina.accessibilityOptions && oficina.accessibilityOptions.length > 0 && (
                         <div className={styles.accessibilitySection}>
                             <h3 className={styles.accessibilityTitle}>Elementos de Acessibilidade</h3>
-                            <p>{oficina.descriptionAcessivel}</p>
+                            <ul className={styles.accessibilityList}>
+                                {oficina.accessibilityOptions.map((option, index) => (
+                                    <li key={index}>
+                                        <strong>{option}:</strong>{" "}
+                                        {oficina.accessibilityDescriptions?.[option] || "Descrição não fornecida"}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     )}
+
+
 
                     {/* Nome ou Rede Social do Autor */}
                     <div className={styles.authorInfo}>

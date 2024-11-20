@@ -22,6 +22,9 @@ const CreateOficina = () => {
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [accessibilityDescriptions, setAccessibilityDescriptions] = useState({});
+
+  const [accessibilityOptions, setAccessibilityOptions] = useState([]);
   const [socialLink, setSocialLink] = useState(""); // Novo campo para link de rede social
 
   const { user } = useAuthValue();
@@ -62,6 +65,21 @@ const CreateOficina = () => {
     });
   };
 
+  const handleAccessibilityOptions = (e) => {
+    const { value, checked } = e.target;
+    setAccessibilityOptions((prev) => 
+      checked ? [...prev, value] : prev.filter((option) => option !== value)
+    );
+  };
+  
+  const handleAccessibilityDescriptionChange = (e, accessibility) => {
+    const { value } = e.target;
+    setAccessibilityDescriptions((prev) => ({
+      ...prev,
+      [accessibility]: value,
+    }));
+  };
+  
   
 
   const handleRemoveImage = (section, index) => {
@@ -109,6 +127,8 @@ const CreateOficina = () => {
     setFormError("");
     setIsSubmitting(true);
 
+    console.log("User Display Name:", user.displayName);
+
     if (!title || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       setIsSubmitting(false);
@@ -135,6 +155,8 @@ const CreateOficina = () => {
       createdBy: user.displayName,
       hasAccessibility, 
       accessibilityDescription, 
+      accessibilityOptions,
+      accessibilityDescriptions,
       socialLink // Adiciona o link de rede social ao documento
     });
 
@@ -400,46 +422,71 @@ const CreateOficina = () => {
   </label>
 </section>
 
+    {/* Acessibilidade */}
+<label>
+  <span>Possui recursos de acessibilidade?</span>
+  <div>
+    <input 
+          className="inputCheck"
+          type="radio" 
+          value="yes" 
+          checked={hasAccessibility === true} 
+          onChange={() => setHasAccessibility(true)}
+        />
+    <label> Sim
+    </label>
+    <input 
+        type="radio" 
+        value="no" 
+        checked={hasAccessibility === false} 
+        onChange={() => setHasAccessibility(false)}
+      />
+    <label>
+       Não
+    </label>
+  </div>
+</label>
 
-        {/* Acessibilidade */}
-        <label>
-          <span>Possui recursos de acessibilidade?</span>
-          <div>
-            <label>
-              <input 
-                type="radio" 
-                value="yes" 
-                checked={hasAccessibility === true} 
-                onChange={() => setHasAccessibility(true)}
-              /> Sim
-            </label>
-            <label>
-              <input 
-                type="radio" 
-                value="no" 
-                checked={hasAccessibility === false} 
-                onChange={() => setHasAccessibility(false)}
-              /> Não
-            </label>
-          </div>
+{hasAccessibility && (
+  <div>
+    <label>
+      <span>Quais recursos de acessibilidade estão disponíveis?</span>
+      <div className="accessibility-container">
+  <div className="accessibility-grid">
+    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro"].map((accessibility) => (
+      <div key={accessibility} className="accessibility-item">
+        <label className="accessibility-label">
+          {accessibility}
         </label>
-
-        {hasAccessibility && (
-          <label>
-            <span>Descrição de acessibilidade</span>
-            <textarea 
-              placeholder="Descreva os recursos de acessibilidade da oficina" 
-              onChange={(e) => setAccessibilityDescription(e.target.value)}
-              value={accessibilityDescription}
-            />
-          </label>
+        <input className="accessibility-checkbox"
+            type="checkbox"
+            value={accessibility}
+            onChange={(e) => handleAccessibilityOptions(e)}
+          />
+        {accessibilityOptions.includes(accessibility) && (
+          <textarea
+            placeholder={`Descreva como a oficina atende a: ${accessibility}`}
+            value={accessibilityDescriptions[accessibility] || ""}
+            onChange={(e) => handleAccessibilityDescriptionChange(e, accessibility)}
+            className="accessibility-textarea"
+          />
         )}
+      </div>
+    ))}
+  </div>
+</div>
+
+    </label>
+  </div>
+)}
+
 
 <label>
           <span>Link para Redes Sociais (Divulgação)</span>
           <input 
+            className="accessibility-textarea"
             name="socialLink" 
-            placeholder="Seu nome ou a sua rede social para divulgação(ex: https://instagram.com/suaoficina)" 
+            placeholder="Seu nome ou a sua rede social para divulgação" 
             onChange={(e) => setSocialLink(e.target.value)}
             value={socialLink}
           />

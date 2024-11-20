@@ -36,10 +36,10 @@ const NavBar = () => {
 
       <form onSubmit={handleSearch} className={styles.search_form}>
         <input
+          className={styles.search_input}
           type="text"
           placeholder="Busque a sua Oficina..."
           onChange={(e) => setQuery(e.target.value)}
-          className={styles.search_input}
         />
         <button className={styles.search_button}>
           <i className="fa fa-search"></i>
