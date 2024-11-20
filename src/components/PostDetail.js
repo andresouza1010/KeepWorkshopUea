@@ -2,14 +2,19 @@ import { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícone de coração preenchido e contorno
 import styles from './PostDetail.module.css';
 import { Link } from 'react-router-dom';
+import { useAuthValue } from "../context/AuthContext"; // Para obter o usuário logado
 
 const PostDetail = ({ oficina }) => {
+  const { user } = useAuthValue(); // Obtenha o usuário logado
   const [isFavorited, setIsFavorited] = useState(false);
+
+  // Chave única para os favoritos do usuário
+  const favoritesKey = `favoritos_${user?.uid}`;
 
   // Função para adicionar/remover dos favoritos
   const handleFavorite = () => {
-    let favorites = JSON.parse(localStorage.getItem("favoritas")) || [];
-    
+    let favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
+
     if (isFavorited) {
       // Se já está favoritado, remove dos favoritos
       favorites = favorites.filter(fav => fav.id !== oficina.id);
@@ -19,16 +24,18 @@ const PostDetail = ({ oficina }) => {
     }
 
     // Atualiza o localStorage e o estado local
-    localStorage.setItem("favoritas", JSON.stringify(favorites));
+    localStorage.setItem(favoritesKey, JSON.stringify(favorites));
     setIsFavorited(!isFavorited); // Alterna o estado de favorito
   };
 
   // Verifica se a oficina está nos favoritos ao carregar o componente
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favoritas")) || [];
-    const isFavorite = favorites.some(fav => fav.id === oficina.id);
-    setIsFavorited(isFavorite);
-  }, [oficina.id]);
+    if (user) {
+      const favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
+      const isFavorite = favorites.some(fav => fav.id === oficina.id);
+      setIsFavorited(isFavorite);
+    }
+  }, [favoritesKey, oficina.id, user]);
 
   return (
     <div className={styles.oficina_detail}>
@@ -54,10 +61,10 @@ const PostDetail = ({ oficina }) => {
             : oficina.description}
         </p>
       )}
-     <div className={styles.authorContainer}>
-  <span className={styles.authorLabel}>Autor(a):</span>
-  <span className={styles.authorName}>{oficina?.socialLink}</span>
-</div>
+      <div className={styles.authorContainer}>
+        <span className={styles.authorLabel}>Autor(a):</span>
+        <span className={styles.authorName}>{oficina?.socialLink}</span>
+      </div>
 
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
       <p className={styles.duration}>Duração: {oficina?.duration} horas</p>

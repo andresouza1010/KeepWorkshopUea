@@ -7,8 +7,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState(""); // Novo estado para telefone
-  const [profileImage, setProfileImage] = useState(null); // Novo estado para a imagem de perfil
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [error, setError] = useState("");
 
@@ -33,14 +31,21 @@ const Register = () => {
     const user = {
       displayName,
       email,
-      password,
-      phone,
-      profileImage
     };
 
-    localStorage.setItem("user", JSON.stringify(user)); // Salva o usuário no localStorage
-    const res = await createUser(user);
-    console.log(res);
+    // Chamada para criar o usuário no sistema de autenticação
+    const res = await createUser({ email, password });
+
+    if (res && res.user) {
+      // Salvando o perfil do usuário no localStorage com chave única
+      const userProfileKey = `user_${res.user.uid}`;
+      localStorage.setItem(
+        userProfileKey,
+        JSON.stringify({ ...user, uid: res.user.uid })
+      );
+    } else {
+      setError("Erro ao criar conta. Tente novamente.");
+    }
   };
 
   useEffect(() => {
@@ -49,17 +54,7 @@ const Register = () => {
     }
   }, [authError]);
 
-  // Manipulador para o upload da imagem de perfil
-  const handleProfileImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result); // Armazena a imagem como base64
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+
 
   return (
     <div className={styles.register}>
@@ -68,7 +63,7 @@ const Register = () => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <label>
           <span>Nome:</span>
-          <input 
+          <input
             type="text"
             name="displayName"
             required
@@ -79,7 +74,7 @@ const Register = () => {
         </label>
         <label>
           <span>E-mail:</span>
-          <input 
+          <input
             type="email"
             name="email"
             required
@@ -88,35 +83,13 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <label>
-          <span>Telefone:</span>
-          <input 
-            type="tel"
-            name="phone"
-            required
-            placeholder="Digite seu número de telefone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </label>
+    
+
+        
 
         <label>
-  <span>Foto de Perfil - Opcional:</span>
-  <label className={styles["label-photo-upload"]}>
-    Escolher Foto
-    <input 
-      type="file"
-      name="profileImage"
-      accept="image/*"
-      onChange={handleProfileImageChange}
-    />
-  </label>
-  {profileImage && <img src={profileImage} alt="Pré-visualização" className={styles["profile-image-preview"]} />}
-</label>
-       
-        <label>
           <span>Senha:</span>
-          <input 
+          <input
             type="password"
             name="password"
             required
@@ -127,7 +100,7 @@ const Register = () => {
         </label>
         <label>
           <span>Confirmação de senha:</span>
-          <input 
+          <input
             type="password"
             name="confirmPassword"
             required
@@ -136,7 +109,7 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
-        
+
         <div className={styles.terms}>
           <label>
             <input

@@ -1,20 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { FaPen } from 'react-icons/fa'; // Ícone de edição
 import styles from './Opcoes.module.css';
+import { useAuthValue } from '../../context/AuthContext'; // Para obter o usuário logado
 
 const Opcoes = () => {
+  const { user: authUser } = useAuthValue(); // Obtém o usuário logado
   const [user, setUser] = useState(null);
   const [isEditingName, setIsEditingName] = useState(false);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
+  // Chave única para armazenar o perfil do usuário
+  const userProfileKey = `user_${authUser?.uid}`;
+
+  const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  if (authUser) {
+    const savedUser = localStorage.getItem(userProfileKey);
+
     if (savedUser) {
       setUser(JSON.parse(savedUser));
+    } else {
+      const initialProfile = {
+        displayName: authUser.displayName || 'Usuário',
+        email: authUser.email || 'Email não informado',
+        phone: '',
+        profileImage: null,
+      };
+      setUser(initialProfile);
+      localStorage.setItem(userProfileKey, JSON.stringify(initialProfile));
     }
-  }, []);
+    setLoading(false);
+  } else {
+    setLoading(true);
+  }
+}, [authUser, userProfileKey]);
+
+if (loading) {
+  return <p>Carregando perfil...</p>;
+}
+
+
+  const handleSaveProfile = () => {
+    setIsEditingName(false);
+    localStorage.setItem(userProfileKey, JSON.stringify(user));
+  };
 
   const handleNameChange = (e) => {
     setUser((prev) => ({ ...prev, displayName: e.target.value }));
+  };
+
+  const handlePhoneChange = (e) => {
+    setUser((prev) => ({ ...prev, phone: e.target.value }));
   };
 
   const handleImageUpload = (e) => {
@@ -23,20 +59,19 @@ const Opcoes = () => {
     reader.onloadend = () => {
       const updatedUser = { ...user, profileImage: reader.result };
       setUser(updatedUser);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      localStorage.setItem(userProfileKey, JSON.stringify(updatedUser));
     };
     if (file) {
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSaveName = () => {
-    setIsEditingName(false);
-    localStorage.setItem("user", JSON.stringify(user));
-  };
+  if (!authUser) {
+    return <p className={styles.alert}>Nenhum usuário autenticado. Faça login para acessar o perfil.</p>;
+  }
 
   if (!user) {
-    return <p className={styles.alert}>Usuário não encontrado. Por favor, faça o cadastro.</p>;
+    return <p className={styles.alert}>Carregando perfil...</p>;
   }
 
   return (
@@ -74,8 +109,16 @@ const Opcoes = () => {
                 value={user.displayName}
                 onChange={handleNameChange}
                 className={styles.textInput}
+                placeholder="Digite seu nome"
               />
-              <button onClick={handleSaveName} className={styles.saveButton}>
+              <input
+                type="tel"
+                value={user.phone}
+                onChange={handlePhoneChange}
+                className={styles.textInput}
+                placeholder="Digite seu telefone"
+              />
+              <button onClick={handleSaveProfile} className={styles.saveButton}>
                 Salvar
               </button>
             </div>
