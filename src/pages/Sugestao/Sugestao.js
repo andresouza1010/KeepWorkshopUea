@@ -476,7 +476,7 @@ const Sugestao = () => {
 
 
 <label>
-          <span>Link para Redes Sociais (Divulgação)</span>
+          <span>Autor(a) para divulgação</span>
           <input 
             className="accessibility-textarea"
             name="socialLink" 

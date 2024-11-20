@@ -34,21 +34,7 @@ const Favoritas = () => {
               />
               <h2>{oficina.title}</h2>
               <p>{oficina.description}</p>
-             
-              {oficina.socialLink && (
-                <p>
-                  Autor:{" "}
-                  <a 
-                    href={oficina.socialLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={styles.social_link}
-                  >
-                    {oficina.socialLink}
-                  </a>
-                </p>
-              )}
-
+              <p>Autor: {oficina.createdBy || "Autor desconhecido"}</p>
               <p>Público-alvo: {oficina.targetAudience}</p>
               <p>Duração: {oficina.duration} horas</p>
               

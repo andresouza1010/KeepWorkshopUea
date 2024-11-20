@@ -62,7 +62,6 @@ function App() {
                 <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
                 <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
                 <Route path="/favoritas" element={<Favoritas />} />
-                <Route path="/perfil/:authorId" element={<Perfil />} /> {/* Rota dinâmica */}
                 <Route path="/sugestao" element={<Sugestao />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/search" element={<Search />} />

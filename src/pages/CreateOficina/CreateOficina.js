@@ -127,8 +127,6 @@ const CreateOficina = () => {
     setFormError("");
     setIsSubmitting(true);
 
-    console.log("User Display Name:", user.displayName);
-
     if (!title || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       setIsSubmitting(false);
@@ -482,7 +480,7 @@ const CreateOficina = () => {
 
 
 <label>
-          <span>Link para Redes Sociais (Divulgação)</span>
+          <span>Autor(a) para divulgação</span>
           <input 
             className="accessibility-textarea"
             name="socialLink" 
