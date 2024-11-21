@@ -43,7 +43,7 @@ const PostDetailUsuarioNaoLogado = ({ oficina }) => {
       <div className={styles.image_container}>
         <img src={oficina?.image?.[0]} alt={oficina?.title} />
         <span className={styles.tag}>{oficina?.category}</span>
-
+  
         {/* Exibe o botão de favoritar somente se o usuário estiver logado */}
         {isLoggedIn && (
           <button
@@ -55,8 +55,17 @@ const PostDetailUsuarioNaoLogado = ({ oficina }) => {
           </button>
         )}
       </div>
-
+  
       <h2>{oficina?.title}</h2>
+  
+      {/* Adiciona o autor logo abaixo do título */}
+      <p className={styles.createdby}>
+        Autor(a): 
+        <Link to={`/perfil/${oficina.uid}`} className={styles.authorLink}>
+          {oficina?.createdBy || 'Autor desconhecido'}
+        </Link>
+      </p>
+  
       {oficina?.description && (
         <p className={styles.brief_description}>
           {oficina.description.length > 100 
@@ -64,12 +73,10 @@ const PostDetailUsuarioNaoLogado = ({ oficina }) => {
             : oficina.description}
         </p>
       )}
-      
-      
-      <p className={styles.createdby}>Autor(a): {oficina?.socialLink}</p>
+  
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
       <p className={styles.duration}>Duração: {oficina?.duration} horas</p>
-      
+  
       <div className={styles.button_container}>
         <Link to={`/oficinas/${oficina?.id}`} className="btn btn-outline">
           Acessar
@@ -77,6 +84,8 @@ const PostDetailUsuarioNaoLogado = ({ oficina }) => {
       </div>
     </div>
   );
+  
+
 };
 
 export default PostDetailUsuarioNaoLogado;

@@ -24,6 +24,8 @@ import Search from "./pages/Search/Search";
 import Oficina from "./pages/Oficina/Oficina";
 import Sugestao from "./pages/Sugestao/Sugestao";
 import TermosDeUso from "./pages/TermosDeUso/TermosDeUso"; // Novo componente de Termos de Uso
+import AuthorProfile from "./pages/AuthorProfile/AuthorProfile"; // Certifique-se de que o caminho está correto
+
 
 // components
 import NavBar from './components/NavBar';
@@ -74,6 +76,8 @@ function App() {
                 <Route path="/termos-de-uso" element={<TermosDeUso />} />
                 <Route path="/termos" element={<TermosDeUso />} />
                 <Route path="/Opcoes" element={<Opcoes />} />
+                <Route path="/perfil/:uid" element={<AuthorProfile />} />
+
               </Routes>
             </div>
             <Footer />

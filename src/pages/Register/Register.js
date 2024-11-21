@@ -28,23 +28,24 @@ const Register = () => {
     }
 
     // Preparação dos dados do usuário
-    const user = {
+    const userData = {
       displayName,
       email,
+      password,
     };
 
-    // Chamada para criar o usuário no sistema de autenticação
-    const res = await createUser({ email, password });
+    // Chamada para criar o usuário no sistema de autenticação e salvá-lo no Firestore
+    try {
+      const res = await createUser(userData);
 
-    if (res && res.user) {
-      // Salvando o perfil do usuário no localStorage com chave única
-      const userProfileKey = `user_${res.user.uid}`;
-      localStorage.setItem(
-        userProfileKey,
-        JSON.stringify({ ...user, uid: res.user.uid })
-      );
-    } else {
-      setError("Erro ao criar conta. Tente novamente.");
+      if (res) {
+        console.log("Usuário criado com sucesso e salvo no Firestore!");
+      } else {
+        setError("Erro ao criar conta. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro durante o registro:", error);
+      setError("Ocorreu um erro. Tente novamente mais tarde.");
     }
   };
 
@@ -53,8 +54,6 @@ const Register = () => {
       setError(authError);
     }
   }, [authError]);
-
-
 
   return (
     <div className={styles.register}>
@@ -83,10 +82,6 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-    
-
-        
-
         <label>
           <span>Senha:</span>
           <input

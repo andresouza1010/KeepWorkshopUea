@@ -13,6 +13,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
     const [cancelled, setCancelled] = useState(false);
+    
 
     useEffect(() => {
         async function loadData() {

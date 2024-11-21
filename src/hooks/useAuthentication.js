@@ -2,6 +2,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, up
 import { useState, useEffect } from 'react';
 import { db } from '../firebase/config'; // Importar db do config.js
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Importar o módulo de armazenamento
+import { setDoc, doc } from 'firebase/firestore'; // Importa as funções do Firestore
 
 const storage = getStorage(); // Inicializar o armazenamento
 
@@ -50,43 +51,26 @@ export const useAuthentication = () => {
 
   // Função para criar usuário e salvar o displayName e a imagem do perfil
   const createUser = async (data) => {
-    checkIfIsCancelled();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const { user } = await createUserWithEmailAndPassword(auth, data.email, data.password);
-
-      // Fazer upload da imagem de perfil e obter a URL
-      const photoURL = await uploadProfileImage(data.profileImage);
-
-      await updateProfile(user, {
-        displayName: data.displayName,
-        photoURL: photoURL // Atualizar com a URL da imagem
-      });
-
-      // Salvar o número de telefone no Firestore
-      await db.collection('users').doc(user.uid).set({
-        phone: data.phone // Salvar o telefone
-      });
-
-      setLoading(false);
-      return user;
-    } catch (error) {
-      let systemErrorMessage;
-
-      if (error.message.includes("Password")) {
-        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres!";
-      } else if (error.message.includes("email-already")) {
-        systemErrorMessage = "E-mail já cadastrado.";
-      } else {
-        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde!";
-      }
-
-      setLoading(false);
-      setError(systemErrorMessage);
-    }
+    const { user } = await createUserWithEmailAndPassword(auth, data.email, data.password);
+  
+    // Atualiza o displayName no Authentication
+    await updateProfile(user, {
+      displayName: data.displayName,
+    });
+  
+    // Salva os dados do usuário no Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      uid: user.uid,
+      displayName: data.displayName,
+      email: user.email,
+      phone: "",
+      about: "",
+      profileImage: "",
+    });
+  
+    return user;
   };
+  
 
   // Função para validar a senha antiga
   const validateOldPassword = async (email, oldPassword) => {
