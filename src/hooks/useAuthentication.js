@@ -1,10 +1,16 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut, updatePassword, sendPasswordResetEmail } from 'firebase/auth';
-import { useState, useEffect } from 'react';
-import { db } from '../firebase/config'; // Importar db do config.js
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Importar o módulo de armazenamento
-import { setDoc, doc } from 'firebase/firestore'; // Importa as funções do Firestore
-
-const storage = getStorage(); // Inicializar o armazenamento
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  signOut,
+  updatePassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { useState, useEffect } from "react";
+import { db, storage } from "../firebase/config"; // Inclui o storage do config.js
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Importar o módulo de armazenamento
+import { setDoc, doc } from "firebase/firestore"; // Importa as funções do Firestore
 
 export const useAuthentication = () => {
   const [error, setError] = useState(null);
@@ -13,9 +19,10 @@ export const useAuthentication = () => {
 
   const auth = getAuth();
 
-  function checkIfIsCancelled() {
+  const checkIfIsCancelled = () => {
     if (cancelled) return;
-  }
+  };
+
   // Função para enviar e-mail de redefinição de senha
   const resetPassword = async (email) => {
     checkIfIsCancelled();
@@ -29,7 +36,6 @@ export const useAuthentication = () => {
     } catch (error) {
       let systemErrorMessage;
 
-
       if (error.message.includes("user-not-found")) {
         systemErrorMessage = "Esse e-mail não está cadastrado.";
       } else {
@@ -38,39 +44,64 @@ export const useAuthentication = () => {
 
       setLoading(false);
       setError(systemErrorMessage);
-      return null; // Retorna null se houver erro
+      return null;
     }
-  };
-
-  // Função para fazer upload da imagem de perfil
-  const uploadProfileImage = async (image) => {
-    const storageRef = ref(storage, `profileImages/${image.name}`);
-    await uploadBytes(storageRef, image);
-    return await getDownloadURL(storageRef); // Retorna a URL da imagem
   };
 
   // Função para criar usuário e salvar o displayName e a imagem do perfil
   const createUser = async (data) => {
-    const { user } = await createUserWithEmailAndPassword(auth, data.email, data.password);
-  
-    // Atualiza o displayName no Authentication
-    await updateProfile(user, {
-      displayName: data.displayName,
-    });
-  
-    // Salva os dados do usuário no Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      uid: user.uid,
-      displayName: data.displayName,
-      email: user.email,
-      phone: "",
-      about: "",
-      profileImage: "",
-    });
-  
-    return user;
+    checkIfIsCancelled();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+
+      let photoURL = "";
+      if (data.profileImage) {
+        // Faça o upload da imagem para o Firebase Storage
+        const storageRef = ref(storage, `profileImages/${user.uid}`);
+        const snapshot = await uploadBytes(storageRef, data.profileImage);
+        photoURL = await getDownloadURL(snapshot.ref);
+      }
+
+      // Atualize o perfil do Authentication
+      await updateProfile(user, {
+        displayName: data.displayName,
+        photoURL,
+      });
+
+      // Salve os dados no Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        displayName: data.displayName,
+        email: user.email,
+        phone: "",
+        about: "",
+        profileImage: photoURL,
+      });
+
+      setLoading(false);
+      return user;
+    } catch (error) {
+      let systemErrorMessage;
+
+      if (error.message.includes("Password")) {
+        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres!";
+      } else if (error.message.includes("email-already")) {
+        systemErrorMessage = "E-mail já cadastrado.";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde!";
+      }
+
+      setLoading(false);
+      setError(systemErrorMessage);
+    }
   };
-  
 
   // Função para validar a senha antiga
   const validateOldPassword = async (email, oldPassword) => {
@@ -82,16 +113,16 @@ export const useAuthentication = () => {
       // Tenta fazer login com a senha antiga
       await signInWithEmailAndPassword(auth, email, oldPassword);
       setLoading(false);
-      return true; // Senha antiga correta
+      return true;
     } catch (error) {
       setLoading(false);
       setError("Senha antiga incorreta.");
-      return false; // Senha antiga incorreta
+      return false;
     }
   };
 
   // Função para atualizar a senha
-  const changePassword = async (email, newPassword) => {
+  const changePassword = async (newPassword) => {
     checkIfIsCancelled();
     setLoading(true);
     setError(null);
@@ -160,8 +191,8 @@ export const useAuthentication = () => {
     loading,
     logout,
     login,
-    validateOldPassword,  // Retorna a função de validação da senha antiga
+    validateOldPassword,
     changePassword,
-    resetPassword,       // Retorna a função para alterar a senha
+    resetPassword,
   };
 };

@@ -9,6 +9,8 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [error, setError] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+
 
   const { createUser, error: authError, loading } = useAuthentication();
 
@@ -32,6 +34,7 @@ const Register = () => {
       displayName,
       email,
       password,
+      profileImage, // Inclua a imagem no envio
     };
 
     // Chamada para criar o usuário no sistema de autenticação e salvá-lo no Firestore
@@ -82,6 +85,15 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
+        <label>
+  <span>Foto de perfil</span>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setProfileImage(e.target.files[0])}
+  />
+</label>
+
         <label>
           <span>Senha:</span>
           <input
