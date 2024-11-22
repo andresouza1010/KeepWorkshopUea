@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícones de coração preenchido e contorno
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import styles from './PostDetail.module.css';
 import { Link } from 'react-router-dom';
 import { useAuthValue } from "../context/AuthContext"; // Para obter o usuário logado
@@ -9,22 +9,27 @@ import { db } from "../firebase/config";
 const PostDetail = ({ oficina }) => {
   const { user } = useAuthValue(); // Obtenha o usuário logado
   const [isFavorited, setIsFavorited] = useState(false);
+  const [loadingFavorite, setLoadingFavorite] = useState(false);
 
   // Referência do documento de favoritos no Firestore
   const favoritesDocRef = user ? doc(db, "favorites", user.uid) : null;
 
   // Função para adicionar/remover dos favoritos
   const handleFavorite = async () => {
-    if (!favoritesDocRef) {
-      console.error("Referência do documento de favoritos não encontrada");
+    if (!user) {
+      alert("Você precisa estar logado para favoritar uma oficina.");
       return;
     }
 
+    if (!favoritesDocRef) return;
+
+    setLoadingFavorite(true); // Indica carregamento
+
     try {
-      // Verifique se o documento existe antes de atualizar
       const docSnapshot = await getDoc(favoritesDocRef);
+
+      // Cria o documento se não existir
       if (!docSnapshot.exists()) {
-        console.log("Criando documento de favoritos para o usuário...");
         await setDoc(favoritesDocRef, { favorites: [] });
       }
 
@@ -42,16 +47,16 @@ const PostDetail = ({ oficina }) => {
       setIsFavorited(!isFavorited); // Alterna o estado de favorito
     } catch (error) {
       console.error("Erro ao atualizar favoritos:", error);
+      alert("Ocorreu um erro ao favoritar a oficina.");
+    } finally {
+      setLoadingFavorite(false); // Finaliza carregamento
     }
   };
 
   // Verifica se a oficina está nos favoritos ao carregar o componente
   useEffect(() => {
     const checkFavoriteStatus = async () => {
-      if (!favoritesDocRef) {
-        console.error("Referência do documento de favoritos não encontrada");
-        return;
-      }
+      if (!favoritesDocRef) return;
 
       try {
         const docSnapshot = await getDoc(favoritesDocRef);
@@ -79,6 +84,7 @@ const PostDetail = ({ oficina }) => {
           className={`${styles.favorite_icon} ${isFavorited ? styles.favorited : ''}`}
           onClick={handleFavorite}
           aria-label={isFavorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+          disabled={loadingFavorite}
         >
           {isFavorited ? <FaHeart /> : <FaRegHeart />}
         </button>

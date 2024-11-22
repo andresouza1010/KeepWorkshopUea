@@ -2,40 +2,67 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Favoritas.module.css';
 import { FaTrash } from 'react-icons/fa';
-import { useAuthValue } from '../../context/AuthContext'; // Para obter o usuário logado
+import { useAuthValue } from '../../context/AuthContext';
+import { db } from '../../firebase/config';
+import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 const Favoritas = () => {
   const { user } = useAuthValue(); // Obtenha o usuário logado
   const [favoritas, setFavoritas] = useState([]);
 
-  // Chave única para armazenar favoritos por usuário
-  const favoritesKey = `favoritos_${user?.uid}`;
+  // Referência ao documento de favoritos do Firestore
+  const favoritesDocRef = user ? doc(db, "favorites", user.uid) : null;
 
-  // Carrega as oficinas favoritas do localStorage ao montar o componente
+  // Carrega as oficinas favoritas do Firestore ao montar o componente
   useEffect(() => {
-    if (user) {
-      const favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
-      setFavoritas(favorites);
+    const fetchFavorites = async () => {
+      if (favoritesDocRef) {
+        try {
+          const docSnapshot = await getDoc(favoritesDocRef);
+          if (docSnapshot.exists()) {
+            setFavoritas(docSnapshot.data().favorites || []);
+          } else {
+            console.log("Documento de favoritos não encontrado, criando um novo...");
+            await updateDoc(favoritesDocRef, { favorites: [] });
+          }
+        } catch (error) {
+          console.error("Erro ao buscar favoritos do Firestore:", error);
+        }
+      }
+    };
+
+    fetchFavorites();
+  }, [favoritesDocRef]);
+
+  // Função para adicionar uma oficina aos favoritos
+  const handleAddFavorite = async (oficina) => {
+    if (favoritesDocRef) {
+      try {
+        await updateDoc(favoritesDocRef, {
+          favorites: arrayUnion(oficina),
+        });
+        setFavoritas((prev) => [...prev, oficina]);
+      } catch (error) {
+        console.error("Erro ao adicionar favorito:", error);
+      }
     }
-  }, [favoritesKey, user]);
-
-  // eslint-disable-next-line no-unused-vars
-  const handleAddFavorite = (oficina) => {
-  const isAlreadyFavorited = favoritas.some((fav) => fav.id === oficina.id);
-
-  if (!isAlreadyFavorited) {
-    const updatedFavorites = [...favoritas, oficina];
-    localStorage.setItem(favoritesKey, JSON.stringify(updatedFavorites));
-    setFavoritas(updatedFavorites);
-  }
-};
-
+  };
 
   // Função para excluir uma oficina dos favoritos
-  const handleDelete = (id) => {
-    const updatedFavorites = favoritas.filter((oficina) => oficina.id !== id);
-    localStorage.setItem(favoritesKey, JSON.stringify(updatedFavorites));
-    setFavoritas(updatedFavorites); // Atualiza o estado
+  const handleDelete = async (id) => {
+    if (favoritesDocRef) {
+      const oficinaToRemove = favoritas.find((oficina) => oficina.id === id);
+      if (oficinaToRemove) {
+        try {
+          await updateDoc(favoritesDocRef, {
+            favorites: arrayRemove(oficinaToRemove),
+          });
+          setFavoritas((prev) => prev.filter((oficina) => oficina.id !== id));
+        } catch (error) {
+          console.error("Erro ao remover favorito:", error);
+        }
+      }
+    }
   };
 
   return (
