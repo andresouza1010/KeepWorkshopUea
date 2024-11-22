@@ -1,22 +1,11 @@
 // Importa o módulo CSS para estilização do componente Home
 import styles from "./Home.module.css";
 import { useNavigate } from 'react-router-dom';
-// Importa o componente Link para navegação entre rotas
 import { Link } from "react-router-dom";
-
-// Importa o hook useState para gerenciar estados locais
 import { useState } from "react";
-
-// Importa o hook customizado para buscar documentos da coleção "oficinas"
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
-
-// Importa o componente PostDetail para exibir detalhes de cada oficina
 import PostDetail from "../../components/PostDetail";
-
-// Importa o hook customizado para autenticação do usuário
 import { useAuthentication } from "../../hooks/useAuthentication";
-
-// Importa estilos de Font Awesome
 import 'font-awesome/css/font-awesome.min.css';
 
 // Importa imagens utilizadas no componente
@@ -79,12 +68,7 @@ const Home = () => {
         );
     };
 
-    // Filtra oficinas com base nos critérios de categoria, idade e acessibilidade selecionados
-    const filteredOficinas = oficinas?.filter(oficina =>
-        (selectedCategories.length === 0 || selectedCategories.includes(oficina.category)) &&
-        (selectedAges.length === 0 || selectedAges.includes(oficina.targetAudience)) &&
-        (selectedAccessibility.length === 0 || selectedAccessibility.some(a => oficina.selectedOptions?.[a.toLowerCase()]))
-    ) || [];
+  
 
     // Alterna a visibilidade do filtro de categorias
     const toggleCategoryFilter = () => {
@@ -100,10 +84,40 @@ const Home = () => {
     const toggleAccessibilityFilter = () => {
         setShowAccessibilityFilter(prev => !prev);
     };
+      // Filtra oficinas por opções de acessibilidade selecionadas
+  // Filtra oficinas considerando todas as condições
+const filteredOficinas =
+oficinas?.filter((oficina) => {
+  // Filtrar por acessibilidade
+  const matchesAccessibility = selectedAccessibility.length === 0
+    ? true
+    : selectedAccessibility.every((selected) =>
+        oficina.accessibilityOptions?.includes(selected)
+      );
+
+  // Filtrar por categoria
+  const matchesCategory = selectedCategories.length === 0
+    ? true
+    : selectedCategories.includes(oficina.category);
+
+  // Filtrar por idade
+
+  const matchesAge = selectedAges.length === 0
+  ? true
+  : selectedAges.some((selectedAge) =>
+      oficina.targetAudience === selectedAge
+    );
+
+  // Retornar apenas oficinas que atendem a todos os critérios
+  return matchesAccessibility && matchesCategory && matchesAge;
+}) || [];
+
 
     const handleExploreClick = () => {
         navigate('/sugestao'); // Altere para a rota correta para Sugestao.js
       };
+
+    
 
     // Renderiza o componente
     return (

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FaPen } from 'react-icons/fa';
 import styles from './Opcoes.module.css';
 import { useAuthValue } from '../../context/AuthContext';
 
@@ -9,7 +8,6 @@ const Opcoes = () => {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
 
   const userProfileKey = `user_${authUser?.uid}`;
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +22,6 @@ const Opcoes = () => {
           email: authUser.email || 'Email não informado',
           phone: '',
           about: '',
-          profileImage: null,
         };
         setUser(initialProfile);
         localStorage.setItem(userProfileKey, JSON.stringify(initialProfile));
@@ -48,19 +45,6 @@ const Opcoes = () => {
     setUser((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const updatedUser = { ...user, profileImage: reader.result };
-      setUser(updatedUser);
-      localStorage.setItem(userProfileKey, JSON.stringify(updatedUser));
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
   if (!authUser) {
     return <p className={styles.alert}>Nenhum usuário autenticado. Faça login para acessar o perfil.</p>;
   }
@@ -70,86 +54,65 @@ const Opcoes = () => {
   }
 
   return (
+    <div className={styles.container}>
+      <div className={styles.coverPhoto}></div>
 
-<div className={styles.container}>
-  <div className={styles.coverPhoto}></div>
+      <div className={styles.profileSection}>
+        <h2 className={styles.profileName}>
+          {isEditingProfile ? (
+            <input
+              type="text"
+              value={user.displayName}
+              onChange={(e) => handleInputChange('displayName', e.target.value)}
+              className={styles.textInput}
+              placeholder="Digite seu nome"
+            />
+          ) : (
+            user.displayName || 'Nome do Usuário'
+          )}
+        </h2>
 
-  <div className={styles.profileSection}>
-    <div className={styles.profileImageContainer}>
-      <img
-        src={user.profileImage || 'https://via.placeholder.com/150'}
-        alt="Foto de Perfil"
-        className={styles.profileImage}
-      />
-      <label htmlFor="upload-photo" className={styles.editIcon}>
-        <FaPen />
-        <input
-          type="file"
-          id="upload-photo"
-          accept="image/*"
-          onChange={handleImageUpload}
-          style={{ display: 'none' }}
-        />
-      </label>
-    </div>
+        {isEditingProfile ? (
+          <div>
+            <input
+              type="tel"
+              value={user.phone}
+              onChange={(e) => handleInputChange('phone', e.target.value)}
+              className={styles.textInput}
+              placeholder="Digite seu telefone"
+            />
+            <textarea
+              value={user.about}
+              onChange={(e) => handleInputChange('about', e.target.value)}
+              className={styles.textarea}
+              placeholder="Conte sobre você"
+            />
+            <button onClick={handleSaveProfile} className={styles.saveButton}>
+              Salvar
+            </button>
+          </div>
+        ) : (
+          <>
+            <p className={styles.aboutText}>{user.about || 'Adicione algo sobre você.'}</p>
+            <p className={styles.phoneText}><strong>Telefone:</strong> {user.phone || 'Nenhum telefone adicionado.'}</p>
+          </>
+        )}
 
-    <h2 className={styles.profileName}>
-      {isEditingProfile ? (
-        <input
-          type="text"
-          value={user.displayName}
-          onChange={(e) => handleInputChange('displayName', e.target.value)}
-          className={styles.textInput}
-          placeholder="Digite seu nome"
-        />
-      ) : (
-        user.displayName || 'Nome do Usuário'
-      )}
-    </h2>
-
-    {isEditingProfile ? (
-      <div>
-        <input
-          type="tel"
-          value={user.phone}
-          onChange={(e) => handleInputChange('phone', e.target.value)}
-          className={styles.textInput}
-          placeholder="Digite seu telefone"
-        />
-        <textarea
-          value={user.about}
-          onChange={(e) => handleInputChange('about', e.target.value)}
-          className={styles.textarea}
-          placeholder="Conte sobre você"
-        />
-        <button onClick={handleSaveProfile} className={styles.saveButton}>
-          Salvar
+        <button
+          className={styles.editButton}
+          onClick={() => setIsEditingProfile(!isEditingProfile)}
+        >
+          {isEditingProfile ? 'Cancelar' : 'Editar'}
         </button>
       </div>
-    ) : (
-      <>
-        <p className={styles.aboutText}>{user.about || 'Adicione algo sobre você.'}</p>
-        <p className={styles.phoneText}><strong>Telefone:</strong> {user.phone || 'Nenhum telefone adicionado.'}</p>
-      </>
-    )}
 
-    <button
-      className={styles.editButton}
-      onClick={() => setIsEditingProfile(!isEditingProfile)}
-    >
-      {isEditingProfile ? 'Cancelar' : 'Editar'}
-    </button>
-  </div>
-
-  <div className={styles.userDetails}>
-    <div className={styles.userDetail}>
-      <strong>Email:</strong>
-      <span>{user.email || 'Email não informado'}</span>
+      <div className={styles.userDetails}>
+        <div className={styles.userDetail}>
+          <strong>Email:</strong>
+          <span>{user.email || 'Email não informado'}</span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-
   );
 };
 
