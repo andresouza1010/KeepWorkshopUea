@@ -1,41 +1,72 @@
 import { useState, useEffect } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícone de coração preenchido e contorno
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícones de coração preenchido e contorno
 import styles from './PostDetail.module.css';
 import { Link } from 'react-router-dom';
 import { useAuthValue } from "../context/AuthContext"; // Para obter o usuário logado
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const PostDetail = ({ oficina }) => {
   const { user } = useAuthValue(); // Obtenha o usuário logado
   const [isFavorited, setIsFavorited] = useState(false);
 
-  // Chave única para os favoritos do usuário
-  const favoritesKey = `favoritos_${user?.uid}`;
+  // Referência do documento de favoritos no Firestore
+  const favoritesDocRef = user ? doc(db, "favorites", user.uid) : null;
 
   // Função para adicionar/remover dos favoritos
-  const handleFavorite = () => {
-    let favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
-
-    if (isFavorited) {
-      // Se já está favoritado, remove dos favoritos
-      favorites = favorites.filter(fav => fav.id !== oficina.id);
-    } else {
-      // Se não está favoritado, adiciona aos favoritos
-      favorites.push(oficina);
+  const handleFavorite = async () => {
+    if (!favoritesDocRef) {
+      console.error("Referência do documento de favoritos não encontrada");
+      return;
     }
 
-    // Atualiza o localStorage e o estado local
-    localStorage.setItem(favoritesKey, JSON.stringify(favorites));
-    setIsFavorited(!isFavorited); // Alterna o estado de favorito
+    try {
+      // Verifique se o documento existe antes de atualizar
+      const docSnapshot = await getDoc(favoritesDocRef);
+      if (!docSnapshot.exists()) {
+        console.log("Criando documento de favoritos para o usuário...");
+        await setDoc(favoritesDocRef, { favorites: [] });
+      }
+
+      if (isFavorited) {
+        // Remove a oficina dos favoritos
+        await updateDoc(favoritesDocRef, {
+          favorites: arrayRemove(oficina),
+        });
+      } else {
+        // Adiciona a oficina aos favoritos
+        await updateDoc(favoritesDocRef, {
+          favorites: arrayUnion(oficina),
+        });
+      }
+      setIsFavorited(!isFavorited); // Alterna o estado de favorito
+    } catch (error) {
+      console.error("Erro ao atualizar favoritos:", error);
+    }
   };
 
   // Verifica se a oficina está nos favoritos ao carregar o componente
   useEffect(() => {
-    if (user) {
-      const favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
-      const isFavorite = favorites.some(fav => fav.id === oficina.id);
-      setIsFavorited(isFavorite);
-    }
-  }, [favoritesKey, oficina.id, user]);
+    const checkFavoriteStatus = async () => {
+      if (!favoritesDocRef) {
+        console.error("Referência do documento de favoritos não encontrada");
+        return;
+      }
+
+      try {
+        const docSnapshot = await getDoc(favoritesDocRef);
+        if (docSnapshot.exists()) {
+          const favorites = docSnapshot.data().favorites || [];
+          const isFavorite = favorites.some((fav) => fav.id === oficina.id);
+          setIsFavorited(isFavorite);
+        }
+      } catch (error) {
+        console.error("Erro ao verificar favoritos:", error);
+      }
+    };
+
+    checkFavoriteStatus();
+  }, [favoritesDocRef, oficina.id]);
 
   return (
     <div className={styles.oficina_detail}>
@@ -63,7 +94,7 @@ const PostDetail = ({ oficina }) => {
       )}
       <div className={styles.authorContainer}>
         <span className={styles.authorLabel}>Autor(a):</span>
-        <span className={styles.authorName}>{oficina?.socialLink}</span>
+        <span className={styles.authorName}>{oficina?.socialLink || "Não informado"}</span>
       </div>
 
       <p className={styles.audience}>Público-alvo: {oficina?.targetAudience}</p>
