@@ -1,65 +1,137 @@
+// Opcoes.js
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'; // Importar useParams
+import { FaPen } from 'react-icons/fa';
 import styles from './Opcoes.module.css';
 import { useAuthValue } from '../../context/AuthContext';
+import { db } from '../../firebase/config';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const Opcoes = () => {
   const { user: authUser } = useAuthValue();
+  const { uid } = useParams(); // Obter uid da URL
   const [user, setUser] = useState(null);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
-
-  const userProfileKey = `user_${authUser?.uid}`;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (authUser) {
-      const savedUser = localStorage.getItem(userProfileKey);
+    const fetchUserProfile = async () => {
+      try {
+        const userId = uid || authUser?.uid; // Usar uid da URL ou do usuário autenticado
+        if (!userId) {
+          setLoading(false);
+          return;
+        }
 
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
-      } else {
-        const initialProfile = {
-          displayName: authUser.displayName || 'Usuário',
-          email: authUser.email || 'Email não informado',
-          phone: '',
-          about: '',
-        };
-        setUser(initialProfile);
-        localStorage.setItem(userProfileKey, JSON.stringify(initialProfile));
+        const userDocRef = doc(db, 'users', userId);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          setUser(userDocSnap.data());
+        } else {
+          if (userId === authUser?.uid) {
+            // Se for o usuário autenticado e não existir perfil, cria um novo
+            const initialProfile = {
+              displayName: authUser.displayName || 'Usuário',
+              email: authUser.email || 'Email não informado',
+              phone: '',
+              about: '',
+              profileImage: null,
+            };
+            await setDoc(userDocRef, initialProfile);
+            setUser(initialProfile);
+          } else {
+            // Se for outro usuário e o perfil não existir
+            setUser(null);
+          }
+        }
+      } catch (error) {
+        console.error('Erro ao buscar o perfil:', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
-  }, [authUser, userProfileKey]);
+    };
 
-  if (loading) {
-    return <p>Carregando perfil...</p>;
-  }
+    fetchUserProfile();
+  }, [authUser, uid]);
 
-  const handleSaveProfile = () => {
+  const handleSaveProfile = async () => {
     setIsEditingProfile(false);
-    localStorage.setItem(userProfileKey, JSON.stringify(user));
+    try {
+      const userDocRef = doc(db, 'users', authUser.uid);
+      await setDoc(userDocRef, user);
+    } catch (error) {
+      console.error('Erro ao salvar o perfil:', error);
+    }
   };
 
   const handleInputChange = (field, value) => {
     setUser((prev) => ({ ...prev, [field]: value }));
   };
 
-  if (!authUser) {
-    return <p className={styles.alert}>Nenhum usuário autenticado. Faça login para acessar o perfil.</p>;
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      // Limitar o tamanho da imagem a 500KB
+      if (file.size > 500 * 1024) {
+        alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 500KB.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const updatedUser = { ...user, profileImage: reader.result };
+        setUser(updatedUser);
+        try {
+          const userDocRef = doc(db, 'users', authUser.uid);
+          await setDoc(userDocRef, updatedUser);
+        } catch (error) {
+          console.error('Erro ao salvar a imagem de perfil:', error);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  if (loading) {
+    return <p>Carregando perfil...</p>;
   }
 
   if (!user) {
-    return <p className={styles.alert}>Carregando perfil...</p>;
+    return <p className={styles.alert}>Usuário não encontrado.</p>;
   }
+
+  // Verifica se o perfil é do usuário autenticado
+  const isOwnProfile = authUser && (authUser.uid === uid || (!uid && authUser.uid));
 
   return (
     <div className={styles.container}>
       <div className={styles.coverPhoto}></div>
 
       <div className={styles.profileSection}>
+        <div className={styles.profileImageContainer}>
+          <img
+            src={user.profileImage || 'https://via.placeholder.com/150'}
+            alt="Foto de Perfil"
+            className={styles.profileImage}
+          />
+          {isOwnProfile && (
+            <label htmlFor="upload-photo" className={styles.editIcon}>
+              <FaPen />
+              <input
+                type="file"
+                id="upload-photo"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+            </label>
+          )}
+        </div>
+
         <h2 className={styles.profileName}>
-          {isEditingProfile ? (
+          {isOwnProfile && isEditingProfile ? (
             <input
               type="text"
               value={user.displayName}
@@ -72,7 +144,7 @@ const Opcoes = () => {
           )}
         </h2>
 
-        {isEditingProfile ? (
+        {isOwnProfile && isEditingProfile ? (
           <div>
             <input
               type="tel"
@@ -93,17 +165,23 @@ const Opcoes = () => {
           </div>
         ) : (
           <>
-            <p className={styles.aboutText}>{user.about || 'Adicione algo sobre você.'}</p>
-            <p className={styles.phoneText}><strong>Telefone:</strong> {user.phone || 'Nenhum telefone adicionado.'}</p>
+            <p className={styles.aboutText}>
+              {user.about || 'Adicione algo sobre você.'}
+            </p>
+            <p className={styles.phoneText}>
+              <strong>Telefone:</strong> {user.phone || 'Nenhum telefone adicionado.'}
+            </p>
           </>
         )}
 
-        <button
-          className={styles.editButton}
-          onClick={() => setIsEditingProfile(!isEditingProfile)}
-        >
-          {isEditingProfile ? 'Cancelar' : 'Editar'}
-        </button>
+        {isOwnProfile && (
+          <button
+            className={styles.editButton}
+            onClick={() => setIsEditingProfile(!isEditingProfile)}
+          >
+            {isEditingProfile ? 'Cancelar' : 'Editar'}
+          </button>
+        )}
       </div>
 
       <div className={styles.userDetails}>

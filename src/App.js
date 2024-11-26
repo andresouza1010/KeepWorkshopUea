@@ -74,6 +74,7 @@ function App() {
                 <Route path="/termos-de-uso" element={<TermosDeUso />} />
                 <Route path="/termos" element={<TermosDeUso />} />
                 <Route path="/Opcoes" element={<Opcoes />} />
+                <Route path="/perfil/:uid" element={<Opcoes />} />
               </Routes>
             </div>
             <Footer />
