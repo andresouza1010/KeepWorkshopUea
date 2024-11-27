@@ -1,258 +1,204 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useFetchDocument } from '../../hooks/useFetchDocument';
-import { doc, updateDoc } from "firebase/firestore"; 
-import { db } from '../../firebase/config'; 
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from '../../firebase/config';
 import styles from './EditOficina.module.css';
 
 const EditOficina = () => {
-    const { id } = useParams();
-    const navigate = useNavigate(); // Usa o useNavigate
-    const { document: oficina, loading } = useFetchDocument("oficinas", id);
-    const [newTitle, setNewTitle] = useState('');
-    const [newDescricao, setNewDescricao] = useState('');
-    const [newCategory, setNewCategory] = useState('');
-    const [newTargetAudience, setNewTargetAudience] = useState('');
-    const [newDuration, setNewDuration] = useState('');
-    const [newRecursos, setNewRecursos] = useState('');
-    const [newdescricao1, setNewDescricao1] = useState('');
-    const [newdescricao2, setNewDescricao2] = useState('');
-    const [newdescricao3, setNewDescricao3] = useState('');
-    const [newdescricao4, setNewDescricao4] = useState('');
+  const { id } = useParams(); // Pega o ID da oficina da URL
+  const navigate = useNavigate();
+  const [title, setTitle] = useState(''); // Estado para o título
+  const [description, setDescription] = useState(''); // Estado para a descrição
+  const [category, setCategory] = useState(''); // Estado para a categoria
+  const [targetAudience, setTargetAudience] = useState(''); // Estado para o público-alvo
+  const [duration, setDuration] = useState(''); // Estado para a duração
+  const [recursos, setRecursos] = useState(''); // Estado para a duração
+  const [descricaoIntro, setIntroduction] = useState('');
+  const [image, setImage] = useState([]); // Estado para as imagens da introdução
+  const [loading, setLoading] = useState(true); // Indica que os dados estão sendo carregados
 
-    const [images, setImages] = useState({
-        image: '',
-        image2: '',
-        image3: '',
-        image4: '',
-    });
+ 
+  // Categorias disponíveis
+  const categories = [
+    "Eletrônica",
+    "Programação",
+    "Mecânica",
+    "Robótica",
+    "Engenharia",
+    "Arte e design",
+    "Reciclagem e sustentabilidade",
+    "Edição de vídeo e voz"
+  ];
 
-    const [isSaving, setIsSaving] = useState(false);
+  // Públicos-alvo disponíveis
+  const targetAudiences = [
+    "4 a 6 anos",
+    "7 a 9 anos",
+    "10 a 12 anos",
+    "13 a 15 anos",
+    "16 anos ou mais"
+  ];
 
-    
-
-    const updateOficina = useCallback(async () => {
+  // Carrega os dados da oficina ao montar o componente
+  useEffect(() => {
+    const fetchOficina = async () => {
+      try {
         const oficinaRef = doc(db, "oficinas", id);
-        setIsSaving(true);
-        try {
-            await updateDoc(oficinaRef, {
-                title: newTitle || oficina.title,
-                description: newDescricao || oficina.description,
-                category: newCategory || oficina.category,
-                targetAudience: newTargetAudience || oficina.targetAudience,
-                duration: newDuration || oficina.duration,
-                recursos: newRecursos || oficina.recursos,
-                descricaoIntro: newdescricao1,
-                descricaoOrganizacao: newdescricao2,
-                descricaoPratica: newdescricao3,
-                descricaoApresentacao: newdescricao4,
-                image: images.image || oficina.image,
-                image2: images.image2 || oficina.image2,
-                image3: images.image3 || oficina.image3,
-                image4: images.image4 || oficina.image4
-            });
-            console.log("Oficina atualizada com sucesso!");
-            navigate('/');
-        } catch (error) {
-            console.error("Erro ao atualizar oficina:", error);
-        }finally {
-            setIsSaving(false); // Oculta a mensagem após finalizar
+        const docSnapshot = await getDoc(oficinaRef);
+        
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          setTitle(data.title || ''); // Carrega o título no estado
+          setDescription(data.description || ''); // Carrega a descrição no estado
+          setCategory(data.category || ''); // Carrega a categoria no estado
+          setTargetAudience(data.targetAudience || ''); // Carrega o público-alvo no estado
+          setDuration(data.duration || ''); // Carrega a duração no estado
+          setRecursos(data.recursos || '');
+          setIntroduction(data.descricaoIntro || ''); // Carrega a introdução
+          setImage(data.image || []);// Define a URL da imagem (se houver)
         }
-
-    }, [id, oficina, newTitle, newDescricao, newCategory, newTargetAudience, newDuration, newRecursos, newdescricao1, newdescricao2, newdescricao3, newdescricao4, images, navigate]);
-
-    useEffect(() => {
-        if (oficina) {
-            setNewTitle(oficina.title);
-            setNewDescricao(oficina.description);
-            setNewCategory(oficina.category);
-            setNewTargetAudience(oficina.targetAudience);
-            setNewDuration(oficina.duration);
-            setNewRecursos(oficina.recursos);
-            setNewDescricao1(oficina.descricaoIntro);
-            setNewDescricao2(oficina.descricaoOrganizacao);
-            setNewDescricao3(oficina.descricaoPratica);
-            setNewDescricao4(oficina.descricaoApresentacao);
-            setImages({
-                image: oficina.image,
-                image2: oficina.image2,
-                image3: oficina.image3,
-                image4: oficina.image4,
-            });
-        }
-    }, [oficina]);
-
-    // Função para lidar com a atualização das imagens
-    const handleImageChange = (e, imageKey) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImages(prevImages => ({
-                    ...prevImages,
-                    [imageKey]: reader.result
-                }));
-            };
-            reader.readAsDataURL(file);
-        }
+      } catch (error) {
+        console.error("Erro ao carregar a oficina:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    return (
-        <div className={styles.ooficinaContainer}>
-            {loading && <p>Carregando Oficina...</p>}
-            {oficina && (
-                <div className={styles.ooficinaContent}>
-                    <h2 className={styles.otitle}>Título
-                        <input
-                            type="text"
-                            value={newTitle}
-                            onChange={e => setNewTitle(e.target.value)}
-                            placeholder={oficina.title}
-                            
-                        />
-                    </h2>
-                    {/* Conteúdo da oficina */}
-                    <div className={styles.odescriptionCard}>
-                        <h3 className={styles.odescriptionTitle}>Descrição</h3>
-                        <textarea
-                            value={newDescricao}
-                            onChange={e => setNewDescricao(e.target.value)}
-                            placeholder={oficina.description}
-                        />
-                    </div>
+    fetchOficina();
+  }, [id]);
 
-                    {/* Categoria */}
-                    <div className={styles.odetailsSection}>
-                        <h3>Categoria:</h3>
-                        <select
-                            value={newCategory}
-                            onChange={e => setNewCategory(e.target.value)}
-                            >
-                            <option value="">Selecione a categoria</option>
-                            <option value="Eletrônica">Eletrônica</option>
-                            <option value="Programação">Programação</option>
-                            <option value="Mecânica">Mecânica</option>
-                            <option value="Robótica">Robótica</option>
-                            <option value="Engenharia">Engenharia</option>
-                            <option value="Arte e design">Arte e design</option>
-                            <option value="Reciclagem e sustentabilidade">Reciclagem e sustentabilidade</option>
-                            <option value="Edição de vídeo e voz">Edição de vídeo e voz</option>
-                        </select>
-                            
-                        
-                    </div>
+  // Função para salvar as alterações no Firebase
+  const saveOficina = async () => {
+    if (title === '' || description === '' || category === '' || targetAudience === '' || duration === '' || recursos ==='') {
+      alert('Título, descrição, categoria, público-alvo e duração não podem estar vazios!');
+      return;
+    }
 
-                                    {/* Público-alvo */}
-                    <div className={styles.odetailItem}>
-                        <h4>Público-alvo:</h4>
-                        <select
-                            value={newTargetAudience}
-                            onChange={e => setNewTargetAudience(e.target.value)}
-                        >
-                            <option value="">Selecione o público-alvo</option>
-                            <option value="4 a 6 anos">4 a 6 anos</option>
-                            <option value="7 a 9 anos">7 a 9 anos</option>
-                            <option value="10 a 12 anos">10 a 12 anos</option>
-                            <option value="13 a 15 anos">13 a 15 anos</option>
-                            <option value="16 anos ou mais">16 anos ou mais</option>
-                        </select>
-                    </div>
+    try {
+      const oficinaRef = doc(db, "oficinas", id);
+      await updateDoc(oficinaRef, {
+        title: title, // Atualiza o título da oficina no Firebase
+        description: description, // Atualiza a descrição da oficina no Firebase
+        category: category, // Atualiza a categoria da oficina no Firebase
+        targetAudience: targetAudience, // Atualiza o público-alvo no Firebase
+        duration: duration, // Atualiza a duração da oficina no Firebase
+        recursos: recursos,
+        descricaoIntro: descricaoIntro,
+        image: image,
+      });
+      alert('Dados da oficina atualizados com sucesso!');
+      navigate('/'); // Redireciona após salvar
+    } catch (error) {
+      console.error("Erro ao salvar dados da oficina:", error);
+      alert('Ocorreu um erro ao salvar as alterações.');
+    }
+  };
+  // Função para lidar com o upload de imagens
+  const handleImageUpload = (e, section) => {
+    const files = Array.from(e.target.files);
+    const newImages = files.map(file => URL.createObjectURL(file)); // Cria URLs locais temporárias para visualização
+    setImage(prevImages => [...prevImages, ...newImages]);
+  };
+  // Função para remover imagem
+  const handleRemoveImage = (index) => {
+    setImage(prevImages => prevImages.filter((_, idx) => idx !== index)); // Remove a imagem pelo índice
+  };
 
-                    {/* Duração */}
-                    <div className={styles.odetailItem}>
-                        <h4>Duração em horas:</h4>
-                        <input
-                            type="text"
-                            value={newDuration}
-                            onChange={e => setNewDuration(e.target.value)}
-                            placeholder={`${oficina.duration} horas`}
-                        />
-                    </div>
+  return (
+    <div className={styles.ooficinaContainer}>
+      {loading ? (
+        <p>Carregando oficina...</p> // Exibe uma mensagem enquanto carrega os dados
+      ) : (
+        <>
+          <h2>Título da Oficina:</h2>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)} // Atualiza o título no estado
+            placeholder="Digite o título"
+          />
+          <h2>Descrição da Oficina:</h2>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)} // Atualiza a descrição no estado
+            placeholder="Digite a descrição"
+          />
+          <h2>Categoria da Oficina:</h2>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)} // Atualiza a categoria no estado
+          >
+            <option value="">Selecione uma categoria</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+          <h2>Público-alvo:</h2>
+          <label>
+            <span>Público-alvo</span>
+            <select
+              name="targetAudience"
+              required
+              onChange={(e) => setTargetAudience(e.target.value)} 
+              value={targetAudience}
+            >
+              <option value="">Selecione o público-alvo</option>
+              {targetAudiences.map((audience) => (
+                <option key={audience} value={audience}>{audience}</option>
+              ))}
+            </select>
+          </label>
+          <h2>Duração da Oficina (em horas):</h2>
+          <input
+            type="number"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)} // Atualiza a duração no estado
+            placeholder="Digite a duração em horas"
+            min="1" // Define um valor mínimo de 1 hora
+            required
+          />
+          <h2>Recursos</h2>
+          <textarea
+            value={recursos}
+            onChange={(e) => setRecursos(e.target.value)} // Atualiza a descrição no estado
+            placeholder="Digite os recursos usados"
+          />
+          <h2>Introdução:</h2>
+          <textarea
+            value={descricaoIntro}
+            onChange={(e) => setIntroduction(e.target.value)}
+            placeholder="Descreva a introdução da oficina"
+          ></textarea>
 
-                    {/* Recursos Necessários */}
-                    <div className={styles.odetailItem}>
-                        <h4>Recursos Necessários:</h4>
-                        <input
-                            type="text"
-                            value={newRecursos}
-                            onChange={e => setNewRecursos(e.target.value)}
-                            placeholder={oficina.recursos}
-                        />
-                    </div>
+          {/* Upload de Imagem */}
+          <label htmlFor="uploadIntro" className={styles.uploadLabel}>
+            <span>Upload da Imagem (opcional)</span>
+            <input
+              type="file"
+              id="uploadIntro"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className={styles.uploadInput}
+              multiple
+            />
+          </label>
 
-                    {/* Etapas da oficina com inputs para editar as descrições */}
-                    <h3 className={styles.ostepsTitle}>Etapas da Oficina</h3>
+          <div className={styles.imagePreviewContainer}>
+            {image.map((img, idx) => (
+              <div key={idx} className={styles.imagePreview}>
+                <img src={img} alt={`Intro ${idx}`} />
+                <button className={styles.deleteButton} onClick={() => handleRemoveImage(idx)}>
+                  &#10005;
+                </button>
+              </div>
+            ))}
+          </div>
 
-                    <div className={styles.ostepSection}>
-                        <h4>Introdução:</h4>
-                        <img className={styles.ooficinaImage} src={images.image} alt="Introdução" />
-
-                        <input type="file" accept="image/*" style={{ display: 'none' }} id="imageInput" onChange={e => handleImageChange(e, 'image')} />
-                        <button onClick={() => document.getElementById('imageInput').click()} className={styles.oeditImageButton}> Editar Imagem </button>
-
-                        <textarea
-                            value={newdescricao1}
-                            onChange={e => setNewDescricao1(e.target.value)}
-                            placeholder="Descrição da Introdução"
-                        />
-                    </div>
-
-                    <div className={styles.ostepSection}>
-                        <h4>Organização dos Materiais</h4>
-                        <img className={styles.ooficinaImage2} src={images.image2} alt={oficina.title} />
-                        <input type="file" accept="image/*" style={{ display: 'none' }} id="image2Input" onChange={e => handleImageChange(e, 'image2')} />
-                        <button onClick={() => document.getElementById('image2Input').click()} className={styles.oeditImageButton}>
-                            Editar Imagem
-                        </button>
-                        <textarea
-                            value={newdescricao2}
-                            onChange={e => setNewDescricao2(e.target.value)}
-                            placeholder="Descrição da Organização dos Materiais"
-                        />
-                    </div>
-
-                    <div className={styles.ostepSection}>
-                        <h4>Momento Prático</h4>
-                        <img className={styles.ooficinaImage3} src={images.image3} alt={oficina.title} />
-                        <input type="file" accept="image/*" style={{ display: 'none' }} id="image3Input" onChange={e => handleImageChange(e, 'image3')} />
-                        <button onClick={() => document.getElementById('image3Input').click()} className={styles.oeditImageButton}>
-                            Editar Imagem
-                        </button>
-                        <textarea
-                            value={newdescricao3}
-                            onChange={e => setNewDescricao3(e.target.value)}
-                            placeholder="Descrição do Momento Prático"
-                        />
-                    </div>
-
-                    <div className={styles.ostepSection}>
-                        <h4>Apresentação Final</h4>
-                        <img className={styles.ooficinaImage4} src={images.image4} alt={oficina.title} />
-                        <input type="file" accept="image/*" style={{ display: 'none' }} id="image4Input" onChange={e => handleImageChange(e, 'image4')} />
-                        <button onClick={() => document.getElementById('image4Input').click()} className={styles.oeditImageButton}>
-                            Editar Imagem
-                        </button>
-                        <textarea
-                            value={newdescricao4}
-                            onChange={e => setNewDescricao4(e.target.value)}
-                            placeholder="Descrição da Apresentação Final"
-                        />
-                    </div>
-
-                    {oficina.hasAccessibility && (
-                        <div className={styles.oaccessibilitySection}>
-                            <h3 className={styles.oaccessibilityTitle}>Acessibilidade:</h3>
-                            <p className={styles.oaccessibilityInfo}>Esta oficina possui acessibilidade para pessoas com deficiência.</p>
-                        </div>
-                    )}
-
-                    <button onClick={updateOficina} className={styles.osaveButton}>Salvar Alterações</button>
-                       {/* Exibe "Aguarde..." enquanto a atualização está em andamento */}
-                    {isSaving && <p className={styles.savingMessage}>Aguarde... estamos salvando as alterações.</p>}
-                </div>
-            )}
-        </div>
-    );
+          <button onClick={saveOficina}>Salvar Alterações</button>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default EditOficina;
