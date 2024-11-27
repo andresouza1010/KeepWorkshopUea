@@ -1,7 +1,7 @@
 // Opcoes.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importar useParams
-import { FaPen } from 'react-icons/fa';
+//import { FaPen } from 'react-icons/fa';
 import styles from './Opcoes.module.css';
 import { useAuthValue } from '../../context/AuthContext';
 import { db } from '../../firebase/config';
@@ -69,30 +69,7 @@ const Opcoes = () => {
     setUser((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      // Limitar o tamanho da imagem a 500KB
-      if (file.size > 500 * 1024) {
-        alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 500KB.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const updatedUser = { ...user, profileImage: reader.result };
-        setUser(updatedUser);
-        try {
-          const userDocRef = doc(db, 'users', authUser.uid);
-          await setDoc(userDocRef, updatedUser);
-        } catch (error) {
-          console.error('Erro ao salvar a imagem de perfil:', error);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+ 
 
   if (loading) {
     return <p>Carregando perfil...</p>;
@@ -110,25 +87,7 @@ const Opcoes = () => {
       <div className={styles.coverPhoto}></div>
 
       <div className={styles.profileSection}>
-        <div className={styles.profileImageContainer}>
-          <img
-            src={user.profileImage || 'https://via.placeholder.com/150'}
-            alt="Foto de Perfil"
-            className={styles.profileImage}
-          />
-          {isOwnProfile && (
-            <label htmlFor="upload-photo" className={styles.editIcon}>
-              <FaPen />
-              <input
-                type="file"
-                id="upload-photo"
-                accept="image/*"
-                onChange={handleImageUpload}
-                style={{ display: 'none' }}
-              />
-            </label>
-          )}
-        </div>
+        
 
         <h2 className={styles.profileName}>
           {isOwnProfile && isEditingProfile ? (
