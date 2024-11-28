@@ -93,16 +93,26 @@ const EditOficina = () => {
       alert('Ocorreu um erro ao salvar as alterações.');
     }
   };
-  // Função para lidar com o upload de imagens
-  const handleImageUpload = (e, section) => {
+  const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    const newImages = files.map(file => URL.createObjectURL(file)); // Cria URLs locais temporárias para visualização
-    setImage(prevImages => [...prevImages, ...newImages]);
+  
+    files.forEach((file) => {
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        setImage((prevImages) => [...prevImages, reader.result]); // Adiciona o Base64 ao estado
+      };
+  
+      reader.readAsDataURL(file); // Converte o arquivo para Base64
+    });
   };
+  
+
   // Função para remover imagem
   const handleRemoveImage = (index) => {
-    setImage(prevImages => prevImages.filter((_, idx) => idx !== index)); // Remove a imagem pelo índice
+    setImage((prevImages) => prevImages.filter((_, idx) => idx !== index));
   };
+  
 
   return (
     <div className={styles.ooficinaContainer}>
