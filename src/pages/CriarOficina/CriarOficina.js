@@ -41,7 +41,7 @@ const CriarOficina = () => {
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
-
+ 
    
   // Função para manipular a mudança nos públicos de acessibilidade selecionados
   const handleAccessibilityChange = (e, accessibility) => {
@@ -67,19 +67,30 @@ const CriarOficina = () => {
   const handleImageUpload = async (e, section) => {
     const files = Array.from(e.target.files);
     const newImages = [];
-    const MAX_BASE64_SIZE = 1048576; // Limite de 1MB (em bytes)
+    const MAX_BASE64_SIZE = 2048000; // Limite de 2MB (em bytes)
+    const MAX_TOTAL_SIZE = 2048000; // Limite total de 3MB (3 * 1024 * 1024)
+
+    // Calcula o tamanho total das imagens já carregadas
+    let totalSize = image.reduce((acc, img) => acc + (img.size || 0), 0);
+    totalSize += files.reduce((acc, file) => acc + file.size, 0);
+
+      // Verifica se o tamanho total das imagens ultrapassa o limite
+    if (totalSize > MAX_TOTAL_SIZE) {
+      alert("O tamanho total das imagens ultrapassa o limite de 2MB. Por favor, reduza o tamanho das imagens ou exclua algumas.");
+      return;
+    }
 
     for (let file of files) {
       try {
         // Verifica o tamanho do arquivo antes de tentar convertê-lo para base64
         if (file.size > MAX_BASE64_SIZE) {
-          alert("A imagem ultrapassa o limite de tamanho (1MB). Por favor, comprima a imagem antes de enviar.");
+          alert("A imagem ultrapassa o limite de tamanho (2MB). Por favor, comprima a imagem antes de enviar.");
           return; // Impede o processamento da imagem se o limite for ultrapassado
         }
 
         const options = {
-          maxSizeMB: 1,
-          maxWidthOrHeight: 1024,
+          maxSizeMB: 2,
+          maxWidthOrHeight: 2048,
           useWebWorker: true,
         };
     
@@ -159,7 +170,7 @@ const CriarOficina = () => {
     setSocialLink(""); // Limpa o campo de link de rede social
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
     setIsSubmitting(true);
@@ -170,7 +181,9 @@ const CriarOficina = () => {
       return;
     }
 
-    insertDocument({
+   
+    try {
+      await insertDocument({
       title,
       image,
       image2,
@@ -196,7 +209,12 @@ const CriarOficina = () => {
 
     resetFields();
     navigate("/");
-  };
+  } catch (error) {
+    setFormError("Erro ao salvar a oficina. Tente novamente.");
+  } finally {
+    setIsSubmitting(false); // Reseta o estado de envio
+  }
+};
 
 
   return (
@@ -577,9 +595,10 @@ const CriarOficina = () => {
         </label>
 
         <button type="submit" disabled={isSubmitting}>
-          Salvar Oficina
+        {isSubmitting ? 'Salvando...' : 'Criar Oficina'}
+          
         </button>
-        {formError && <p className="error">{formError}</p>}
+        {formError && <p className={styles.error}>{formError}</p>}
         {response.success && <p className="success">Oficina criada com sucesso!</p>}
       </form>
     </div>
