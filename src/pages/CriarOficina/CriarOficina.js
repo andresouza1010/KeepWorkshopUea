@@ -3,6 +3,7 @@ import styles from './CriarOficina.module.css';
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
+import imageCompression from 'browser-image-compression';
 
 const CriarOficina = () => {
 
@@ -63,11 +64,29 @@ const CriarOficina = () => {
     }));
   };
   
-  const handleImageUpload = (e, section) => {
+  const handleImageUpload = async (e, section) => {
     const files = Array.from(e.target.files);
     const newImages = [];
+    const MAX_BASE64_SIZE = 1048576; // Limite de 1MB (em bytes)
 
-    files.forEach(file => {
+    for (let file of files) {
+      try {
+        // Verifica o tamanho do arquivo antes de tentar convertê-lo para base64
+        if (file.size > MAX_BASE64_SIZE) {
+          alert("A imagem ultrapassa o limite de tamanho (1MB). Por favor, comprima a imagem antes de enviar.");
+          return; // Impede o processamento da imagem se o limite for ultrapassado
+        }
+
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+    
+        // Agora a função é assíncrona e pode usar o `await`
+      const compressedFile = await imageCompression(file, options);
+
+      // Lê o arquivo comprimido
       const reader = new FileReader();
       reader.onloadend = () => {
         newImages.push(reader.result);
@@ -90,11 +109,15 @@ const CriarOficina = () => {
           }
         }
       };
-      reader.readAsDataURL(file);
-    });
-  };
+      reader.readAsDataURL(compressedFile);
+    } catch (error) {
+      console.error('Erro ao comprimir a imagem: ', error);
+    }
+  }
+};
 
-  
+
+    
 
   const handleRemoveImage = (section, index) => {
     switch (section) {
