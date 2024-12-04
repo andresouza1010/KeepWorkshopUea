@@ -11,7 +11,6 @@ import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Opcoes from "./pages/Opcoes/Opcoes";
-import CreateOficina from "./pages/CreateOficina/CreateOficina";
 import EditOficina from "./pages/EditOficina/EditOficina";
 import Favoritas from "./pages/Favoritas/Favoritas";
 import Perfil from "./pages/Perfil/Perfil";
@@ -22,7 +21,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Register/Register";
 import Search from "./pages/Search/Search";
 import Oficina from "./pages/Oficina/Oficina";
-import Sugestao from "./pages/Sugestao/Sugestao";
+import CriarOficina from "./pages/CriarOficina/CriarOficina";
 import TermosDeUso from "./pages/TermosDeUso/TermosDeUso"; // Novo componente de Termos de Uso
 
 // components
@@ -59,10 +58,9 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home selectedCategories={selectedCategories} />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/oficinas/create" element={user ? <CreateOficina /> : <Navigate to="/login" />} />
+                <Route path="/criarOficina" element={user ? <CriarOficina /> : <Navigate to="/login" />} />
                 <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
                 <Route path="/favoritas" element={<Favoritas />} />
-                <Route path="/sugestao" element={<Sugestao />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/oficinas/:id" element={<Oficina user={user} />} />

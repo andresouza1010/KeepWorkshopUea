@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import styles from './Sugestao.module.css';
+import styles from './CriarOficina.module.css';
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 
-const Sugestao = () => {
+const CriarOficina = () => {
 
-  
-  const [accessibilityOptions, setAccessibilityOptions] = useState([]);
-  const [accessibilityDescriptions, setAccessibilityDescriptions] = useState({});
+  const [selectedAccessibilities, setSelectedAccessibilities] = useState([]);
+  const [accessibilityDescriptions, setAccessibilityDescriptions] = useState({
+    'autista': '',
+    'tdah': '',
+    'deficientes visuais': '',
+    'pessoas surdas': '',
+    'outro público': ''
+  });
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
   const [image2, setImage2] = useState([]);
@@ -36,13 +41,19 @@ const Sugestao = () => {
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
 
 
-  
-  const handleAccessibilityOptions = (e) => {
-    const { value, checked } = e.target;
-    setAccessibilityOptions((prev) => 
-      checked ? [...prev, value] : prev.filter((option) => option !== value)
-    );
+   
+  // Função para manipular a mudança nos públicos de acessibilidade selecionados
+  const handleAccessibilityChange = (e, accessibility) => {
+    const { checked } = e.target;
+    if (checked) {
+      setSelectedAccessibilities((prev) => [...prev, accessibility]); // Adiciona à lista
+    } else {
+      setSelectedAccessibilities((prev) =>
+        prev.filter((item) => item !== accessibility) // Remove da lista
+      );
+    }
   };
+
 
   const handleAccessibilityDescriptionChange = (e, accessibility) => {
     const { value } = e.target;
@@ -55,11 +66,6 @@ const Sugestao = () => {
   const handleImageUpload = (e, section) => {
     const files = Array.from(e.target.files);
     const newImages = [];
-
-  
-
-
-  
 
     files.forEach(file => {
       const reader = new FileReader();
@@ -161,7 +167,6 @@ const Sugestao = () => {
       createdBy: user.displayName,
       hasAccessibility, 
       accessibilityDescription, 
-      accessibilityOptions, // Certifique-se de incluir este campo
       accessibilityDescriptions,
       socialLink // Adiciona o link de rede social ao documento
     });
@@ -173,7 +178,7 @@ const Sugestao = () => {
 
   return (
     <div className={styles.create_oficina}>
-      <h1>Como criar a sua Oficina!</h1>
+      <h1 className={styles.titulo} >Como criar a sua Oficina!</h1>
       <p>
         Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
@@ -253,16 +258,18 @@ const Sugestao = () => {
             value={title}
           />
         </label>
-        <label>
-          <span>Recursos necessários</span>
-          <textarea 
-            name="recursos" 
-            required 
-            placeholder="Liste os recursos necessários" 
-            onChange={(e) => setRecursos(e.target.value)}
-            value={recursos}
-          ></textarea>
-        </label>
+        <label className="criaoficina-label">
+        <span>Recursos necessários</span>
+        <textarea 
+          name="recursos" 
+          required 
+          placeholder="Liste os recursos necessários" 
+          onChange={(e) => setRecursos(e.target.value)}
+          value={recursos}
+          className="criaoficina-textarea"
+        ></textarea>
+      </label>
+
          {/* Duração */}
          <label>
           <span>Duração da oficina (em horas)</span>
@@ -417,76 +424,138 @@ const Sugestao = () => {
 
 
     {/* Acessibilidade */}
-<label>
-  <span>Possui recursos de acessibilidade?</span>
-  <div>
-    <input 
-          className="inputCheck"
-          type="radio" 
-          value="yes" 
-          checked={hasAccessibility === true} 
-          onChange={() => setHasAccessibility(true)}
-        />
-    <label> Sim
-    </label>
-    <input 
-        type="radio" 
-        value="no" 
-        checked={hasAccessibility === false} 
-        onChange={() => setHasAccessibility(false)}
-      />
     <label>
-       Não
-    </label>
-  </div>
-</label>
+        <span>Trabalha com algum público específico?</span>
+        <div>
+          <input
+            type="radio"
+            value="no"
+            checked={selectedAccessibilities.length === 0}
+            onChange={() => setSelectedAccessibilities([])} // Marca "Não" e desmarca as outras
+          />
+          <label>Não</label>
+        </div>
+{/* Checkbox para selecionar os públicos de acessibilidade */}
 
-{hasAccessibility && (
-  <div>
-    <label>
-      <span>Quais recursos de acessibilidade estão disponíveis?</span>
-      <div className="accessibility-container">
-  <div className="accessibility-grid">
-    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro"].map((accessibility) => (
-      <div key={accessibility} className="accessibility-item">
-        <label className="accessibility-label">
-          {accessibility}
+<div>
+            <input
+              type="checkbox"
+              value="autistic"
+              checked={selectedAccessibilities.includes('autista')}
+              onChange={(e) => handleAccessibilityChange(e, 'autista')}
+            />
+            <label>Pessoas com autismo</label>
+            {/* Exibe a caixa de texto somente se o público "autista" for selecionado */}
+            {selectedAccessibilities.includes('autista') && (
+              <div>
+                <textarea
+                  placeholder="Descreva como seu projeto se aplica a este público"
+                  value={accessibilityDescriptions['autista'] || ''}
+                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
+                />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              value="tdah"
+              checked={selectedAccessibilities.includes('tdah')}
+              onChange={(e) => handleAccessibilityChange(e, 'tdah')}
+            />
+            <label>Pessoas com TDAH (Transtorno de Déficit de Atenção e Hiperatividade)</label>
+            {/* Exibe a caixa de texto somente se o público "tdah" for selecionado */}
+            {selectedAccessibilities.includes('tdah') && (
+              <div>
+                <textarea
+                  placeholder="Descreva como seu projeto se aplica a este público"
+                  value={accessibilityDescriptions['tdah'] || ''}
+                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
+                />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              value="deficientes visuais"
+              checked={selectedAccessibilities.includes('deficientes visuais')}
+              onChange={(e) => handleAccessibilityChange(e, 'deficientes visuais')}
+            />
+            <label>Pessoas com deficiência visual</label>
+            {/* Exibe a caixa de texto somente se o público  for selecionado */}
+            {selectedAccessibilities.includes('deficientes visuais') && (
+              <div>
+                <textarea
+                  placeholder="Descreva como seu projeto se aplica a este público"
+                  value={accessibilityDescriptions['deficientes visuais'] || ''}
+                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
+                />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              value="pessoas surdas"
+              checked={selectedAccessibilities.includes('pessoas surdas')}
+              onChange={(e) => handleAccessibilityChange(e, 'pessoas surdas')}
+            />
+            <label>Pessoas surdas</label>
+            {/* Exibe a caixa de texto somente se o público  for selecionado */}
+            {selectedAccessibilities.includes('pessoas surdas') && (
+              <div>
+                <textarea
+                  placeholder="Descreva como seu projeto se aplica a este público"
+                  value={accessibilityDescriptions['pessoas surdas'] || ''}
+                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
+                />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              value="outro público"
+              checked={selectedAccessibilities.includes('outro público')}
+              onChange={(e) => handleAccessibilityChange(e, 'outro público')}
+            />
+            <label>Outro público</label>
+            {/* Exibe a caixa de texto somente se o público  for selecionado */}
+            {selectedAccessibilities.includes('outro público') && (
+              <div>
+                <textarea
+                  placeholder="Descreva como seu projeto se aplica a este público"
+                  value={accessibilityDescriptions['outro público'] || ''}
+                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
+                />
+              </div>
+            )}
+          </div>
+
+
+          
+
         </label>
-        <input className="accessibility-checkbox"
-            type="checkbox"
-            value={accessibility}
-            onChange={(e) => handleAccessibilityOptions(e)}
-          />
-        {accessibilityOptions.includes(accessibility) && (
-          <textarea
-            placeholder={`Descreva como a oficina atende a: ${accessibility}`}
-            value={accessibilityDescriptions[accessibility] || ""}
-            onChange={(e) => handleAccessibilityDescriptionChange(e, accessibility)}
-            className="accessibility-textarea"
-          />
-        )}
-      </div>
-    ))}
-  </div>
-</div>
 
-    </label>
-  </div>
-)}
-
-
-<label>
+        <label>
           <span>Autor(a) para divulgação</span>
-          <input 
+          <input
             className="accessibility-textarea"
-            name="socialLink" 
-            placeholder="Seu nome ou a sua rede social para divulgação" 
+            name="socialLink"
+            placeholder="Seu nome ou a sua rede social para divulgação"
             onChange={(e) => setSocialLink(e.target.value)}
             value={socialLink}
           />
         </label>
 
-        <button type="submit" disabled={isSubmitting}>Salvar Oficina</button>
+        <button type="submit" disabled={isSubmitting}>
+          Salvar Oficina
+        </button>
         {formError && <p className="error">{formError}</p>}
         {response.success && <p className="success">Oficina criada com sucesso!</p>}
       </form>
@@ -494,4 +563,4 @@ const Sugestao = () => {
   );
 };
 
-export default Sugestao;
+export default CriarOficina;

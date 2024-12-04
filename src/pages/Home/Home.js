@@ -114,7 +114,7 @@ oficinas?.filter((oficina) => {
 
 
     const handleExploreClick = () => {
-        navigate('/sugestao'); // Altere para a rota correta para Sugestao.js
+        navigate('/CriarOficina'); // Altere para a rota correta para 
       };
 
     
@@ -265,7 +265,7 @@ oficinas?.filter((oficina) => {
                         <div className={styles.filter_bar}>
                             <div className={styles.filter_text}>
                                 <span>Filtrar por Acessibilidade:</span>
-                                {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
+                                {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro público"].map((accessibility) => (
                                     <label key={accessibility} className={styles.checkbox_label}>
                                         <input
                                             type="checkbox"
@@ -315,7 +315,7 @@ oficinas?.filter((oficina) => {
                                 </div>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
+                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro público"].map((accessibility) => (
                                         <label key={accessibility} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
@@ -356,7 +356,7 @@ oficinas?.filter((oficina) => {
                 {filteredOficinas.length === 0 && (
                     <div className={styles.oficinasNao}>
                         <p className={styles.message}>Oficinas não encontradas</p>
-                        <Link to="/oficinas/create" className={`${styles.btn} btn`}>Criar Primeira Oficina</Link>
+                        <Link to="CriarOficina" className={`${styles.btn} btn`}>Criar Primeira Oficina</Link>
                     </div>
                 )}
             </div>

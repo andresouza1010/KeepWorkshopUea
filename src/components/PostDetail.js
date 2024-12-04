@@ -93,8 +93,8 @@ const PostDetail = ({ oficina }) => {
       <h2>{oficina?.title}</h2>
       {oficina?.description && (
         <p className={styles.brief_description}>
-          {oficina.description.length > 100 
-            ? `${oficina.description.substring(0, 100)}...` 
+          {oficina.description.length > 40 
+            ? `${oficina.description.substring(0, 40)}...` 
             : oficina.description}
         </p>
       )}

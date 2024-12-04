@@ -14,7 +14,11 @@ const EditOficina = () => {
   const [duration, setDuration] = useState(''); // Estado para a duração
   const [recursos, setRecursos] = useState(''); // Estado para a duração
   const [descricaoIntro, setIntroduction] = useState('');
+  const [descricaoOrganizacao, setOrganizacao] = useState(""); 
+  const [descricaoPratica, setPratica] = useState(""); 
+  const [descricaoApresentacao, setApresentacao] = useState(""); 
   const [image, setImage] = useState([]); // Estado para as imagens da introdução
+  const [image2, setImage2] = useState([]); 
   const [loading, setLoading] = useState(true); // Indica que os dados estão sendo carregados
 
  
@@ -55,7 +59,11 @@ const EditOficina = () => {
           setDuration(data.duration || ''); // Carrega a duração no estado
           setRecursos(data.recursos || '');
           setIntroduction(data.descricaoIntro || ''); // Carrega a introdução
+          setOrganizacao(data.descricaoOrganizacao || '');
+          setPratica(data.descricaoPratica || '');
+          setApresentacao(data.descricaoApresentacao || '');
           setImage(data.image || []);// Define a URL da imagem (se houver)
+          setImage2(data.image2 || []);
         }
       } catch (error) {
         console.error("Erro ao carregar a oficina:", error);
@@ -84,7 +92,12 @@ const EditOficina = () => {
         duration: duration, // Atualiza a duração da oficina no Firebase
         recursos: recursos,
         descricaoIntro: descricaoIntro,
+        descricaoOrganizacao: descricaoOrganizacao,
+        descricaoPratica: descricaoPratica,
+        descricaoApresentacao: descricaoApresentacao,
         image: image,
+        image2: image2,
+
       });
       alert('Dados da oficina atualizados com sucesso!');
       navigate('/'); // Redireciona após salvar
@@ -93,25 +106,46 @@ const EditOficina = () => {
       alert('Ocorreu um erro ao salvar as alterações.');
     }
   };
-  const handleImageUpload = (e) => {
+ 
+  const handleImageUploadForImage = (e) => {
     const files = Array.from(e.target.files);
   
     files.forEach((file) => {
       const reader = new FileReader();
   
       reader.onload = () => {
-        setImage((prevImages) => [...prevImages, reader.result]); // Adiciona o Base64 ao estado
+        setImage((prevImages) => [...prevImages, reader.result]);
       };
   
-      reader.readAsDataURL(file); // Converte o arquivo para Base64
+      reader.readAsDataURL(file);
     });
   };
   
+  const handleImageUploadForImage2 = (e) => {
+    const files = Array.from(e.target.files);
+  
+    files.forEach((file) => {
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        setImage2((prevImages) => [...prevImages, reader.result]);
+      };
+  
+      reader.readAsDataURL(file);
+    });
+  };
+  
+  
 
   // Função para remover imagem
-  const handleRemoveImage = (index) => {
+  const handleRemoveImageFromImage = (index) => {
     setImage((prevImages) => prevImages.filter((_, idx) => idx !== index));
   };
+  
+  const handleRemoveImageFromImage2 = (index) => {
+    setImage2((prevImages) => prevImages.filter((_, idx) => idx !== index));
+  };
+  
   
 
   return (
@@ -187,7 +221,7 @@ const EditOficina = () => {
               type="file"
               id="uploadIntro"
               accept="image/*"
-              onChange={handleImageUpload}
+              onChange={handleImageUploadForImage}
               className={styles.uploadInput}
               multiple
             />
@@ -197,12 +231,56 @@ const EditOficina = () => {
             {image.map((img, idx) => (
               <div key={idx} className={styles.imagePreview}>
                 <img src={img} alt={`Intro ${idx}`} />
-                <button className={styles.deleteButton} onClick={() => handleRemoveImage(idx)}>
+                <button className={styles.deleteButton} onClick={() => handleRemoveImageFromImage(idx)}>
                   &#10005;
                 </button>
               </div>
             ))}
           </div>
+
+          <h2>Organização:</h2>
+          <textarea
+            value={descricaoOrganizacao}
+            onChange={(e) => setOrganizacao(e.target.value)}
+            placeholder="Descreva como será organizada a sua oficina"
+          ></textarea>
+        
+        <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
+            <span>Upload da Imagem (opcional)</span>
+            <input
+              type="file"
+              id="uploadOrganizacao"
+              accept="image/*"
+              onChange={handleImageUploadForImage2}
+              className={styles.uploadInput}
+              multiple
+            />
+          </label>
+
+          <div className={styles.imagePreviewContainer}>
+            {image2.map((img, idx) => (
+              <div key={idx} className={styles.imagePreview}>
+                <img src={img} alt={`Organizacao ${idx}`} />
+                <button className={styles.deleteButton} onClick={() => handleRemoveImageFromImage2(idx)}>
+                  &#10005;
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <h2>Momento Prático:</h2>
+          <textarea
+            value={descricaoPratica}
+            onChange={(e) => setPratica(e.target.value)}
+            placeholder="Descreva como será o momento prático da oficina"
+          ></textarea>
+
+          <h2>Apresentação:</h2>
+          <textarea
+            value={descricaoApresentacao}
+            onChange={(e) => setApresentacao(e.target.value)}
+            placeholder="Descreva como será organizada a apresentação final"
+          ></textarea>
 
           <button onClick={saveOficina}>Salvar Alterações</button>
         </>

@@ -64,7 +64,7 @@ const NavBar = () => {
         {user && (
           <>
             <li>
-              <NavLink to="/oficinas/create" className={({ isActive }) => (isActive ? styles.active : "")}>
+              <NavLink to="/CriarOficina" className={({ isActive }) => (isActive ? styles.active : "")}>
                 Nova Oficina
               </NavLink>
             </li>
