@@ -40,7 +40,7 @@ const CriarOficina = () => {
 
   const [hasAccessibility, setHasAccessibility] = useState(false);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
-
+  
  
    
   // Função para manipular a mudança nos públicos de acessibilidade selecionados
@@ -55,6 +55,8 @@ const CriarOficina = () => {
     }
   };
 
+  
+
 
   const handleAccessibilityDescriptionChange = (e, accessibility) => {
     const { value } = e.target;
@@ -68,38 +70,57 @@ const CriarOficina = () => {
     const files = Array.from(e.target.files);
     const newImages = [];
     const MAX_BASE64_SIZE = 2048000; // Limite de 2MB (em bytes)
-    const MAX_TOTAL_SIZE = 2048000; // Limite total de 3MB (3 * 1024 * 1024)
+    const MAX_TOTAL_SIZE = 2048000; // Limite total de 2MB (2 * 1024 * 1024)
+  
+    // Calcula o tamanho total das imagens já carregadas nas etapas
+  let totalSize = 0;
+  totalSize += image.reduce((acc, img) => acc + (img.size || 0), 0);  // Total de imagens já carregadas na etapa específica
 
-    // Calcula o tamanho total das imagens já carregadas
-    let totalSize = image.reduce((acc, img) => acc + (img.size || 0), 0);
-    totalSize += files.reduce((acc, file) => acc + file.size, 0);
+  // Adiciona o tamanho de imagens em outras etapas para garantir que a soma não ultrapasse 2MB
+  totalSize += (image2.reduce((acc, img) => acc + (img.size || 0), 0) || 0);
+  totalSize += (image3.reduce((acc, img) => acc + (img.size || 0), 0) || 0);
+  totalSize += (image4.reduce((acc, img) => acc + (img.size || 0), 0) || 0);
 
-      // Verifica se o tamanho total das imagens ultrapassa o limite
-    if (totalSize > MAX_TOTAL_SIZE) {
-      alert("O tamanho total das imagens ultrapassa o limite de 2MB. Por favor, reduza o tamanho das imagens ou exclua algumas.");
-      return;
-    }
+  totalSize += files.reduce((acc, file) => acc + file.size, 0);  // Total de arquivos sendo carregados nesta vez
 
-    for (let file of files) {
-      try {
-        // Verifica o tamanho do arquivo antes de tentar convertê-lo para base64
-        if (file.size > MAX_BASE64_SIZE) {
-          alert("A imagem ultrapassa o limite de tamanho (2MB). Por favor, comprima a imagem antes de enviar.");
-          return; // Impede o processamento da imagem se o limite for ultrapassado
-        }
+  // Verifica se o tamanho total das imagens ultrapassa o limite
+  if (totalSize > MAX_TOTAL_SIZE) {
+    alert("O tamanho total das imagens ultrapassa o limite de 2MB. Por favor, reduza o tamanho das imagens.");
+    return;
+  }
 
-        const options = {
-          maxSizeMB: 2,
-          maxWidthOrHeight: 2048,
-          useWebWorker: true,
-        };
-    
-        // Agora a função é assíncrona e pode usar o `await`
+  for (let file of files) {
+    try {
+      // Verifica o tamanho do arquivo antes de tentar convertê-lo para base64
+      if (file.size > MAX_BASE64_SIZE) {
+        alert("A imagem ultrapassa o limite de tamanho (2MB). Por favor, comprima a imagem antes de enviar.");
+        return; // Impede o processamento da imagem se o limite for ultrapassado
+      }
+
+      const options = {
+        maxSizeMB: 2,
+        maxWidthOrHeight: 2048,
+        useWebWorker: true,
+      };
+
+      // Agora a função é assíncrona e pode usar o `await`
       const compressedFile = await imageCompression(file, options);
 
       // Lê o arquivo comprimido
       const reader = new FileReader();
+      let totalSize = 0;
+
       reader.onloadend = () => {
+        // Calcula o tamanho do arquivo
+        const fileSize = compressedFile.size; // Tamanho do arquivo em bytes
+        totalSize += fileSize;
+
+        // Verifica se o tamanho total ultrapassa 2MB
+        if (totalSize > 2 * 1024 * 1024) { // Se o tamanho total exceder 2MB (2 * 1024 * 1024 bytes)
+          alert('O tamanho total dos arquivos ultrapassou 2MB. Não é possível fazer upload.');
+          return; // Interrompe o upload
+        }
+
         newImages.push(reader.result);
         if (newImages.length === files.length) {
           switch (section) {
@@ -126,7 +147,6 @@ const CriarOficina = () => {
     }
   }
 };
-
 
     
 
@@ -174,6 +194,7 @@ const CriarOficina = () => {
     e.preventDefault();
     setFormError("");
     setIsSubmitting(true);
+   
 
     if (!title || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
@@ -183,6 +204,7 @@ const CriarOficina = () => {
 
    
     try {
+      setIsSubmitting(true);
       await insertDocument({
       title,
       image,
