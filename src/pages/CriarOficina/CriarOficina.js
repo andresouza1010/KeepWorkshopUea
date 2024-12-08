@@ -38,7 +38,7 @@ const CriarOficina = () => {
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
 
-  const [hasAccessibility, setHasAccessibility] = useState(false);
+  const [hasAccessibility, setHasAccessibility] = useState(true);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
   
  
@@ -54,10 +54,6 @@ const CriarOficina = () => {
       );
     }
   };
-
-  
-
-
   const handleAccessibilityDescriptionChange = (e, accessibility) => {
     const { value } = e.target;
     setAccessibilityDescriptions((prev) => ({
@@ -147,9 +143,6 @@ const CriarOficina = () => {
     }
   }
 };
-
-    
-
   const handleRemoveImage = (section, index) => {
     switch (section) {
       case 'intro':
@@ -168,7 +161,6 @@ const CriarOficina = () => {
         break;
     }
   };
-
   const resetFields = () => {
     setTitle("");
     setImage([]);
@@ -187,6 +179,7 @@ const CriarOficina = () => {
     setDuration("");
     setHasAccessibility(false);
     setAccessibilityDescription("");
+    setAccessibilityDescriptions("");
     setSocialLink(""); // Limpa o campo de link de rede social
   };
 
@@ -195,7 +188,6 @@ const CriarOficina = () => {
     setFormError("");
     setIsSubmitting(true);
    
-
     if (!title || !recursos || !category || !targetAudience || !duration || !description) {
       setFormError("Por favor, preencha todos os campos!");
       setIsSubmitting(false);
@@ -256,8 +248,7 @@ const CriarOficina = () => {
             name="targetAudience" 
             required 
             onChange={(e) => setTargetAudience(e.target.value)} 
-            value={targetAudience}
-          >
+            value={targetAudience}>
             <option value="">Selecione o público-alvo</option>
             <option value="4 a 6 anos">4 a 6 anos</option>
             <option value="7 a 9 anos">7 a 9 anos</option>
@@ -489,7 +480,7 @@ const CriarOficina = () => {
     {/* Acessibilidade */}
     <label>
         <span>Trabalha com algum público específico?</span>
-        <div>
+        <div className={styles.options}>
           <input
             type="radio"
             value="no"
@@ -500,14 +491,14 @@ const CriarOficina = () => {
         </div>
 {/* Checkbox para selecionar os públicos de acessibilidade */}
 
-<div>
+          <div className={styles.options}>
             <input
-              type="checkbox"
+              type="radio"
               value="autistic"
               checked={selectedAccessibilities.includes('autista')}
               onChange={(e) => handleAccessibilityChange(e, 'autista')}
             />
-            <label>Pessoas com autismo</label>
+            <label>Pessoas no espectro do autismo</label>
             {/* Exibe a caixa de texto somente se o público "autista" for selecionado */}
             {selectedAccessibilities.includes('autista') && (
               <div>
@@ -520,9 +511,9 @@ const CriarOficina = () => {
             )}
           </div>
 
-          <div>
+          <div className={styles.options}>
             <input
-              type="checkbox"
+              type="radio"
               value="tdah"
               checked={selectedAccessibilities.includes('tdah')}
               onChange={(e) => handleAccessibilityChange(e, 'tdah')}
@@ -540,9 +531,9 @@ const CriarOficina = () => {
             )}
           </div>
 
-          <div>
+          <div className={styles.options}>
             <input
-              type="checkbox"
+              type="radio"
               value="deficientes visuais"
               checked={selectedAccessibilities.includes('deficientes visuais')}
               onChange={(e) => handleAccessibilityChange(e, 'deficientes visuais')}
@@ -560,14 +551,14 @@ const CriarOficina = () => {
             )}
           </div>
 
-          <div>
+          <div className={styles.options}>
             <input
-              type="checkbox"
+              type="radio"
               value="pessoas surdas"
               checked={selectedAccessibilities.includes('pessoas surdas')}
               onChange={(e) => handleAccessibilityChange(e, 'pessoas surdas')}
             />
-            <label>Pessoas surdas</label>
+            <label>Pessoas com deficiência auditiva</label>
             {/* Exibe a caixa de texto somente se o público  for selecionado */}
             {selectedAccessibilities.includes('pessoas surdas') && (
               <div>
@@ -580,14 +571,18 @@ const CriarOficina = () => {
             )}
           </div>
 
-          <div>
+          <div className={styles.options}>
+          <label>
             <input
-              type="checkbox"
+              type="radio"
               value="outro público"
               checked={selectedAccessibilities.includes('outro público')}
               onChange={(e) => handleAccessibilityChange(e, 'outro público')}
             />
-            <label>Outro público</label>
+            Outro público
+          </label>
+      
+
             {/* Exibe a caixa de texto somente se o público  for selecionado */}
             {selectedAccessibilities.includes('outro público') && (
               <div>

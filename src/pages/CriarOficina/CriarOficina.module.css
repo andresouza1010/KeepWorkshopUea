@@ -255,3 +255,9 @@ button[type="submit"]:disabled {
   color: #AAA;
   font-style: italic;
 }
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Ajusta o espaçamento entre o input e o texto */
+}

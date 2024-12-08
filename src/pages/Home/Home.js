@@ -1,6 +1,6 @@
 // Importa o módulo CSS para estilização do componente Home
 import styles from "./Home.module.css";
-import { useNavigate } from 'react-router-dom';
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
@@ -34,7 +34,6 @@ const Home = () => {
     const [showCategoryFilter, setShowCategoryFilter] = useState(false);
     const [showAgeFilter, setShowAgeFilter] = useState(false);
     const [showAccessibilityFilter, setShowAccessibilityFilter] = useState(false);
-    const navigate = useNavigate();
     // Busca documentos da coleção "oficinas" e define estado para loading
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
 
@@ -85,15 +84,14 @@ const Home = () => {
         setShowAccessibilityFilter(prev => !prev);
     };
       // Filtra oficinas por opções de acessibilidade selecionadas
-  // Filtra oficinas considerando todas as condições
-const filteredOficinas =
-oficinas?.filter((oficina) => {
-  // Filtrar por acessibilidade
-  const matchesAccessibility = selectedAccessibility.length === 0
-    ? true
-    : selectedAccessibility.every((selected) =>
-        oficina.accessibilityOptions?.includes(selected)
-      );
+    const filteredOficinas =
+    oficinas?.filter((oficina) => {
+    // Filtrar por acessibilidade
+    const matchesAccessibility = selectedAccessibility.length === 0
+        ? true
+        : selectedAccessibility.every((selected) =>
+            oficina.accessibilityOptions?.includes(selected)
+        );
 
   // Filtrar por categoria
   const matchesCategory = selectedCategories.length === 0
@@ -111,17 +109,11 @@ oficinas?.filter((oficina) => {
   // Retornar apenas oficinas que atendem a todos os critérios
   return matchesAccessibility && matchesCategory && matchesAge;
 }) || [];
-
-
-    const handleExploreClick = () => {
-        navigate('/CriarOficina'); // Altere para a rota correta para 
-      };
-
-    
+ 
 
     // Renderiza o componente
     return (
-        <div className={styles.home}>
+        <div>
             {/* Exibe conteúdo para usuários não logados */}
             {!isLoggedIn && (
                 <>
@@ -131,7 +123,7 @@ oficinas?.filter((oficina) => {
                             <div className={styles.dropdown2}>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Categorias</p>
-                                    {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
+                                    {["Eletrônica", "Programação","Desplugada", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
                                         <label key={category} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
@@ -209,7 +201,7 @@ oficinas?.filter((oficina) => {
                         {/* Painel de filtro por acessibilidade */}
                         <div className={styles.benefitPanel} onClick={toggleAccessibilityFilter}>
                             <img src={acessibilidadeInfo} alt="Oficinas Acessíveis" className={styles.benefitImage} />
-                            <h3>Oficinas Acessíveis</h3>
+                            <h3>Por público-alvo</h3>
                             <p>Encontre oficinas inclusivas com recursos adaptados e instruções detalhadas.</p>
                         </div>
                     </div>
@@ -225,7 +217,7 @@ oficinas?.filter((oficina) => {
                         <div className={styles.filter_bar}>
                             <div className={styles.filter_text}>
                                 <span>Filtrar por Categoria:</span>
-                                {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
+                                {["Eletrônica", "Programação","Desplugada", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
                                     <label key={category} className={styles.checkbox_label}>
                                         <input
                                             type="checkbox"
@@ -287,7 +279,7 @@ oficinas?.filter((oficina) => {
                             <div className={styles.dropdown}>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Categorias</p>
-                                    {["Eletrônica", "Programação", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
+                                    {["Eletrônica", "Programação", "Desplugada","Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
                                         <label key={category} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
@@ -329,13 +321,6 @@ oficinas?.filter((oficina) => {
                                 </div>
                             </div>
                         )}
-                    </div>
-
-                    {/* Painel de Informações */}
-                    <div className={styles.infoPanel}>
-                        <h3>Explore o Mundo Maker</h3>
-                        <p>Descubra as últimas novidades e inspire-se para criar, inovar e compartilhar suas ideias!</p>
-                        <button className={styles.exploreButton} onClick={handleExploreClick}>Criar agora</button>
                     </div>
                 </>
             )}

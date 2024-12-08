@@ -130,21 +130,26 @@ const Oficina = () => {
                         <p>{oficina.descricaoApresentacao}</p>
                     </div>
 
-                    
-                    {/* Acessibilidade */}
-                    {oficina.hasAccessibility && oficina.accessibilityOptions && oficina.accessibilityOptions.length > 0 && (
-                        <div className={styles.accessibilitySection}>
-                            <h3 className={styles.accessibilityTitle}>Elementos de Acessibilidade</h3>
-                            <ul className={styles.accessibilityList}>
-                                {oficina.accessibilityOptions.map((option, index) => (
-                                    <li key={index}>
-                                        <strong>{option}:</strong>{" "}
-                                        {oficina.accessibilityDescriptions?.[option] || "Descrição não fornecida"}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+              
+              {/* Acessibilidade */}
+              {oficina.hasAccessibility && Object.keys(oficina.accessibilityDescriptions).length > 0 ? (
+  <div className={styles.accessibilitySection}>
+    <h3 className={styles.accessibilityTitle}>Elementos de Acessibilidade</h3>
+    <ul className={styles.accessibilityList}>
+      {Object.entries(oficina.accessibilityDescriptions)
+        .filter(([option, description]) => description !== "")  // Filtra as opções com descrição não vazia
+        .map(([option, description], index) => (
+          <li key={index}>
+            <strong>{option}:</strong> {description}
+          </li>
+        ))}
+    </ul>
+  </div>
+) : (
+  <p>Não há opções de acessibilidade fornecidas.</p>
+)}
+
+
 
 
 

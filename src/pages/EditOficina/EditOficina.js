@@ -19,6 +19,8 @@ const EditOficina = () => {
   const [descricaoApresentacao, setApresentacao] = useState(""); 
   const [image, setImage] = useState([]); // Estado para as imagens da introdução
   const [image2, setImage2] = useState([]); 
+  const [image3, setImage3] = useState([]); 
+  const [image4, setImage4] = useState([]); 
   const [loading, setLoading] = useState(true); // Indica que os dados estão sendo carregados
 
  
@@ -26,6 +28,7 @@ const EditOficina = () => {
   const categories = [
     "Eletrônica",
     "Programação",
+    "Desplugada",
     "Mecânica",
     "Robótica",
     "Engenharia",
@@ -64,6 +67,8 @@ const EditOficina = () => {
           setApresentacao(data.descricaoApresentacao || '');
           setImage(data.image || []);// Define a URL da imagem (se houver)
           setImage2(data.image2 || []);
+          setImage3(data.image3 || []);
+          setImage4(data.image4 || []);
         }
       } catch (error) {
         console.error("Erro ao carregar a oficina:", error);
@@ -97,6 +102,8 @@ const EditOficina = () => {
         descricaoApresentacao: descricaoApresentacao,
         image: image,
         image2: image2,
+        image3: image3,
+        image4: image4,
 
       });
       alert('Dados da oficina atualizados com sucesso!');
@@ -145,6 +152,15 @@ const EditOficina = () => {
   const handleRemoveImageFromImage2 = (index) => {
     setImage2((prevImages) => prevImages.filter((_, idx) => idx !== index));
   };
+  // Função para remover imagem
+  const handleRemoveImageFromImage3 = (index) => {
+    setImage3((prevImages) => prevImages.filter((_, idx) => idx !== index));
+  };
+  
+  const handleRemoveImageFromImage4 = (index) => {
+    setImage4((prevImages) => prevImages.filter((_, idx) => idx !== index));
+  };
+  
   
   
 
@@ -274,6 +290,7 @@ const EditOficina = () => {
             onChange={(e) => setPratica(e.target.value)}
             placeholder="Descreva como será o momento prático da oficina"
           ></textarea>
+          
 
           <h2>Apresentação:</h2>
           <textarea
