@@ -9,7 +9,6 @@ import { AuthProvider } from "./context/AuthContext";
 
 // pages
 import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
 import Opcoes from "./pages/Opcoes/Opcoes";
 import EditOficina from "./pages/EditOficina/EditOficina";
 import Favoritas from "./pages/Favoritas/Favoritas";
@@ -57,7 +56,6 @@ function App() {
             <div className="content-container">
               <Routes>
                 <Route path="/" element={<Home selectedCategories={selectedCategories} />} />
-                <Route path="/about" element={<About />} />
                 <Route path="/criarOficina" element={user ? <CriarOficina /> : <Navigate to="/login" />} />
                 <Route path="/oficinas/edit/:id" element={user ? <EditOficina /> : <Navigate to="/login" />} />
                 <Route path="/favoritas" element={<Favoritas />} />

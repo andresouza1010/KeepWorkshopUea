@@ -50,6 +50,33 @@ const Oficina = () => {
                             <h4>Recursos Necessários:</h4>
                             <p>{oficina.recursos}</p>
                         </div>
+                        <div className={styles.detailItem}>
+    <h4>Esta oficina trabalha com algum público específico:</h4>
+    <p>{oficina.categoriaDoPublico}</p>
+
+    {/* Verifica e exibe as descrições de acessibilidade conforme o público específico */}
+    {oficina.categoriaDoPublico === 'Pessoas no espectro do autismo' && oficina.accessibilityDescriptions['autista'] && (
+        <p>{oficina.accessibilityDescriptions['autista']}</p>
+    )}
+
+    {oficina.categoriaDoPublico === 'Pessoas com TDAH' && oficina.accessibilityDescriptions['tdah'] && (
+        <p>{oficina.accessibilityDescriptions['tdah']}</p>
+    )}
+
+    {oficina.categoriaDoPublico === 'Pessoas com deficiência visual' && oficina.accessibilityDescriptions['deficientes visuais'] && (
+        <p>{oficina.accessibilityDescriptions['deficientes visuais']}</p>
+    )}
+
+    {oficina.categoriaDoPublico === 'Pessoas com deficiência auditiva' && oficina.accessibilityDescriptions['pessoas surdas'] && (
+        <p>{oficina.accessibilityDescriptions['pessoas surdas']}</p>
+    )}
+
+    {oficina.categoriaDoPublico === 'Outro público' && oficina.accessibilityDescriptions['outro público'] && (
+        <p>{oficina.accessibilityDescriptions['outro público']}</p>
+    )}
+</div>
+
+                        
                     </div>
 
                     <h3 className={styles.stepsTitle}>Etapas da Oficina</h3>
@@ -131,27 +158,7 @@ const Oficina = () => {
                     </div>
 
               
-              {/* Acessibilidade */}
-              {oficina.hasAccessibility && Object.keys(oficina.accessibilityDescriptions).length > 0 ? (
-  <div className={styles.accessibilitySection}>
-    <h3 className={styles.accessibilityTitle}>Elementos de Acessibilidade</h3>
-    <ul className={styles.accessibilityList}>
-      {Object.entries(oficina.accessibilityDescriptions)
-        .filter(([option, description]) => description !== "")  // Filtra as opções com descrição não vazia
-        .map(([option, description], index) => (
-          <li key={index}>
-            <strong>{option}:</strong> {description}
-          </li>
-        ))}
-    </ul>
-  </div>
-) : (
-  <p>Não há opções de acessibilidade fornecidas.</p>
-)}
-
-
-
-
+              
 
                     {/* Nome ou Rede Social do Autor */}
                     <div className={styles.authorInfo}>
@@ -160,6 +167,18 @@ const Oficina = () => {
                     </div>
                 </div>
             )}
+              <label>
+              {/* Componente de link para formulário de avaliação */}
+      <div className={styles.feedbackForm}>
+        <p>Gostou da oficina? Avalie o conteúdo preenchendo o formulário abaixo:</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSyyWTyuzbx-AXjL_rI0SNiYRaxqN6q733nTCabnXWygiLjg/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+            Clique aqui para preencher o formulário
+            </a>
+ 
+      </div>
+    
+
+        </label>
 
             {isOpen && (
                 <div className={styles.modal} onClick={closeModal}>

@@ -15,7 +15,7 @@
   font-weight: bold;
 }
 
-.search_form {
+.search_formnavbar {
   display: flex;
   align-items: center;
   position: relative;
@@ -65,7 +65,7 @@
   margin-right: 8px;
 }
 
-.search_input {
+.search_inputnavbar {
   padding: 8px;
   border: 1px solid #7c7c7c;
   border-radius: 4px;

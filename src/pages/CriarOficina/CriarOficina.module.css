@@ -1,263 +1,137 @@
-/* Sugestao.module.css */
+/* CriarOficina.module.css */
 
+/* Corpo do formulário */
 .create_oficina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff; /* Fundo branco para clareza */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  font-family: 'Roboto', sans-serif;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fdfdfd;
+  margin: auto;
+}
+
+/* Títulos */
+.titulo_cecreateoficina {
+  font-size: 2rem;
+  color: #eb9800; /* Destaque em laranja escuro */
+  margin-bottom: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.titulo_p {
+  font-size: 1.1rem;
+  color: #7f8c8d; /* Texto secundário em cinza */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Estilo para subtítulos das etapas */
+.titulo_empatia, 
+.titulo_definição, 
+.titulo_ideacao,
+.titulo_prototipagem,
+.titulo_teste {
+  font-size: 1.3rem;
+  color: #e67e22; /* Laranja vibrante */
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #e67e22;
+  padding-left: 8px;
+}
+
+/* Labels */
+.labelcreate {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.labelcreate span {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #34495e; /* Texto mais escuro para contraste */
+  margin-bottom: 0.5rem;
+}
+
+/* Inputs e Textareas */
+.texteareacreate,
+ [type="text"] {
+  width: 100%;
+  padding: 1.4rem;
+  border: 1px solid #cccccc;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  background-color: #fdfdfd; /* Leve variação do branco */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.titulo{
-  font-size: 1.8em;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #ff6a00;
-}
-
-p {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #555;
-}
-
-h2 {
-  font-size: 1.4em;
-  color: #ff6a00;
-  margin-top: 20px;
-  border-bottom: 2px solid #ff6a00;
-  padding-bottom: 8px;
-}
-
-form1 {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilo das etapas */
-.section {
-  padding: 15px;
-  border: 1px solid #ff6a00;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  background-color: #fffaf0;
-}
-
-.section h3 {
-  color: #ff6a00;
-  margin-bottom: 10px;
-  font-size: 1.2em;
-}
-
-/* Campos de input e select */
-label {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  color: #333;
-}
-.uploadLabel span {
-  color: white; /* Define a cor do texto como branco */
-}
-
-
-label span {
-  font-weight: bold;
-  margin-bottom: 5px;
-  
-}
-
-input[type="text"],
-input[type="number"],
-textarea,
-select {
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.2s;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus,
-select:focus {
-  border-color: #ff6a00;
+.texteareacreate:focus,
+select:focus,
+input[type="text"]:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 5px rgba(230, 126, 34, 0.5); /* Sombra laranja ao focar */
   outline: none;
 }
 
-textarea {
-  resize: vertical;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.uploadLabel {
-  display: inline-block;
-  padding: 8px 12px;
-  font-size: 1em;
-  color: #ffffff;
-  background-color: #ff6a00;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s;
-  margin-top: 10px;
-}
-
-.uploadLabel:hover {
-  background-color: #e65c00;
-}
-
-/* Preview das imagens */
-.imagePreviewContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.imagePreview {
-  position: relative;
-  display: inline-block;
-}
-
-.imagePreview img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.deleteButton {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #ff4d4d;
+/* Botões */
+.button-create {
+  background-color: #e67e22; /* Laranja Google */
   color: white;
   border: none;
-  border-radius: 50%;
-  font-size: 0.8em;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
 }
 
-/* Botão de enviar */
-button[type="submit"] {
-  padding: 10px 20px;
-  font-size: 1em;
-  color: white;
-  background-color: #ff6a00;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s;
+.button-create:hover {
+  background-color: #d35400; /* Laranja mais escuro no hover */
+  box-shadow: 0 4px 10px rgba(211, 84, 0, 0.4);
 }
 
-button[type="submit"]:hover {
-  background-color: #e65c00;
-}
-
-button[type="submit"]:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
-}
-
-/* Mensagens de erro e sucesso */
-.error {
-  color: #d9534f;
-  font-weight: bold;
-}
-
-.success {
-  color: #5cb85c;
-  font-weight: bold;
-}
-
-
-.accessibility-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.accessibility-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.accessibility-textarea {
-  margin-top: 0.5rem;
-}
-
-/* Botão de rádio e checkbox */
-.inputCheck + label,
-.accessibility-checkbox + label {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+/* Mensagens de erro */
+.form_error {
+  color: #c0392b; /* Vermelho suave */
   font-size: 0.9rem;
-  color: #ffffff;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.inputCheck + label:hover,
-.accessibility-checkbox + label:hover {
-  color: #007bff;
+.h3create{
+  color: rgb(99, 99, 99);
+}
+
+/* Estilo para seleções */
+.selectcreate {
+  appearance: none;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxu...') no-repeat right 10px center;
+  background-size: 12px;
 }
 
 /* Responsividade */
 @media (max-width: 600px) {
-  .accessibility-grid {
-    grid-template-columns: 1fr;
+  .create_oficina {
+    padding: 1rem;
+  }
+
+  .titulo_cecreateoficina {
+    font-size: 1.5rem;
+  }
+
+  .titulo_p {
+    font-size: 1rem;
+  }
+
+  .button-create {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
 
-/* Estilos específicos para a página "Criar Oficina" */
-.criaoficina-label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1em;
-}
-
-.criaoficina-label span {
-  font-weight: bold;
-  margin-bottom: .5em;
-  color: #333;
-}
-
-.criaoficina-textarea {
-  width: 80%;  /* Largura ajustada para ser um pouco menor */
-  height: 150px;  /* Altura maior para mais conforto */
-  padding: 10px;
-  font-family: "Poppins", sans-serif;
-  font-size: 1em;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.criaoficina-textarea:focus {
-  border-color: #FE502D; /* Cor destacada ao focar */
-  box-shadow: 0 0 5px rgba(254, 80, 45, 0.5); /* Sombras suaves para destacar o foco */
-  outline: none;
-}
-
-.criaoficina-textarea::placeholder {
-  color: #AAA;
-  font-style: italic;
-}
-
-.options label {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Ajusta o espaçamento entre o input e o texto */
-}

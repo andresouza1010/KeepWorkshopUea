@@ -12,7 +12,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
 import filterInfo from "../Imagens/filter.png";
 import categoriaInfo from "../Imagens/classification.png";
-import acessibilidadeInfo from "../Imagens/public-service.png";
+
 
 // Importa um componente alternativo para exibir detalhes quando o usuário não está logado
 import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';
@@ -29,11 +29,11 @@ const Home = () => {
 
     // Define estados para filtros de categoria, idade, acessibilidade e visibilidade de filtros
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedCategoriaDoPublico, setSelectedCategoriaDoPublico] = useState([]);
     const [selectedAges, setSelectedAges] = useState([]);
-    const [selectedAccessibility, setSelectedAccessibility] = useState([]);
     const [showCategoryFilter, setShowCategoryFilter] = useState(false);
+    const [showCategoriaDoPublicoFilter, setShowCategoriaDoPublicoFilter] = useState(false);
     const [showAgeFilter, setShowAgeFilter] = useState(false);
-    const [showAccessibilityFilter, setShowAccessibilityFilter] = useState(false);
     // Busca documentos da coleção "oficinas" e define estado para loading
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
 
@@ -48,6 +48,15 @@ const Home = () => {
                 : [...prev, category]
         );
     };
+    // Função para alternar seleção de categoria do publico
+    const handleCategoriaDoPublicoChange = (categoriaDoPublico) => {
+        setSelectedCategoriaDoPublico(prev =>
+            prev.includes(categoriaDoPublico)
+                ? prev.filter(cdp => cdp !== categoriaDoPublico)
+                : [...prev, categoriaDoPublico]
+        );
+    };
+
 
     // Função para alternar seleção de idade
     const handleAgeChange = (age) => {
@@ -58,20 +67,16 @@ const Home = () => {
         );
     };
 
-    // Função para alternar seleção de acessibilidade
-    const handleAccessibilityChange = (accessibility) => {
-        setSelectedAccessibility(prev =>
-            prev.includes(accessibility)
-                ? prev.filter(a => a !== accessibility)
-                : [...prev, accessibility]
-        );
-    };
-
+ 
   
 
     // Alterna a visibilidade do filtro de categorias
     const toggleCategoryFilter = () => {
         setShowCategoryFilter(prev => !prev);
+    };
+    // Alterna a visibilidade do filtro de categorias do publico
+    const toggleCategoriaDoPublicoFilter = () => {
+        setShowCategoriaDoPublicoFilter(prev => !prev);
     };
 
     // Alterna a visibilidade do filtro de idades
@@ -79,24 +84,22 @@ const Home = () => {
         setShowAgeFilter(prev => !prev);
     };
 
-    // Alterna a visibilidade do filtro de acessibilidade
-    const toggleAccessibilityFilter = () => {
-        setShowAccessibilityFilter(prev => !prev);
-    };
+  
       // Filtra oficinas por opções de acessibilidade selecionadas
     const filteredOficinas =
     oficinas?.filter((oficina) => {
-    // Filtrar por acessibilidade
-    const matchesAccessibility = selectedAccessibility.length === 0
-        ? true
-        : selectedAccessibility.every((selected) =>
-            oficina.accessibilityOptions?.includes(selected)
-        );
+   
 
   // Filtrar por categoria
   const matchesCategory = selectedCategories.length === 0
     ? true
     : selectedCategories.includes(oficina.category);
+
+    // Filtrar por categoria
+    const matchesCategoriaDoPublico = selectedCategoriaDoPublico.length === 0
+    ? true
+    : selectedCategoriaDoPublico.includes(oficina.categoriaDoPublico);
+
 
   // Filtrar por idade
 
@@ -107,7 +110,7 @@ const Home = () => {
     );
 
   // Retornar apenas oficinas que atendem a todos os critérios
-  return matchesAccessibility && matchesCategory && matchesAge;
+  return matchesCategory && matchesAge && matchesCategoriaDoPublico;
 }) || [];
  
 
@@ -151,18 +154,21 @@ const Home = () => {
                                 </div>
                                 <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual"].map((accessibility) => (
-                                        <label key={accessibility} className={styles.checkbox_label}>
+                                    {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
+                                        <label key={categoriaDoPublico} className={styles.checkbox_label}>
                                             <input
                                                 type="checkbox"
-                                                value={accessibility}
-                                                checked={selectedAccessibility.includes(accessibility)}
-                                                onChange={() => handleAccessibilityChange(accessibility)}
+                                                value={categoriaDoPublico}
+                                                checked={selectedCategoriaDoPublico.includes(categoriaDoPublico)}
+                                                onChange={() => handleCategoriaDoPublicoChange(categoriaDoPublico)}
                                             />
-                                            {accessibility}
+                                            {categoriaDoPublico}
                                         </label>
                                     ))}
                                 </div>
+                                  
+                                
+                                
                             </div>
                         )}
                     </div>
@@ -198,12 +204,14 @@ const Home = () => {
                             <p>Encontre oficinas específicas, desde robótica até artesanato e muito mais.</p>
                         </div>
 
-                        {/* Painel de filtro por acessibilidade */}
-                        <div className={styles.benefitPanel} onClick={toggleAccessibilityFilter}>
-                            <img src={acessibilidadeInfo} alt="Oficinas Acessíveis" className={styles.benefitImage} />
-                            <h3>Por público-alvo</h3>
-                            <p>Encontre oficinas inclusivas com recursos adaptados e instruções detalhadas.</p>
+                        {/* Painel de filtro por categoria do publico */}
+                        <div className={styles.benefitPanel} onClick={toggleCategoriaDoPublicoFilter}>
+                            <img src={categoriaInfo} alt="Filtros por Categoria do Público" className={styles.benefitImage} />
+                            <h3>Por Categorias</h3>
+                            <p>Encontre oficinas específicas, desde robótica até artesanato e muito mais.</p>
                         </div>
+
+                        
                     </div>
                 </>
             )}
@@ -232,6 +240,27 @@ const Home = () => {
                         </div>
                     )}
 
+                    {/* Filtro de Categorias do publico */}
+                    {showCategoriaDoPublicoFilter && (
+                        <div className={styles.filter_bar}>
+                            <div className={styles.filter_text}>
+                                <span>Filtrar por Categoria do publico:</span>
+                                {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
+                                    <label key={categoriaDoPublico} className={styles.checkbox_label}>
+                                        <input
+                                            type="checkbox"
+                                            value={categoriaDoPublico}
+                                            checked={selectedCategories.includes(categoriaDoPublico)}
+                                            onChange={() => handleCategoryChange(categoriaDoPublico)}
+                                        />
+                                        {categoriaDoPublico}
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    
+
                     {/* Filtro de Idades */}
                     {showAgeFilter && (
                         <div className={styles.filter_bar}>
@@ -252,25 +281,8 @@ const Home = () => {
                         </div>
                     )}
 
-                    {/* Filtro de Acessibilidade */}
-                    {showAccessibilityFilter && (
-                        <div className={styles.filter_bar}>
-                            <div className={styles.filter_text}>
-                                <span>Filtrar por Acessibilidade:</span>
-                                {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro público"].map((accessibility) => (
-                                    <label key={accessibility} className={styles.checkbox_label}>
-                                        <input
-                                            type="checkbox"
-                                            value={accessibility}
-                                            checked={selectedAccessibility.includes(accessibility)}
-                                            onChange={() => handleAccessibilityChange(accessibility)}
-                                        />
-                                        {accessibility}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                   
+                    
 
                     {/* Ícone de Filtro (Dropdown) */}
                     <div className={styles.heroSection}>
@@ -292,6 +304,20 @@ const Home = () => {
                                     ))}
                                 </div>
                                 <div className={styles.dropdownColumn}>
+                                    <p className={styles.dropdownTitle}>Acessibilidade</p>
+                                    {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
+                                        <label key={categoriaDoPublico} className={styles.checkbox_label}>
+                                            <input
+                                                type="checkbox"
+                                                value={categoriaDoPublico}
+                                                checked={selectedCategoriaDoPublico.includes(categoriaDoPublico)}
+                                                onChange={() => handleCategoriaDoPublicoChange(categoriaDoPublico)}
+                                            />
+                                            {categoriaDoPublico}
+                                        </label>
+                                    ))}
+                                </div>
+                                <div className={styles.dropdownColumn}>
                                     <p className={styles.dropdownTitle}>Idades</p>
                                     {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
                                         <label key={age} className={styles.checkbox_label}>
@@ -305,20 +331,8 @@ const Home = () => {
                                         </label>
                                     ))}
                                 </div>
-                                <div className={styles.dropdownColumn}>
-                                    <p className={styles.dropdownTitle}>Acessibilidade</p>
-                                    {["Pessoas no espectro do autismo", "Pessoas com TDAH", "Pessoas com deficiência auditiva", "Pessoas com deficiência visual", "Outro público"].map((accessibility) => (
-                                        <label key={accessibility} className={styles.checkbox_label}>
-                                            <input
-                                                type="checkbox"
-                                                value={accessibility}
-                                                checked={selectedAccessibility.includes(accessibility)}
-                                                onChange={() => handleAccessibilityChange(accessibility)}
-                                            />
-                                            {accessibility}
-                                        </label>
-                                    ))}
-                                </div>
+                               
+                                
                             </div>
                         )}
                     </div>

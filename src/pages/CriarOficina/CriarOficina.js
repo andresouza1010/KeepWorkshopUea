@@ -7,7 +7,6 @@ import imageCompression from 'browser-image-compression';
 
 const CriarOficina = () => {
 
-  const [selectedAccessibilities, setSelectedAccessibilities] = useState([]);
   const [accessibilityDescriptions, setAccessibilityDescriptions] = useState({
     'autista': '',
     'tdah': '',
@@ -28,32 +27,17 @@ const CriarOficina = () => {
   const [descricaoPratica, setPratica] = useState(""); 
   const [descricaoApresentacao, setApresentacao] = useState(""); 
   const [category, setCategory] = useState(""); 
+  const [categoriaDoPublico, setCategoriaDoPublico] = useState(""); 
   const [targetAudience, setTargetAudience] = useState(""); 
   const [duration, setDuration] = useState(""); 
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); 
   const [socialLink, setSocialLink] = useState(""); // Novo campo para link de rede social
-
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("oficinas");
   const navigate = useNavigate();
-
   const [hasAccessibility, setHasAccessibility] = useState(true);
   const [accessibilityDescription, setAccessibilityDescription] = useState("");
-  
- 
-   
-  // Função para manipular a mudança nos públicos de acessibilidade selecionados
-  const handleAccessibilityChange = (e, accessibility) => {
-    const { checked } = e.target;
-    if (checked) {
-      setSelectedAccessibilities((prev) => [...prev, accessibility]); // Adiciona à lista
-    } else {
-      setSelectedAccessibilities((prev) =>
-        prev.filter((item) => item !== accessibility) // Remove da lista
-      );
-    }
-  };
   const handleAccessibilityDescriptionChange = (e, accessibility) => {
     const { value } = e.target;
     setAccessibilityDescriptions((prev) => ({
@@ -175,6 +159,7 @@ const CriarOficina = () => {
     setPratica("");
     setApresentacao("");
     setCategory("");
+    setCategoriaDoPublico("");
     setTargetAudience("");
     setDuration("");
     setHasAccessibility(false);
@@ -210,7 +195,8 @@ const CriarOficina = () => {
       descricaoPratica,
       descricaoApresentacao,
       description, 
-      category, 
+      category,
+      categoriaDoPublico, 
       targetAudience, 
       duration, 
       uid: user.uid,
@@ -233,18 +219,20 @@ const CriarOficina = () => {
 
   return (
     <div className={styles.create_oficina}>
-      <h1 className={styles.titulo} >Como criar a sua Oficina!</h1>
-      <p>
+      <h1 className={styles.titulo_cecreateoficina} >Como criar a sua Oficina!</h1>
+      <p className={styles.titulo_p}>
         Aqui você pode criar e armazenar um espaço colaborativo onde participantes podem aprender, criar e se divertir.
       </p>
       
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form_create} onSubmit={handleSubmit}>
         
         {/* Etapa 1: Empatia */}
-        <h2>Etapa 1: Empatia</h2>
-        <label>
-          <span>Público-alvo</span>
+        <h2 className={styles.titulo_empatia}>Etapa 1: Empatia</h2>
+
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Público-alvo</span>
           <select 
+            className={styles.selectcreate}
             name="targetAudience" 
             required 
             onChange={(e) => setTargetAudience(e.target.value)} 
@@ -257,9 +245,11 @@ const CriarOficina = () => {
             <option value="16 anos ou mais">16 anos ou mais</option>
           </select>
         </label>
-        <label>
-          <span>Narrativa</span>
+
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Narrativa</span>
           <textarea 
+            className={styles.texteareacreate}
             name="narrative" 
             placeholder="Descreva o contexto dos alunos e o problema que a oficina ajudará a resolver"
             onChange={(e) => setNarrative(e.target.value)}
@@ -268,29 +258,32 @@ const CriarOficina = () => {
         </label>
 
         {/* Etapa 2: Definição */}
-        <h2>Etapa 2: Definição</h2>
-        <label>
-          <span>Categoria</span>
+        <h2 className={styles.titulo_definição}>Etapa 2: Definição</h2>
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Categoria</span>
           <select 
+            className={styles.selectedcreate}
             name="category" 
             required 
             onChange={(e) => setCategory(e.target.value)} 
             value={category}
           >
-            <option value="">Selecione uma categoria</option>
-            <option value="Eletrônica">Eletrônica</option>
-            <option value="Programação">Programação</option>
-            <option value="Mecânica">Mecânica</option>
-            <option value="Robótica">Robótica</option>
-            <option value="Engenharia">Engenharia</option>
-            <option value="Arte e design">Arte e design</option>
-            <option value="Reciclagem e sustentabilidade">Reciclagem e sustentabilidade</option>
-            <option value="Edição de vídeo e voz">Edição de vídeo e voz</option>
+            <option className={styles.optionscreate} value="">Selecione uma categoria</option>
+            <option className={styles.optionscreate} value="Eletrônica">Eletrônica</option>
+            <option className={styles.optionscreate} value="Programação">Programação</option>
+            <option className={styles.optionscreate} value="Mecânica">Mecânica</option>
+            <option className={styles.optionscreate} value="Robótica">Robótica</option>
+            <option className={styles.optionscreate} value="Engenharia">Engenharia</option>
+            <option className={styles.optionscreate} value="Arte e design">Arte e design</option>
+            <option className={styles.optionscreate} value="Reciclagem e sustentabilidade">Reciclagem e sustentabilidade</option>
+            <option className={styles.optionscreate} value="Edição de vídeo e voz">Edição de vídeo e voz</option>
           </select>
         </label>
-        <label>
-          <span>Breve descrição</span>
+
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Breve descrição</span>
           <textarea 
+            className={styles.texteareacreate}
             name="description" 
             required 
             placeholder="Descrição breve da oficina" 
@@ -300,9 +293,9 @@ const CriarOficina = () => {
         </label>
 
         {/* Etapa 3: Ideação */}
-        <h2>Etapa 3: Ideação</h2>
-        <label>
-          <span>Título</span>
+        <h2 className={styles.titulo_ideacao}>Etapa 3: Ideação</h2>
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Título</span>
           <input 
             type="text" 
             name="title" 
@@ -313,20 +306,21 @@ const CriarOficina = () => {
           />
         </label>
         <label className="criaoficina-label">
-        <span>Recursos necessários</span>
+        <span className={styles.spancreate}>Recursos necessários</span>
         <textarea 
+          className={styles.texteareacreate}
           name="recursos" 
           required 
           placeholder="Liste os recursos necessários" 
           onChange={(e) => setRecursos(e.target.value)}
           value={recursos}
-          className="criaoficina-textarea"
+         
         ></textarea>
       </label>
 
          {/* Duração */}
-         <label>
-          <span>Duração da oficina (em horas)</span>
+         <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Duração da oficina (em horas)</span>
           <input 
             type="number" 
             name="duration" 
@@ -339,10 +333,11 @@ const CriarOficina = () => {
         </label>
 
         {/* Etapa 4: Prototipagem */}
-        <h2>Etapa 4: Prototipagem</h2>
-        <section>
-          <h3>Introdução</h3>
+        <h2 className={styles.titulo_prototipagem}>Etapa 4: Prototipagem</h2>
+        <section className={styles.sectioncreate}>
+          <h3 className={styles.h3create}>Introdução</h3>
           <textarea 
+            className={styles.texteareacreate}
             placeholder="Descreva a introdução da oficina"
             value={descricaoIntro}
             onChange={(e) => setIntroduction(e.target.value)}
@@ -359,7 +354,7 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadIntro" className={styles.uploadLabel}>
-    <span> Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}> Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadIntro"
@@ -371,9 +366,10 @@ const CriarOficina = () => {
   </label>
         </section>
 
-        <section>
-          <h3>Organização de Materiais</h3>
+        <section className={styles.sectioncreate}>
+          <h3 className={styles.h3create}>Organização de Materiais</h3>
           <textarea 
+            className={styles.texteareacreate}
             placeholder="Descreva a organização dos materiais"
             value={descricaoOrganizacao}
             onChange={(e) => setOrganizacao(e.target.value)}
@@ -391,7 +387,7 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
-    <span>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadOrganizacao"
@@ -403,9 +399,10 @@ const CriarOficina = () => {
   </label>
         </section>
 
-        <section>
-          <h3>Momento Prático</h3>
+        <section className={styles.h3create}>
+          <h3 className={styles.h3create}>Momento Prático</h3>
           <textarea 
+            className={styles.texteareacreate}
             placeholder="Descreva o momento prático da oficina"
             value={descricaoPratica}
             onChange={(e) => setPratica(e.target.value)}
@@ -425,7 +422,7 @@ const CriarOficina = () => {
 
 
   <label htmlFor="uploadPratica" className={styles.uploadLabel}>
-    <span>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadPratica"
@@ -439,10 +436,11 @@ const CriarOficina = () => {
         </section>
 
         {/* Etapa 5: Teste */}
-        <h2>Etapa 5: Teste</h2>
-        <section>
-          <h3>Apresentação Final</h3>
+        <h2 className={styles.titulo_teste}>Etapa 5: Teste</h2>
+        <section className={styles.h3create}>
+          <h3 className={styles.h3create}>Apresentação Final</h3>
           <textarea 
+            className={styles.texteareacreate}
             placeholder="Descreva a apresentação final da oficina"
             value={descricaoApresentacao}
             onChange={(e) => setApresentacao(e.target.value)}
@@ -462,7 +460,7 @@ const CriarOficina = () => {
 
 
   <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
-    <span>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadApresentacao"
@@ -474,134 +472,87 @@ const CriarOficina = () => {
     />
   </label>
         </section>
-
-
-
-    {/* Acessibilidade */}
-    <label>
-        <span>Trabalha com algum público específico?</span>
-        <div className={styles.options}>
-          <input
-            type="radio"
-            value="no"
-            checked={selectedAccessibilities.length === 0}
-            onChange={() => setSelectedAccessibilities([])} // Marca "Não" e desmarca as outras
-          />
-          <label>Não</label>
-        </div>
+    <label className={styles.labelcreate}>
+        
 {/* Checkbox para selecionar os públicos de acessibilidade */}
 
-          <div className={styles.options}>
-            <input
-              type="radio"
-              value="autistic"
-              checked={selectedAccessibilities.includes('autista')}
-              onChange={(e) => handleAccessibilityChange(e, 'autista')}
-            />
-            <label>Pessoas no espectro do autismo</label>
-            {/* Exibe a caixa de texto somente se o público "autista" for selecionado */}
-            {selectedAccessibilities.includes('autista') && (
-              <div>
-                <textarea
-                  placeholder="Descreva como seu projeto se aplica a este público"
-                  value={accessibilityDescriptions['autista'] || ''}
-                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
-                />
-              </div>
-            )}
-          </div>
+<label className={styles.labelcreate}>
+  <span className={styles.spancreate}>Categoria do Público</span>
+  <select
+    name="categoriaDoPublico"
+    required
+    onChange={(e) => setCategoriaDoPublico(e.target.value)}
+    value={categoriaDoPublico}
+  >
+    <option value="">Esta atividade trabalha com algum público específico?</option>
+    <option value="Não">Não</option>
+    <option value="Pessoas no espectro do autismo">Pessoas no espectro do autismo</option>
+    <option value="Pessoas com TDAH">Pessoas com TDAH</option>
+    <option value="Pessoas com deficiência visual">Pessoas com deficiência visual</option>
+    <option value="Pessoas com deficiência auditiva">Pessoas com deficiência auditiva</option>
+    <option value="Outro público">Outro público</option>
+  </select>
+</label>
 
-          <div className={styles.options}>
-            <input
-              type="radio"
-              value="tdah"
-              checked={selectedAccessibilities.includes('tdah')}
-              onChange={(e) => handleAccessibilityChange(e, 'tdah')}
-            />
-            <label>Pessoas com TDAH (Transtorno de Déficit de Atenção e Hiperatividade)</label>
-            {/* Exibe a caixa de texto somente se o público "tdah" for selecionado */}
-            {selectedAccessibilities.includes('tdah') && (
-              <div>
-                <textarea
-                  placeholder="Descreva como seu projeto se aplica a este público"
-                  value={accessibilityDescriptions['tdah'] || ''}
-                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
-                />
-              </div>
-            )}
-          </div>
+{/* Exibe as caixas de texto correspondentes à opção escolhida */}
+{categoriaDoPublico === 'Pessoas no espectro do autismo' && (
+  <div className={styles.create_oficina}>
+    <textarea
+      className={styles.texteareacreate}
+      placeholder="Descreva como seu projeto se aplica a este público"
+      value={accessibilityDescriptions['autista'] || ''}
+      onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
+    />
+  </div>
+)}
 
-          <div className={styles.options}>
-            <input
-              type="radio"
-              value="deficientes visuais"
-              checked={selectedAccessibilities.includes('deficientes visuais')}
-              onChange={(e) => handleAccessibilityChange(e, 'deficientes visuais')}
-            />
-            <label>Pessoas com deficiência visual</label>
-            {/* Exibe a caixa de texto somente se o público  for selecionado */}
-            {selectedAccessibilities.includes('deficientes visuais') && (
-              <div>
-                <textarea
-                  placeholder="Descreva como seu projeto se aplica a este público"
-                  value={accessibilityDescriptions['deficientes visuais'] || ''}
-                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
-                />
-              </div>
-            )}
-          </div>
+{categoriaDoPublico === 'Pessoas com TDAH' && (
+  <div className={styles.create_oficina}>
+    <textarea
+      className={styles.texteareacreate}
+      placeholder="Descreva como seu projeto se aplica a este público"
+      value={accessibilityDescriptions['tdah'] || ''}
+      onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
+    />
+  </div>
+)}
 
-          <div className={styles.options}>
-            <input
-              type="radio"
-              value="pessoas surdas"
-              checked={selectedAccessibilities.includes('pessoas surdas')}
-              onChange={(e) => handleAccessibilityChange(e, 'pessoas surdas')}
-            />
-            <label>Pessoas com deficiência auditiva</label>
-            {/* Exibe a caixa de texto somente se o público  for selecionado */}
-            {selectedAccessibilities.includes('pessoas surdas') && (
-              <div>
-                <textarea
-                  placeholder="Descreva como seu projeto se aplica a este público"
-                  value={accessibilityDescriptions['pessoas surdas'] || ''}
-                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
-                />
-              </div>
-            )}
-          </div>
+{categoriaDoPublico === 'Pessoas com deficiência visual' && (
+  <div className={styles.create_oficina}>
+    <textarea
+      className={styles.texteareacreate}
+      placeholder="Descreva como seu projeto se aplica a este público"
+      value={accessibilityDescriptions['deficientes visuais'] || ''}
+      onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
+    />
+  </div>
+)}
 
-          <div className={styles.options}>
-          <label>
-            <input
-              type="radio"
-              value="outro público"
-              checked={selectedAccessibilities.includes('outro público')}
-              onChange={(e) => handleAccessibilityChange(e, 'outro público')}
-            />
-            Outro público
-          </label>
-      
+{categoriaDoPublico === 'Pessoas com deficiência auditiva' && (
+  <div className={styles.create_oficina}>
+    <textarea
+      className={styles.texteareacreate}
+      placeholder="Descreva como seu projeto se aplica a este público"
+      value={accessibilityDescriptions['pessoas surdas'] || ''}
+      onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
+    />
+  </div>
+)}
 
-            {/* Exibe a caixa de texto somente se o público  for selecionado */}
-            {selectedAccessibilities.includes('outro público') && (
-              <div>
-                <textarea
-                  placeholder="Descreva como seu projeto se aplica a este público"
-                  value={accessibilityDescriptions['outro público'] || ''}
-                  onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
-                />
-              </div>
-            )}
-          </div>
-
-
-          
-
+{categoriaDoPublico === 'Outro público' && (
+  <div className={styles.create_oficina}>
+    <textarea
+      className={styles.texteareacreate}
+      placeholder="Descreva como seu projeto se aplica a este público"
+      value={accessibilityDescriptions['outro público'] || ''}
+      onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
+    />
+  </div>
+)}
         </label>
 
-        <label>
-          <span>Autor(a) para divulgação</span>
+        <label className={styles.labelcreate}>
+          <span className={styles.spancreate}>Autor(a) para divulgação</span>
           <input
             className="accessibility-textarea"
             name="socialLink"
@@ -611,7 +562,7 @@ const CriarOficina = () => {
           />
         </label>
 
-        <button type="submit" disabled={isSubmitting}>
+        <button className="styles.buttonSalvar" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Salvando...' : 'Criar Oficina'}
           
         </button>

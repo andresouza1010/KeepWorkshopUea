@@ -34,9 +34,9 @@ const NavBar = () => {
         Keep <strong>Workshop</strong>
       </NavLink>
 
-      <form onSubmit={handleSearch} className={styles.search_form}>
+      <form onSubmit={handleSearch} className={styles.search_formnavbar}>
         <input
-          className={styles.search_input}
+          className={styles.search_inputnavbar}
           type="text"
           placeholder="Busque a sua Oficina..."
           onChange={(e) => setQuery(e.target.value)}
