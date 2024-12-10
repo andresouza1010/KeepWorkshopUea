@@ -357,16 +357,16 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadIntro" className={styles.uploadLabel}>
-    <span className={styles.spancreate}> <i className="fas fa-upload"></i> Upload da Imagem (opcional)</span>
-    <input
-      type="file"
-      id="uploadIntro"
-      accept="image/*"
-      onChange={(e) => handleImageUpload(e, 'intro')}
-      className={styles.uploadInput}
-      multiple
-    />
-  </label>
+          <span className={styles.spancreate}></span>
+          <input
+            type="file"
+            id="uploadIntro"
+            accept="image/*"
+            onChange={(e) => handleImageUpload(e, 'intro')}
+            className={styles.uploadInput}
+            multiple
+          />
+        </label>
       
 
         
@@ -390,7 +390,7 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
-    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}></span>
     <input
       type="file"
       id="uploadOrganizacao"
@@ -426,7 +426,7 @@ const CriarOficina = () => {
 
 
   <label htmlFor="uploadPratica" className={styles.uploadLabel}>
-    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}></span>
     <input
       type="file"
       id="uploadPratica"
@@ -466,7 +466,7 @@ const CriarOficina = () => {
   </div>
 
   <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
-    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}></span>
     <input
       type="file"
       id="uploadApresentacao"
