@@ -58,12 +58,13 @@ const Register = () => {
 
   return (
     <div className={styles.register}>
-      <h1>Bem-vindo!</h1>
-      <p>Crie sua conta e compartilhe as suas ideias!</p>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <label>
-          <span>Nome:</span>
+      <h1 className={styles.registerH1}>Bem-vindo!</h1>
+      <p className={styles.registerp}>Crie sua conta e compartilhe as suas ideias!</p>
+      <form onSubmit={handleSubmit} className={styles.formregister}>
+        <label className={styles.labelregister}>
+          <span className={styles.spanregister}>Nome:</span>
           <input
+            className={styles.inputregister}
             type="text"
             name="displayName"
             required
@@ -72,9 +73,10 @@ const Register = () => {
             onChange={(e) => setDisplayName(e.target.value)}
           />
         </label>
-        <label>
-          <span>E-mail:</span>
+        <label className={styles.labelregister}>
+          <span className={styles.spanregister}>E-mail:</span>
           <input
+            className={styles.inputregister}
             type="email"
             name="email"
             required
@@ -87,9 +89,10 @@ const Register = () => {
 
         
 
-        <label>
-          <span>Senha:</span>
+        <label   className={styles.labelregister}>
+          <span   className={styles.spansenharegister}>Senha:</span>
           <input
+            className={styles.inputregister}
             type="password"
             name="password"
             required
@@ -98,9 +101,10 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <label>
-          <span>Confirmação de senha:</span>
+        <label   className={styles.labelregister}>
+          <span   className={styles.spanregister}>Confirmação de senha:</span>
           <input
+            className={styles.inputregister}
             type="password"
             name="confirmPassword"
             required
@@ -111,8 +115,9 @@ const Register = () => {
         </label>
 
         <div className={styles.terms}>
-          <label>
+          <label   className={styles.labelderegister}>
             <input
+              className={styles.inputregister}
               type="checkbox"
               checked={acceptTerms}
               onChange={(e) => setAcceptTerms(e.target.checked)}

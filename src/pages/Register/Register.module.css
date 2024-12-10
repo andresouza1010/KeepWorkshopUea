@@ -1,143 +1,111 @@
-/* Container principal do registro */
 .register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     margin: 50px auto;
-}
-
-/* Títulos e subtítulos */
-h1 {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .registerH1 {
     font-size: 28px;
+    text-align: center;
     color: #333;
     margin-bottom: 10px;
-}
-
-/* Estilização do formulário */
-.form {
-    width: 100%;
-}
-
-/* Estilos dos rótulos */
-label {
+  }
+  
+  .registerp {
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .formregister {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-}
-
-/* Estilos dos campos de entrada */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-/* Efeito ao focar nos campos */
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="tel"]:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-/* Estilo do campo de upload de imagem */
-input[type="file"] {
-    display: none;
-}
-
-.label-photo-upload {
-    display: inline-block;
+    gap: 20px;
+  }
+  
+  .labelregister {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .spanregister {
+    margin-bottom: 5px;
+  }
+  
+  .spansenharegister {
+    margin-bottom: 5px;
+  }
+  
+  .inputregister {
+    border: 1px solid #ddd;
+    border-radius: 5px;
     padding: 10px 15px;
-    background-color: #ff9900;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 16px;
-    margin-top: 5px;
-    transition: background-color 0.3s;
-}
-
-.label-photo-upload:hover {
-    background-color: #b39b00;
-}
-
-.profile-image-preview {
-    margin-top: 10px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffd000;
-}
-
-/* Estilização da seção de Termos */
-.terms {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .inputregister:focus {
+    border-color: #ff9900; /* Laranja claro */
+    outline: none;
+  }
+  
+  .terms {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .labelderegister {
     display: flex;
     align-items: center;
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-}
-
-.terms input[type="checkbox"] {
-    margin-right: 8px;
-    transform: scale(1.2); /* Aumenta o tamanho do checkbox */
-    accent-color: #007BFF; /* Define a cor do checkbox */
-}
-
-.terms a {
-    color: #007BFF;
+    gap: 10px;
+  }
+  
+  .labelderegister a {
+    color: #ff9900;
+    text-decoration: none;
+  }
+  
+  .labelderegister a:hover {
     text-decoration: underline;
-    margin-left: 5px;
-}
-
-.terms a:hover {
-    color: #0056b3;
-}
-
-/* Estilo do botão */
-.buttonContainer {
-    margin-top: 30px;
-    width: 100%;
-}
-
-.btn {
-    background-color: #ffa200;
-    color: white;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button.btn {
+    background-color: #ff9900;
     border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo do botão desativado */
-.btn:disabled {
-    background-color: #ccc;
+  }
+  
+  button.btn:disabled {
+    background-color: #ddd;
     cursor: not-allowed;
-}
-
-/* Mensagem de erro */
-.error {
-    color: #d9534f;
+  }
+  
+  button.btn:hover:not(:disabled) {
+    background-color: #e68a00;
+  }
+  
+  .error {
+    color: red;
     font-size: 14px;
+    text-align: center;
     margin-top: 10px;
-}
+  }
+  

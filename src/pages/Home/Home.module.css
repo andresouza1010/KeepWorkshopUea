@@ -277,6 +277,7 @@
     gap: 20px; 
 }
 
+
 .postDetail > div {
     flex: 0 0 calc(25% - 20px); 
     box-sizing: border-box; 
@@ -609,3 +610,191 @@
 }
 
 
+
+
+
+
+
+
+
+.filter_barDeUsuariosLogados {
+    background-color: #fff8f0; /* Fundo laranja claro */
+    border: 1px solid #ffd9b3; /* Borda laranja sutil */
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter_textDeUsuariosLogados {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.spantextDeUsuariosLogados {
+    font-size: 1.1rem;
+    color: #ff8800; /* Tom laranja vibrante */
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.checkbox_labelDeUsuariosLogados {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ffd9b3; /* Realce laranja claro */
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox_labelDeUsuariosLogados:hover {
+    background-color: #ffe6cc; /* Fundo laranja claro ao passar o mouse */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputDeUsuariosLogados {
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #ff8800; /* Cor personalizada para o checkbox */
+}
+.heroSectionDelogados {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Alinha os itens principais nos lados esquerdo e direito */
+    flex-wrap: wrap; /* Para ajustar no layout se houver muitas categorias */
+    gap: 10px; /* Espaçamento entre elementos */
+    cursor: pointer;
+}
+
+.filterBarDeUsuariosLogados {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Isso vai alinhar o ícone do filtro e as categorias */
+    width: 100%;
+}
+
+.filterLabel {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: hsl(0, 0%, 20%);
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.filterIconDelogados {
+    margin-left: 5px;
+    font-size: 1.2rem;
+    color: #ff8800;
+    transition: transform 0.2s ease;
+    margin-right: 8px; /* Reduz a distância entre o ícone e as categorias */
+}
+
+.filterIconDelogados:hover {
+    transform: scale(1.1);
+}
+
+/* Container das categorias selecionadas */
+.selectedCategories {
+    display: flex;
+    flex-wrap: wrap; /* Permite que as categorias ocupem novas linhas, se necessário */
+    gap: 8px; /* Reduz a distância entre as categorias */
+    max-width: -100%; /* Garante que o container use toda a largura disponível */
+    justify-content: center; /* Alinha as categorias à esquerda */
+}
+
+.selectedCategory {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #ffedcc; /* Laranja claro */
+    color: #333;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+
+
+
+.removeCategoryButton {
+    background: none;
+    border: none;
+    color: #000000; /* Vermelho claro */
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  
+}
+
+.removeCategoryButton:hover {
+    color: #ffffff; /* Destaca ao passar o mouse */
+    
+}
+
+
+.dropdownDeLogados {
+    position: absolute;
+    top: 19%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ffd9b3; /* Borda laranja claro */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 10;
+    min-width: 250px;
+}
+
+.dropdownColumnDeLogados {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdownTitleDeLogados {
+    font-size: 1.1rem;
+    color: #ff8800; /* Destaque laranja */
+    font-weight: bold;
+    margin-bottom: 8px; /* Reduzido para 5px */
+}
+
+
+
+.checkbox_label {
+    display: flex;
+    align-items: center;
+    background-color: #fff8f0; /* Fundo laranja claro */
+    border: 1px solid #ffd9b3;
+    border-radius: 5px;
+    padding: 5px 5px; /* Ajustado para ocupar menos espaço */
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox_label:hover {
+    background-color: #ffe6cc; /* Fundo laranja mais escuro ao passar o mouse */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="checkbox"] {
+    margin-right: 5px; /* Reduz a distância entre o checkbox e o texto */
+    cursor: pointer;
+    accent-color: #ff8800; /* Cor personalizada para os checkboxes */
+}

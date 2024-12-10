@@ -40,17 +40,17 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1>Esqueci minha senha</h1>
-      <p>Insira seu e-mail para receber um link de redefinição de senha:</p>
-      <form onSubmit={handlePasswordReset} className={styles.form}>
+    <div className={styles.containerEsqueciSenha}>
+      <h1 className={styles.h1EsqueciSenha}>Esqueci minha senha</h1>
+      <p className={styles.pEsqueciSenha}>Insira seu e-mail para receber um link de redefinição de senha:</p>
+      <form onSubmit={handlePasswordReset} className={styles.formesquecisenha}>
         <input 
           type="email" 
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className={styles.input}
+          className={styles.inputesquecisenha}
         />
         
         {/* CAPTCHA */}
@@ -62,11 +62,11 @@ const ForgotPassword = () => {
             value={captchaInput}
             onChange={(e) => setCaptchaInput(e.target.value)}
             required
-            className={styles.input}
+            className={styles.inputesquecisenha}
           />
         </div>
 
-        <button type="submit" disabled={loading} className={styles.button}>
+        <button type="submit" disabled={loading} className={styles.buttonesquecisenha}>
           {loading ? "Enviando..." : "Enviar e-mail de redefinição"}
         </button>
       </form>

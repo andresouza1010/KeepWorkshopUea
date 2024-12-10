@@ -1,149 +1,130 @@
-/* Estilização do formulário de login */
-.login {
-    text-align: center;
-    max-width: 90%; /* Ajuste de largura para telas menores */
-    width: 100%; /* Expande para largura total em telas pequenas */
-    max-width: 500px; /* Limite de largura em telas maiores */
-    margin: 0 auto; /* Centraliza horizontalmente */
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-}
-
-/* Título do login */
-.login h1 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.7em; /* Tamanho de fonte responsivo */
-    font-weight: 600;
-}
-
-/* Parágrafo de introdução */
-.login p {
-    color: #666;
-    margin-bottom: 25px;
-    font-size: 1em;
-}
-
-/* Formulário flexível */
-.form {
+/* Container do Login */
+.loginlogin {
     display: flex;
     flex-direction: column;
-}
-
-/* Label dos campos */
-label {
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 0.9em; /* Fonte ligeiramente menor para campos */
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #fff;
+    max-width: 500px;
+    margin: 60px auto; /* Distância da parte superior e inferior */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* O restante do seu CSS permanece o mesmo */
+  
+  
+  /* Título do Login */
+  .h1login {
+    font-size: 32px;
+    font-weight: bold;
     color: #333;
-}
-
-/* Campos de input */
-.inputdologin {
+    margin-bottom: 10px;
+  }
+  
+  /* Subtítulo do Login */
+  .plogin {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Formulário de Login */
+  .formlogin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  /* Rótulo de cada campo de entrada */
+  .labellogin {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Rótulo do E-mail */
+  .spandologin {
+    font-weight: bold;
+  }
+  
+  /* Rótulo da Senha */
+  .spanlogin {
+    font-weight: bold;
+  }
+  
+  /* Estilo para os campos de input */
+  .inputlogin {
+    width: 100%;
     padding: 12px;
+    margin-top: 5px;
+    font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1em;
-    transition: all 0.3s;
-}
-
-input:focus {
-    border-color: #007bff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+  }
+  
+  .inputlogin:focus {
     outline: none;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-}
-
-/* Links para redefinir senha */
-.passwordOptions {
+    border-color: #ff9900; /* Cor laranja para foco */
+  }
+  
+  /* Links para opções de senha */
+  .passwordOptions {
+    text-align: center;
     margin-top: 10px;
-    text-align: right;
-}
-
-.link {
-    color: #ff4d00;
+  }
+  
+  /* Link de "Esqueci minha senha" */
+  .linklogin {
+    font-size: 14px;
+    color: #ff9900;
     text-decoration: none;
-    font-size: 0.9em;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-/* Botão de login */
-.buttonContainer {
-    margin-top: 25px;
-}
-
-.btn {
-    background-color: #007bff;
-    color: white;
-    padding: 12px;
+    transition: color 0.3s;
+  }
+  
+  .linklogin:hover {
+    color: #e68900;
+  }
+  
+  /* Container do botão de login */
+  .buttonContainerlogin {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilo para o botão de login */
+  .btn {
+    padding: 12px 25px;
+    background-color: #ff9900;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
     transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.btn[disabled] {
-    background-color: #ccc;
+  }
+  
+  .btn:hover {
+    background-color: #e68900;
+  }
+  
+  .btn:disabled {
+    background-color: #e0e0e0;
     cursor: not-allowed;
-}
-
-/* Mensagem de erro */
-.error {
-    color: red;
-    margin-top: 15px;
-    font-size: 0.9em;
-}
-
-/* Media queries para responsividade */
-@media (max-width: 768px) {
-    .login {
-        padding: 20px;
-    }
-
-    .login h1 {
-        font-size: 1.5em;
-    }
-/* 
-    input {
-        padding: 10px;
-    } */
-
-    .buttonContainer {
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .login {
-        padding: 15px;
-        margin-top: 20px;
-    }
-
-    .login h1 {
-        font-size: 1.3em;
-    }
-
-    .login p {
-        font-size: 0.9em;
-    }
-
-    .logininput {
-        padding: 8px;
-        font-size: 0.9em;
-    }
-
-    label {
-        font-size: 0.85em;
-    }
-}
+  }
+  
+  /* Mensagem de erro */
+  .error {
+    color: #ff4d4d;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

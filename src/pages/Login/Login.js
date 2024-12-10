@@ -27,14 +27,14 @@ const Login = () => {
   }, [authError]);
 
   return (
-    <div className={styles.login}>
-      <h1>Entrar</h1>
-      <p>Faça o Login para ter acesso às oficinas!</p>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <label>
-          <span>E-mail:</span>
+    <div className={styles.loginlogin}>
+      <h1 className={styles.h1login}>Entrar</h1>
+      <p className={styles.plogin}>Faça o Login para ter acesso às oficinas!</p>
+      <form onSubmit={handleSubmit} className={styles.formlogin}>
+        <label className={styles.labellogin}>
+          <span className={styles.spandologin}>E-mail:</span>
           <input 
-          className='inputdologin'
+          className={styles.inputlogin}
 
             type="email"
             name="email"
@@ -44,10 +44,10 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <label>
-          <span>Senha:</span>
+        <label className={styles.labellogin}>
+          <span className={styles.spanlogin}>Senha:</span>
           <input 
-           className="inputdologin"
+            className={styles.inputlogin}
             type="password"
             name="password"
             required
@@ -66,12 +66,12 @@ const Login = () => {
         </div>*/}
 
         <div className={styles.passwordOptions}>
-        <Link to="/forgot-password" className={styles.link}>
+        <Link to="/forgot-password" className={styles.linklogin}>
             Esqueci minha senha
           </Link>
           </div>
 
-        <div className={styles.buttonContainer}>
+        <div className={styles.buttonContainerlogin}>
           {!loading && <button className="btn">Entrar</button>}
           {loading && (
             <button className="btn" disabled>

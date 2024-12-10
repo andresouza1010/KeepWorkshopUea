@@ -13,22 +13,22 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.info}>
-          <h3 className={styles.title}>Keep Workshop</h3>
-          <p>Visualize e armazene as oficinas para as suas aulas!</p>
+      <div className={styles.containerfooter}>
+        <div className={styles.infofooter}>
+          <h3 className={styles.titlefooter}>Keep Workshop</h3>
+          <p className={styles.pfooter}>Visualize e armazene as oficinas para as suas aulas!</p>
           <p className={styles.copyRight}>Keep Workshop &copy; 2024</p>
         </div>
-        <div className={styles.links}>
-          <h4 className={styles.linkTitle}>Links Úteis</h4>
-          <ul>
-            <li>
-              <a href="mailto:pjandresouza@gmail.com" className={styles.link}>
+        <div className={styles.linksfooter}>
+          <h4 className={styles.linkTitlefooter}>Links Úteis</h4>
+          <ul className={styles.lufooter}>
+            <li className={styles.lifooter}>
+              <a href="mailto:pjandresouza@gmail.com" className={styles.linkfooter}>
                 Contato
               </a>
             </li>
-            <li>
-              <button onClick={handleGoToTerms} className={styles.linkButton}>
+            <li className={styles.lifooter}>
+              <button onClick={handleGoToTerms} className={styles.linkButtonfooter}>
                 Termos de Serviço
               </button>
             </li>
