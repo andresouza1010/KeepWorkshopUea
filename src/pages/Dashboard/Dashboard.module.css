@@ -1,132 +1,184 @@
-/* Estilos gerais */
+/* Dashboard.module.css */
+
 .Dashboard {
+    padding: 100px;
+    background-color: #f9f9f9;
+  }
+  
+  .Dashboard p {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .noposts {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    text-align: center; /* Centraliza o texto */
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
     padding: 20px;
-    background-color: #f5f5f5; /* Fundo neutro */
-    font-family: 'Arial', sans-serif; /* Fonte mais clean */
-}
-
-.Dashboard h2 {
-    font-size: 2em;
-    color: #333; /* Cor mais suave */
-    margin-bottom: 10px;
-}
-
-.Dashboard p {
-    font-size: 1.2em;
-    color: #555; /* Texto com tom de cinza */
-}
-
-/* Header da lista */
-.oficina_header {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .noposts p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .noposts .btn {
+    background-color: #ffeaca;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .noposts .btn:hover {
+    background-color: #ffc966;
+  }
+  
+  /* Cabeçalho da tabela de oficinas */
+  .oficina_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 900px;
-    padding: 15px 20px;
-    background-color: #ffffff; /* Fundo branco para destaque */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leve sombra */
-    border-radius: 8px; /* Bordas arredondadas */
-    margin-bottom: 20px;
-}
-
-.oficina_header span {
+    padding: 10px 20px;
+    background-color: #ffeaca;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     font-weight: bold;
-    color: #2c028d; /* Cor azul sutil */
-}
-
-.oficina_header span:first-child {
-    text-align: left;
-}
-
-.oficina_header span:last-child {
-    text-align: right;
-}
-
-/* Linhas de oficinas */
-.oficina_row {
+    color: #000000;
+    margin-bottom: 10px;
+    border-left: 4px solid #ffeaca;
+  }
+  
+  .oficina_header span {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* Linhas das oficinas */
+  .oficina_row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 900px;
     padding: 15px 20px;
     background-color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra leve */
-    border-radius: 8px;
-    margin-bottom: 15px;
-    transition: background-color 0.3s;
-}
-
-.oficina_row:hover {
-    background-color: #f0f0f0; /* Destaque ao passar o mouse */
-}
-
-.oficina_row p {
-    flex-grow: 1;
-    text-align: left;
-    margin: 0;
-    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 4px solid #ffeaca;
+  }
+  
+  .oficina_row p {
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
     color: #333;
-}
-
-.oficina_row div {
+  }
+  
+  .oficina_row div {
     display: flex;
     gap: 10px;
-}
-
-/* Botões */
-.btn {
-    padding: 8px 12px;
-    font-size: 0.9em;
+  }
+  
+  .oficina_row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px #ffeaca;
+  }
+  
+  /* Botões */
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
     border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.btn-outline {
-    border: 1px solid #db8b00;
-    color: #e79f11;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline {
     background-color: transparent;
-}
-
-.btn-outline:hover {
-    background-color: #fadd02;
-    color: white;
-}
-
-.btn-danger {
-    border-color: #dc3545;
+    border: 1px solid #ff6600;
+    color: #ff6600;
+  }
+  
+  .btn-outline:hover {
+    background-color: #ff6600;
+    color: #fff;
+  }
+  
+  .btn-danger {
+    border: 1px solid #dc3545;
     color: #dc3545;
-}
-
-.btn-danger:hover {
+  }
+  
+  .btn-danger:hover {
     background-color: #dc3545;
-    color: white;
-}
-
-/* Seção de não posts */
-.noposts {
-    margin-top: 20px;
-    color: #777;
-}
-
-.noposts p {
-    margin-bottom: 15px;
-}
-
-/* Botão de criar oficina */
-.noposts .btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-}
-
-.noposts .btn:hover {
-    background-color: #218838;
-}
+    color: #fff;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .Dashboard {
+      padding: 20px;
+    }
+  
+    .oficina_header,
+    .oficina_row {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px;
+    }
+  
+    .oficina_header span,
+    .oficina_row p {
+      text-align: left;
+    }
+  
+    .oficina_row div {
+      flex-direction: column;
+      width: 100%;
+      gap: 5px;
+    }
+  
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .noposts {
+      padding: 15px;
+      gap: 10px;
+    }
+  
+    .noposts p {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      font-size: 0.8rem;
+      padding: 8px;
+    }
+  
+    .oficina_row {
+      padding: 10px;
+    }
+  
+    .oficina_row p {
+      font-size: 0.9rem;
+    }
+  }
+  

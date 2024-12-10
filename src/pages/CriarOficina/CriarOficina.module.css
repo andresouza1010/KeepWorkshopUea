@@ -1,137 +1,1076 @@
-/* CriarOficina.module.css */
-
-/* Corpo do formulário */
 .create_oficina {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffffff; /* Fundo branco para clareza */
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  font-family: 'Roboto', sans-serif;
-  max-width: 800px;
-  margin: auto;
+  font-family: 'Poppins', sans-serif;
+  background-color:#ffeaca; /* Bege claro próximo ao branco */
+  padding: 10px; /* Espaçamento interno para arejar o conteúdo */
+  border-radius: 10px; /* Bordas arredondadas para suavidade */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para destacar a seção */
+  max-width: 800px; /* Largura máxima para centralizar o foco */
+  margin: 40px auto; /* Centraliza horizontalmente e dá espaçamento vertical */
+  border: 1px solid #fffeeb; /* Borda sutil para contraste */
 }
 
-/* Títulos */
 .titulo_cecreateoficina {
-  font-size: 2rem;
-  color: #eb9800; /* Destaque em laranja escuro */
-  margin-bottom: 1rem;
-  font-weight: 500;
-  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #000000; /* Laranja elegante */
+  font-size: 2.5rem; /* Ajuste o tamanho conforme necessário */
+  font-weight: 450; /* Peso da fonte para destacar o título */
+  text-align: center; /* Centraliza o texto */
+  margin: 25px 0; /* Espaçamento em torno do título */
+  line-height: 2.3; /* Melhor espaçamento entre linhas */
+  text-shadow: 1px 1px 5px rgba(78, 33, 201, 0.155); /* Sutil sombra para destaque */
 }
-
 .titulo_p {
-  font-size: 1.1rem;
-  color: #7f8c8d; /* Texto secundário em cinza */
-  text-align: center;
-  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333; /* Cor cinza escuro para boa legibilidade */
+  font-size: 1.2rem; /* Tamanho agradável para leitura */
+  font-weight: 400; /* Peso regular para leitura fluida */
+  line-height: 1.6; /* Melhor espaçamento entre linhas */
+  text-align:center; /* Alinha o texto para uma aparência mais formal */
+  margin: 15px 0; /* Espaçamento ao redor do parágrafo */
+  max-width: 800px; /* Limita a largura para maior legibilidade */
+  margin-left: auto; /* Centraliza horizontalmente */
+  margin-right: auto; /* Centraliza horizontalmente */
 }
 
-/* Estilo para subtítulos das etapas */
-.titulo_empatia, 
-.titulo_definição, 
-.titulo_ideacao,
-.titulo_prototipagem,
-.titulo_teste {
-  font-size: 1.3rem;
-  color: #e67e22; /* Laranja vibrante */
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid #e67e22;
-  padding-left: 8px;
+.form_create {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9; /* Fundo claro e suave */
+  padding: 40px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+  max-width: 600px; /* Limita a largura para melhor foco */
+  margin: 20px auto; /* Centraliza o formulário */
+  border: 1px solid #e0e0e0; /* Bordas sutis */
 }
 
-/* Labels */
+.titulo_empatia {
+  font-family: 'Poppins', sans-serif;
+  color: #FF5722; /* Tom de laranja vibrante */
+  font-size: 1.8rem; /* Tamanho destacado, menor que o título principal */
+  font-weight: 500; /* Peso médio para equilíbrio */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  text-align: left; /* Alinhado à esquerda para etapas */
+  border-left: 4px solid #FF5722; /* Barra colorida para destacar */
+  padding-left: 10px; /* Espaçamento interno à esquerda */
+}
+
 .labelcreate {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px; /* Espaçamento entre os campos */
 }
 
-.labelcreate span {
-  font-weight: 500;
-  font-size: 1rem;
-  color: #34495e; /* Texto mais escuro para contraste */
-  margin-bottom: 0.5rem;
+.spancreate {
+  font-size: 1rem; /* Tamanho de texto legível */
+  color: #555; /* Cor neutra e suave */
+  font-weight: 500; /* Peso médio para destaque */
+  margin-bottom: 8px; /* Espaçamento inferior */
 }
 
-/* Inputs e Textareas */
-.texteareacreate,
- [type="text"] {
-  width: 100%;
-  padding: 1.4rem;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
+.selectcreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto do seletor */
+  color: #333; /* Texto escuro para contraste */
+  background-color: #ffffff; /* Fundo branco para limpeza */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 10px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para hover/foco */
+  cursor: pointer; /* Indica interatividade */
+}
+
+.selectcreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.selectcreate option {
+  font-size: 1rem; /* Tamanho consistente das opções */
+  color: #333; /* Cor do texto */
+  background-color: #ffffff; /* Fundo claro */
+}
+
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro para legibilidade */
+  background-color: #ffffff; /* Fundo branco limpo */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 12px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  height: 120px; /* Altura inicial confortável */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  resize: vertical; /* Permite redimensionar apenas verticalmente */
+}
+
+.texteareacreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.texteareacreate::placeholder {
+  color: #aaa; /* Cor do texto placeholder */
+  font-style: italic; /* Placeholder em itálico */
+}
+
+/* Título da Etapa */
+.titulo_definição {
+  font-family: 'Poppins', sans-serif;
+  color: #FF5722; /* Tom de laranja vibrante */
+  font-size: 1.8rem; /* Tamanho destacado */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  text-align: left; /* Alinhado à esquerda */
+  border-left: 4px solid #FF5722; /* Barra lateral para destaque */
+  padding-left: 10px; /* Espaçamento interno à esquerda */
+}
+
+/* Label e Span */
+.labelcreate {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+.spancreate {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+/* Select */
+.selectedcreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro */
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 10px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  cursor: pointer; /* Indica interatividade */
+}
+
+.selectedcreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+/* Opções do Select */
+.optionscreate {
+  font-size: 1rem; /* Tamanho consistente */
+  color: #333; /* Cor do texto */
+  background-color: #ffffff; /* Fundo branco */
+  padding: 5px 10px; /* Espaçamento interno */
+}
+
+/* Textarea */
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro */
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 12px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  height: 100px; /* Altura padrão */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  resize: vertical; /* Permite redimensionamento vertical */
+  cursor: text; /* Indica que o campo é editável */
+}
+
+.texteareacreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.texteareacreate::placeholder {
+  color: #aaa; /* Placeholder de cor neutra */
+  font-style: italic; /* Placeholder em itálico */
+}
+
+/* Título da Etapa */
+.titulo_ideacao {
+  font-family: 'Poppins', sans-serif;
+  color: #FF5722; /* Tom de laranja vibrante */
+  font-size: 1.8rem; /* Tamanho destacado */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 20px; /* Espaçamento inferior */
+  text-align: left; /* Alinhado à esquerda */
+  border-left: 4px solid #FF5722; /* Barra lateral para destaque */
+  padding-left: 10px; /* Espaçamento interno à esquerda */
+}
+
+/* Label e Span */
+.labelcreate {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+.spancreate {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+.spancreaterecursos {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+/* Input */
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro */
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 12px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  cursor: text; /* Indica que o campo é editável */
+}
+
+.texteareacreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.texteareacreate::placeholder {
+  color: #aaa; /* Placeholder de cor neutra */
+  font-style: italic; /* Placeholder em itálico */
+}
+/* Label e Span */
+.criaoficina-label {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+.criaoficina-label .spancreate {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+/* Textarea (Recursos necessários) */
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro */
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 6px; /* Bordas arredondadas */
+  padding: 12px; /* Espaçamento interno */
+  width: 100%; /* Ocupa toda a largura disponível */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  cursor: text; /* Indica que o campo é editável */
+  min-height: 120px; /* Tamanho mínimo para textarea */
+}
+
+.texteareacreate:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.texteareacreate::placeholder {
+  color: #aaa; /* Placeholder de cor neutra */
+  font-style: italic; /* Placeholder em itálico */
+}
+
+.labelcreate .spancreate {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+/* Estilo para o campo de duração */
+.labelcreateduracao {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+.labelcreateduracao .spancreateduracao {
+  font-size: 1rem; /* Tamanho do texto */
+  color: #555; /* Cor neutra */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+/* Input para duração da oficina */
+.labelcreateduracao input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Tamanho do texto */
+  color: #333; /* Texto escuro */
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ccc; /* Bordas suaves */
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 8px 12px; /* Espaçamento interno */
+  width: 50%; /* Reduzindo a largura pela metade */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  cursor: text; /* Indica que o campo é editável */
+  height: 40px; /* Altura controlada */
+}
+
+.labelcreateduracao input:focus {
+  border-color: #FF5722; /* Destaque laranja ao focar */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3); /* Realce visual ao focar */
+  outline: none; /* Remove a borda padrão */
+}
+
+.labelcreateduracao input::placeholder {
+  color: #aaa; /* Placeholder de cor neutra */
+  font-style: italic; /* Placeholder em itálico */
+}
+/* Título da Etapa 4: Prototipagem */
+.titulo_prototipagem {
+  font-family: 'Poppins', sans-serif;
+  color: #FF5722; /* Tom de laranja vibrante */
+  font-size: 1.8rem; /* Tamanho destacado */
+  font-weight: 500; /* Peso médio */
+  margin-bottom: 20px; /* Espaçamento inferior */
+  text-align: left; /* Alinhado à esquerda */
+  border-left: 4px solid #FF5722; /* Barra lateral para destaque */
+  padding-left: 10px; /* Espaçamento interno à esquerda */
+}
+
+/* Seção de criação da etapa */
+.sectioncreate {
+  background-color: #fafafa; /* Cor de fundo suave, quase branca */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  margin-bottom: 30px;
+}
+
+/* Título da introdução */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #333; /* Cor de texto mais escura */
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Estilo para a área de texto da introdução */
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  background-color: #fdfdfd; /* Leve variação do branco */
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 12px;
+  width: 100%; /* Largura 100% */
+  height: 150px; /* Altura suficiente para mais texto */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  resize: vertical; /* Permite redimensionar verticalmente */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.texteareacreate:focus,
-select:focus,
-input[type="text"]:focus {
-  border-color: #e67e22;
-  box-shadow: 0 0 5px rgba(230, 126, 34, 0.5); /* Sombra laranja ao focar */
-  outline: none;
-}
-
-/* Botões */
-.button-create {
-  background-color: #e67e22; /* Laranja Google */
-  color: white;
+/* Estilo para o campo de upload de arquivos */
+.inputdeprototipagem {
+  margin-top: 15px; /* Espaçamento superior */
+  background-color: #FF5722; /* Cor de fundo laranja */
+  color: white; /* Cor do texto */
+  padding: 8px 16px; /* Padding interno */
+  border-radius: 8px; /* Bordas arredondadas */
   border: none;
-  border-radius: 8px;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.button-create:hover {
-  background-color: #d35400; /* Laranja mais escuro no hover */
-  box-shadow: 0 4px 10px rgba(211, 84, 0, 0.4);
+/* Alteração do botão de upload ao passar o mouse */
+.inputdeprototipagem:hover {
+  background-color: #e64a19; /* Tom mais escuro no hover */
 }
 
-/* Mensagens de erro */
-.form_error {
-  color: #c0392b; /* Vermelho suave */
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+/* Estilo para o input de upload ao focar */
+.inputdeprototipagem:focus {
+  outline: none; /* Remove outline padrão */
+  box-shadow: 0 0 4px rgba(255, 87, 34, 0.3); /* Realce suave */
+}
+
+
+/* Título da Etapa 4: Prototipagem */
+.titulo_prototipagem {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  color: #FF5722; /* Laranja */
+  font-weight: 600;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.h3create{
-  color: rgb(99, 99, 99);
+/* Seção de criação da etapa */
+.sectioncreate {
+  background-color: #fafafa; /* Cor de fundo suave, quase branca */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  margin-bottom: 30px;
 }
 
-/* Estilo para seleções */
-.selectcreate {
-  appearance: none;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxu...') no-repeat right 10px center;
-  background-size: 12px;
+/* Título da introdução */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #333; /* Cor de texto mais escura */
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-  .create_oficina {
-    padding: 1rem;
+/* Estilo para a área de texto da introdução */
+.texteareacreate {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 12px;
+  width: 100%; /* Largura 100% */
+  height: 150px; /* Altura suficiente para mais texto */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  resize: vertical; /* Permite redimensionar verticalmente */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo para o campo de upload de arquivos */
+.inputdeprototipagem {
+  margin-top: 15px; /* Espaçamento superior */
+  background-color: #FF5722; /* Cor de fundo laranja */
+  color: white; /* Cor do texto */
+  padding: 8px 16px; /* Padding interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Alteração do botão de upload ao passar o mouse */
+.inputdeprototipagem:hover {
+  background-color: #e64a19; /* Tom mais escuro no hover */
+}
+
+/* Estilo para o input de upload ao focar */
+.inputdeprototipagem:focus {
+  outline: none; /* Remove outline padrão */
+  box-shadow: 0 0 4px rgba(255, 87, 34, 0.3); /* Realce suave */
+}
+
+/* Container para as imagens de preview */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Estilo de cada item de preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 150px; /* Largura da imagem */
+  height: 150px; /* Altura da imagem */
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo da imagem dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantém a imagem bem ajustada */
+  border-radius: 8px;
+}
+
+/* Botão de remoção da imagem */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 87, 34, 0.8); /* Cor de fundo laranja com transparência */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Mudança de cor no botão de remoção ao passar o mouse */
+.deleteButton:hover {
+  background-color: #e64a19; /* Cor mais escura no hover */
+}
+
+/* Estilo do label de upload de imagem */
+.uploadLabel {
+  display: inline-block;
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo do ícone de upload */
+.uploadLabel i {
+  margin-right: 8px; /* Espaço entre o ícone e o texto */
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo do input de upload */
+.uploadInput {
+  display: none; /* Esconde o input file */
+}
+
+/* Estilo para o texto "Upload da Imagem" */
+.spancreate {
+  font-size: 1rem;
+  color: #FF5722; /* Laranja */
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+/* Estilo para quando o input de arquivo estiver selecionado */
+.uploadLabel input:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(255, 87, 34, 0.3);
+}
+/* Estilo da seção de organização de materiais */
+.sectioncreate {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do título de Organização de Materiais */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Estilo do textarea para organização dos materiais */
+.texteareacreate {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Estilo para o input de upload de imagem */
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilo do ícone de upload */
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo do input de arquivo */
+.uploadInput {
+  display: none; /* Esconde o input file */
+}
+
+/* Estilo do texto do upload */
+.spancreate {
+  font-size: 1rem;
+  color: #FF5722; /* Laranja */
+  font-weight: 500;
+}
+
+/* Estilo para quando o input de arquivo estiver selecionado */
+.uploadLabel input:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(255, 87, 34, 0.3);
+}
+/* Estilo do container de visualização de imagens */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para cada preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para as imagens dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o botão de exclusão */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 87, 34, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 87, 34, 1);
+}
+
+/* Estilo para o input de upload */
+.uploadInput {
+  display: none; /* Esconde o input de arquivo */
+}
+
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo do container de visualização de imagens */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para cada preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para as imagens dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o botão de exclusão */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 87, 34, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 87, 34, 1);
+}
+
+/* Estilo para o input de upload */
+.uploadInput {
+  display: none; /* Esconde o input de arquivo */
+}
+
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+
+/* Estilo para o título "Momento Prático" */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Estilo para o input de arquivo na seção Momento Prático */
+.uploadInput {
+  display: none; /* Esconde o input de arquivo */
+}
+
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo para o container de visualização de imagens */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para cada preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para as imagens dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o botão de exclusão */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 87, 34, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 87, 34, 1);
+}
+/* Estilo para o título "Etapa 5: Teste" */
+.titulo_teste {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o título "Apresentação Final" */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Estilo para o input de arquivo na seção Apresentação Final */
+.uploadInput {
+  display: none; /* Esconde o input de arquivo */
+}
+
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo para o container de visualização de imagens */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para cada preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para as imagens dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o botão de exclusão */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 87, 34, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 87, 34, 1);
+}
+
+/* Estilo para o título "Apresentação Final" */
+.h3create {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Estilo para a área de texto */
+.texteareacreate {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+/* Estilo para o input de arquivo (oculto) */
+.uploadInput {
+  display: none; /* Esconde o input de arquivo */
+}
+
+.uploadLabel {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadLabel i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: #FF5722; /* Cor laranja para o ícone */
+}
+
+/* Estilo para o container de visualização de imagens */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para cada preview de imagem */
+.imagePreview {
+  position: relative;
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para as imagens dentro do preview */
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o botão de exclusão */
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 87, 34, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 87, 34, 1);
+}
+
+/* Estilo do label que envolve o select */
+.labelcreateacessibilidade {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo do texto dentro do span */
+.spancreateacessibilidade {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #666;
+}
+
+/* Estilo do select */
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Foco no select - quando o campo está selecionado */
+select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Estilo das opções dentro do select */
+.optionscreateacessibilidade {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilo para o select em dispositivos móveis */
+@media (max-width: 768px) {
+  .labelcreateacessibilidade {
+    font-size: 14px;
   }
 
-  .titulo_cecreateoficina {
-    font-size: 1.5rem;
-  }
-
-  .titulo_p {
-    font-size: 1rem;
-  }
-
-  .button-create {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+  .spancreateacessibilidade {
+    font-size: 12px;
+  
   }
 }
 

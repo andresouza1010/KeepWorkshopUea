@@ -29,52 +29,52 @@ const Oficina = () => {
 
                     <div className={styles.descriptionCard}>
                         <h3 className={styles.descriptionTitle}>Descrição</h3>
-                        <p>{oficina.description}</p>
+                        <p className={styles.oficinap}>{oficina.description}</p>
                     </div>
 
                     <div className={styles.detailsSection}>
                         <h3 className={styles.detailsTitle}>Detalhes da Oficina</h3>
                         <div className={styles.detailItem}>
                             <h4>Categoria:</h4>
-                            <p>{oficina.category}</p>
+                            <p className={styles.oficinap}>{oficina.category}</p>
                         </div>
                         <div className={styles.detailItem}>
                             <h4>Público-alvo:</h4>
-                            <p>{oficina.targetAudience}</p>
+                            <p className={styles.oficinap}><div></div>{oficina.targetAudience}</p>
                         </div>
                         <div className={styles.detailItem}>
                             <h4>Duração:</h4>
-                            <p>{oficina.duration} horas</p>
+                            <p className={styles.oficinap}>{oficina.duration} horas</p>
                         </div>
                         <div className={styles.detailItem}>
                             <h4>Recursos Necessários:</h4>
-                            <p>{oficina.recursos}</p>
+                            <p className={styles.oficinap}>{oficina.recursos}</p>
                         </div>
                         <div className={styles.detailItem}>
-    <h4>Esta oficina trabalha com algum público específico:</h4>
-    <p>{oficina.categoriaDoPublico}</p>
+                            <h4>Esta oficina trabalha com algum público específico:</h4>
+                            <p className={styles.oficinap}>{oficina.categoriaDoPublico}</p>
 
-    {/* Verifica e exibe as descrições de acessibilidade conforme o público específico */}
-    {oficina.categoriaDoPublico === 'Pessoas no espectro do autismo' && oficina.accessibilityDescriptions['autista'] && (
-        <p>{oficina.accessibilityDescriptions['autista']}</p>
-    )}
+                            {/* Verifica e exibe as descrições de acessibilidade conforme o público específico */}
+                            {oficina.categoriaDoPublico === 'Pessoas no espectro do autismo' && oficina.accessibilityDescriptions['autista'] && (
+                                <p className={styles.oficinap}>{oficina.accessibilityDescriptions['autista']}</p>
+                            )}
 
-    {oficina.categoriaDoPublico === 'Pessoas com TDAH' && oficina.accessibilityDescriptions['tdah'] && (
-        <p>{oficina.accessibilityDescriptions['tdah']}</p>
-    )}
+                            {oficina.categoriaDoPublico === 'Pessoas com TDAH' && oficina.accessibilityDescriptions['tdah'] && (
+                                <p className={styles.oficinap}>{oficina.accessibilityDescriptions['tdah']}</p>
+                            )}
 
-    {oficina.categoriaDoPublico === 'Pessoas com deficiência visual' && oficina.accessibilityDescriptions['deficientes visuais'] && (
-        <p>{oficina.accessibilityDescriptions['deficientes visuais']}</p>
-    )}
+                            {oficina.categoriaDoPublico === 'Pessoas com deficiência visual' && oficina.accessibilityDescriptions['deficientes visuais'] && (
+                                <p className={styles.oficinap}>{oficina.accessibilityDescriptions['deficientes visuais']}</p>
+                            )}
 
-    {oficina.categoriaDoPublico === 'Pessoas com deficiência auditiva' && oficina.accessibilityDescriptions['pessoas surdas'] && (
-        <p>{oficina.accessibilityDescriptions['pessoas surdas']}</p>
-    )}
+                            {oficina.categoriaDoPublico === 'Pessoas com deficiência auditiva' && oficina.accessibilityDescriptions['pessoas surdas'] && (
+                                <p className={styles.oficinap}>{oficina.accessibilityDescriptions['pessoas surdas']}</p>
+                            )}
 
-    {oficina.categoriaDoPublico === 'Outro público' && oficina.accessibilityDescriptions['outro público'] && (
-        <p>{oficina.accessibilityDescriptions['outro público']}</p>
-    )}
-</div>
+                            {oficina.categoriaDoPublico === 'Outro público' && oficina.accessibilityDescriptions['outro público'] && (
+                                <p className={styles.oficinap}>{oficina.accessibilityDescriptions['outro público']}</p>
+                            )}
+                        </div>
 
                         
                     </div>
@@ -83,7 +83,7 @@ const Oficina = () => {
 
                     {/* Introdução */}
                     <div className={styles.stepSection}>
-                        <h4>Introdução</h4>
+                        <h4 className={styles.oficinah4}>Introdução</h4>
                         {oficina.image && oficina.image.length > 0 && (
                             <div className={styles.imageContainer}>
                                 {oficina.image.map((img, index) => (
@@ -97,12 +97,12 @@ const Oficina = () => {
                                 ))}
                             </div>
                         )}
-                        <p>{oficina.descricaoIntro}</p>
+                        <p className={styles.oficinap}>{oficina.descricaoIntro}</p>
                     </div>
 
                     {/* Organização dos Materiais */}
                     <div className={styles.stepSection}>
-                        <h4>Organização dos Materiais</h4>
+                        <h4 className={styles.oficinah4}>Organização dos Materiais</h4>
                         {oficina.image2 && oficina.image2.length > 0 && (
                             <div className={styles.imageContainer}>
                                 {oficina.image2.map((img, index) => (
@@ -121,7 +121,7 @@ const Oficina = () => {
 
                     {/* Momento Prático */}
                     <div className={styles.stepSection}>
-                        <h4>Momento Prático</h4>
+                        <h4 className={styles.oficinah4}>Momento Prático</h4>
                         {oficina.image3 && oficina.image3.length > 0 && (
                             <div className={styles.imageContainer}>
                                 {oficina.image3.map((img, index) => (
@@ -140,7 +140,7 @@ const Oficina = () => {
 
                     {/* Apresentação Final */}
                     <div className={styles.stepSection}>
-                        <h4>Apresentação Final</h4>
+                        <h4 className={styles.oficinah4}>Apresentação Final</h4>
                         {oficina.image4 && oficina.image4.length > 0 && (
                             <div className={styles.imageContainer}>
                                 {oficina.image4.map((img, index) => (
@@ -154,7 +154,7 @@ const Oficina = () => {
                                 ))}
                             </div>
                         )}
-                        <p>{oficina.descricaoApresentacao}</p>
+                        <p className={styles.oficinap}>{oficina.descricaoApresentacao}</p>
                     </div>
 
               
@@ -162,8 +162,8 @@ const Oficina = () => {
 
                     {/* Nome ou Rede Social do Autor */}
                     <div className={styles.authorInfo}>
-                        <h4>Autor(a):</h4>
-                        <p>{oficina.createdBy || oficina.socialLink || "Informação do autor não disponível"}</p>
+                        <h4 className={styles.oficinaautor}>Autor(a):</h4>
+                        <p className={styles.oficinap}>{oficina.createdBy || oficina.socialLink || "Informação do autor não disponível"}</p>
                     </div>
                 </div>
             )}

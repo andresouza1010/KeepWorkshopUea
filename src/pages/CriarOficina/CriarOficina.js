@@ -271,6 +271,7 @@ const CriarOficina = () => {
             <option className={styles.optionscreate} value="">Selecione uma categoria</option>
             <option className={styles.optionscreate} value="Eletrônica">Eletrônica</option>
             <option className={styles.optionscreate} value="Programação">Programação</option>
+            <option className={styles.optionscreate} value="Desplugada">Desplugada</option>
             <option className={styles.optionscreate} value="Mecânica">Mecânica</option>
             <option className={styles.optionscreate} value="Robótica">Robótica</option>
             <option className={styles.optionscreate} value="Engenharia">Engenharia</option>
@@ -297,6 +298,7 @@ const CriarOficina = () => {
         <label className={styles.labelcreate}>
           <span className={styles.spancreate}>Título</span>
           <input 
+            className={styles.texteareacreatetitulo}
             type="text" 
             name="title" 
             required 
@@ -306,7 +308,7 @@ const CriarOficina = () => {
           />
         </label>
         <label className="criaoficina-label">
-        <span className={styles.spancreate}>Recursos necessários</span>
+        <span className={styles.spancreaterecursos}>Recursos necessários</span>
         <textarea 
           className={styles.texteareacreate}
           name="recursos" 
@@ -319,8 +321,8 @@ const CriarOficina = () => {
       </label>
 
          {/* Duração */}
-         <label className={styles.labelcreate}>
-          <span className={styles.spancreate}>Duração da oficina (em horas)</span>
+         <label className={styles.labelcreateduracao}>
+          <span className={styles.spancreateduracao}>Duração da oficina (em horas)</span>
           <input 
             type="number" 
             name="duration" 
@@ -333,8 +335,8 @@ const CriarOficina = () => {
         </label>
 
         {/* Etapa 4: Prototipagem */}
-        <h2 className={styles.titulo_prototipagem}>Etapa 4: Prototipagem</h2>
-        <section className={styles.sectioncreate}>
+        <h2 className={styles.titulo_ideacao}>Etapa 4: Prototipagem</h2>
+      
           <h3 className={styles.h3create}>Introdução</h3>
           <textarea 
             className={styles.texteareacreate}
@@ -342,7 +344,8 @@ const CriarOficina = () => {
             value={descricaoIntro}
             onChange={(e) => setIntroduction(e.target.value)}
           ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'intro')} />
+          <input className={styles.inputdeprototipagem} type="file" multiple onChange={(e) => handleImageUpload(e, 'intro')} />
+
           <div className={styles.imagePreviewContainer}>
             {image.map((img, idx) => (
               <div key={idx} className={styles.imagePreview}>
@@ -354,7 +357,7 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadIntro" className={styles.uploadLabel}>
-    <span className={styles.spancreate}> Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}> <i className="fas fa-upload"></i> Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadIntro"
@@ -364,9 +367,9 @@ const CriarOficina = () => {
       multiple
     />
   </label>
-        </section>
+      
 
-        <section className={styles.sectioncreate}>
+        
           <h3 className={styles.h3create}>Organização de Materiais</h3>
           <textarea 
             className={styles.texteareacreate}
@@ -387,7 +390,7 @@ const CriarOficina = () => {
             ))}
           </div>
           <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
-    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadOrganizacao"
@@ -397,9 +400,10 @@ const CriarOficina = () => {
       multiple
     />
   </label>
-        </section>
+    
 
         <section className={styles.h3create}>
+        
           <h3 className={styles.h3create}>Momento Prático</h3>
           <textarea 
             className={styles.texteareacreate}
@@ -422,7 +426,7 @@ const CriarOficina = () => {
 
 
   <label htmlFor="uploadPratica" className={styles.uploadLabel}>
-    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadPratica"
@@ -434,33 +438,35 @@ const CriarOficina = () => {
     />
   </label>
         </section>
+        
 
-        {/* Etapa 5: Teste */}
-        <h2 className={styles.titulo_teste}>Etapa 5: Teste</h2>
-        <section className={styles.h3create}>
-          <h3 className={styles.h3create}>Apresentação Final</h3>
-          <textarea 
-            className={styles.texteareacreate}
-            placeholder="Descreva a apresentação final da oficina"
-            value={descricaoApresentacao}
-            onChange={(e) => setApresentacao(e.target.value)}
-          ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
+        <h2 className={styles.titulo_ideacao}>Etapa 5: Teste</h2>
+<section className={styles.h3create}>
+  <h3 className={styles.h3create}>Apresentação Final</h3>
+  <textarea 
+    className={styles.texteareacreate}
+    placeholder="Descreva a apresentação final da oficina"
+    value={descricaoApresentacao}
+    onChange={(e) => setApresentacao(e.target.value)}
+  ></textarea>
+  <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
 
-          <div className={styles.imagePreviewContainer}>
+  <div className={styles.imagePreviewContainer}>
     {image4.map((img, idx) => (
       <div key={idx} className={styles.imagePreview}>
         <img src={img} alt={`Apresentação ${idx}`} />
-        <button className={styles.deleteButton} onClick={() => handleRemoveImage('apresentacao', idx)}>
+        <button 
+          className={styles.deleteButton} 
+          onClick={() => handleRemoveImage('apresentacao', idx)}
+        >
           &#10005;
         </button>
       </div>
     ))}
   </div>
 
-
   <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
-    <span className={styles.spancreate}>Upload da Imagem (opcional)</span>
+    <span className={styles.spancreate}> <i className="fas fa-upload"></i>Upload da Imagem (opcional)</span>
     <input
       type="file"
       id="uploadApresentacao"
@@ -471,12 +477,13 @@ const CriarOficina = () => {
       multiple
     />
   </label>
-        </section>
+</section>
+
     <label className={styles.labelcreate}>
         
 {/* Checkbox para selecionar os públicos de acessibilidade */}
 
-<label className={styles.labelcreate}>
+<label className={styles.labelcreateacessibilidade}>
   <span className={styles.spancreate}>Categoria do Público</span>
   <select
     name="categoriaDoPublico"
@@ -484,21 +491,21 @@ const CriarOficina = () => {
     onChange={(e) => setCategoriaDoPublico(e.target.value)}
     value={categoriaDoPublico}
   >
-    <option value="">Esta atividade trabalha com algum público específico?</option>
-    <option value="Não">Não</option>
-    <option value="Pessoas no espectro do autismo">Pessoas no espectro do autismo</option>
-    <option value="Pessoas com TDAH">Pessoas com TDAH</option>
-    <option value="Pessoas com deficiência visual">Pessoas com deficiência visual</option>
-    <option value="Pessoas com deficiência auditiva">Pessoas com deficiência auditiva</option>
-    <option value="Outro público">Outro público</option>
+    <option className={styles.optionscreateacessibilidade} value="">Esta atividade trabalha com algum público específico?</option>
+    <option className={styles.optionscreateacessibilidade}value="Não">Não</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas no espectro do autismo">Pessoas no espectro do autismo</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com TDAH">Pessoas com TDAH</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência visual">Pessoas com deficiência visual</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência auditiva">Pessoas com deficiência auditiva</option>
+    <option className={styles.optionscreateacessibilidade}value="Outro público">Outro público</option>
   </select>
 </label>
 
 {/* Exibe as caixas de texto correspondentes à opção escolhida */}
 {categoriaDoPublico === 'Pessoas no espectro do autismo' && (
-  <div className={styles.create_oficina}>
+  <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreate}
+      className={styles.texteareacreateacessibilidade}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['autista'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
@@ -507,9 +514,9 @@ const CriarOficina = () => {
 )}
 
 {categoriaDoPublico === 'Pessoas com TDAH' && (
-  <div className={styles.create_oficina}>
+  <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreate}
+      className={styles.texteareacreateacessibilidade}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['tdah'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
@@ -518,9 +525,9 @@ const CriarOficina = () => {
 )}
 
 {categoriaDoPublico === 'Pessoas com deficiência visual' && (
-  <div className={styles.create_oficina}>
+  <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreate}
+      className={styles.texteareacreateacessibilidade}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['deficientes visuais'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
@@ -529,9 +536,9 @@ const CriarOficina = () => {
 )}
 
 {categoriaDoPublico === 'Pessoas com deficiência auditiva' && (
-  <div className={styles.create_oficina}>
+  <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreate}
+      className={styles.texteareacreateacessibilidade}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['pessoas surdas'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
@@ -540,9 +547,9 @@ const CriarOficina = () => {
 )}
 
 {categoriaDoPublico === 'Outro público' && (
-  <div className={styles.create_oficina}>
+  <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreate}
+      className={styles.texteareacreateacessibilidade}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['outro público'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
