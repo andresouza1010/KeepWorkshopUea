@@ -5,6 +5,34 @@ import styles from './Oficina.module.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const Oficina = () => {
+
+    const readAloudContent = () => {
+        const contentToRead = `
+            Título da oficina: ${oficina.title}. 
+            Descrição: ${oficina.description}. 
+            Categoria: ${oficina.category}. 
+            Público alvo: ${oficina.targetAudience}.
+            Duração: ${oficina.duration} horas.
+            Recursos necessários: ${oficina.recursos}.
+            ${oficina.descricaoIntro}
+            ${oficina.descricaoOrganizacao}
+            ${oficina.descricaoPratica}
+            ${oficina.descricaoApresentacao}.
+            Autor: ${oficina.createdBy || oficina.socialLink || "Informação do autor não disponível."}
+        `;
+        
+        // Verifica se a API SpeechSynthesis está disponível
+        if ('speechSynthesis' in window) {
+            const speech = new SpeechSynthesisUtterance(contentToRead);
+            speech.lang = 'pt-BR'; // Define o idioma como português
+            speech.rate = 1; // Define a velocidade da fala
+            window.speechSynthesis.speak(speech);
+        } else {
+            alert("O seu navegador não suporta leitura em voz alta.");
+        }
+    };
+
+    
     const { id } = useParams();
     const { document: oficina, loading } = useFetchDocument("oficinas", id);
     const [isOpen, setIsOpen] = useState(false);
@@ -20,42 +48,23 @@ const Oficina = () => {
         setSelectedImage('');
     };
 
-    // Função para ler a página inteira
-    const lerPagina = () => {
-        if (oficina) {
-            const texto = `
-                Título: ${oficina.title}. 
-                Descrição: ${oficina.description}. 
-                Categoria: ${oficina.category}. 
-                Público-alvo: ${oficina.targetAudience}. 
-                Duração: ${oficina.duration} horas. 
-                Recursos Necessários: ${oficina.recursos}. 
-                Descrição de Acessibilidade: ${oficina.categoriaDoPublico}.
-                ${oficina.descricaoIntro}
-                ${oficina.descricaoOrganizacao}
-                ${oficina.descricaoPratica}
-                ${oficina.descricaoApresentacao}
-            `;
-
-            const utterance = new SpeechSynthesisUtterance(texto);
-            speechSynthesis.speak(utterance);
-        }
-    };
-
     return (
+        <div className={styles.oficinaContainer}>
+        {/* Seu código já existente */}
+        
+        {/* Botão de leitura em voz alta */}
+        <div className={styles.readAloudButton} onClick={readAloudContent}>
+            <i className="fa fa-volume-up" aria-hidden="true"></i>
+            Ouvir
+        </div>
+
+        {/* Restante do seu código */}
+    
         <div className={styles.oficinaContainer}>
             {loading && <p>Carregando Oficina...</p>}
             {oficina && (
                 <div className={styles.oficinaContent}>
                     <h2 className={styles.title}>{oficina.title}</h2>
-
-                    {/* Botão para ler a página */}
-                    <button
-                        className={styles.readButton}
-                        onClick={lerPagina}
-                    >
-                        <i className="fa fa-volume-up"></i> Ouvir
-                    </button>
 
                     <div className={styles.descriptionCard}>
                         <h3 className={styles.descriptionTitle}>Descrição</h3>
@@ -208,6 +217,7 @@ const Oficina = () => {
                     <button className={styles.closeButton} onClick={closeModal}>Fechar</button>
                 </div>
             )}
+        </div>
         </div>
     );
 };

@@ -87,7 +87,7 @@ const PostDetail = ({ oficina }) => {
         </button>
       </div>
 
-      <h2>{oficina?.title}</h2>
+      <h2 className={styles.oficinah2}>{oficina?.title}</h2>
       {oficina?.description && (
         <p className={styles.brief_description}>
           {oficina.description.length > 30
@@ -96,7 +96,7 @@ const PostDetail = ({ oficina }) => {
         </p>
       )}
       <div className={styles.authorContainer}>
-        <span className={styles.authorLabel}>Autor(a):</span>
+        <span className={styles.authorLabelspan}>Autor(a):</span>
         <span className={styles.authorName}>{oficina?.socialLink || "Não informado"}</span>
       </div>
 

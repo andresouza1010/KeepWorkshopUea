@@ -9,8 +9,8 @@
   margin: 30px auto; /* Espaço entre os posts e no topo/baixo da tela */
   margin-left: 20px; /* Adiciona margem de 20px à esquerda */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animações suaves para hover */
-
 }
+
 .authorContainer {
   display: flex;
   align-items: center;
@@ -99,7 +99,7 @@
 }
 
 .oficina_detail h2 {
-  font-size: 18px; /* Fonte maior e mais impactante */
+  font-size: 15px; /* Fonte maior e mais impactante */
   margin-top: 15px;
   font-weight: 700;
   color: #333; /* Cor escura para maior contraste */
