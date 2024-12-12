@@ -377,7 +377,7 @@ const CriarOficina = () => {
             value={descricaoOrganizacao}
             onChange={(e) => setOrganizacao(e.target.value)}
           ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'organizacao')} />
+          <input className={styles.inputdeprototipagem} type="file" multiple onChange={(e) => handleImageUpload(e, 'organizacao')} />
 
           <div className={styles.imagePreviewContainer}>
             {image2.map((img, idx) => (
@@ -411,7 +411,7 @@ const CriarOficina = () => {
             value={descricaoPratica}
             onChange={(e) => setPratica(e.target.value)}
           ></textarea>
-          <input type="file" multiple onChange={(e) => handleImageUpload(e, 'pratica')} />
+          <input className={styles.inputdeprototipagem}  type="file" multiple onChange={(e) => handleImageUpload(e, 'pratica')} />
 
           <div className={styles.imagePreviewContainer}>
     {image3.map((img, idx) => (
@@ -449,7 +449,7 @@ const CriarOficina = () => {
     value={descricaoApresentacao}
     onChange={(e) => setApresentacao(e.target.value)}
   ></textarea>
-  <input type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
+  <input className={styles.inputdeprototipagem} type="file" multiple onChange={(e) => handleImageUpload(e, 'apresentacao')} />
 
   <div className={styles.imagePreviewContainer}>
     {image4.map((img, idx) => (

@@ -402,7 +402,7 @@
 /* Estilo para o campo de upload de arquivos */
 .inputdeprototipagem {
   margin-top: 15px; /* Espaçamento superior */
-  background-color: #FF5722; /* Cor de fundo laranja */
+  background-color: #ffa135c4; /* Cor de fundo laranja */
   color: white; /* Cor do texto */
   padding: 8px 16px; /* Padding interno */
   border-radius: 8px; /* Bordas arredondadas */
@@ -468,17 +468,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Estilo para o campo de upload de arquivos */
-.inputdeprototipagem {
-  margin-top: 15px; /* Espaçamento superior */
-  background-color: #FF5722; /* Cor de fundo laranja */
-  color: white; /* Cor do texto */
-  padding: 8px 16px; /* Padding interno */
-  border-radius: 8px; /* Bordas arredondadas */
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+
 
 /* Alteração do botão de upload ao passar o mouse */
 .inputdeprototipagem:hover {

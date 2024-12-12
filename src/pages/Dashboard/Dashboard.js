@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
       <div className={styles.Dashboard}>
        
-        <p>Gerencie as suas oficinas!</p>
+        <p className={styles.Dashboardpp}>Gerencie as suas oficinas!</p>
         {oficinas && oficinas.length === 0 ? (
           <div className={styles.noposts}>
             <p>Não foram encontradas!</p>
