@@ -747,24 +747,6 @@
 }
 
 
-.dropdownDeLogados {
-    position: absolute;
-    top: 19%;
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ffd9b3; /* Borda laranja claro */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    z-index: 10;
-    min-width: 250px;
-}
-
-.dropdownColumnDeLogados {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
 
 .dropdownTitleDeLogados {
     font-size: 1.1rem;
@@ -797,4 +779,44 @@ input[type="checkbox"] {
     margin-right: 5px; /* Reduz a distância entre o checkbox e o texto */
     cursor: pointer;
     accent-color: #ff8800; /* Cor personalizada para os checkboxes */
+}
+
+
+.dropdownDeLogados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 550px;
+    z-index: 2;
+}
+
+.dropdownColumnDeLogados {
+    flex: 1;
+    min-width: 200px;
+}
+
+.dropdownTitleDeLogados {
+    font-weight:normal;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox_label {
+    display: flex;
+    align-items:normal;
+    margin-bottom: 0.5rem;
+}
+
+.spantextDeUsuariosLogados {
+    margin-right: 0.5rem;
+}
+
+/* Estilo adicional para melhorar a aparência */
+.dropdownDeLogados .checkbox_label {
+    cursor: pointer;
 }

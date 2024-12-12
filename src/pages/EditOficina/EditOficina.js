@@ -217,35 +217,38 @@ const EditOficina = () => {
   return (
     <div className={styles.ooficinaContainer}>
       {loading ? (
-        <p>Carregando oficina...</p> // Exibe uma mensagem enquanto carrega os dados
+        <p className={styles.editarOficina}>Carregando oficina...</p> // Exibe uma mensagem enquanto carrega os dados
       ) : (
         <>
-          <h2>Título da Oficina:</h2>
+          <h2 className={styles.editarOficinah2}>Título da Oficina:</h2>
           <input
+            className={styles.editarOficinainput}
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)} // Atualiza o título no estado
             placeholder="Digite o título"
           />
-          <h2>Descrição da Oficina:</h2>
+          <h2 className={styles.editarOficinah2}>Descrição da Oficina:</h2>
           <textarea
+            className={styles.editarOficinatextarea}
             value={description}
             onChange={(e) => setDescription(e.target.value)} // Atualiza a descrição no estado
             placeholder="Digite a descrição"
           />
-          <h2>Categoria da Oficina:</h2>
+          <h2 className={styles.editarOficinah2}>Categoria da Oficina:</h2>
           <select
+            className={styles.editarOficinaselect}
             value={category}
             onChange={(e) => setCategory(e.target.value)} // Atualiza a categoria no estado
           >
-            <option value="">Selecione uma categoria</option>
+            <option  className={styles.editaroption} value="">Selecione uma categoria</option>
             {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option  className={styles.editaroption} key={cat} value={cat}>{cat}</option>
             ))}
           </select>
-          <h2>Público-alvo:</h2>
-          <label>
-            <span>Público-alvo</span>
+          <h2 className={styles.editarOficinah2}>Público-alvo:</h2>
+          <label  className={styles.editarlabeloficina}>
+            <span  className={styles.editarspan}>Público-alvo</span>
             <select
               name="targetAudience"
               required

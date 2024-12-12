@@ -148,3 +148,32 @@
         height: 150px;
     }
 }
+
+.readButton {
+    background-color: transparent;
+    border: 2px solid #FFA500; /* Laranja */
+    color: #FFA500; /* Laranja */
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.readButton i {
+    margin-right: 8px;
+}
+
+.readButton:hover {
+    background-color: #FFA500;
+    color: white;
+    border-color: #FFA500;
+}
+
+.readButton:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.7); /* Laranja suave */
+}

@@ -20,12 +20,42 @@ const Oficina = () => {
         setSelectedImage('');
     };
 
+    // Função para ler a página inteira
+    const lerPagina = () => {
+        if (oficina) {
+            const texto = `
+                Título: ${oficina.title}. 
+                Descrição: ${oficina.description}. 
+                Categoria: ${oficina.category}. 
+                Público-alvo: ${oficina.targetAudience}. 
+                Duração: ${oficina.duration} horas. 
+                Recursos Necessários: ${oficina.recursos}. 
+                Descrição de Acessibilidade: ${oficina.categoriaDoPublico}.
+                ${oficina.descricaoIntro}
+                ${oficina.descricaoOrganizacao}
+                ${oficina.descricaoPratica}
+                ${oficina.descricaoApresentacao}
+            `;
+
+            const utterance = new SpeechSynthesisUtterance(texto);
+            speechSynthesis.speak(utterance);
+        }
+    };
+
     return (
         <div className={styles.oficinaContainer}>
             {loading && <p>Carregando Oficina...</p>}
             {oficina && (
                 <div className={styles.oficinaContent}>
                     <h2 className={styles.title}>{oficina.title}</h2>
+
+                    {/* Botão para ler a página */}
+                    <button
+                        className={styles.readButton}
+                        onClick={lerPagina}
+                    >
+                        <i className="fa fa-volume-up"></i> Ouvir
+                    </button>
 
                     <div className={styles.descriptionCard}>
                         <h3 className={styles.descriptionTitle}>Descrição</h3>
@@ -40,7 +70,7 @@ const Oficina = () => {
                         </div>
                         <div className={styles.detailItem}>
                             <h4>Público-alvo:</h4>
-                            <p className={styles.oficinap}><div></div>{oficina.targetAudience}</p>
+                            <p className={styles.oficinap}>{oficina.targetAudience}</p>
                         </div>
                         <div className={styles.detailItem}>
                             <h4>Duração:</h4>
@@ -73,10 +103,9 @@ const Oficina = () => {
 
                             {oficina.categoriaDoPublico === 'Outro público' && oficina.accessibilityDescriptions['outro público'] && (
                                 <p className={styles.oficinap}>{oficina.accessibilityDescriptions['outro público']}</p>
+                                
                             )}
                         </div>
-
-                        
                     </div>
 
                     <h3 className={styles.stepsTitle}>Etapas da Oficina</h3>
@@ -157,9 +186,6 @@ const Oficina = () => {
                         <p className={styles.oficinap}>{oficina.descricaoApresentacao}</p>
                     </div>
 
-              
-              
-
                     {/* Nome ou Rede Social do Autor */}
                     <div className={styles.authorInfo}>
                         <h4 className={styles.oficinaautor}>Autor(a):</h4>
@@ -167,18 +193,14 @@ const Oficina = () => {
                     </div>
                 </div>
             )}
-              <label>
-              {/* Componente de link para formulário de avaliação */}
-      <div className={styles.feedbackForm}>
-        <p>Gostou da oficina? Avalie o conteúdo preenchendo o formulário abaixo:</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSyyWTyuzbx-AXjL_rI0SNiYRaxqN6q733nTCabnXWygiLjg/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-            Clique aqui para preencher o formulário
-            </a>
- 
-      </div>
-    
 
-        </label>
+            {/* Formulário de Avaliação */}
+            <div className={styles.feedbackForm}>
+                <p>Gostou da oficina? Avalie o conteúdo preenchendo o formulário abaixo:</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSyyWTyuzbx-AXjL_rI0SNiYRaxqN6q733nTCabnXWygiLjg/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                    Clique aqui para preencher o formulário
+                </a>
+            </div>
 
             {isOpen && (
                 <div className={styles.modal} onClick={closeModal}>
