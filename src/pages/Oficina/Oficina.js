@@ -6,6 +6,10 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const Oficina = () => {
 
+    const [isReading, setIsReading] = useState(false);  // Estado para controlar a leitura
+    const [speech, setSpeech] = useState(null);  // Armazenar a instância da fala para pausar e retomar
+
+    // eslint-disable-next-line
     const readAloudContent = () => {
         const contentToRead = `
             Título da oficina: ${oficina.title}. 
@@ -14,6 +18,7 @@ const Oficina = () => {
             Público alvo: ${oficina.targetAudience}.
             Duração: ${oficina.duration} horas.
             Recursos necessários: ${oficina.recursos}.
+            Esta oficina trabalha com algum público específico?: ${oficina.accessibilityDescriptions}
             ${oficina.descricaoIntro}
             ${oficina.descricaoOrganizacao}
             ${oficina.descricaoPratica}
@@ -21,14 +26,25 @@ const Oficina = () => {
             Autor: ${oficina.createdBy || oficina.socialLink || "Informação do autor não disponível."}
         `;
         
-        // Verifica se a API SpeechSynthesis está disponível
         if ('speechSynthesis' in window) {
-            const speech = new SpeechSynthesisUtterance(contentToRead);
-            speech.lang = 'pt-BR'; // Define o idioma como português
-            speech.rate = 1; // Define a velocidade da fala
-            window.speechSynthesis.speak(speech);
+            const newSpeech = new SpeechSynthesisUtterance(contentToRead);
+            newSpeech.lang = 'pt-BR';
+            newSpeech.rate = 1;
+            window.speechSynthesis.speak(newSpeech);
+            setSpeech(newSpeech);  // Armazenar a instância da fala
+            setIsReading(true);  // Marcar como leitura iniciada
         } else {
             alert("O seu navegador não suporta leitura em voz alta.");
+        }
+    };
+
+    const pauseReading = () => {
+        if (speech && window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();  // Retomar a leitura
+            setIsReading(true);
+        } else if (speech) {
+            window.speechSynthesis.pause();  // Pausar a leitura
+            setIsReading(false);
         }
     };
 
@@ -52,11 +68,18 @@ const Oficina = () => {
         <div className={styles.oficinaContainer}>
         {/* Seu código já existente */}
         
-        {/* Botão de leitura em voz alta */}
-        <div className={styles.readAloudButton} onClick={readAloudContent}>
-            <i className="fa fa-volume-up" aria-hidden="true"></i>
-            Ouvir
-        </div>
+       
+       {/* Botão de leitura em voz alta */}
+       <div className={styles.readAloudContainer}>
+    {/* Botão de leitura em voz alta */}
+    <div className={styles.readAloudButton} onClick={pauseReading}>
+        <i className="fa fa-volume-up" aria-hidden="true"></i>
+        {isReading ? 'Pausar' : 'Ouvir'}
+       
+    </div>
+
+  
+</div>
 
         {/* Restante do seu código */}
     

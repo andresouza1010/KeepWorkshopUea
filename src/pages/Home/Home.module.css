@@ -283,22 +283,24 @@
     box-sizing: border-box; 
 }
 
+/* Seção de "Oficinas não encontradas" */
 .oficinasNao {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-    margin: 20px auto; 
-    padding: 20px; 
-    background-color: #f9f9f9; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
-}
+    align-items: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Limita a largura */
+    max-width: 600px; /* Largura máxima */
+  }
 
 .message {
     font-size: 24px; 
     color: #333; 
-    margin-bottom: 20px; 
+  
 }
 
 .btn {
@@ -819,4 +821,91 @@ input[type="checkbox"] {
 /* Estilo adicional para melhorar a aparência */
 .dropdownDeLogados .checkbox_label {
     cursor: pointer;
+}
+
+
+.sobreSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    background-color: #f4f4f4;
+    flex-wrap: wrap; /* Permite que os elementos se ajustem em telas menores */
+}
+
+.sobreTextAndImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    gap: 2rem;
+}
+
+.sobreText {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.sobreText h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.sobreText h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+    height: 3px;
+    background-color: orange; /* Linha laranja abaixo do título */
+}
+
+.sobreDescription {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.heroContent2 {
+    flex: 1;
+    max-width: 500px; /* Limita o tamanho da imagem */
+    height: auto;
+    border-radius: 8px; /* Borda arredondada */
+}
+
+.sobreImagem {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Mantém a borda arredondada */
+}
+
+/* Media Query para dispositivos menores */
+@media (max-width: 768px) {
+    .sobreTextAndImage {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sobreText {
+        padding-right: 0;
+        text-align: center; /* Centraliza o texto em telas menores */
+    }
+
+    .heroContent2 {
+        max-width: 100%;
+        margin-top: 1rem; /* Espaçamento entre o texto e a imagem em telas menores */
+    }
+
+    .sobreText h2 {
+        font-size: 1.5rem;
+    }
+
+    .sobreDescription {
+        font-size: 1rem; /* Ajuste no tamanho da fonte em telas menores */
+    }
 }

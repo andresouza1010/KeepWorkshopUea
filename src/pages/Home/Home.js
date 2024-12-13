@@ -11,6 +11,8 @@ import 'font-awesome/css/font-awesome.min.css';
 // Importa imagens utilizadas no componente
 import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
 
+import imagemDeteste1 from "../Imagens/filtrarporacessibilidade.jpg";
+
 
 // Importa um componente alternativo para exibir detalhes quando o usuário não está logado
 import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';
@@ -166,7 +168,29 @@ const Home = () => {
                                 <Link to="/register" className={styles.acessarLink}>Acessar</Link>
                             </button>
                         </div>
-                    </div>  
+                    </div> 
+                  
+                
+                {/* Seção "Sobre" abaixo da imagem */}
+<div className={styles.sobreSection}>
+    <div className={styles.sobreTextAndImage}>
+        <div className={styles.sobreText}>
+            <h2>Sobre o Keep Workshop</h2>
+            <p className={styles.sobreDescription}>
+                Bem-vindo ao nosso site, um repositório de oficinas makers dedicado a facilitar o ensino criativo e inovador.
+                Aqui, professores podem acessar uma variedade de oficinas, cada uma com um passo a passo detalhado, pronto para ser aplicado com seus alunos. Nossa plataforma visa incentivar a aprendizagem prática e a criatividade por meio de projetos que estimulam a construção, experimentação e resolução de problemas.
+                Além disso, nosso site oferece recursos acessíveis para garantir que os educadores, independentemente de suas necessidades ou habilidades, possam utilizar e aplicar as oficinas de maneira eficaz.
+            </p>
+        </div>
+        {/* Corrigido o fechamento da div heroContent */}
+        <div className={styles.heroContent2} style={{ backgroundImage: `url(${imagemDeteste1})` }}>
+            {/* A imagem ou conteúdo da heroContent deve ir aqui */}
+            <img src={imagemDeteste1} alt="Descrição da imagem" className={styles.sobreImagem} />
+        </div>
+    </div>
+</div>
+
+                   
                 </>
             )}
             {/* Conteúdo para usuários logados */}

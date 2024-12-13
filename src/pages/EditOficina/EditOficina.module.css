@@ -1,0 +1,134 @@
+/* Container principal */
+.ooficinaContainereditar {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Títulos */
+  .editarOficinah2editar {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0 5px;
+  }
+  
+  /* Inputs e Textareas */
+  .editarOficinainput,
+  .texteareacreate {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Select */
+  .editarOficinaselect,
+  .editaroficinaselect {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background-color: #fff;
+  }
+  
+  /* Labels */
+  .editarlabeloficinaeditar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .editarspan {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  /* Botões */
+  .editarbuttoned {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .editarbuttoned:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Upload de imagem */
+  .uploadLabel {
+    display: block;
+    margin: 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .uploadInput {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  /* Pré-visualização de imagens */
+  .imagePreviewContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+  }
+  
+  .imagePreview {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .imagePreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .deleteButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ff0000;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* Mensagem de carregamento */
+  .editarOficinaeditar {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    margin: 20px 0;
+  }
+  

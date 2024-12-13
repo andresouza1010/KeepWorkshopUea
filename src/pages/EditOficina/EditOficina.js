@@ -191,9 +191,6 @@ const EditOficina = () => {
     });
   };
 
-  
-  
-
   // Função para remover imagem
   const handleRemoveImageFromImage = (index) => {
     setImage((prevImages) => prevImages.filter((_, idx) => idx !== index));
@@ -215,12 +212,12 @@ const EditOficina = () => {
   
 
   return (
-    <div className={styles.ooficinaContainer}>
+    <div className={styles.ooficinaContainereditar}>
       {loading ? (
-        <p className={styles.editarOficina}>Carregando oficina...</p> // Exibe uma mensagem enquanto carrega os dados
+        <p className={styles.editarOficinaeditar}>Carregando oficina...</p> // Exibe uma mensagem enquanto carrega os dados
       ) : (
         <>
-          <h2 className={styles.editarOficinah2}>Título da Oficina:</h2>
+          <h2 className={styles.editarOficinah2editar}>Título da Oficina:</h2>
           <input
             className={styles.editarOficinainput}
             type="text"
@@ -228,14 +225,16 @@ const EditOficina = () => {
             onChange={(e) => setTitle(e.target.value)} // Atualiza o título no estado
             placeholder="Digite o título"
           />
-          <h2 className={styles.editarOficinah2}>Descrição da Oficina:</h2>
+          <h2 className={styles.editarOficinah2editar}>Descrição da Oficina:</h2>
           <textarea
-            className={styles.editarOficinatextarea}
+            className={styles.editarOficinainput}
             value={description}
             onChange={(e) => setDescription(e.target.value)} // Atualiza a descrição no estado
             placeholder="Digite a descrição"
           />
-          <h2 className={styles.editarOficinah2}>Categoria da Oficina:</h2>
+
+
+          <h2 className={styles.editarOficinah2editar}>Categoria da Oficina:</h2>
           <select
             className={styles.editarOficinaselect}
             value={category}
@@ -246,10 +245,14 @@ const EditOficina = () => {
               <option  className={styles.editaroption} key={cat} value={cat}>{cat}</option>
             ))}
           </select>
-          <h2 className={styles.editarOficinah2}>Público-alvo:</h2>
-          <label  className={styles.editarlabeloficina}>
+
+
+
+          <h2 className={styles.editarOficinah2editar}>Público-alvo:</h2>
+          <label  className={styles.editarlabeloficinaeditar}>
             <span  className={styles.editarspan}>Público-alvo</span>
             <select
+              className={styles.editaroficinaselect}
               name="targetAudience"
               required
               onChange={(e) => setTargetAudience(e.target.value)} 
@@ -336,7 +339,7 @@ const EditOficina = () => {
           </div>
         )}
 
-          <h2>Duração da Oficina (em horas):</h2>
+          <h2 className={styles.editarOficinah2editar}>Duração da Oficina (em horas):</h2>
           <input
             type="number"
             value={duration}
@@ -345,13 +348,13 @@ const EditOficina = () => {
             min="1" // Define um valor mínimo de 1 hora
             required
           />
-          <h2>Recursos</h2>
+          <h2 className={styles.editarOficinah2editar}>Recursos</h2>
           <textarea
             value={recursos}
             onChange={(e) => setRecursos(e.target.value)} // Atualiza a descrição no estado
             placeholder="Digite os recursos usados"
           />
-          <h2>Introdução:</h2>
+          <h2 className={styles.editarOficinah2editar}>Introdução:</h2>
           <textarea
             value={descricaoIntro}
             onChange={(e) => setIntroduction(e.target.value)}
@@ -382,7 +385,7 @@ const EditOficina = () => {
 
 
 
-          <h2>Organização:</h2>
+          <h2 className={styles.editarOficinah2editar}>Organização:</h2>
           <textarea
             value={descricaoOrganizacao}
             onChange={(e) => setOrganizacao(e.target.value)}
@@ -412,7 +415,7 @@ const EditOficina = () => {
             ))}
           </div>
 
-          <h2>Momento Prático:</h2>
+          <h2 className={styles.editarOficinah2editar}>Momento Prático:</h2>
           <textarea
             value={descricaoPratica}
             onChange={(e) => setPratica(e.target.value)}
@@ -443,7 +446,7 @@ const EditOficina = () => {
           </div>
           
 
-          <h2>Apresentação:</h2>
+          <h2 className={styles.editarOficinah2editar}>Apresentação:</h2>
           <textarea
             value={descricaoApresentacao}
             onChange={(e) => setApresentacao(e.target.value)}
@@ -472,7 +475,7 @@ const EditOficina = () => {
             ))}
           </div>
 
-          <button onClick={saveOficina}>Salvar Alterações</button>
+          <button className={styles.editarbuttoned} onClick={saveOficina}>Salvar Alterações</button>
         </>
       )}
     </div>
