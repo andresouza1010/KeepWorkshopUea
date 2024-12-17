@@ -10,14 +10,8 @@ import 'font-awesome/css/font-awesome.min.css';
 
 // Importa imagens utilizadas no componente
 import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
-
-import imagemDeteste1 from "../Imagens/filtrarporacessibilidade.jpg";
-
-
-// Importa um componente alternativo para exibir detalhes quando o usuário não está logado
-import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';
-
-// Importa o ícone de filtro da biblioteca react-icons
+import imagemDeteste1 from "../Imagens/filtrarporacessibilidade.jpg";// Importa um componente alternativo para exibir detalhes quando o usuário não está logado
+import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';// Importa o ícone de filtro da biblioteca react-icons
 import { FaFilter } from 'react-icons/fa';
 
 // Define o componente funcional Home
@@ -337,7 +331,7 @@ const Home = () => {
 
                                 <div className={styles.dropdownColumnDeLogados}>
                                     <p className={styles.dropdownTitleDeLogados}>Acessibilidade</p>
-                                    {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
+                                    {["Não possui", "Transtorno do espectro do autismo","Transtorno do déficit de atenção com hiperatividade", "Deficiência visual", "Deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
                                         <label key={categoriaDoPublico} className={styles.checkbox_label}>
                                             <input
                                                 className={styles.spantextDeUsuariosLogados}

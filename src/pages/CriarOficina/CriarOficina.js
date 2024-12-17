@@ -484,19 +484,21 @@ const CriarOficina = () => {
 {/* Checkbox para selecionar os públicos de acessibilidade */}
 
 <label className={styles.labelcreateacessibilidade}>
-  <span className={styles.spancreate}>Categoria do Público</span>
+  <span className={styles.spancreate}>Esta oficina considera estudantes com necessidades específicas de aprendizagem? Se sim informe qual. 
+
+</span>
   <select
     name="categoriaDoPublico"
     required
     onChange={(e) => setCategoriaDoPublico(e.target.value)}
     value={categoriaDoPublico}
   >
-    <option className={styles.optionscreateacessibilidade} value="">Esta atividade trabalha com algum público específico?</option>
+    <option className={styles.optionscreateacessibilidade} value=""></option>
     <option className={styles.optionscreateacessibilidade}value="Não">Não</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas no espectro do autismo">Pessoas no espectro do autismo</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com TDAH">Pessoas com TDAH</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência visual">Pessoas com deficiência visual</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência auditiva">Pessoas com deficiência auditiva</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas no espectro do autismo">Transtorno do espectro do autismo</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com TDAH">Transtorno do déficit de atenção com hiperatividade</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência visual">Deficiência visual</option>
+    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência auditiva">Deficiência auditiva</option>
     <option className={styles.optionscreateacessibilidade}value="Outro público">Outro público</option>
   </select>
 </label>
@@ -505,7 +507,8 @@ const CriarOficina = () => {
 {categoriaDoPublico === 'Pessoas no espectro do autismo' && (
   <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreateacessibilidade}
+    
+     className={styles.texteareacreate}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['autista'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
@@ -516,7 +519,7 @@ const CriarOficina = () => {
 {categoriaDoPublico === 'Pessoas com TDAH' && (
   <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreateacessibilidade}
+      className={styles.texteareacreate}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['tdah'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
@@ -527,7 +530,7 @@ const CriarOficina = () => {
 {categoriaDoPublico === 'Pessoas com deficiência visual' && (
   <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreateacessibilidade}
+      className={styles.texteareacreate}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['deficientes visuais'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
@@ -538,7 +541,7 @@ const CriarOficina = () => {
 {categoriaDoPublico === 'Pessoas com deficiência auditiva' && (
   <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreateacessibilidade}
+      className={styles.texteareacreate}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['pessoas surdas'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
@@ -549,7 +552,7 @@ const CriarOficina = () => {
 {categoriaDoPublico === 'Outro público' && (
   <div className={styles.create_oficinaacessibilidade}>
     <textarea
-      className={styles.texteareacreateacessibilidade}
+      className={styles.texteareacreate}
       placeholder="Descreva como seu projeto se aplica a este público"
       value={accessibilityDescriptions['outro público'] || ''}
       onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
@@ -561,7 +564,7 @@ const CriarOficina = () => {
         <label className={styles.labelcreate}>
           <span className={styles.spancreate}>Autor(a) para divulgação</span>
           <input
-            className="accessibility-textarea"
+            className={styles.texteareacreateinput}
             name="socialLink"
             placeholder="Seu nome ou a sua rede social para divulgação"
             onChange={(e) => setSocialLink(e.target.value)}
@@ -569,12 +572,12 @@ const CriarOficina = () => {
           />
         </label>
 
-        <button className="styles.buttonSalvar" type="submit" disabled={isSubmitting}>
+        <button className={styles.buttonSalvar} type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Salvando...' : 'Criar Oficina'}
           
         </button>
-        {formError && <p className={styles.error}>{formError}</p>}
-        {response.success && <p className="success">Oficina criada com sucesso!</p>}
+        {formError && <p className={styles.error2}>{formError}</p>}
+        {response.success && <p className={styles.success2}>Oficina criada com sucesso!</p>}
       </form>
     </div>
   );
