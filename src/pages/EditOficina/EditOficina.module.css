@@ -1,134 +1,180 @@
-/* Container principal */
+/* Estilos gerais */
 .ooficinaContainereditar {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Títulos */
+.editarOficinah2editar {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Inputs e Textareas */
+.editarOficinainput,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.editarOficinainput:focus,
+textarea:focus {
+  border-color: #ff9d00;
+  outline: none;
+}
+
+/* Selects */
+.editarOficinaselect,
+.editaroficinaselect {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.editarOficinaselect:focus,
+.editaroficinaselect:focus {
+  border-color: #ff9900;
+  outline: none;
+}
+
+/* Botões */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button-secondary {
+  background-color: #6c757d;
+}
+
+.button-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Mensagens de carregamento */
+.editarOficinaeditar {
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+}
+
+/* Imagens */
+.image-upload {
+  margin-bottom: 20px;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove-image-button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-image-button:hover {
+  background-color: #c82333;
+}
+
+/* Etiquetas e spans */
+.editarlabeloficinaeditar,
+.labelcreate {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.editarspan,
+.spancreate {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Acessibilidade */
+.acessibilidade-container {
+  margin-bottom: 20px;
+}
+
+.acessibilidade-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.acessibilidade-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.acessibilidade-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .ooficinaContainereditar {
+    padding: 15px;
   }
-  
-  /* Títulos */
+
   .editarOficinah2editar {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin: 15px 0 5px;
+    font-size: 1.25rem;
   }
-  
-  /* Inputs e Textareas */
-  .editarOficinainput,
-  .texteareacreate {
+
+  .button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
   }
-  
-  /* Select */
-  .editarOficinaselect,
-  .editaroficinaselect {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 15px;
-    background-color: #fff;
-  }
-  
-  /* Labels */
-  .editarlabeloficinaeditar {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .editarspan {
-    font-size: 14px;
-    font-weight: bold;
-    color: #666;
-    margin-bottom: 5px;
-  }
-  
-  /* Botões */
-  .editarbuttoned {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .editarbuttoned:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Upload de imagem */
-  .uploadLabel {
-    display: block;
-    margin: 15px 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .uploadInput {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  /* Pré-visualização de imagens */
-  .imagePreviewContainer {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin: 15px 0;
-  }
-  
-  .imagePreview {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  .imagePreview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .deleteButton {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ff0000;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  /* Mensagem de carregamento */
-  .editarOficinaeditar {
-    text-align: center;
-    font-size: 16px;
-    color: #555;
-    margin: 20px 0;
-  }
-  
+}
