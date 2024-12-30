@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import styles from './PostDetail.module.css';
+import styles from '../pages/Home/Home.module.css';
 import { Link } from 'react-router-dom';
 import { useAuthValue } from "../context/AuthContext";
 import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -10,10 +10,7 @@ const PostDetail = ({ oficina }) => {
   const { user } = useAuthValue();
   const [favorites, setFavorites] = useState([]);
   const [loadingFavorite, setLoadingFavorite] = useState(false);
-  
-
   const favoritesDocRef = user ? doc(db, "favorites", user.uid) : null;
-
   const handleFavorite = async () => {
     if (!user) {
       alert("Você precisa estar logado para favoritar uma oficina.");

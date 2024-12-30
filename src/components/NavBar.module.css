@@ -1,178 +1,189 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #040007;
-  color: #e39903;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Estilos para a Navbar */
+/* Definir a fonte Poppins para o body */
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Outros estilos onde você pode querer aplicar a fonte Poppins */
 .brand {
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: rgb(247, 144, 0);
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 }
 
+.navbar a {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background-color: #000; /* Cor de fundo preta */
+  padding: 1rem 2rem; /* Espaçamento interno para uma boa aparência */
+  display: flex;
+  justify-content: space-between; /* Alinha os itens no espaço disponível */
+  align-items: center; /* Alinha o conteúdo no centro vertical */
+}
+
+/* Estilos para o Link da Marca */
+.brand {
+  color: #fff;
+  font-size: 1.5rem; /* Aumenta o tamanho da fonte */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.brand strong {
+  color: #ff8400;
+}
+
+.brand:hover {
+  color: #ff8400;
+}
+
+/* Estilos para o formulário de busca na navbar */
 .search_formnavbar {
   display: flex;
   align-items: center;
-  position: relative;
-  padding: 10px 20px;
+  background-color: #333;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  max-width: 400px;
+  width: 100%;
+  margin-left: 0; /* Remove o espaçamento à esquerda */
 }
 
-.filter_bar {
-  display: flex;
-  align-items: center;
-}
-
-.filter_button {
-  background-color: transparent;
-  border: none;
-  color: rgb(214, 146, 0);
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 8px;
-}
-
-.filter_button:hover {
-  color: rgb(230, 120, 0);
-}
-
-.filter_menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  display: none;
-  z-index: 1000;
-}
-
-.filter_dropdown:hover .filter_menu {
-  display: block;
-}
-
-.checkbox_label {
-  display: block;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.checkbox_label input {
-  margin-right: 8px;
-}
-
+/* Estilos para o campo de entrada de texto */
 .search_inputnavbar {
-  padding: 8px;
-  border: 1px solid #7c7c7c;
-  border-radius: 4px;
-  margin-right: 10px;
-  color: #ffffff;
-  background-color: #160d0d;
+  background-color: #333;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  transition: background-color 0.3s ease;
 }
 
+.search_inputnavbar:focus {
+  background-color: #444;
+}
+
+/* Estilos para o botão de busca */
 .search_button {
-  background-color: rgb(247, 144, 0);
+  background-color: #ff8400;
   border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border-radius: 10px;
   cursor: pointer;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .search_button:hover {
-  background-color: rgb(230, 120, 0);
+  background-color: #FFA500;
 }
 
+.search_button i {
+  color: #000;
+  font-size: 1.2rem;
+}
+
+/* Estilos para a lista de links de navegação */
 .links_list {
-  list-style: none;
-  display: flex;
-  gap: 15px;
+  display: flex; /* Flexbox para alinhar os links */
+  list-style-type: none; /* Remove o marcador de lista */
+  margin: 0; /* Remove as margens padrão */
+  padding: 0; /* Remove o preenchimento padrão */
 }
 
 .links_list li {
-  font-size: 1rem;
+  margin: 0 1rem; /* Espaço entre os links */
 }
 
+/* Estilos para os links */
 .links_list a {
-  text-decoration: none;
-  color: rgb(247, 144, 0);
-  padding: 5px 10px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  color: #fff; /* Texto branco para os links */
+  font-size: 1rem; /* Tamanho de fonte padrão */
+  text-decoration: none; /* Remove o sublinhado */
+  font-weight: 500; /* Peso de fonte moderado */
+  transition: color 0.3s ease; /* Transição suave para a mudança de cor */
 }
 
+/* Estilos para o link ativo */
+.links_list a.active {
+  color: #ff8400; /* Dourado para o link ativo */
+}
+
+/* Efeito de Hover nos links */
 .links_list a:hover {
-  background-color: rgba(216, 216, 216, 0.44);
+  color: #ff8400; /* Dourado no hover para links */
 }
 
-.active {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
+/* Estilos para o dropdown de perfil */
 .profile {
-  position: relative;
-  display: inline-block;
+  position: relative; /* Necessário para o posicionamento do dropdown */
 }
 
+/* Estilos para o botão de perfil */
 .profileButton {
-  background-color: transparent;
-  border: none;
-  color: #e39903;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent; /* Fundo transparente para o botão */
+  border: none; /* Remove borda */
+  color: #fff; /* Cor branca para o ícone */
+  font-size: 1.5rem; /* Tamanho adequado para o ícone */
+  cursor: pointer; /* Indica que o botão é clicável */
+  transition: color 0.3s ease; /* Transição suave para a cor do ícone */
 }
 
 .profileButton:hover {
-  background-color: rgba(216, 216, 216, 0.2);
+  color: #ff8400; /* Dourado ao passar o mouse sobre o botão */
 }
 
+/* Estilos para o dropdown */
 .dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #040007;
-  border: 1px solid #e39903;
-  border-radius: 4px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 8px;
-  min-width: 150px;
-  z-index: 1000;
+  position: absolute; /* Posiciona o dropdown em relação ao botão */
+  top: 100%; /* Posiciona abaixo do botão */
+  right: 0; /* Alinha o dropdown à direita */
+  background-color: #333; /* Fundo escuro para o dropdown */
+  border-radius: 8px; /* Bordas arredondadas */
+  min-width: 150px; /* Largura mínima do dropdown */
+  padding: 1rem; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombras suaves para o dropdown */
+  display: none; /* Inicialmente oculto */
+  flex-direction: column; /* Organiza os itens do dropdown em coluna */
 }
 
+/* Mostra o dropdown quando o estado 'dropdownOpen' for verdadeiro */
+.profile:hover .dropdown {
+  display: flex; /* Exibe o dropdown quando o mouse passar sobre o perfil */
+}
+
+/* Estilos para as opções do dropdown */
 .dropdownOption {
-  display: block;
-  color: #e39903;
-  padding: 10px;
-  text-decoration: none;
-  transition: background-color 0.2s;
+  color: #fff; /* Texto branco */
+  text-decoration: none; /* Remove o sublinhado */
+  font-size: 1rem; /* Tamanho de fonte */
+  padding: 0.5rem 0; /* Espaçamento vertical */
+  transition: color 0.3s ease; /* Transição suave para a cor */
 }
 
+/* Efeito de Hover nas opções do dropdown */
 .dropdownOption:hover {
-  background-color: rgba(216, 216, 216, 0.2);
+  color: #ff8400; /* Dourado ao passar o mouse nas opções */
 }
 
+/* Estilos para o botão de logout */
 .logoutButton {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  background: transparent;
-  color: #e39903;
-  cursor: pointer;
-  text-align: left;
-  transition: background-color 0.2s;
+  background-color: transparent; /* Fundo transparente */
+  color: #fff; /* Texto branco */
+  border: none; /* Remove a borda */
+  font-size: 1rem; /* Tamanho de fonte */
+  padding: 0.5rem 0; /* Espaçamento vertical */
+  width: 100%; /* Ocupa toda a largura do dropdown */
+  text-align: left; /* Alinha o texto à esquerda */
+  cursor: pointer; /* Cursor de clique */
+  transition: color 0.3s ease; /* Transição suave para a cor */
 }
 
+/* Efeito de Hover no botão de logout */
 .logoutButton:hover {
-  background-color: rgba(216, 216, 216, 0.2);
+  color: #ff8400; /* Dourado ao passar o mouse no botão de logout */
 }

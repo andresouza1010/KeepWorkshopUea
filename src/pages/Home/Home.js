@@ -9,10 +9,9 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import 'font-awesome/css/font-awesome.min.css';
 
 // Importa imagens utilizadas no componente
-import imagemDeteste from "../Imagens/imagemdeteste3.jpg";
-import imagemDeteste1 from "../Imagens/filtrarporacessibilidade.jpg";// Importa um componente alternativo para exibir detalhes quando o usuário não está logado
+
 import PostDetailUsuarioNaoLogado from '../../components/PostDetailUsuarioNaoLogado';// Importa o ícone de filtro da biblioteca react-icons
-import { FaFilter } from 'react-icons/fa';
+
 
 // Define o componente funcional Home
 const Home = () => {
@@ -25,15 +24,11 @@ const Home = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedCategoriaDoPublico, setSelectedCategoriaDoPublico] = useState([]);
     const [selectedAges, setSelectedAges] = useState([]);
-    const [showCategoryFilter] = useState(false);
-    const [showCategoriaDoPublicoFilter] = useState(false);
-    const [showAgeFilter] = useState(false);
+    
     // Busca documentos da coleção "oficinas" e define estado para loading
     const { documents: oficinas, loading } = useFetchDocuments("oficinas");
-
-    // Estado para controlar a visibilidade do dropdown de filtros
-    const [showDropdown, setShowDropdown] = useState(false);
-
+    
+    
     // Função para alternar seleção de categoria
     const handleCategoryChange = (category) => {
         setSelectedCategories(prev =>
@@ -93,282 +88,79 @@ const Home = () => {
 
     // Renderiza o componente
     return (
-        <div >
-            {/* Exibe conteúdo para usuários não logados */}
-            {!isLoggedIn && (
-                <>
-                 <div className={styles.heroSectionUsuariosNaoLogados}>
-                       
-                        {showDropdown && (
-                            <div className={styles.dropdown2}>
-                                <div className={styles.dropdownColumnUsuariosNaoLogados}>
-                                    <p className={styles.dropdownTitleUsuariosNaoLogados}>Categorias</p>
-                                    {["Eletrônica", "Programação","Desplugada", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
-                                        <label key={category} className={styles.checkbox_labelUsuariosNaoLogados}>
-                                            <input
-                                                className={styles.inputUsuariosNaoLogados}
-                                                type="checkbox"
-                                                value={category}
-                                                checked={selectedCategories.includes(category)}
-                                                onChange={() => handleCategoryChange(category)}
-                                            />
-                                            {category}
-                                        </label>
-                                    ))}
-                                </div>
-                                <div className={styles.dropdownColumnUsuariosNaoLogados}>
-                                    <p className={styles.dropdownTitleUsuariosNaoLogados}>Idades</p>
-                                    {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
-                                        <label key={age} className={styles.checkbox_label}>
-                                            <input
-                                                className={styles.inputUsuariosNaoLogados}
-                                                type="checkbox"
-                                                value={age}
-                                                checked={selectedAges.includes(age)}
-                                                onChange={() => handleAgeChange(age)}
-                                            />
-                                            {age}
-                                        </label>
-                                    ))}
-                                </div>
-                                <div className={styles.dropdownColumnUsuariosNaoLogados}>
-                                    <p className={styles.dropdownTitleUsuariosNaoLogados}>Acessibilidade</p>
-                                    {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
-                                        <label key={categoriaDoPublico} className={styles.checkbox_labelUsuariosNaoLogados}>
-                                            <input
-                                                 className={styles.inputUsuariosNaoLogados}
-                                                type="checkbox"
-                                                value={categoriaDoPublico}
-                                                checked={selectedCategoriaDoPublico.includes(categoriaDoPublico)}
-                                                onChange={() => handleCategoriaDoPublicoChange(categoriaDoPublico)}
-                                            />
-                                            {categoriaDoPublico}
-                                        </label>
-                                    ))}
-                                </div>
-                                  
-                                
-                                
-                            </div>
-                        )}
-                    </div>
-                    <div className={styles.hero}>
-                        <div className={styles.heroContent} style={{ backgroundImage: `url(${imagemDeteste})` }}>
-                            <h1>Bem-vindo ao Keep Workshop!</h1>
-                            <p className={styles.description}>
-                                Descubra e compartilhe oficinas makers em uma plataforma colaborativa.
-                            </p>
-                            <button className={styles.acessarButton}>
-                                <Link to="/register" className={styles.acessarLink}>Acessar</Link>
-                            </button>
-                        </div>
-                    </div> 
-                  
-                
-                {/* Seção "Sobre" abaixo da imagem */}
-<div className={styles.sobreSection}>
-    <div className={styles.sobreTextAndImage}>
-        <div className={styles.sobreText}>
-            <h2>Sobre o Keep Workshop</h2>
-            <p className={styles.sobreDescription}>
-                Bem-vindo ao nosso site, um repositório de oficinas makers dedicado a facilitar o ensino criativo e inovador.
-                Aqui, professores podem acessar uma variedade de oficinas, cada uma com um passo a passo detalhado, pronto para ser aplicado com seus alunos. Nossa plataforma visa incentivar a aprendizagem prática e a criatividade por meio de projetos que estimulam a construção, experimentação e resolução de problemas.
-                Além disso, nosso site oferece recursos acessíveis para garantir que os educadores, independentemente de suas necessidades ou habilidades, possam utilizar e aplicar as oficinas de maneira eficaz.
-            </p>
-        </div>
-        {/* Corrigido o fechamento da div heroContent */}
-        <div className={styles.heroContent2} style={{ backgroundImage: `url(${imagemDeteste1})` }}>
-            {/* A imagem ou conteúdo da heroContent deve ir aqui */}
-            <img src={imagemDeteste1} alt="Descrição da imagem" className={styles.sobreImagem} />
-        </div>
-    </div>
-</div>
-
-                   
-                </>
-            )}
-            {/* Conteúdo para usuários logados */}
-            {isLoggedIn && (
-                <>
+        <div className={styles.filter_principal}>
+    {/* Conteúdo para usuários logados */}
+    {isLoggedIn && (
+        <>
+            {/* Filtro único com 3 opções fixas */}
+            <div className={styles.filter_barDeUsuariosLogados}>
+                <div className={styles.filter_textDeUsuariosLogados}>
+                    <span className={styles.spantextDeUsuariosLogados}>Filtrar:</span>
                     {/* Filtro de Categorias */}
-                    {showCategoryFilter && (
-                        <div className={styles.filter_barDeUsuariosLogados}>
-                            <div className={styles.filter_textDeUsuariosLogados}>
-                                <span className={styles.spantextDeUsuariosLogados}>Filtrar por Categoria:</span>
-                                {["Eletrônica", "Programação","Desplugada", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
-                                    <label key={category} className={styles.checkbox_labelDeUsuariosLogados}>
-                                        <input
-                                            className={styles.inputDeUsuariosLogados}
-                                            type="checkbox"
-                                            value={category}
-                                            checked={selectedCategories.includes(category)}
-                                            onChange={() => handleCategoryChange(category)}
-                                        />
-                                        {category}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Filtro de Categorias do publico */}
-                    {showCategoriaDoPublicoFilter && (
-                        <div className={styles.filter_barDeUsuariosLogados}>
-                            <div className={styles.filter_textDeUsuariosLogados}>
-                                <span className={styles.spantextDeUsuariosLogados}>Filtrar por Categoria do publico:</span>
-                                {["Não", "Pessoas no espectro do autismo","Pessoas com TDAH", "Pessoas com deficiência visual", "Pessoas com deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
-                                    <label key={categoriaDoPublico} className={styles.checkbox_label}>
-                                        <input
-                                            className={styles.inputDeUsuariosLogados}
-                                            type="checkbox"
-                                            value={categoriaDoPublico}
-                                            checked={selectedCategories.includes(categoriaDoPublico)}
-                                            onChange={() => handleCategoryChange(categoriaDoPublico)}
-                                        />
-                                        {categoriaDoPublico}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                    
-
-                    {/* Filtro de Idades */}
-                    {showAgeFilter && (
-                        <div className={styles.filter_barDeUsuariosLogados}>
-                            <div className={styles.filter_textDeUsuariosLogados}>
-                                <span className={styles.inputDeUsuariosLogadosDeUsuariosLogados}>Filtrar por Idade:</span>
-                                {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
-                                    <label key={age} className={styles.checkbox_label}>
-                                        <input
-                                            className={styles.spantextDeUsuariosLogados}
-                                            type="checkbox"
-                                            value={age}
-                                            checked={selectedAges.includes(age)}
-                                            onChange={() => handleAgeChange(age)}
-                                        />
-                                        {age}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                   
-                    
-
-                    {/* Ícone de Filtro (Dropdown) */}
-                    <div className={styles.heroSectionDelogados}>
-                    <span className={styles.filterLabel} onClick={() => setShowDropdown(!showDropdown)}>
-                        Filtrar por:
-                        <FaFilter className={styles.filterIconDelogados} />
-                    </span>
-                    {/* Exibição das categorias selecionadas */}
-                    <div className={styles.selectedCategories}>
-                        {selectedCategories.map((category) => (
-                            <span key={category} className={styles.selectedCategory}>
+                    <div className={styles.filterOption}>
+                        <p className={styles.filterTitle}>Categorias</p>
+                        {["Eletrônica", "Programação", "Desplugada", "Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
+                            <label key={category} className={styles.checkbox_labelDeUsuariosLogados}>
+                                <input
+                                    className={styles.inputDeUsuariosLogados}
+                                    type="checkbox"
+                                    value={category}
+                                    checked={selectedCategories.includes(category)}
+                                    onChange={() => handleCategoryChange(category)}
+                                />
                                 {category}
-                                <button
-                                    className={styles.removeCategoryButton}
-                                    onClick={() => handleCategoryChange(category)} // Remove ao clicar
-                                    aria-label={`Remover ${category}`}
-                                >
-                                    ✖
-                                </button>
-                            </span>
+                            </label>
                         ))}
                     </div>
-                    {/* Exibição das categorias de Acessibilidade selecionadas */}
-                    <div className={styles.selectedCategories}>
-                        {selectedCategoriaDoPublico.map((categoriaDoPublico) => (
-                            <span key={categoriaDoPublico} className={styles.selectedCategory}>
+
+                    {/* Filtro de Público (Acessibilidade) */}
+                    <div className={styles.filterOption}>
+                        <p className={styles.filterTitle}>Acessibilidade</p>
+                        {["Não possui", "Transtorno do espectro do autismo", "Transtorno do déficit de atenção com hiperatividade", "Deficiência visual", "Deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
+                            <label key={categoriaDoPublico} className={styles.checkbox_label}>
+                                <input
+                                    className={styles.inputDeUsuariosLogados}
+                                    type="checkbox"
+                                    value={categoriaDoPublico}
+                                    checked={selectedCategoriaDoPublico.includes(categoriaDoPublico)}
+                                    onChange={() => handleCategoriaDoPublicoChange(categoriaDoPublico)}
+                                />
                                 {categoriaDoPublico}
-                                <button
-                                    className={styles.removeCategoryButton}
-                                    onClick={() => handleCategoriaDoPublicoChange(categoriaDoPublico)} // Remove ao clicar
-                                    aria-label={`Remover ${categoriaDoPublico}`}
-                                >
-                                    ✖
-                                </button>
-                            </span>
+                            </label>
                         ))}
-                   </div>
-
-                        {/* Exibição das faixas de Idade selecionadas */}
-                    <div className={styles.selectedCategories}>
-                        {selectedAges.map((age) => (
-                            <span key={age} className={styles.selectedCategory}>
-                                {age}
-                                <button
-                                    className={styles.removeCategoryButton}
-                                    onClick={() => handleAgeChange(age)} // Remove ao clicar
-                                    aria-label={`Remover ${age}`}
-                                >
-                                    ✖
-                                </button>
-                            </span>
-                        ))}
-                        </div>
-                    
-                        {showDropdown && (
-                            <div className={styles.dropdownDeLogados}>
-
-                                <div className={styles.dropdownColumnDeLogados}>
-                                    <p className={styles.dropdownTitleDeLogados}>Categorias</p>
-                                    {["Eletrônica", "Programação", "Desplugada","Mecânica", "Robótica", "Engenharia", "Arte e design", "Reciclagem e sustentabilidade", "Edição de vídeo e voz"].map((category) => (
-                                        <label key={category} className={styles.checkbox_label}>
-                                            <input
-                                                className={styles.spantextDeUsuariosLogados}
-                                                type="checkbox"
-                                                value={category}
-                                                checked={selectedCategories.includes(category)}
-                                                onChange={() => handleCategoryChange(category)}
-                                            />
-                                            {category}
-                                        </label>
-                                    ))}
-                                </div>
-
-                                <div className={styles.dropdownColumnDeLogados}>
-                                    <p className={styles.dropdownTitleDeLogados}>Acessibilidade</p>
-                                    {["Não possui", "Transtorno do espectro do autismo","Transtorno do déficit de atenção com hiperatividade", "Deficiência visual", "Deficiência auditiva", "Outro público"].map((categoriaDoPublico) => (
-                                        <label key={categoriaDoPublico} className={styles.checkbox_label}>
-                                            <input
-                                                className={styles.spantextDeUsuariosLogados}
-                                                type="checkbox"
-                                                value={categoriaDoPublico}
-                                                checked={selectedCategoriaDoPublico.includes(categoriaDoPublico)}
-                                                onChange={() => handleCategoriaDoPublicoChange(categoriaDoPublico)}
-                                            />
-                                            {categoriaDoPublico}
-                                        </label>
-                                    ))}
-                                </div>
-
-                                <div className={styles.dropdownColumnDeLogados}>
-                                    <p className={styles.dropdownTitleDeLogados}>Idades</p>
-                                    {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
-                                        <label key={age} className={styles.checkbox_label}>
-                                            <input
-                                                className={styles.spantextDeUsuariosLogados}
-                                                type="checkbox"
-                                                value={age}
-                                                checked={selectedAges.includes(age)}
-                                                onChange={() => handleAgeChange(age)}
-                                            />
-                                            {age}
-                                        </label>
-                                    ))}
-                                </div>
-                               
-                                
-                            </div>
-                        )}
                     </div>
-                </>
-            )}
-            
-            {/*USUARIO NAO LOGADO*/}
+
+                    {/* Filtro de Idade */}
+                    <div className={styles.filterOption}>
+                        <p className={styles.filterTitle}>Idades</p>
+                        {["4 a 6 anos", "7 a 9 anos", "10 a 12 anos", "13 a 15 anos", "16 anos ou mais"].map((age) => (
+                            <label key={age} className={styles.checkbox_label}>
+                                <input
+                                    className={styles.inputDeUsuariosLogados}
+                                    type="checkbox"
+                                    value={age}
+                                    checked={selectedAges.includes(age)}
+                                    onChange={() => handleAgeChange(age)}
+                                />
+                                {age}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Exibição das categorias selecionadas */}
+            <div className={styles.selectedCategories}>
+            </div>
+
+            {/* Exibição das categorias de Acessibilidade selecionadas */}
+            <div className={styles.selectedCategories}>
+            </div>
+
+            {/* Exibição das faixas de Idade selecionadas */}
+            <div className={styles.selectedCategories}>
+            </div>
+
             {/* Exibição das oficinas filtradas */}
             <div className={styles.postDetail}>
                 {loading && <p>Carregando...</p>}
@@ -388,9 +180,12 @@ const Home = () => {
                     </div>
                 )}
             </div>
-        </div>
-    );
-};
+        </>
+    )}
+</div>
+        
+            );
+        };
 
 // Exporta o componente Home
 export default Home;

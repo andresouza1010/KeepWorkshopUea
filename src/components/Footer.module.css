@@ -1,71 +1,96 @@
-/* Garantir que o layout da página ocupe 100% da altura */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-/* Corpo da página com layout flexível */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-/* O conteúdo vai ocupar o espaço restante */
-.content {
-  flex: 1;
-}
-
-/* Estilo do rodapé */
+/* Estilo principal do rodapé */
 .footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
-  width: 100%;
-}
-
-/* Responsividade da área do rodapé */
-.containerfooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.infofooter {
-  flex: 1;
-}
-
-.titlefooter {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.lufooter {
-  list-style-type: none;
-  padding: 0;
-}
-
-.lifooter {
-  margin: 0.5rem 0;
-}
-
-.linkfooter {
-  color: #fff;
-  text-decoration: none;
-}
-
-.linkButtonfooter {
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Garantir que o rodapé vá para o fim da página, mas não fique fixo se houver muito conteúdo */
-footer {
-  margin-top: auto; /* Isso empurra o rodapé para o final */
-}
+    background-color: #000; /* Fundo preto */
+    color: #fff; /* Texto branco */
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  /* Contêiner do rodapé */
+  .containerfooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Informações do rodapé */
+  .infofooter {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .titlefooter {
+    font-size: 24px;
+    color: #f39c12; /* Título em laranja */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .pfooter {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff; /* Texto branco */
+  }
+  
+  .copyRight {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc; /* Texto branco mais suave */
+  }
+  
+  /* Links úteis */
+  .linksfooter {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+  }
+  
+  .linkTitlefooter {
+    font-size: 20px;
+    color: #f39c12; /* Título em laranja */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .lufooter {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lifooter {
+    margin-bottom: 10px;
+  }
+  
+  .linkfooter, .linkButtonfooter {
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff; /* Texto branco */
+    background-color: transparent; /* Sem fundo */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .linkfooter:hover, .linkButtonfooter:hover {
+    background-color: #f39c12; /* Fundo laranja no hover */
+    color: #000; /* Texto preto no hover */
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .containerfooter {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .infofooter, .linksfooter {
+      text-align: center;
+    }
+  }
+  

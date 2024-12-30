@@ -262,7 +262,7 @@ const CriarOficina = () => {
         <label className={styles.labelcreate}>
           <span className={styles.spancreate}>Categoria</span>
           <select 
-            className={styles.selectedcreate}
+            className={styles.selectcreate}
             name="category" 
             required 
             onChange={(e) => setCategory(e.target.value)} 
@@ -298,7 +298,7 @@ const CriarOficina = () => {
         <label className={styles.labelcreate}>
           <span className={styles.spancreate}>Título</span>
           <input 
-            className={styles.texteareacreatetitulo}
+            className={styles.texteareacreateinput}
             type="text" 
             name="title" 
             required 
@@ -324,6 +324,7 @@ const CriarOficina = () => {
          <label className={styles.labelcreateduracao}>
           <span className={styles.spancreateduracao}>Duração da oficina (em horas)</span>
           <input 
+            className={styles.selectcreate}
             type="number" 
             name="duration" 
             required 
@@ -358,14 +359,7 @@ const CriarOficina = () => {
           </div>
           <label htmlFor="uploadIntro" className={styles.uploadLabel}>
           <span className={styles.spancreate}></span>
-          <input
-            type="file"
-            id="uploadIntro"
-            accept="image/*"
-            onChange={(e) => handleImageUpload(e, 'intro')}
-            className={styles.uploadInput}
-            multiple
-          />
+          
         </label>
       
 
@@ -391,14 +385,7 @@ const CriarOficina = () => {
           </div>
           <label htmlFor="uploadOrganizacao" className={styles.uploadLabel}>
     <span className={styles.spancreate}></span>
-    <input
-      type="file"
-      id="uploadOrganizacao"
-      accept="image/*"
-      onChange={(e) => handleImageUpload(e, 'organizacao')}
-      className={styles.uploadInput}
-      multiple
-    />
+  
   </label>
     
 
@@ -427,15 +414,7 @@ const CriarOficina = () => {
 
   <label htmlFor="uploadPratica" className={styles.uploadLabel}>
     <span className={styles.spancreate}></span>
-    <input
-      type="file"
-      id="uploadPratica"
-      name="image3"
-      accept="image/*"
-      onChange={(e) => handleImageUpload(e, 'pratica')}
-      className={styles.uploadInput}
-      multiple
-    />
+    
   </label>
         </section>
         
@@ -467,15 +446,7 @@ const CriarOficina = () => {
 
   <label htmlFor="uploadApresentacao" className={styles.uploadLabel}>
     <span className={styles.spancreate}></span>
-    <input
-      type="file"
-      id="uploadApresentacao"
-      name="image4"
-      accept="image/*"
-      onChange={(e) => handleImageUpload(e, 'apresentacao')}
-      className={styles.uploadInput}
-      multiple
-    />
+  
   </label>
 </section>
 
@@ -488,6 +459,7 @@ const CriarOficina = () => {
 
 </span>
   <select
+    className={styles.selectcreate}
     name="categoriaDoPublico"
     required
     onChange={(e) => setCategoriaDoPublico(e.target.value)}

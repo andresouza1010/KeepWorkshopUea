@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Ícone de coração preenchido e contorno
-import styles from './PostDetail.module.css';
+import styles from '../pages/Home/Home.module.css';
 import { Link } from 'react-router-dom';
 
 const PostDetailUsuarioNaoLogado = ({ oficina }) => {

@@ -1,67 +1,54 @@
-/* Estilos para o container principal */
+/* Contêiner principal */
 .favoritas_container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Título principal */
 .favoritash1 {
-  font-size: 1.5rem;
-  font-weight: normal;
   text-align: center;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-/* Estilo para a mensagem de "sem favoritos" */
-.favop {
-  font-size: 1rem;
-  color: #666;
-  text-align: center;
-  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #17004dfc; /* Cor laranja viva */
+  margin-bottom: 20px;
 }
 
 /* Lista de oficinas */
 .oficinas_list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
 }
 
-/* Item da oficina */
-.oficina_item {
-  background-color: #f8f8f8;
-  border-radius: 4px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  flex: 1 1 calc(50% - 10px); /* Dois itens por linha */
-  max-width: calc(50% - 10px);
-  box-sizing: border-box;
-  transition: background-color 0.2s ease;
+/* Item de oficina */
+
+
+/* Mensagem de oficinas vazias */
+
+/* Detalhes do PostDetail */
+.post_detail {
+  padding: 15px;
 }
 
-.oficina_item:hover {
-  background-color: #f1f1f1;
+.post_detail h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-/* Respostas para telas pequenas */
-@media (max-width: 600px) {
-  .favoritas_container {
-    padding: 15px;
-  }
-
-  .favoritash1 {
-    font-size: 1.2rem;
+/* Responsividade */
+@media (max-width: 768px) {
+  .oficinas_list {
+    flex-direction: column;
+    align-items: center;
   }
 
   .oficina_item {
-    flex: 1 1 100%; /* Um item por linha em telas pequenas */
-    max-width: 100%;
-    padding: 8px;
+    width: 90%;
   }
 }

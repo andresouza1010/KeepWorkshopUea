@@ -88,14 +88,15 @@ const NavBar = () => {
             <FaUser />
           </button>
           {dropdownOpen && (
-            <div className={styles.dropdown}>
-              <NavLink to="/Opcoes" className={styles.dropdownOption}>
-                Opções
-              </NavLink>
-              <button onClick={handleLogout} className={styles.logoutButton}>
-                Sair
-              </button>
-            </div>
+           <div className={styles.dropdown}>
+           <NavLink to="/Opcoes" className={styles.dropdownOption}>
+           <i className="fas fa-cogs"></i> Opções
+           </NavLink>
+           <button onClick={handleLogout} className={styles.logoutButton}>
+             <i className="fas fa-door-open"></i> Sair
+           </button>
+         </div>
+         
           )}
         </div>
       )}

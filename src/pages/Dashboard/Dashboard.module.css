@@ -1,190 +1,122 @@
-/* Dashboard.module.css */
-
 .Dashboard {
-    padding: 50px;
-    background-color: #f9f9f9;
-  }
-  
-  .Dashboard p {
-    font-size: 1.2rem;
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .Dashboardpp {
-    margin-top: 20px;
-  }
-  
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  
-  .noposts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .noposts p {
-    font-size: 1.1rem;
-    color: #555;
-  }
-  
-  .noposts .btn {
-    background-color: #ffeaca;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .noposts .btn:hover {
-    background-color: #ffc966;
-  }
-  
-  /* Cabeçalho da tabela de oficinas */
-  .oficina_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffeaca;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 10px;
-    border-left: 4px solid #ffeaca;
-  }
-  
-  .oficina_header span {
-    flex: 1;
-    text-align: center;
-  }
-  
-  /* Linhas das oficinas */
-  .oficina_row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border-left: 4px solid #ffeaca;
-  }
-  
-  .oficina_row p {
-    flex: 1;
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .oficina_row div {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .oficina_row:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 4px 8px #ffeaca;
-  }
-  
-  /* Botões */
-  .btn {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-outline {
-    background-color: transparent;
-    border: 1px solid #ff6600;
-    color: #ff6600;
-  }
-  
-  .btn-outline:hover {
-    background-color: #ff6600;
-    color: #fff;
-  }
-  
-  .btn-danger {
-    border: 1px solid #dc3545;
-    color: #dc3545;
-  }
-  
-  .btn-danger:hover {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .Dashboard {
-      padding: 20px;
-    }
-  
-    .oficina_header,
-    .oficina_row {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 15px;
-    }
-  
-    .oficina_header span,
-    .oficina_row p {
-      text-align: left;
-    }
-  
-    .oficina_row div {
-      flex-direction: column;
-      width: 100%;
-      gap: 5px;
-    }
-  
-    .btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .noposts {
-      padding: 15px;
-      gap: 10px;
-    }
-  
-    .noposts p {
-      font-size: 1rem;
-    }
-  
-    .btn {
-      font-size: 0.8rem;
-      padding: 8px;
-    }
-  
-    .oficina_row {
-      padding: 10px;
-    }
-  
-    .oficina_row p {
-      font-size: 0.9rem;
-    }
-  }
-  
+.Dashboardpp {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #05004a; 
+}
+
+.noposts {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.noposts p {
+  font-size: 18px;
+  color: #0044ff;
+}
+
+.noposts button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ff8c00; /* Laranja escuro */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.noposts button:hover {
+  background-color: #ff6500; /* Laranja mais intenso */
+  transform: scale(1.05);
+}
+
+.oficina_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #1a0951;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.oficina_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  align-items: center;
+}
+
+.oficina_row p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.oficina_row div {
+  display: flex;
+  gap: 10px;
+}
+/* Estilo base para todos os botões */
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Botão "Ver" */
+.btnView {
+  background-color: #ffffff;
+  color: #007bff; /* Azul */
+  border: 1px solid #007bff;
+}
+
+.btnView:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* Botão "Editar" */
+.btnEdit {
+  background-color: #ffffff;
+  color: #f7a90a; /* Laranja */
+  border: 1px solid #f7a90a;
+}
+
+.btnEdit:hover {
+  background-color: #f7a90a;
+  color: #ffffff;
+}
+
+/* Botão "Excluir" */
+.btnDelete {
+  background-color: #ffffff;
+  color: #e63946; /* Vermelho */
+  border: 1px solid #e63946;
+}
+
+.btnDelete:hover {
+  background-color: #e63946;
+  color: #ffffff;
+}

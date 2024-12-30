@@ -1,168 +1,222 @@
+/* Contêiner da oficina */
 .oficinaContainer {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff; /* Fundo laranja claro */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'DM Sans', sans-serif; /* Fonte elegante e clean */
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
 }
 
-.oficinaContent {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Título */
 .title {
-    font-size: 2rem;
-    color: #FF6F00; /* Laranja vibrante */
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 2em; /* Tamanho menor */
     font-weight: bold;
-}
-
-.descriptionCard {
+    text-align: center;
+    color: #FF6600; /* Laranja */
     margin-bottom: 20px;
-    padding: 15px;
-    background-color: #FFF9EF; /* Fundo laranja mais claro */
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-transform: none; /* Removida a caixa alta */
 }
 
-.detailsSection {
+/* Estilos de cartões e seções */
+.descriptionCard, .detailsSection, .stepSection, .authorInfo, .feedbackForm {
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
 }
 
-.detailsTitle, .stepsTitle, .accessibilityTitle {
-    font-size: 1.5rem;
-    color: #ff8a42d7; /* Tom intermediário de laranja */
-    margin-top: 20px;
-    font-weight: 600;
+/* Efeito de hover nas seções */
+.descriptionCard:hover,
+.detailsSection:hover,
+.stepSection:hover,
+.authorInfo:hover,
+.feedbackForm:hover {
+    transform: translateY(-5px);
 }
 
+/* Títulos das seções */
+.descriptionTitle, .detailsTitle, .stepsTitle, .oficinah4, .oficinaautor {
+    font-size: 1.8em;
+    color: #FF6600;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #FF6600;
+    padding-bottom: 5px;
+}
+
+/* Detalhes da oficina */
 .detailItem {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f9eddaa0; /* Laranja bem claro */
-    border-radius: 4px;
-    color: #4D4D4D; /* Texto escuro */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
-.stepSection {
-    margin: 20px 0;
+/* Parágrafos dentro da oficina */
+.oficinap {
+    line-height: 1.8;
+    font-size: 1.2em;
+    color: #333;
 }
 
-.stepSection h4 {
-    font-size: 1.25rem;
-    color: #FF8C42; /* Destaque laranja */
-    margin-bottom: 10px;
-}
-
-.stepSection p {
-    color: #5A5A5A; /* Texto neutro escuro */
-}
-
-/* Container para galeria de imagens com rolagem horizontal */
+/* Imagens */
 .imageContainer {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    overflow-x: auto;
-    padding: 10px 0;
-    scroll-snap-type: x mandatory;
-}
-
-.imageContainer:has(.oficinaImage:only-child) {
     justify-content: center;
+    margin-bottom: 15px;
 }
 
+/* Imagens da oficina */
 .oficinaImage {
-    min-width: 300px;
+    max-width: 100%;
+    width: 300px;
     height: 200px;
-    border-radius: 8px;
     object-fit: cover;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    scroll-snap-align: start;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Efeito hover nas imagens */
 .oficinaImage:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo do Modal */
+/* Botão para leitura em voz alta */
+.readAloudContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.readAloudButton {
+    background-color: #FF6600;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.readAloudButton:hover {
+    background-color: #E65A00;
+}
+
+/* Modal para exibição de imagem */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+/* Imagem do modal */
 .modalImage {
     max-width: 90%;
-    max-height: 90%;
+    max-height: 80%;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(255, 111, 0, 0.5); /* Sutil borda laranja */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
 }
 
+/* Botão de fechar modal */
 .closeButton {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #FF6F00; /* Laranja forte */
-    color: #FFFFFF;
+    background: #FF6600;
+    color: white;
     border: none;
-    padding: 10px;
-    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
 .closeButton:hover {
-    background: #D95C00; /* Tom mais escuro no hover */
+    background: #E65A00;
 }
 
-/* Estilo responsivo */
-@media (max-width: 600px) {
-    .oficinaContainer {
-        padding: 15px;
-    }
-
-    .title {
-        font-size: 1.5rem;
-    }
-
-    .oficinaImage {
-        min-width: 250px;
-        height: 150px;
-    }
+/* Formulário de feedback */
+.feedbackForm p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
 }
 
-.readAloudButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #4CAF50;
+.feedbackForm a {
+    display: inline-block;
+    background: #FF6600;
     color: white;
+    text-decoration: none;
     padding: 10px 20px;
-    border: none;
-    border-radius: 10%;
-    cursor: pointer;
-    font-size: 18px;
-    z-index: 4;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
 }
 
-.readAloudButton:hover {
-    background-color: #45a049;
+.feedbackForm a:hover {
+    background: #E65A00;
+}
+
+/* Estilos para a sequência de passos */
+.stepsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stepItem {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.stepItem .stepNumber {
+    width: 30px;
+    height: 30px;
+    background-color: #FF6600;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.stepItem .stepLabel {
+    font-weight: bold;
+}
+
+.stepItem.completed .stepNumber {
+    background-color: #E65A00;
+}
+
+.stepItem.completed .stepLabel {
+    color: #E65A00;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .oficinaImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .readAloudButton {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
 }

@@ -1,911 +1,273 @@
-.home {
-    position: relative;
-    min-height: 100vh;
-    overflow: hidden; /* Evita que as partículas ultrapassem a área da home */
+/* Contêiner do conteúdo principal */
+.filter_principal {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1; /* Permite que o conteúdo principal cresça para ocupar o espaço restante */
+  gap: 0.6px;
+  background-color: #f7f7f7; /* Fundo claro para contraste com os detalhes */
+  padding-bottom: 1px; /* Garante espaço para o footer */
+}
+
+/* Barra lateral do filtro */
+.filter_barDeUsuariosLogados {
+  width: 25%; 
+  background-color: #222; /* Fundo preto para o filtro */
+  color: #fff; /* Texto branco para contraste */
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  border-radius: 1px; /* Bordas arredondadas para um visual mais suave */
+}
+
+/* Estilo para o footer */
+footer {
+  background-color: #000000; /* Fundo do footer */
+  color: #fff; /* Texto branco para contraste */
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
 }
 
 
-/* Animação para simular partículas */
-@keyframes moveParticles {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(50px, 50px);
-    }
+/* Título do filtro */
+.filterTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f39c12; /* Laranja para destacar o título */
+  margin-bottom: 10px;
 }
 
-
-/* Configuração da área Hero */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Evita que qualquer conteúdo extra vaze */
-}
-/* Conteúdo da Hero com animação de entrada */
-
-.heroContent {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7)), url('../../pages/Imagens/imagemdeteste3.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    animation: slideDownFadeIn 2s ease-in-out; /* Aplicando a nova animação */
-
-    /* Borda superior interativa com efeito neon */
-    position: relative; /* Para posicionar a borda animada */
-    overflow: hidden; /* Para que a borda animada não ultrapasse os limites */
-}
-
-
-/* Animação de deslizamento de cima para baixo */
-@keyframes slideDownFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px); /* Inicia deslocado para cima */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Move para a posição original */
-    }
-}
-
-/* Definição da animação de deslizamento de cima para baixo */
-@keyframes slideDownFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px); /* Inicia deslocado para cima */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Move para a posição original */
-    }
-}
-
-
-
-/* Efeito de zoom e fade-in na entrada */
-@keyframes fadeInZoom {
-    0% {
-        opacity: 0;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* Título com linha na parte de baixo */
-.heroContent h1 {
-    font-size: 3rem;
-    padding: 0.5em 1em 0.5em 1em; /* Ajusta o padding para não incluir a linha */
-    position: relative; /* Para posicionar a linha */
-    color: rgba(255, 174, 0, 0.9); /* Cor do texto */
-}
-.heroContent::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(to right, rgba(255, 174, 0, 0), rgba(255, 255, 255, 0.8), rgba(255, 174, 0, 0));
-    box-shadow: 0 0 20px rgba(255, 174, 0, 0.6), 0 0 30px rgba(255, 174, 0, 0.4);
-    animation: neonGlow 2s alternate infinite;
-}
-
-/* Efeito ao passar o mouse */
-.heroContent h1:hover::after {
-    background-color: rgba(255, 174, 0, 1); /* Muda a cor da linha ao passar o mouse */
-}
-
-
-/* Animação de brilho neon */
-@keyframes neonGlow {
-    from {
-        box-shadow: 0 0 10px rgb(0, 17, 255), 0 0 20px rgba(255, 174, 0, 0.3), 0 0 30px rgba(255, 174, 0, 0.2);
-    }
-    to {
-        box-shadow: 0 0 20px rgba(115, 0, 255, 0.7), 0 0 30px rgba(255, 174, 0, 0.5), 0 0 40px rgba(255, 174, 0, 0.4);
-    }
-}
-
-/* Animação de brilho tecnológico */
-@keyframes techGlow {
-    0% {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(162, 0, 255, 0.5);
-    }
-    50% {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(111, 0, 255, 0.6);
-    }
-    100% {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(76, 0, 255, 0.5);
-    }
-}
-
-
-/* Animação de brilho neon */
-@keyframes neonGlow {
-    from {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
-    }
-    to {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.4);
-    }
-}
-
-/* Botão com efeito hover futurista */
-.acessarButton {
-    padding: 1em 2em;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.acessarButton:hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
-}
-
-
-.hero h1 {
-    font-size: 3em; /* Aumenta o tamanho da fonte */
-    margin: 0;
-    z-index: 2; 
-    animation: fadeIn 1s; /* Animação de aparição */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.hero button {
-    position: relative;
-    z-index: 2; 
-    padding: 15px 30px; 
-    font-size: 1.2em; 
-    background-color: #000000; /* Azul padrão */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Adiciona uma animação */
-    margin-top: 20px; 
-}
-
-.hero button:hover {
-    background-color: #cb6900; /* Cor ao passar o mouse */
-    transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
-}
-
-.filter_bar {
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.filter_text {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.filter_text span {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    margin-right: 15px;
-}
-
+/* Estilo do rótulo para cada opção de filtro */
+.checkbox_labelDeUsuariosLogados,
 .checkbox_label {
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #555;
-    background-color: #ffdfb2;
-    padding: 5px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #ddd; /* Cor mais suave para o texto do filtro */
 }
 
-.checkbox_label:hover {
-    background-color: #e0e0e0;
-    color: #333;
-   
+/* Estilo para os checkboxes */
+.inputDeUsuariosLogados {
+  margin-right: 10px;
+  accent-color: #f39c12; /* Laranja no checkbox */
 }
 
-.checkbox_label input {
-    margin-right: 8px;
-    accent-color: #ffb700; /* Muda a cor da marcação do checkbox */
-    transform: scale(1.2);
-    
+/* Barra de seleção */
+.filterOption {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #444; /* Linha de separação fina */
+  padding-bottom: 15px;
 }
 
-.checkbox_label input:checked + span {
-    font-weight: bold;
-    color: #ff9500;
-    
-}
-
-.checkbox_label {
-    display: flex;
-    align-items: center; /* Alinha o texto e o checkbox no centro verticalmente */
-    font-size: 0.9rem;
-    color: #555;
-    background-color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    gap: 8px; /* Ajusta o espaço entre o checkbox e o texto */
-    flex-direction: row; /* Garante que o checkbox fique à esquerda do texto */
-}
-
-.checkbox_label input {
-    margin: 0; /* Remove margens adicionais */
-    accent-color: #ffb700; /* Define a cor do checkbox */
+/* Exibição das categorias selecionadas */
+.selectedCategories {
+  margin-top: 20px;
 }
 
 
-.postDetail {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
+
+.removeCategoryButton:hover {
+  text-decoration: underline;
+  color: #f39c12; /* Cor laranja quando o botão for hover */
 }
 
 
-.postDetail > div {
-    flex: 0 0 calc(25% - 20px); 
-    box-sizing: border-box; 
+
+/* Carregando */
+.loading {
+  color: #f39c12; /* Laranja para indicar carregamento */
+  font-size: 18px;
+  text-align: center;
 }
 
-/* Seção de "Oficinas não encontradas" */
+/* Estilo de postagens não encontradas */
 .oficinasNao {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Limita a largura */
-    max-width: 600px; /* Largura máxima */
-  }
+  text-align: center;
+  margin-top: 50px;
+}
 
 .message {
-    font-size: 24px; 
-    color: #333; 
-  
+  color: #555; /* Cor mais suave para a mensagem */
+  font-size: 18px;
 }
 
 .btn {
-    padding: 10px 20px; 
-    background-color: #4CAF50; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    text-decoration: none; 
-    transition: background-color 0.3s; 
+  background-color: #f39c12; /* Botão laranja */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .btn:hover {
-    background-color: #45a049; 
+  background-color: #e67e22; /* Cor laranja mais escura para o hover */
+  transition: background-color 0.3s ease;
 }
 
-.acessarLink {
-    color: #FFB347; /* Cor laranja mais leve */
-    text-decoration: none; /* Remove o sublinhado, se necessário */
-    
+.postDetail {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  gap: 30px; /* Espaçamento entre os cards */
+  width: 75%; /* Mantém 75% da largura conforme definido */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 1px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.acessarLink:hover {
-    color: #000000; /* Laranja um pouco mais escuro ao passar o mouse */
+/* Estilo do card */
+.oficina_detail {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 10px; /* Bordas mais arredondadas para um design mais amigável */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  max-width: 250px;
+  margin: 25px auto;
+  margin-left: 15px;
+  margin-bottom: 2rem; /* Ajuste conforme necessário */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.description {
-    font-size: 1rem;
-    color: #ffffff; /* Branco puro */
-    margin-top: 8px;
-    max-width: 500px;
-    text-align: center; /* Centraliza o texto para uma apresentação mais equilibrada */
-}
-
-
-.buttonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Ajuste a distância entre os botões aqui */
-    width: 100%;
-}
-
-.buttonLeft, .buttonRight {
-    margin: 0;
-}
-
-.benefitPanelsContainer {
-    display: flex; /* Usar flexbox para alinhamento */
-    justify-content: space-between; /* Espaço igual entre os painéis */
-    margin: 20px 0; /* Margem superior e inferior */
-}
-
-/* Container principal dos benefícios */
-.benefitsContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 1.5rem;
-    margin-top: 200px; /* Aumenta a distância para cima */
-    margin-bottom: 90px; /* Aumenta a distância para baixo */
-}
-
-/* Painel de cada benefício */
-.benefitPanel {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    text-align: center;
-    padding: 1.5rem;
-    max-width: 250px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.benefitPanel:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Imagem do benefício */
-.benefitImage {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
-    border-radius: 8%;
-}
-
-/* Título do benefício */
-.benefitPanel h3 {
-    font-size: 1.1rem;
-    color: #333333;
-    margin-top: 0.5rem;
-    font-weight: bold;
-}
-
-/* Descrição do benefício */
-.benefitPanel p {
-    font-size: 0.9rem;
-    color: #666666;
-    margin-top: 0.5rem;
-    line-height: 1.4;
-}
-
-.heroSection {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.titlep {
-    font-size: 1.5rem;
-    color: rgb(31, 0, 47);
-    margin-bottom: 0.5rem;
-    margin-top: 50px;
-    margin-left: 50px;
-    font-weight: 600;
-    text-align: left;
-    position: relative;
-}
-
-
-
-.filterButton {
-    position: absolute;
-    top: 75px;
-    right: 50px;
-    padding: 10px;
-    background-color: #ffaa00;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.filterButton:hover {
-    background-color: #b36200;
-}
-
-
-.filterIcon {
-    position: absolute;
-    top: 30px; /* Distância do topo da tela */
-    left:40px; /* Distância da esquerda da tela */
-    font-size: 24px; /* Tamanho do ícone */
-    cursor: pointer;
-    color: #e48900; /* Cor do ícone */
-    z-index: 10; /* Garante que ele fique sobre outros elementos */
-}
-
-
-.filterIcon2 {
-    position: absolute;
-    top: 750px; /* Distância do topo da tela */
-    left: 255px; /* Distância da esquerda da tela */
-    font-size: 24px; /* Tamanho do ícone */
-    cursor: pointer;
-    color: #ea9c00; /* Cor do ícone */
-    z-index: 10; /* Garante que ele fique sobre outros elementos */
-}
-
-
-.dropdown2 {
-    position: absolute;
-    top: 800px; /* Ajuste a posição de acordo com o ícone de filtro */
-    left: 40px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    width: 600px; /* Largura para acomodar colunas */
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
-    z-index: 10;
-    color: #333333;
-}
-
-.dropdown {
-    position: absolute;
-    top: 60px; /* Ajuste a posição de acordo com o ícone de filtro */
-    left: 40px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    width: 600px; /* Largura para acomodar colunas */
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
-    z-index: 10;
-    color: #333333;
-}
-
-.dropdownColumn {
-    flex: 1;
-    padding: 0 15px;
-}
-
-.dropdownTitle {
-    font-weight: bold;
-    font-size: 1rem;
-    color: #000;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ff9500; /* Linha sutil abaixo do título */
-    padding-bottom: 5px;
-}
-
-.dropdownItem {
-    font-size: 0.9rem;
-    color: #333;
-    margin: 8px 0; /* Espaçamento entre os itens */
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.dropdownItem:hover {
-    color: #0078d7; /* Cor de destaque ao passar o mouse */
-}
-
-/* Estilo para etiquetas de destaque */
-.labelHighlight {
-    display: inline-block;
-    background-color: #e60023;
-    color: #fff;
-    font-size: 0.8rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 8px;
-}
-
-
-.infoPanel h2 {
-    font-size: 3em; /* Aumenta o tamanho do título */
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.infoPanel p {
-    font-size: 1.5em; /* Descrição maior */
-    margin-bottom: 25px;
-    color: #fff;
-}
-
-.exploreButton {
-    background-color: #fff;
-    color: #ff7f00;
-    padding: 15px 30px; /* Aumenta o tamanho do botão */
-    border: none;
-    border-radius: 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.exploreButton:hover {
-    background-color: #ffae42;
-    color: #fff;
-}
-
-.infoPanel {
-    background: linear-gradient(90deg, #022c6a, #770095); /* Gradiente azul para verde vibrante */
-    padding: 50px;
-    border-radius: 4px;
-    text-align: center;
-    margin: 90px 40px 50px 40px;
-    color: #ffffff; /* Texto branco para contraste */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer; /* Adiciona um cursor pointer para indicar interatividade */
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-/* Brilho do cursor quando passa por cima */
-.infoPanel:hover {
-    box-shadow: 0 4px 15px rgba(0, 204, 153, 0.7), 0 0 20px rgba(0, 102, 255, 0.6), 0 0 40px rgba(0, 204, 153, 0.5);
-    transform: scale(1.05); /* Leve aumento para destacar o painel ao passar o mouse */
-}
-
-/* Responsividade (opcional para ajustar margens em telas menores) */
 @media (max-width: 768px) {
-    .infoPanel {
-        margin: 50px 20px 30px 20px; /* Reduz margens para telas menores */
-    }
+  .postDetail {
+    grid-template-columns: 1fr; /* Apenas uma coluna em telas menores */
+  }
+}
+
+
+.oficina_detail:hover {
+  transform: scale(1.05); /* Aumenta levemente o card ao hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra mais destacada */
+}
+
+/* Responsividade do texto */
+.oficina_detail h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+}
+
+.oficina_detail p {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0;
+}
+
+/* Imagem */
+.image_container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #ffc4004d;
+  transition: transform 0.3s ease; /* Efeito suave ao hover */
+}
+
+.image_container:hover img {
+  transform: scale(1.02); /* Leve aumento ao passar o mouse */
+}
+
+/* Tag */
+.tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #000000c0; /* Fundo preto com opacidade */
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  z-index: 0;
+  font-weight: bold;
+  text-transform: uppercase; /* Texto em letras maiúsculas */
+}
+
+/* Centralizar e estilizar o botão */
+.button_container {
+  display: flex;
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  align-items: center; /* Centraliza o botão verticalmente */
+  margin-top: 15px; /* Espaçamento superior */
+}
+
+.button_container a {
+  background-color: #ff8f1e; /* Cor azul para destacar */
+  color: #fff; /* Texto branco */
+  padding: 10px 25px; /* Tamanho do botão */
+  text-decoration: none;
+  border-radius: 8px; /* Bordas arredondadas */
+  font-weight: bold;
+  font-size: 14px; /* Tamanho do texto */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efeitos suaves */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar destaque */
+}
+
+.button_container a:hover {
+  background-color: #e6ad00; /* Azul mais escuro no hover */
+  transform: translateY(-3px); /* Elevação leve ao passar o mouse */
+}
+
+/* Ícone de favoritos */
+/* Ícone de favoritos */
+.favorite_icon {
+  position: absolute;
+  top: 23px;
+  right: 20px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  transition: transform 0.3s ease, border-color 0.3s;
+}
+
+.favorite_icon:hover {
+  transform: scale(1.15); /* Leve aumento no ícone ao hover */
+  border-color: rgba(255, 255, 255, 0.9); /* Mais visibilidade ao hover */
+}
+
+.favorite_icon.favorited {
+  color: #ff385c; /* Cor vibrante para itens favoritados */
+  animation: favorited-pulse 0.3s ease; /* Animação ao favoritar */
+}
+
+/* Animação de pulsação ao favoritar */
+@keyframes favorited-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 
 
-/* Efeito de animação de brilho no cursor */
-.infoPanel::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(238, 238, 238, 0.092), transparent 70%);
-    pointer-events: none; /* Garante que o brilho não interfira com outros elementos */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-.infoPanel:hover::before {
-    opacity: 1;
-    transform: scale(1); /* Expande o brilho ao passar o mouse */
-}
-
-
-
-
-
-
-
-
-
-.filter_barDeUsuariosLogados {
-    background-color: #fff8f0; /* Fundo laranja claro */
-    border: 1px solid #ffd9b3; /* Borda laranja sutil */
-    border-radius: 8px;
-    padding: 15px 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.filter_textDeUsuariosLogados {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-}
-
-.spantextDeUsuariosLogados {
-    font-size: 1.1rem;
-    color: #ff8800; /* Tom laranja vibrante */
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.checkbox_labelDeUsuariosLogados {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #ffd9b3; /* Realce laranja claro */
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    color: #333;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.checkbox_labelDeUsuariosLogados:hover {
-    background-color: #ffe6cc; /* Fundo laranja claro ao passar o mouse */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.inputDeUsuariosLogados {
-    margin-right: 8px;
-    cursor: pointer;
-    accent-color: #ff8800; /* Cor personalizada para o checkbox */
-}
-.heroSectionDelogados {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Alinha os itens principais nos lados esquerdo e direito */
-    flex-wrap: wrap; /* Para ajustar no layout se houver muitas categorias */
-    gap: 10px; /* Espaçamento entre elementos */
-    cursor: pointer;
-}
-
-.filterBarDeUsuariosLogados {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Isso vai alinhar o ícone do filtro e as categorias */
-    width: 100%;
-}
-
-.filterLabel {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    color: hsl(0, 0%, 20%);
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.filterIconDelogados {
-    margin-left: 5px;
-    font-size: 1.2rem;
-    color: #ff8800;
-    transition: transform 0.2s ease;
-    margin-right: 8px; /* Reduz a distância entre o ícone e as categorias */
-}
-
-.filterIconDelogados:hover {
-    transform: scale(1.1);
-}
-
-/* Container das categorias selecionadas */
-.selectedCategories {
-    display: flex;
-    flex-wrap: wrap; /* Permite que as categorias ocupem novas linhas, se necessário */
-    gap: 8px; /* Reduz a distância entre as categorias */
-    max-width: -100%; /* Garante que o container use toda a largura disponível */
-    justify-content: center; /* Alinha as categorias à esquerda */
-}
-
-.selectedCategory {
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    background-color: #ffedcc; /* Laranja claro */
-    color: #333;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
-}
-
-
-
-
-
-.removeCategoryButton {
-    background: none;
-    border: none;
-    color: #000000; /* Vermelho claro */
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  
-}
-
-.removeCategoryButton:hover {
-    color: #ffffff; /* Destaca ao passar o mouse */
-    
-}
-
-
-
-.dropdownTitleDeLogados {
-    font-size: 1.1rem;
-    color: #ff8800; /* Destaque laranja */
-    font-weight: bold;
-    margin-bottom: 8px; /* Reduzido para 5px */
-}
-
-
-
-.checkbox_label {
-    display: flex;
-    align-items: center;
-    background-color: #fff8f0; /* Fundo laranja claro */
-    border: 1px solid #ffd9b3;
-    border-radius: 5px;
-    padding: 5px 5px; /* Ajustado para ocupar menos espaço */
-    font-size: 0.9rem;
-    color: #333;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.checkbox_label:hover {
-    background-color: #ffe6cc; /* Fundo laranja mais escuro ao passar o mouse */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-input[type="checkbox"] {
-    margin-right: 5px; /* Reduz a distância entre o checkbox e o texto */
-    cursor: pointer;
-    accent-color: #ff8800; /* Cor personalizada para os checkboxes */
-}
-
-
-.dropdownDeLogados {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 550px;
-    z-index: 2;
-}
-
-.dropdownColumnDeLogados {
-    flex: 1;
-    min-width: 200px;
-}
-
-.dropdownTitleDeLogados {
-    font-weight:normal;
-    margin-bottom: 0.5rem;
-}
-
-.checkbox_label {
-    display: flex;
-    align-items:normal;
-    margin-bottom: 0.5rem;
-}
-
-.spantextDeUsuariosLogados {
-    margin-right: 0.5rem;
-}
-
-/* Estilo adicional para melhorar a aparência */
-.dropdownDeLogados .checkbox_label {
-    cursor: pointer;
-}
-
-
-.sobreSection {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 2rem;
-    background-color: #f4f4f4;
-    flex-wrap: wrap; /* Permite que os elementos se ajustem em telas menores */
-}
-
-.sobreTextAndImage {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px; /* Limita a largura máxima */
-    gap: 2rem;
-}
-
-.sobreText {
-    flex: 1;
-    padding-right: 2rem;
-}
-
-.sobreText h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-}
-
-.sobreText h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 70%;
-    height: 3px;
-    background-color: orange; /* Linha laranja abaixo do título */
-}
-
-.sobreDescription {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #555;
-}
-
-.heroContent2 {
-    flex: 1;
-    max-width: 500px; /* Limita o tamanho da imagem */
-    height: auto;
-    border-radius: 8px; /* Borda arredondada */
-}
-
-.sobreImagem {
-    width: 100%;
-    height: auto;
-    border-radius: 8px; /* Mantém a borda arredondada */
-}
-
-/* Media Query para dispositivos menores */
+/* Responsividade */
 @media (max-width: 768px) {
-    .sobreTextAndImage {
-        flex-direction: column;
-        align-items: center;
-    }
+  .oficina_detail {
+    max-width: 100%;
+    margin: 20px;
+  }
 
-    .sobreText {
-        padding-right: 0;
-        text-align: center; /* Centraliza o texto em telas menores */
-    }
-
-    .heroContent2 {
-        max-width: 100%;
-        margin-top: 1rem; /* Espaçamento entre o texto e a imagem em telas menores */
-    }
-
-    .sobreText h2 {
-        font-size: 1.5rem;
-    }
-
-    .sobreDescription {
-        font-size: 1rem; /* Ajuste no tamanho da fonte em telas menores */
-    }
+  .image_container img {
+    height: 180px;
+  }
 }
