@@ -1,115 +1,140 @@
-/* Contêiner da oficina */
+/* CSS completo para a interface Oficina com design clean e intuitivo */
+
 .oficinaContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
     font-family: 'Poppins', sans-serif;
     color: #333;
-    background-color: #f9f9f9;
-}
-
-/* Título */
-.title {
-    font-size: 2em; /* Tamanho menor */
-    font-weight: bold;
-    text-align: center;
-    color: #FF6600; /* Laranja */
-    margin-bottom: 20px;
-    text-transform: none; /* Removida a caixa alta */
-}
-
-/* Estilos de cartões e seções */
-.descriptionCard, .detailsSection, .stepSection, .authorInfo, .feedbackForm {
-    background: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Efeito de hover nas seções */
-.descriptionCard:hover,
-.detailsSection:hover,
-.stepSection:hover,
-.authorInfo:hover,
-.feedbackForm:hover {
-    transform: translateY(-5px);
-}
-
-/* Títulos das seções */
-.descriptionTitle, .detailsTitle, .stepsTitle, .oficinah4, .oficinaautor {
-    font-size: 1.8em;
-    color: #FF6600;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #FF6600;
-    padding-bottom: 5px;
-}
-
-/* Detalhes da oficina */
-.detailItem {
-    margin-bottom: 15px;
-}
-
-/* Parágrafos dentro da oficina */
-.oficinap {
-    line-height: 1.8;
-    font-size: 1.2em;
-    color: #333;
-}
-
-/* Imagens */
-.imageContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-/* Imagens da oficina */
-.oficinaImage {
-    max-width: 100%;
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efeito hover nas imagens */
-.oficinaImage:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Botão para leitura em voz alta */
 .readAloudContainer {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .readAloudButton {
-    background-color: #FF6600;
-    color: #fff;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #ff5500;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .readAloudButton:hover {
-    background-color: #E65A00;
+    background-color: #0056b3;
 }
 
-/* Modal para exibição de imagem */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.descriptionCard {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.descriptionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.oficinap {
+    line-height: 1.6;
+    color: #555;
+}
+
+.detailsSection {
+    margin-bottom: 20px;
+}
+
+.detailsTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.detailItem {
+    margin-bottom: 10px;
+}
+
+.stepsTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+    text-align: center;
+    margin: 30px 0 15px;
+}
+
+.stepSection {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.oficinah4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.imageContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.oficinaImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.oficinaImage:hover {
+    transform: scale(1.1);
+}
+
+.authorInfo {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.feedbackForm {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.feedbackForm a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.feedbackForm a:hover {
+    text-decoration: underline;
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -123,100 +148,25 @@
     z-index: 1000;
 }
 
-/* Imagem do modal */
 .modalImage {
-    max-width: 90%;
+    max-width: 80%;
     max-height: 80%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
 }
 
-/* Botão de fechar modal */
 .closeButton {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #FF6600;
-    color: white;
+    background-color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border-radius: 50px;
+    padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .closeButton:hover {
-    background: #E65A00;
-}
-
-/* Formulário de feedback */
-.feedbackForm p {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-}
-
-.feedbackForm a {
-    display: inline-block;
-    background: #FF6600;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    transition: background-color 0.3s ease;
-}
-
-.feedbackForm a:hover {
-    background: #E65A00;
-}
-
-/* Estilos para a sequência de passos */
-.stepsContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.stepItem {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    color: #333;
-}
-
-.stepItem .stepNumber {
-    width: 30px;
-    height: 30px;
-    background-color: #FF6600;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-}
-
-.stepItem .stepLabel {
-    font-weight: bold;
-}
-
-.stepItem.completed .stepNumber {
-    background-color: #E65A00;
-}
-
-.stepItem.completed .stepLabel {
-    color: #E65A00;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .oficinaImage {
-        width: 100%;
-        height: auto;
-    }
-
-    .readAloudButton {
-        font-size: 1em;
-        padding: 8px 16px;
-    }
+    background-color: #f1f1f1;
 }

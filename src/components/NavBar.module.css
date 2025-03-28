@@ -43,9 +43,9 @@ body {
   display: flex;
   align-items: center;
   background-color: #333;
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 0.5rem 1rem;
-  max-width: 400px;
+  max-width: 350px;
   width: 100%;
   margin-left: 0; /* Remove o espaçamento à esquerda */
 }
@@ -146,6 +146,7 @@ body {
   border-radius: 8px; /* Bordas arredondadas */
   min-width: 150px; /* Largura mínima do dropdown */
   padding: 1rem; /* Espaçamento interno */
+  z-index: 1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombras suaves para o dropdown */
   display: none; /* Inicialmente oculto */
   flex-direction: column; /* Organiza os itens do dropdown em coluna */
@@ -153,6 +154,7 @@ body {
 
 /* Mostra o dropdown quando o estado 'dropdownOpen' for verdadeiro */
 .profile:hover .dropdown {
+  z-index: 1;
   display: flex; /* Exibe o dropdown quando o mouse passar sobre o perfil */
 }
 
@@ -162,11 +164,13 @@ body {
   text-decoration: none; /* Remove o sublinhado */
   font-size: 1rem; /* Tamanho de fonte */
   padding: 0.5rem 0; /* Espaçamento vertical */
+  z-index: 1;
   transition: color 0.3s ease; /* Transição suave para a cor */
 }
 
 /* Efeito de Hover nas opções do dropdown */
 .dropdownOption:hover {
+  z-index: 1;
   color: #ff8400; /* Dourado ao passar o mouse nas opções */
 }
 
@@ -180,10 +184,12 @@ body {
   width: 100%; /* Ocupa toda a largura do dropdown */
   text-align: left; /* Alinha o texto à esquerda */
   cursor: pointer; /* Cursor de clique */
+  z-index: 1;
   transition: color 0.3s ease; /* Transição suave para a cor */
 }
 
 /* Efeito de Hover no botão de logout */
 .logoutButton:hover {
+  z-index: 1;
   color: #ff8400; /* Dourado ao passar o mouse no botão de logout */
 }

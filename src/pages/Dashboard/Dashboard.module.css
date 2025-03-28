@@ -12,7 +12,7 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  color: #05004a; 
+  color: #2c3e50; 
 }
 
 .noposts {
@@ -47,7 +47,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: #1a0951;
+  background-color: #2c3e50;
   color: #fff;
   font-weight: bold;
   border-radius: 5px;
@@ -88,8 +88,8 @@
 /* Botão "Ver" */
 .btnView {
   background-color: #ffffff;
-  color: #007bff; /* Azul */
-  border: 1px solid #007bff;
+  color: #323538; 
+  border: 1px solid #bbbbbb;
 }
 
 .btnView:hover {
@@ -100,8 +100,8 @@
 /* Botão "Editar" */
 .btnEdit {
   background-color: #ffffff;
-  color: #f7a90a; /* Laranja */
-  border: 1px solid #f7a90a;
+  color: #323538;
+  border: 1px solid #bbbbbb;
 }
 
 .btnEdit:hover {
@@ -112,8 +112,8 @@
 /* Botão "Excluir" */
 .btnDelete {
   background-color: #ffffff;
-  color: #e63946; /* Vermelho */
-  border: 1px solid #e63946;
+  color: #323538;
+  border: 1px solid #bbbbbb;
 }
 
 .btnDelete:hover {

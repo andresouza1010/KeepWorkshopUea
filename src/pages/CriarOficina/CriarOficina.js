@@ -8,11 +8,7 @@ import imageCompression from 'browser-image-compression';
 const CriarOficina = () => {
 
   const [accessibilityDescriptions, setAccessibilityDescriptions] = useState({
-    'autista': '',
     'tdah': '',
-    'deficientes visuais': '',
-    'pessoas surdas': '',
-    'outro público': ''
   });
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
@@ -453,11 +449,10 @@ const CriarOficina = () => {
     <label className={styles.labelcreate}>
         
 {/* Checkbox para selecionar os públicos de acessibilidade */}
-
 <label className={styles.labelcreateacessibilidade}>
-  <span className={styles.spancreate}>Esta oficina considera estudantes com necessidades específicas de aprendizagem? Se sim informe qual. 
-
-</span>
+  <span className={styles.spancreate}>
+    Esta oficina possui adaptações para estudantes com TDAH ou outras necessidades específicas?
+  </span>
   <select
     className={styles.selectcreate}
     name="categoriaDoPublico"
@@ -465,72 +460,63 @@ const CriarOficina = () => {
     onChange={(e) => setCategoriaDoPublico(e.target.value)}
     value={categoriaDoPublico}
   >
-    <option className={styles.optionscreateacessibilidade} value=""></option>
-    <option className={styles.optionscreateacessibilidade}value="Não">Não</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas no espectro do autismo">Transtorno do espectro do autismo</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com TDAH">Transtorno do déficit de atenção com hiperatividade</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência visual">Deficiência visual</option>
-    <option className={styles.optionscreateacessibilidade}value="Pessoas com deficiência auditiva">Deficiência auditiva</option>
-    <option className={styles.optionscreateacessibilidade}value="Outro público">Outro público</option>
+    <option className={styles.optionscreateacessibilidade} value="">Selecione</option>
+    <option className={styles.optionscreateacessibilidade} value="Não">Não</option>
+    <option className={styles.optionscreateacessibilidade} value="Sim">Sim</option>
   </select>
 </label>
 
-{/* Exibe as caixas de texto correspondentes à opção escolhida */}
-{categoriaDoPublico === 'Pessoas no espectro do autismo' && (
+{/* Exibe dicas e campos de descrição caso o usuário selecione "Sim" */}
+{categoriaDoPublico === 'Sim' && (
   <div className={styles.create_oficinaacessibilidade}>
-    <textarea
-    
-     className={styles.texteareacreate}
-      placeholder="Descreva como seu projeto se aplica a este público"
-      value={accessibilityDescriptions['autista'] || ''}
-      onChange={(e) => handleAccessibilityDescriptionChange(e, 'autista')}
-    />
+    <p className={styles.dicasTitulo}>Dicas para tornar sua oficina mais acessível:</p>
+
+    {/* Dica 1 - Atividades Dinâmicas */}
+    <div className={styles.dica}>
+      <p style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span><strong>1. Atividades Dinâmicas e Interativas:</strong> Pessoas com TDAH tendem a se engajar melhor em tarefas práticas e com mudanças frequentes de estímulo.</span>
+        <i className="fa fa-random" style={{ marginLeft: '10px' }}></i>
+      </p>
+      <textarea
+        className={styles.texteareacreate}
+        placeholder="Descreva como sua oficina será dinâmica e interativa."
+        value={accessibilityDescriptions['dinamica'] || ''}
+        onChange={(e) => handleAccessibilityDescriptionChange(e, 'dinamica')}
+      />
+    </div>
+
+    {/* Dica 2 - Instruções Claras */}
+    <div className={styles.dica}>
+      <p style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span><strong>2. Instruções Claras e Objetivas:</strong> Frases curtas e diretas ajudam a manter o foco e evitar distrações.</span>
+        <i className="fa fa-list-alt" style={{ marginLeft: '10px' }}></i>
+      </p>
+      <textarea
+        className={styles.texteareacreate}
+        placeholder="Explique como você tornará suas instruções mais claras e objetivas."
+        value={accessibilityDescriptions['instrucoes'] || ''}
+        onChange={(e) => handleAccessibilityDescriptionChange(e, 'instrucoes')}
+      />
+    </div>
+
+    {/* Dica 3 - Ambiente Estruturado */}
+    <div className={styles.dica}>
+      <p style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span><strong>3. Ambiente Estruturado com Flexibilidade:</strong> Ter um plano organizado, mas permitindo pequenas pausas ou adaptações, facilita a participação sem sobrecarga.</span>
+        <i className="fa fa-cogs" style={{ marginLeft: '10px' }}></i>
+      </p>
+      <textarea
+        className={styles.texteareacreate}
+        placeholder="Como sua oficina oferecerá um ambiente estruturado e flexível?"
+        value={accessibilityDescriptions['ambiente'] || ''}
+        onChange={(e) => handleAccessibilityDescriptionChange(e, 'ambiente')}
+      />
+    </div>
   </div>
 )}
 
-{categoriaDoPublico === 'Pessoas com TDAH' && (
-  <div className={styles.create_oficinaacessibilidade}>
-    <textarea
-      className={styles.texteareacreate}
-      placeholder="Descreva como seu projeto se aplica a este público"
-      value={accessibilityDescriptions['tdah'] || ''}
-      onChange={(e) => handleAccessibilityDescriptionChange(e, 'tdah')}
-    />
-  </div>
-)}
 
-{categoriaDoPublico === 'Pessoas com deficiência visual' && (
-  <div className={styles.create_oficinaacessibilidade}>
-    <textarea
-      className={styles.texteareacreate}
-      placeholder="Descreva como seu projeto se aplica a este público"
-      value={accessibilityDescriptions['deficientes visuais'] || ''}
-      onChange={(e) => handleAccessibilityDescriptionChange(e, 'deficientes visuais')}
-    />
-  </div>
-)}
 
-{categoriaDoPublico === 'Pessoas com deficiência auditiva' && (
-  <div className={styles.create_oficinaacessibilidade}>
-    <textarea
-      className={styles.texteareacreate}
-      placeholder="Descreva como seu projeto se aplica a este público"
-      value={accessibilityDescriptions['pessoas surdas'] || ''}
-      onChange={(e) => handleAccessibilityDescriptionChange(e, 'pessoas surdas')}
-    />
-  </div>
-)}
-
-{categoriaDoPublico === 'Outro público' && (
-  <div className={styles.create_oficinaacessibilidade}>
-    <textarea
-      className={styles.texteareacreate}
-      placeholder="Descreva como seu projeto se aplica a este público"
-      value={accessibilityDescriptions['outro público'] || ''}
-      onChange={(e) => handleAccessibilityDescriptionChange(e, 'outro público')}
-    />
-  </div>
-)}
         </label>
 
         <label className={styles.labelcreate}>

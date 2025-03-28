@@ -1,0 +1,106 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .coverPhoto {
+    width: 100%;
+    height: 150px;
+    background-color: #ff8400;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .profileSection {
+    text-align: center;
+    margin-top: -50px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileName {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #ff8400;
+  }
+  
+  .textInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    height: 80px;
+  }
+  
+  .saveButton,
+  .editButton {
+    background-color: #ff8400;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .saveButton:hover,
+  .editButton:hover {
+    background-color: #e67300;
+  }
+  
+  .aboutText {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .phoneText {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .alert {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  
+  .userDetails {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .userDetail {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .userDetail strong {
+    color: #555;
+  }
+  
